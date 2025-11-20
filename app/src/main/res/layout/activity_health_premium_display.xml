@@ -23,8 +23,7 @@
             android:text="PREMIUM CALCULATION"
             android:textAlignment="center"
             android:textSize="30dp"
-            android:textStyle="bold">
-        </TextView>
+            android:textStyle="bold"></TextView>
 
         <View
             android:layout_width="match_parent"
@@ -174,80 +173,80 @@
                 <!--Layout for Floater SI & Floater NCD-->
 
                 <LinearLayout
+                    android:id="@+id/floaterSIAndNCDLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/floaterSIAndNCDLayout">
+                    android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/floaterSIAndNCDInnerLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:id="@+id/floaterSIAndNCDInnerLayout">
+                        android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:orientation="horizontal"
-                        android:weightSum="3">
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text="Floater SI"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
 
-                        <TextView
-                            android:id="@+id/floaterSIDisplay"
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Floater SI"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/floaterSIDisplay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text=""
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="390dp"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center"
+                            android:background="@color/black" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text=""
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
 
-                    </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Floater NCD"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="390dp"
-                        android:layout_height="1dp"
-                        android:layout_gravity="center"
-                        android:background="@color/black" />
+                            <TextView
+                                android:id="@+id/floaterNCDDisplay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text=""
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:orientation="horizontal"
-                        android:weightSum="3">
+                        </LinearLayout>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text="Floater NCD"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/floaterNCDDisplay"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text=""
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="390dp"
-                        android:layout_height="1dp"
-                        android:layout_gravity="center"
-                        android:background="@color/black" />
+                        <View
+                            android:layout_width="390dp"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center"
+                            android:background="@color/black" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -409,12 +408,12 @@
                     android:background="@color/black" />
 
                 <LinearLayout
+                    android:id="@+id/dailyCashLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
-                    android:weightSum="3"
-                    android:id="@+id/dailyCashLinearLayout">
+                    android:weightSum="3">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -442,12 +441,12 @@
                     android:background="@color/black" />
 
                 <LinearLayout
+                    android:id="@+id/maternityLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
-                    android:weightSum="3"
-                    android:id="@+id/maternityLinearLayout">
+                    android:weightSum="3">
 
                     <TextView
                         android:layout_width="match_parent"

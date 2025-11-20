@@ -138,29 +138,7 @@ public class CommonFunctions {
     public static String CNG_LPG_KIT_TP_PREMIUM = "60";
     public static String ONE_YEAR_OD_OR_TP = "1 Year OD/TP";
     public static String PNE_YEAR_OD_PLUS_ONE_YEAR_TP = "1 Year OD + 3 Year TP";
-    public static String[] PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY = {
-            "NA",
-            CommonFunctions.SI_10000,
-            CommonFunctions.SI_20000,
-            CommonFunctions.SI_30000,
-            CommonFunctions.SI_40000,
-            CommonFunctions.SI_50000,
-            CommonFunctions.SI_60000,
-            CommonFunctions.SI_70000,
-            CommonFunctions.SI_80000,
-            CommonFunctions.SI_90000,
-            CommonFunctions.SI_100000,
-            CommonFunctions.SI_110000,
-            CommonFunctions.SI_120000,
-            CommonFunctions.SI_130000,
-            CommonFunctions.SI_140000,
-            CommonFunctions.SI_150000,
-            CommonFunctions.SI_160000,
-            CommonFunctions.SI_170000,
-            CommonFunctions.SI_180000,
-            CommonFunctions.SI_190000,
-            CommonFunctions.SI_200000
-    };
+    public static String[] PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY = {"NA", CommonFunctions.SI_10000, CommonFunctions.SI_20000, CommonFunctions.SI_30000, CommonFunctions.SI_40000, CommonFunctions.SI_50000, CommonFunctions.SI_60000, CommonFunctions.SI_70000, CommonFunctions.SI_80000, CommonFunctions.SI_90000, CommonFunctions.SI_100000, CommonFunctions.SI_110000, CommonFunctions.SI_120000, CommonFunctions.SI_130000, CommonFunctions.SI_140000, CommonFunctions.SI_150000, CommonFunctions.SI_160000, CommonFunctions.SI_170000, CommonFunctions.SI_180000, CommonFunctions.SI_190000, CommonFunctions.SI_200000};
     public static String[] TYPE_ARRAY = {PRE_OWNED, NEW};
     public static String[] HEALTH_TYPE_ARRAY = {FLOATER, INDIVIDUAL};
     public static String[] IS_SAOD_ARRAY = {NO, YES};
@@ -256,51 +234,11 @@ public class CommonFunctions {
     public static String IHP_SI_1000000 = "1000000";
     public static String IHP_SI_1500000 = "1500000";
     public static String IHP_SI_2000000 = "2000000";
-    public static String[] IHP_SI_ARRAY = {
-            IHP_SI_50000,
-            IHP_SI_75000,
-            IHP_SI_100000,
-            IHP_SI_125000,
-            IHP_SI_150000,
-            IHP_SI_175000,
-            IHP_SI_200000,
-            IHP_SI_225000,
-            IHP_SI_250000,
-            IHP_SI_275000,
-            IHP_SI_300000,
-            IHP_SI_325000,
-            IHP_SI_350000,
-            IHP_SI_375000,
-            IHP_SI_400000,
-            IHP_SI_425000,
-            IHP_SI_450000,
-            IHP_SI_475000,
-            IHP_SI_500000,
-            IHP_SI_525000,
-            IHP_SI_550000,
-            IHP_SI_575000,
-            IHP_SI_600000,
-            IHP_SI_625000,
-            IHP_SI_650000,
-            IHP_SI_675000,
-            IHP_SI_700000,
-            IHP_SI_725000,
-            IHP_SI_750000,
-            IHP_SI_775000,
-            IHP_SI_800000,
-            IHP_SI_825000,
-            IHP_SI_850000,
-            IHP_SI_875000,
-            IHP_SI_900000,
-            IHP_SI_925000,
-            IHP_SI_950000,
-            IHP_SI_975000,
-            IHP_SI_1000000,
-            IHP_SI_1500000,
-            IHP_SI_2000000
+    public static String[] IHP_SI_ARRAY = {IHP_SI_50000, IHP_SI_75000, IHP_SI_100000, IHP_SI_125000, IHP_SI_150000, IHP_SI_175000, IHP_SI_200000, IHP_SI_225000, IHP_SI_250000, IHP_SI_275000, IHP_SI_300000, IHP_SI_325000, IHP_SI_350000, IHP_SI_375000, IHP_SI_400000, IHP_SI_425000, IHP_SI_450000, IHP_SI_475000, IHP_SI_500000, IHP_SI_525000, IHP_SI_550000, IHP_SI_575000, IHP_SI_600000, IHP_SI_625000, IHP_SI_650000, IHP_SI_675000, IHP_SI_700000, IHP_SI_725000, IHP_SI_750000, IHP_SI_775000, IHP_SI_800000, IHP_SI_825000, IHP_SI_850000, IHP_SI_875000, IHP_SI_900000, IHP_SI_925000, IHP_SI_950000, IHP_SI_975000, IHP_SI_1000000, IHP_SI_1500000, IHP_SI_2000000
 
     };
 
+    public static String ONE_ADULT = "1A";
     public static String ONE_ADULT_ANY_CHILD = "1A + Any Child";
     public static String TWO_ADULT = "2A";
     public static String TWO_ADULT_ANY_CHILD = "2A + Any Child";
@@ -320,95 +258,16 @@ public class CommonFunctions {
     public static String HEALTH_NCD_45 = "45";
     public static String HEALTH_NCD_47_5 = "47.5";
     public static String HEALTH_NCD_50 = "50";
-    public static String[] ALL_STATES_ARRAY = {
-            ANDAMAN_AND_NICOBAR_ISLANDS,
-            ANDHRA_PRADESH,
-            ARUNACHAL_PRADESH,
-            ASSAM,
-            BIHAR,
-            CHANDIGARH,
-            DELHI,
-            GOA,
-            GUJARAT,
-            HARYANA,
-            HIMACHAL_PRADESH,
-            JAMMU_AND_KASHMIR,
-            JHARKHAND,
-            KARNATAKA,
-            KERALA,
-            MADHYA_PRADESH,
-            MAHARASHTRA,
-            MANIPUR,
-            MEGHALAYA,
-            MIZORAM,
-            NAGALAND,
-            ODISHA,
-            PUDUCHERRY,
-            PUNJAB,
-            RAJASTHAN,
-            TAMIL_NADU,
-            TELANGANA,
-            TRIPURA,
-            UTTAR_PRADESH,
-            UTTARAKHAND,
-            WEST_BENGAL
-    };
+    public static String[] ALL_STATES_ARRAY = {ANDAMAN_AND_NICOBAR_ISLANDS, ANDHRA_PRADESH, ARUNACHAL_PRADESH, ASSAM, BIHAR, CHANDIGARH, DELHI, GOA, GUJARAT, HARYANA, HIMACHAL_PRADESH, JAMMU_AND_KASHMIR, JHARKHAND, KARNATAKA, KERALA, MADHYA_PRADESH, MAHARASHTRA, MANIPUR, MEGHALAYA, MIZORAM, NAGALAND, ODISHA, PUDUCHERRY, PUNJAB, RAJASTHAN, TAMIL_NADU, TELANGANA, TRIPURA, UTTAR_PRADESH, UTTARAKHAND, WEST_BENGAL};
 
-    public static String[] PVT_CAR_MANUFACTURER_ARRAY = {
-            TATA,
-            MARUTI,
-            MAHINDRA,
-            TOYOTA,
-            HYUNDAI,
-            HONDA,
-            KIA,
-            OTHERS
-    };
+    public static String[] PVT_CAR_MANUFACTURER_ARRAY = {TATA, MARUTI, MAHINDRA, TOYOTA, HYUNDAI, HONDA, KIA, OTHERS};
 
-    public static String[] FAMILY_MEDICARE_SI_ARRAY = {
-            FMP_SI_0,
-            FMP_SI_100000,
-            FMP_SI_150000,
-            FMP_SI_200000,
-            FMP_SI_250000,
-            FMP_SI_300000,
-            FMP_SI_350000,
-            FMP_SI_400000,
-            FMP_SI_450000,
-            FMP_SI_500000,
-            FMP_SI_600000,
-            FMP_SI_700000,
-            FMP_SI_800000,
-            FMP_SI_900000,
-            FMP_SI_1000000,
-            FMP_SI_1500000,
-            FMP_SI_2000000,
-            FMP_SI_2500000
-    };
-    public static String[] FAMILY_TYPE_ARRAY = {
-            ONE_ADULT_ANY_CHILD,
-            TWO_ADULT,
-            TWO_ADULT_ANY_CHILD,
-    };
+    public static String[] FAMILY_MEDICARE_SI_ARRAY = {FMP_SI_0, FMP_SI_100000, FMP_SI_150000, FMP_SI_200000, FMP_SI_250000, FMP_SI_300000, FMP_SI_350000, FMP_SI_400000, FMP_SI_450000, FMP_SI_500000, FMP_SI_600000, FMP_SI_700000, FMP_SI_800000, FMP_SI_900000, FMP_SI_1000000, FMP_SI_1500000, FMP_SI_2000000, FMP_SI_2500000};
+    public static String[] FAMILY_TYPE_ARRAY = {ONE_ADULT_ANY_CHILD, TWO_ADULT, TWO_ADULT_ANY_CHILD,};
 
-    public static String[] HEALTH_NCD_ARRAY = {
-            HEALTH_NCD_0,
-            HEALTH_NCD_5,
-            HEALTH_NCD_10,
-            HEALTH_NCD_15,
-            HEALTH_NCD_20,
-            HEALTH_NCD_25,
-            HEALTH_NCD_27_5,
-            HEALTH_NCD_30,
-            HEALTH_NCD_32_5,
-            HEALTH_NCD_35,
-            HEALTH_NCD_37_5,
-            HEALTH_NCD_40,
-            HEALTH_NCD_42_5,
-            HEALTH_NCD_45,
-            HEALTH_NCD_47_5,
-            HEALTH_NCD_50
-    };
+    public static String[] FAMILY_TYPE_ARRAY_WITH_ONE_ADULT_SELECTION_ALSO = {ONE_ADULT, ONE_ADULT_ANY_CHILD, TWO_ADULT, TWO_ADULT_ANY_CHILD,};
+
+    public static String[] HEALTH_NCD_ARRAY = {HEALTH_NCD_0, HEALTH_NCD_5, HEALTH_NCD_10, HEALTH_NCD_15, HEALTH_NCD_20, HEALTH_NCD_25, HEALTH_NCD_27_5, HEALTH_NCD_30, HEALTH_NCD_32_5, HEALTH_NCD_35, HEALTH_NCD_37_5, HEALTH_NCD_40, HEALTH_NCD_42_5, HEALTH_NCD_45, HEALTH_NCD_47_5, HEALTH_NCD_50};
 
     public static String commissionRate = "0.00";
     public static String commissionAmount = "0.00";
@@ -1323,10 +1182,7 @@ public class CommonFunctions {
             additionalIncentiveTPRate = "15.00";
         } else {
             if (doubleCc > 1000.00 && doubleCc <= 1200.00) {
-                if (rtoState.equalsIgnoreCase(KARNATAKA) ||
-                        rtoState.equalsIgnoreCase(HARYANA) ||
-                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                        rtoState.equalsIgnoreCase(TAMIL_NADU)) {
+                if (rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(TAMIL_NADU)) {
 
                 } else {
                     additionalIncentiveODRate = "2.50";
@@ -1336,10 +1192,7 @@ public class CommonFunctions {
                 additionalIncentiveODRate = "2.50";
                 additionalIncentiveTPRate = "15.00";
             } else if (doubleCc > 2000.00) {
-                if (rtoState.equalsIgnoreCase(KARNATAKA) ||
-                        rtoState.equalsIgnoreCase(HARYANA) ||
-                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                        rtoState.equalsIgnoreCase(TAMIL_NADU)) {
+                if (rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(TAMIL_NADU)) {
 
                 } else {
                     additionalIncentiveODRate = "10.00";
@@ -1395,33 +1248,21 @@ public class CommonFunctions {
                 incentiveRate = "37.50";
             }
         } else if (doubleGvw > 2000 && doubleGvw <= 3500) {
-            if (rtoState.equalsIgnoreCase(HARYANA) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                    rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
                 commissionRate = "15.00";
             } else {
                 commissionRate = "15.00";
                 incentiveRate = "30.00";
             }
         } else if (doubleGvw > 3500 && doubleGvw <= 7500) {
-            if (rtoState.equalsIgnoreCase(HARYANA) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                    rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
                 commissionRate = "10.00";
             } else {
                 commissionRate = "10.00";
                 incentiveRate = "17.50";
             }
         } else if (doubleGvw > 7500 && doubleGvw <= 10000) {
-            if (rtoState.equalsIgnoreCase(HARYANA) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                    rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
                 commissionRate = "10.00";
             } else {
                 commissionRate = "10.00";
@@ -1430,39 +1271,21 @@ public class CommonFunctions {
         } else if (doubleGvw > 10000 && doubleGvw <= 12000) {
             commissionRate = "2.50";
         } else if (doubleGvw > 12000 && doubleGvw <= 20000) {
-            if (rtoState.equalsIgnoreCase(HARYANA) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                    rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
-                    rtoState.equalsIgnoreCase(KARNATAKA) ||
-                    rtoState.equalsIgnoreCase(KERALA)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH) || rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(KERALA)) {
                 commissionRate = "5.00";
             } else {
                 commissionRate = "5.00";
                 incentiveRate = "10.00";
             }
         } else if (doubleGvw > 20000 && doubleGvw <= 25000) {
-            if (rtoState.equalsIgnoreCase(HARYANA) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                    rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
-                    rtoState.equalsIgnoreCase(KARNATAKA) ||
-                    rtoState.equalsIgnoreCase(KERALA)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH) || rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(KERALA)) {
                 commissionRate = "5.00";
             } else {
                 commissionRate = "5.00";
                 incentiveRate = "10.00";
             }
         } else if (doubleGvw > 25000 && doubleGvw <= 35000) {
-            if (rtoState.equalsIgnoreCase(HARYANA) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                    rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
-                    rtoState.equalsIgnoreCase(KARNATAKA) ||
-                    rtoState.equalsIgnoreCase(KERALA)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH) || rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(KERALA)) {
                 commissionRate = "2.50";
             } else {
                 commissionRate = "2.50";
@@ -1471,13 +1294,7 @@ public class CommonFunctions {
         } else if (doubleGvw > 35000 && doubleGvw <= 40000) {
             commissionRate = "2.50";
         } else if (doubleGvw > 40000) {
-            if (rtoState.equalsIgnoreCase(HARYANA) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                    rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
-                    rtoState.equalsIgnoreCase(KARNATAKA) ||
-                    rtoState.equalsIgnoreCase(KERALA)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH) || rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(KERALA)) {
 
             } else {
                 incentiveRate = "5.00";
@@ -1712,10 +1529,7 @@ public class CommonFunctions {
         }
         if (type.equalsIgnoreCase(BUS_MAXI_LUXURY_PCV)) {
             if (category.equalsIgnoreCase(INSTITUTION_BUS)) {
-                if (rtoState.equalsIgnoreCase(KARNATAKA) ||
-                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                        rtoState.equalsIgnoreCase(TAMIL_NADU)) {
+                if (rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU)) {
                     commissionRate = "30.00";
                 } else {
                     commissionRate = "30.00";
@@ -1723,25 +1537,21 @@ public class CommonFunctions {
                 }
             } else {
                 if (passenger <= 10) {
-                    if (rtoState.equalsIgnoreCase(HARYANA) ||
-                            rtoState.equalsIgnoreCase(RAJASTHAN)) {
+                    if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(RAJASTHAN)) {
                         commissionRate = "10.00";
                     } else {
                         commissionRate = "10.00";
                         incentiveRate = "10.00";
                     }
                 } else if (passenger > 10 && passenger <= 20) {
-                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                            rtoState.equalsIgnoreCase(KARNATAKA)) {
+                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(KARNATAKA)) {
                         commissionRate = "10.00";
                     } else {
                         commissionRate = "10.00";
                         incentiveRate = "10.00";
                     }
                 } else if (passenger > 20 && passenger <= 30) {
-                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                            rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                            rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
                         commissionRate = "7.50";
                     } else {
                         commissionRate = "7.50";
@@ -1752,21 +1562,14 @@ public class CommonFunctions {
                 }
             }
         } else if (type.equalsIgnoreCase(THREE_WHEELER_PCV)) {
-            if (rtoState.equalsIgnoreCase(KERALA) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU)) {
+            if (rtoState.equalsIgnoreCase(KERALA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(TAMIL_NADU)) {
                 commissionRate = "25.00";
             } else {
                 commissionRate = "25.00";
                 incentiveRate = "12.50";
             }
         } else if (type.equalsIgnoreCase(FOUR_WHEELER_PCV)) {
-            if (rtoState.equalsIgnoreCase(HARYANA) ||
-                    rtoState.equalsIgnoreCase(KARNATAKA) ||
-                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
-                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
-                    rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
-                    rtoState.equalsIgnoreCase(MADHYA_PRADESH)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH) || rtoState.equalsIgnoreCase(MADHYA_PRADESH)) {
                 commissionRate = "15.00";
             } else {
                 commissionRate = "15.00";
@@ -2138,9 +1941,7 @@ public class CommonFunctions {
                 map1.put("total_ncd_amount", totalNCDAmount);
                 map1.put("totalFamilyDiscount", totalFamilyDiscount);
                 map1.put("total_daily_cash_premium", totalDailyCashPremium);
-                String totalGrossPremium = Double.toString(Double.parseDouble(totalBasicPremium) -
-                        Double.parseDouble(totalNCDAmount) -
-                        Double.parseDouble(totalFamilyDiscount));
+                String totalGrossPremium = Double.toString(Double.parseDouble(totalBasicPremium) - Double.parseDouble(totalNCDAmount) - Double.parseDouble(totalFamilyDiscount));
                 String totalGrossPremiumWithAddOns = Double.toString(Double.parseDouble(totalGrossPremium) + Double.parseDouble(totalDailyCashPremium));
                 map1.put("gross_premium", totalGrossPremiumWithAddOns);
                 String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumWithAddOns));
@@ -2288,5 +2089,155 @@ public class CommonFunctions {
         } else {
             return "Invalid Age";
         }
+    }
+
+    public static ArrayList<HashMap<String, String>> calculateFamilyMedicarePremiumTest(String type, String zone, String noOfMembers, String floaterSI, String floaterNCD, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCashCheckBox, boolean maternityCheckbox) {
+
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
+        String familyDiscountPercentage = getFamilyDiscount(type, familyType, isAgeBetween40and50(memberDetailsArrayList));
+
+        String dailyCashAllowancePremium = "0.00";
+        String dailyCashAllowanceAmount = "0.00";
+        String dailyCashAllowanceCommissionAmount = "0.00";
+        String maternityCommissionAmount = "0.00";
+        String maternityPremium = "0.00";
+        ArrayList<Integer> ageArrayList = new ArrayList<>();
+        ArrayList<Double> basicPremiumArrayList = new ArrayList<>();
+        ArrayList<Double> ncdAmountArrayList = new ArrayList<>();
+        ArrayList<Double> familyDiscountAmountArrayList = new ArrayList<>();
+        ArrayList<Double> grossPremiumArraList = new ArrayList<>();
+        ArrayList<Double> commissionArrayList = new ArrayList<>();
+
+
+        String fileName = "";
+        if (zone.equalsIgnoreCase(ZONE_A)) {
+            fileName = "fmp_zone_a.json";
+        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+            fileName = "fmp_zone_b.json";
+        } else if (zone.equalsIgnoreCase(ZONE_C)) {
+            fileName = "fmp_zone_c.json";
+        }
+
+        String jsonStr = loadJSONFromAsset(context, fileName);
+        if (jsonStr != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(jsonStr);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject object = jsonArray.getJSONObject(i);
+                    String si = object.getString("SI");
+                    if (si.equalsIgnoreCase(floaterSI)) {
+                        for (int j = 0; j < memberDetailsArrayList.size(); j++) {
+                            Map<String, View> map = memberDetailsArrayList.get(j);
+                            for (Iterator<Map.Entry<String, View>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                                Map.Entry<String, View> entry = it.next();
+                                String key = entry.getKey();
+                                View v = entry.getValue();
+                                String memberAge = "0";
+                                if (v instanceof EditText) {
+                                    HashMap<String, String> map1 = new HashMap<>();
+                                    memberAge = ((EditText) v).getText().toString().trim();
+                                    String age_slab = getAgeSlab(memberAge);
+                                    String basicPremium = object.getString(age_slab);
+                                    String ncdAmount = Double.toString(Double.parseDouble(floaterNCD) / 100.00 * Double.parseDouble(basicPremium));
+                                    String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount)));
+                                    String grossPremium = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount) - Double.parseDouble(familyDiscountAmount));
+                                    String commission = calculateCommission(zone, grossPremium, memberAge);
+
+                                    map1.put("member_age", memberAge);
+                                    map1.put("member_basic_premium", basicPremium);
+                                    map1.put("member_ncd_amount", ncdAmount);
+                                    map1.put("member_family_discount", familyDiscountAmount);
+                                    map1.put("member_gross_premium", grossPremium);
+                                    output1.add(map1);
+                                    ageArrayList.add(Integer.parseInt(memberAge));
+                                    basicPremiumArrayList.add(Double.parseDouble(basicPremium));
+                                    ncdAmountArrayList.add(Double.parseDouble(ncdAmount));
+                                    familyDiscountAmountArrayList.add(Double.parseDouble(familyDiscountAmount));
+                                    grossPremiumArraList.add(Double.parseDouble(grossPremium));
+                                    commissionArrayList.add(Double.parseDouble(commission));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (dailyCashCheckBox) {
+                    ArrayList<String> output2 = new ArrayList<>();
+                    output2 = calculateDailyCashPremium(type, ageArrayList, "0.00", floaterSI);
+                    dailyCashAllowancePremium = output2.get(0);
+                    dailyCashAllowanceAmount = output2.get(1);
+                    dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)));
+                    commissionArrayList.add((Double.parseDouble(dailyCashAllowanceCommissionAmount)));
+                }
+
+                if (maternityCheckbox) {
+                    if (floaterSI.equalsIgnoreCase(FMP_SI_350000)) {
+                        maternityPremium = "12000.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_400000)) {
+                        maternityPremium = "13750.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_450000)) {
+                        maternityPremium = "15500.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_500000)) {
+                        maternityPremium = "17000.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_600000)) {
+                        maternityPremium = "20350.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_700000)) {
+                        maternityPremium = "20600.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_800000)) {
+                        maternityPremium = "20850.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_900000)) {
+                        maternityPremium = "21000.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_1000000)) {
+                        maternityPremium = "21200.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_1500000)) {
+                        maternityPremium = "22000.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_2000000)) {
+                        maternityPremium = "23000.00";
+                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_2500000)) {
+                        maternityPremium = "23500.00";
+                    } else {
+                        maternityPremium = "0.00";
+                    }
+
+                    maternityCommissionAmount = calculateCommission(zone, maternityPremium, Integer.toString(Collections.max(ageArrayList)));
+                    commissionArrayList.add((Double.parseDouble(maternityCommissionAmount)));
+
+                }
+
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put("total_basic_premium", sumOfDoubleArrayList(basicPremiumArrayList));
+                map1.put("total_ncd_amount", sumOfDoubleArrayList(ncdAmountArrayList));
+                map1.put("total_family_discount", sumOfDoubleArrayList(familyDiscountAmountArrayList));
+                map1.put("total_gross_premium", sumOfDoubleArrayList(grossPremiumArraList));
+                map1.put("daily_cash_premium", dailyCashAllowancePremium);
+                map1.put("daily_cash_amount", dailyCashAllowanceAmount);
+                map1.put("maternity_premium", maternityPremium);
+                String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(sumOfDoubleArrayList(grossPremiumArraList)) + Double.parseDouble(dailyCashAllowancePremium) + Double.parseDouble(maternityPremium));
+                String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+                map1.put("gst", gst);
+                String netPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst));
+                map1.put("net_premium", netPremium);
+                map1.put("total_commission", Double.toString(Double.parseDouble(sumOfDoubleArrayList(commissionArrayList))));
+                output1.add(map1);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return output1;
+    }
+
+    private static String sumOfDoubleArrayList(ArrayList<Double> arrayList) {
+        String output = "0.00";
+        double sum = 0.00;
+        for (Double d : arrayList) {
+            if (d != null) {
+                sum += d;
+            }
+        }
+        output = Double.toString(sum);
+        return output;
     }
 }

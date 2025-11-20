@@ -82,8 +82,10 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
 
         Spinner familyTypeSpinner = findViewById(R.id.familyTypeSpinner);
         ArrayAdapter<String> familyTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY);
+        ArrayAdapter<String> familyTypeAdapterWithOneAdultOption = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY_WITH_ONE_ADULT_SELECTION_ALSO);
         familyTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        familyTypeSpinner.setAdapter(familyTypeAdapter);
+        familyTypeAdapterWithOneAdultOption.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 
         Spinner floaterSISpinner = findViewById(R.id.floaterSISpinner);
         familyMedicareMemberSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -103,12 +105,14 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                     if (!noOfMembersEditText.getText().toString().equalsIgnoreCase("")) {
                         noOfMembersEditText.setText("");
                     }
+                    familyTypeSpinner.setAdapter(familyTypeAdapter);
                 } else if (i == 1) {
                     floaterSILinearLayout.setVisibility(View.GONE);
                     floateNCDLinearLayout.setVisibility(View.GONE);
                     if (!noOfMembersEditText.getText().toString().equalsIgnoreCase("")) {
                         noOfMembersEditText.setText("");
                     }
+                    familyTypeSpinner.setAdapter(familyTypeAdapterWithOneAdultOption);
                 }
             }
 
@@ -147,7 +151,9 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
 
                             TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
 
-                            if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD)) {
+                            if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT)) {
+                                memberNoTextView.setText("Self");
+                            } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD)) {
                                 if (count == 1) {
                                     memberNoTextView.setText("Self");
                                 } else {
@@ -261,7 +267,25 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                                 Toast.makeText(FamilyMedicareDataEntry.this, "Please Enter Floater SI", Toast.LENGTH_SHORT).show();
                                 return;
                             } else {
-                                premium = CommonFunctions.calculateFamilyMedicarePremium(typeSpinner.getSelectedItem().toString(),
+                                /*premium = CommonFunctions.calculateFamilyMedicarePremium(typeSpinner.getSelectedItem().toString(),
+                                        zoneSpinner.getSelectedItem().toString(),
+                                        noOfMembersEditText.getText().toString(),
+                                        floaterSISpinner.getSelectedItem().toString(),
+                                        floaterNCDSpinner.getSelectedItem().toString(),
+                                        memberDetailsArrayList, FamilyMedicareDataEntry.this,
+                                        familyTypeSpinner.getSelectedItem().toString(),
+                                        dailyCashCoverCheckBox.isChecked(),
+                                        maternityCheckBox.isChecked());
+                                Intent intent = new Intent(FamilyMedicareDataEntry.this, HealthPremiumDisplay.class);
+                                intent.putExtra("product_name", "Family Medicare Policy");
+                                intent.putExtra("type", typeSpinner.getSelectedItem().toString());
+                                intent.putExtra("zone", zoneSpinner.getSelectedItem().toString());
+                                intent.putExtra("floaterSI", floaterSISpinner.getSelectedItem().toString());
+                                intent.putExtra("floaterNCD", floaterNCDSpinner.getSelectedItem().toString());
+                                intent.putExtra("premiumAndCommission", premium);
+                                startActivity(intent);*/
+
+                                premium = CommonFunctions.calculateFamilyMedicarePremiumTest(typeSpinner.getSelectedItem().toString(),
                                         zoneSpinner.getSelectedItem().toString(),
                                         noOfMembersEditText.getText().toString(),
                                         floaterSISpinner.getSelectedItem().toString(),
