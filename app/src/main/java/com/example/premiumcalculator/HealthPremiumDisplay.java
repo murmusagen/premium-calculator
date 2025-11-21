@@ -60,6 +60,10 @@ public class HealthPremiumDisplay extends AppCompatActivity {
         TextView netPremiumDisplay = findViewById(R.id.netPremiumDisplay);
         TextView dailyCashDisplay = findViewById(R.id.dailyCashDisplay);
         TextView maternityDisplay = findViewById(R.id.maternityDisplay);
+        TextView disclaimerTextView = findViewById(R.id.disclaimerTextView);
+        TextView commissionTextView = findViewById(R.id.commissionTextView);
+
+        disclaimerTextView.setText(CommonFunctions.DISCLAIMER_TEXT);
 
         String productName = intent.getStringExtra("product_name");
         String type = intent.getStringExtra("type");
@@ -125,6 +129,8 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                         gstDisplay.setText(value);
                     } else if (key.equalsIgnoreCase("net_premium")) {
                         netPremiumDisplay.setText(value);
+                    } else if (key.equalsIgnoreCase("total_commission")) {
+                        commissionTextView.setText(value);
                     }
                 }
             }

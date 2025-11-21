@@ -32,6 +32,7 @@ import java.util.Map;
 
 public class CommonFunctions {
 
+    public static String DISCLAIMER_TEXT = "The premium calculation provided by this app is for informational purposes only and does not constitute a binding quote or offer of insurance. Insurance premiums are subject to approval by the insurer and may vary due to underwriting criteria, changes in policy terms, state regulations, and other factors beyond the app's control. We recommend consulting with an authorized insurance agent or company to obtain an official premium quote before making any decisions.";
     public static final String ALL_ZONE_TEXT = "Zone - A : All Districts in NCT of Delhi (incl. Shahdara), Faridabad, Palwal, Gurugram, Rohtak, Jhajjar, Ghaziabad, Gautam Buddh Nagar, Bulandshahr, Ahmedabad, Ahmedabad City, Gandhi Nagar, Vadodara, Surat, Mumbai, Mumbai Suburban, Thane, Raigad (MH), Palghar\n\nZone - B : Ahmed Nagar, Amritsar, Anand, Bengaluru, Bhopal, Chennai, Coimbatore, Dakshina Kannada, Ernakulam, Howrah, Hyderabad, Indore, Jaipur, Jalgaon, Jodhpur, Kanpur Nagar, Kheda, Kolhapur, Kolkata, Kottayam, Krishna, Lucknow, Ludhiana, Nagpur, Nashik, North 24 Parganas, Pune, Rajkot, Ranga Reddy, Solapur, Thiruvananthapuram, Tiruvallur, Valsad, Visakhapatnam\n\nZone - C : Rest of India";
     public static final String ANDAMAN_AND_NICOBAR_ISLANDS = "Andaman and Nicobar Islands";
     public static final String ANDHRA_PRADESH = "Andhra Pradesh";
@@ -2218,10 +2219,16 @@ public class CommonFunctions {
                 map1.put("gst", gst);
                 String netPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst));
                 map1.put("net_premium", netPremium);
-                map1.put("total_commission", Double.toString(Double.parseDouble(sumOfDoubleArrayList(commissionArrayList))));
+                String commission = CommonFunctions.uptoTwoDecimal(Double.toString(Double.parseDouble(sumOfDoubleArrayList(commissionArrayList))));
+                String incentive = "0.00";
+                String portalCharges = "50.00";
+                String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+                String commissionString = "Approx Commission : ".concat(CommonFunctions.uptoTwoDecimal(commission)).
+                                            concat("\nApprox Incentive : ").concat(CommonFunctions.uptoTwoDecimal(incentive)).
+                                            concat("\nPortal Charges : ").concat(CommonFunctions.uptoTwoDecimal(portalCharges)).
+                                            concat("\nPortal Incentive : ").concat(CommonFunctions.uptoTwoDecimal(portalIncentive));
+                map1.put("total_commission", commissionString);
                 output1.add(map1);
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -46,6 +46,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
     CheckBox dailyCashCoverCheckBox;
     CheckBox maternityCheckBox;
     Button findZoneButton;
+    TextView commissionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
         dailyCashCoverCheckBox = findViewById(R.id.dailyCashCoverCheckBox);
         maternityCheckBox = findViewById(R.id.maternityCheckBox);
         findZoneButton = findViewById(R.id.findZoneButton);
+        commissionTextView = findViewById(R.id.commissionTextView);
 
 
         Button calculateFmpPremiumButton = findViewById(R.id.calculateFmpPremiumButton);
@@ -204,10 +206,6 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                             container.addView(dynamicLayout);
                             count = count + 1;
 
-
-                            //String age = dynamicLayout.findViewById(R.id.memberAgeEditText).toString().trim();
-
-
                             map.put("member_age", a);
                             map.put("member_si", familyMedicareMemberSISpinner);
                             map.put("member_ncd", memberNCDSpinner);
@@ -252,7 +250,10 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                     Toast.makeText(FamilyMedicareDataEntry.this, "Please Enter No. Of Members", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD) &&
+                    if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 1) {
+                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 2) {
                         Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
                     } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT) &&
@@ -267,24 +268,6 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                                 Toast.makeText(FamilyMedicareDataEntry.this, "Please Enter Floater SI", Toast.LENGTH_SHORT).show();
                                 return;
                             } else {
-                                /*premium = CommonFunctions.calculateFamilyMedicarePremium(typeSpinner.getSelectedItem().toString(),
-                                        zoneSpinner.getSelectedItem().toString(),
-                                        noOfMembersEditText.getText().toString(),
-                                        floaterSISpinner.getSelectedItem().toString(),
-                                        floaterNCDSpinner.getSelectedItem().toString(),
-                                        memberDetailsArrayList, FamilyMedicareDataEntry.this,
-                                        familyTypeSpinner.getSelectedItem().toString(),
-                                        dailyCashCoverCheckBox.isChecked(),
-                                        maternityCheckBox.isChecked());
-                                Intent intent = new Intent(FamilyMedicareDataEntry.this, HealthPremiumDisplay.class);
-                                intent.putExtra("product_name", "Family Medicare Policy");
-                                intent.putExtra("type", typeSpinner.getSelectedItem().toString());
-                                intent.putExtra("zone", zoneSpinner.getSelectedItem().toString());
-                                intent.putExtra("floaterSI", floaterSISpinner.getSelectedItem().toString());
-                                intent.putExtra("floaterNCD", floaterNCDSpinner.getSelectedItem().toString());
-                                intent.putExtra("premiumAndCommission", premium);
-                                startActivity(intent);*/
-
                                 premium = CommonFunctions.calculateFamilyMedicarePremiumTest(typeSpinner.getSelectedItem().toString(),
                                         zoneSpinner.getSelectedItem().toString(),
                                         noOfMembersEditText.getText().toString(),

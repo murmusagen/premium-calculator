@@ -69,6 +69,9 @@ public class MotorPremuimDisplay extends AppCompatActivity {
 
         TextView commissionTextView = findViewById(R.id.commissionTextView);
 
+        TextView disclaimerTextView = findViewById(R.id.disclaimerTextView);
+        disclaimerTextView.setText(CommonFunctions.DISCLAIMER_TEXT);
+
         if (intent.getStringExtra("msg_product").equalsIgnoreCase(CommonFunctions.TWO_WHEELER) || intent.getStringExtra("msg_product").equalsIgnoreCase(CommonFunctions.PRIVATE_CAR)) {
             if (intent.getStringExtra("msg_type").equalsIgnoreCase(CommonFunctions.PRE_OWNED)) {
                 typeDisplay.setText(CommonFunctions.ONE_YEAR_OD_OR_TP);
