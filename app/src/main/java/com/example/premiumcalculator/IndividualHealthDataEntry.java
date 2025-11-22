@@ -2,6 +2,7 @@ package com.example.premiumcalculator;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +39,8 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
     CheckBox dailyCashCoverCheckBox;
     CheckBox maternityCheckBox;
     Button findZoneButton;
+    Button calculateIHPPremiumButton;
+    Spinner dailyCashAllowanceAmountSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +58,25 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
         noOfMembersEditText = findViewById(R.id.noOfMembersEditText);
         dailyCashCoverCheckBox = findViewById(R.id.dailyCashCoverCheckBox);
         findZoneButton = findViewById(R.id.findZoneButton);
+        calculateIHPPremiumButton = findViewById(R.id.calculateIHPPremiumButton);
 
-        Button calculateFmpPremiumButton = findViewById(R.id.calculateFmpPremiumButton);
+        dailyCashAllowanceAmountSpinner = findViewById(R.id.dailyCashAllowanceAmountSpinner);
+        ArrayAdapter<String> dailyCashAllowanceAmountAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.DAILY_CASH_ALLOWANCE_ARRAY);
+        dailyCashAllowanceAmountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dailyCashAllowanceAmountSpinner.setAdapter(dailyCashAllowanceAmountAdapter);
+        dailyCashAllowanceAmountSpinner.setEnabled(false);
+
+        dailyCashCoverCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dailyCashCoverCheckBox.isChecked()){
+                    dailyCashAllowanceAmountSpinner.setEnabled(true);
+                }else{
+                    dailyCashAllowanceAmountSpinner.setEnabled(false);
+                }
+            }
+        });
+
         ArrayList<Map<String, View>> memberDetailsArrayList = new ArrayList<Map<String, View>>();
 
         String[] individualHealthType = {CommonFunctions.INDIVIDUAL};
@@ -65,6 +86,7 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
         typeSpinner.setAdapter(typeAdapter);
 
         ArrayAdapter<String> individualHealthMemberSIAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.IHP_SI_ARRAY);
+        ArrayAdapter<String> individualHealthNCDAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.NCB_ARRAY);
 
 
         String[] healthZoneArray = {CommonFunctions.ZONE_C, CommonFunctions.ZONE_B, CommonFunctions.ZONE_A};
@@ -90,7 +112,7 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
         });
 
         Spinner familyTypeSpinner = findViewById(R.id.familyTypeSpinner);
-        ArrayAdapter<String> familyTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY);
+        ArrayAdapter<String> familyTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY_WITH_ONE_ADULT_SELECTION_ALSO);
         familyTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         familyTypeSpinner.setAdapter(familyTypeAdapter);
 
@@ -134,13 +156,16 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
                             individualHealthMemberSISpinner.setAdapter(individualHealthMemberSIAdapter);
                             individualHealthMemberSISpinner.setSelection(6);
 
-                            CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataEntryNCDLinearLayout));
+                            Spinner individualHealthMemberNCDSpinner = dynamicLayout.findViewById(R.id.memberNCDSpinner);
+                            individualHealthNCDAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            individualHealthMemberNCDSpinner.setAdapter(individualHealthNCDAdapter);
 
                             container.addView(dynamicLayout);
                             count = count + 1;
 
                             map.put("member_age", a);
                             map.put("member_si", individualHealthMemberSISpinner);
+                            map.put("member_ncd", individualHealthMemberNCDSpinner);
                             memberDetailsArrayList.add(map);
                         }
                     }
@@ -151,5 +176,45 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
             }
         });
 
+        calculateIHPPremiumButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(noOfMembersEditText.getText().toString().trim().equalsIgnoreCase("")){
+                    Toast.makeText(IndividualHealthDataEntry.this, "Please Enter No. Of Members", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 1) {
+                        Toast.makeText(IndividualHealthDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 2) {
+                        Toast.makeText(IndividualHealthDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 2) {
+                        Toast.makeText(IndividualHealthDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT_ANY_CHILD) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 3) {
+                        Toast.makeText(IndividualHealthDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    } else {
+                        premium = CommonFunctions.calculateIndividualHealthPremium(typeSpinner.getSelectedItem().toString(),
+                                zoneSpinner.getSelectedItem().toString(),
+                                noOfMembersEditText.getText().toString(),
+                                memberDetailsArrayList,
+                                IndividualHealthDataEntry.this,
+                                familyTypeSpinner.getSelectedItem().toString(),
+                                dailyCashCoverCheckBox.isChecked(),
+                                false,
+                                dailyCashAllowanceAmountSpinner.getSelectedItem().toString());
+
+                        Intent intent = new Intent(IndividualHealthDataEntry.this, HealthPremiumDisplay.class);
+                        intent.putExtra("product_name", CommonFunctions.INDIVIDUAL_HEALTH_POLICY);
+                        intent.putExtra("type", typeSpinner.getSelectedItem().toString());
+                        intent.putExtra("zone", zoneSpinner.getSelectedItem().toString());
+                        intent.putExtra("premiumAndCommission", premium);
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
     }
 }

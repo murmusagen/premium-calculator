@@ -122,9 +122,8 @@
                         android:id="@+id/findZoneButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Find Zone"
                         android:layout_weight="1"
-                        />
+                        android:text="Find Zone" />
 
                 </LinearLayout>
 
@@ -197,7 +196,6 @@
                     android:background="@color/black" />
 
 
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -217,10 +215,10 @@
                     android:background="@color/black" />
 
                 <LinearLayout
+                    android:id="@+id/container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/container">
+                    android:orientation="vertical">
 
                 </LinearLayout>
 
@@ -245,11 +243,28 @@
                         android:layout_weight="2"
                         android:orientation="vertical">
 
-                        <CheckBox
-                            android:id="@+id/dailyCashCoverCheckBox"
+                        <LinearLayout
+                            android:id="@+id/dailyCashLayoutIndividual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Daily Cash" />
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <CheckBox
+                                android:id="@+id/dailyCashCoverCheckBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Daily Cash"
+                                android:layout_weight="1"/>
+
+                            <Spinner
+                                android:id="@+id/dailyCashAllowanceAmountSpinner"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -266,7 +281,7 @@
 
 
                 <Button
-                    android:id="@+id/calculateFmpPremiumButton"
+                    android:id="@+id/calculateIHPPremiumButton"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

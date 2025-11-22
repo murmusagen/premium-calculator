@@ -303,7 +303,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                                         maternityCheckBox.isChecked());
 
                                 Intent intent = new Intent(FamilyMedicareDataEntry.this, HealthPremiumDisplay.class);
-                                intent.putExtra("product_name", "Family Medicare Policy");
+                                intent.putExtra("product_name", CommonFunctions.FAMILY_MEDICARE_POLICY);
                                 intent.putExtra("type", typeSpinner.getSelectedItem().toString());
                                 intent.putExtra("zone", zoneSpinner.getSelectedItem().toString());
                                 intent.putExtra("premiumAndCommission", premium);

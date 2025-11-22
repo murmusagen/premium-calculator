@@ -80,62 +80,131 @@ public class HealthPremiumDisplay extends AppCompatActivity {
         typeDisplay.setText(type);
         zoneDisplay.setText(zone);
 
-        if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
+        if(productName.equalsIgnoreCase(CommonFunctions.FAMILY_MEDICARE_POLICY)){
             if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                floaterSIDisplay.setText(floaterSI);
-                floaterNCDDisplay.setText(floaterNCD.concat(" %"));
+                if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
+                    floaterSIDisplay.setText(floaterSI);
+                    floaterNCDDisplay.setText(floaterNCD.concat(" %"));
+                } else if (type.equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
+                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDLayout));
+                }
+                String totalBasicPremium = "0.00";
+                for (int i = 0; i < premiumAndCommission.size(); i++) {
+                    HashMap<String, String> map = premiumAndCommission.get(i);
+                    for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                        Map.Entry<String, String> entry = it.next();
+                        String key = entry.getKey();
+                        String value = entry.getValue();
+                        if (key.equalsIgnoreCase("member_age")) {
+                            View dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
+                            String variableName = "Member ".concat(Integer.toString(i + 1));
+                            TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
+                            TextView memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                            memberNoTextView.setText(variableName);
+                            memberAgeEditText.setText(value.concat(" Yrs"));
+                            container.addView(dynamicLayout);
+                            if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
+                                CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForIndividualLinearLayout));
+                            }
+                        } else if (key.equalsIgnoreCase("total_basic_premium")) {
+                            totalBasicPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                        } else if (key.equalsIgnoreCase("total_ncd_amount")) {
+                            ncdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                        } else if (key.equalsIgnoreCase("total_family_discount")) {
+                            floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                        } else if (key.equalsIgnoreCase("total_gross_premium")) {
+                            grossPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                        } else if (key.equalsIgnoreCase("daily_cash_premium")) {
+                            if (value.equalsIgnoreCase("0.00")) {
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
+                            } else {
+                                dailyCashDisplay.setText(value);
+                            }
+                        } else if (key.equalsIgnoreCase("maternity_premium")) {
+                            if (value.equalsIgnoreCase("0.00")) {
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
+                            } else {
+                                maternityDisplay.setText(value);
+                            }
+                        } else if (key.equalsIgnoreCase("gst")) {
+                            gstDisplay.setText(value);
+                        } else if (key.equalsIgnoreCase("net_premium")) {
+                            netPremiumDisplay.setText(value);
+                        } else if (key.equalsIgnoreCase("total_commission")) {
+                            commissionTextView.setText(value);
+                        }
+                    }
+                }
             } else if (type.equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
-                CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDLayout));
-            }
-            String totalBasicPremium = "0.00";
-            for (int i = 0; i < premiumAndCommission.size(); i++) {
-                HashMap<String, String> map = premiumAndCommission.get(i);
-                for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
-                    Map.Entry<String, String> entry = it.next();
-                    String key = entry.getKey();
-                    String value = entry.getValue();
-                    if (key.equalsIgnoreCase("member_age")) {
-                        View dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
+                CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDInnerLayout));
+                int count = 0;
+                View dynamicLayout = null;
+                for (int i = 0; i < premiumAndCommission.size(); i++) {
+                    if (count < premiumAndCommission.size() - 1) {
+                        dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
                         String variableName = "Member ".concat(Integer.toString(i + 1));
                         TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
-                        TextView memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                        TextView memberAgeTextView = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                        TextView memberSITextView = dynamicLayout.findViewById(R.id.memberSITextView);
+                        TextView memberNCDTextView = dynamicLayout.findViewById(R.id.memberNCDTextView);
+                        TextView memberCashAllowanceDisplay = dynamicLayout.findViewById(R.id.memberCashAllowanceDisplay);
                         memberNoTextView.setText(variableName);
-                        memberAgeEditText.setText(value.concat(" Yrs"));
+                        HashMap<String, String> map = premiumAndCommission.get(i);
+                        for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                            Map.Entry<String, String> entry = it.next();
+                            String key = entry.getKey();
+                            String value = entry.getValue();
+                            if (key.equalsIgnoreCase("age")) {
+                                memberAgeTextView.setText(value.concat(" Yrs"));
+                            } else if (key.equalsIgnoreCase("member_si")) {
+                                memberSITextView.setText(value.concat(" /-"));
+                            } else if (key.equalsIgnoreCase("member_ncd")) {
+                                memberNCDTextView.setText(value.concat(" %"));
+                            } else if (key.equalsIgnoreCase("member_daily_cash_amount")) {
+                                if (value.equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.memberCashAllowanceLinearLayout));
+                                } else {
+                                    memberCashAllowanceDisplay.setText(value.concat(" /- Per Day"));
+                                }
+                            } else if (key.equalsIgnoreCase("maternity_premium")) {
+                                if(value.equalsIgnoreCase("0.00")){
+                                    CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.maternityLinearLayout));
+                                }else{
+                                    maternityDisplay.setText(value);
+                                }
+                            }
+                        }
+                        count++;
                         container.addView(dynamicLayout);
-                        if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                            CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForIndividualLinearLayout));
+                    } else {
+                        HashMap<String, String> map = premiumAndCommission.get(i);
+                        for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                            Map.Entry<String, String> entry = it.next();
+                            String key = entry.getKey();
+                            String value = entry.getValue();
+                            if (key.equalsIgnoreCase("total_basic_premium")) {
+                                totalBasicPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            } else if (key.equalsIgnoreCase("total_ncd_amount")) {
+                                ncdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            } else if (key.equalsIgnoreCase("totalFamilyDiscount")) {
+                                floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            } else if (key.equalsIgnoreCase("total_daily_cash_premium")) {
+                                dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            } else if (key.equalsIgnoreCase("gross_premium")) {
+                                grossPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            } else if (key.equalsIgnoreCase("gst")) {
+                                gstDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            } else if (key.equalsIgnoreCase("net_premium")) {
+                                netPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            }
                         }
-                    } else if (key.equalsIgnoreCase("total_basic_premium")) {
-                        totalBasicPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
-                    } else if (key.equalsIgnoreCase("total_ncd_amount")) {
-                        ncdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
-                    } else if (key.equalsIgnoreCase("total_family_discount")) {
-                        floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
-                    } else if (key.equalsIgnoreCase("total_gross_premium")) {
-                        grossPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
-                    } else if (key.equalsIgnoreCase("daily_cash_premium")) {
-                        if (value.equalsIgnoreCase("0.00")) {
-                            CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
-                        } else {
-                            dailyCashDisplay.setText(value);
-                        }
-                    } else if (key.equalsIgnoreCase("maternity_premium")) {
-                        if (value.equalsIgnoreCase("0.00")) {
-                            CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
-                        } else {
-                            maternityDisplay.setText(value);
-                        }
-                    } else if (key.equalsIgnoreCase("gst")) {
-                        gstDisplay.setText(value);
-                    } else if (key.equalsIgnoreCase("net_premium")) {
-                        netPremiumDisplay.setText(value);
-                    } else if (key.equalsIgnoreCase("total_commission")) {
-                        commissionTextView.setText(value);
                     }
                 }
             }
-        } else if (type.equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
-            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDInnerLayout));
+        } else if (productName.equalsIgnoreCase(CommonFunctions.INDIVIDUAL_HEALTH_POLICY)) {
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDLayout));
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
+
             int count = 0;
             View dynamicLayout = null;
             for (int i = 0; i < premiumAndCommission.size(); i++) {
@@ -179,16 +248,18 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                             totalBasicPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase("total_ncd_amount")) {
                             ncdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
-                        } else if (key.equalsIgnoreCase("totalFamilyDiscount")) {
+                        } else if (key.equalsIgnoreCase("total_family_discount")) {
                             floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase("total_daily_cash_premium")) {
                             dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
-                        } else if (key.equalsIgnoreCase("gross_premium")) {
+                        } else if (key.equalsIgnoreCase("total_gross_premium")) {
                             grossPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase("gst")) {
                             gstDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase("net_premium")) {
                             netPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                        } else if (key.equalsIgnoreCase("total_commission")) {
+                            commissionTextView.setText(value);
                         }
                     }
                 }
