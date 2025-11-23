@@ -259,7 +259,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                         Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
                     } else {
                         if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                            if (floaterSISpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.HEALTH_SI_0)) {
+                            if (floaterSISpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.SI_0)) {
                                 Toast.makeText(FamilyMedicareDataEntry.this, "Please Enter Floater SI", Toast.LENGTH_SHORT).show();
                                 return;
                             } else {
@@ -332,7 +332,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                     HashMap<String, String> map1 = new HashMap<>();
                     si = ((Spinner) v).getSelectedItem().toString();
                     if (s.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
-                        if (si.equalsIgnoreCase(CommonFunctions.HEALTH_SI_0)) {
+                        if (si.equalsIgnoreCase(CommonFunctions.SI_0)) {
                             allOK = false;
                             error = "Yes";
                             errorMsg = "Please Enter Sum Insured";

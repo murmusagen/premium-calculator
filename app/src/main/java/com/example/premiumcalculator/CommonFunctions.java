@@ -272,7 +272,7 @@ public class CommonFunctions {
     public static String SI_925000 = "925000";
     public static String SI_950000 = "950000";
     public static String SI_975000 = "975000";
-    public static String[] SI_ARRAY = {
+    public static String[] IHP_SI_ARRAY = {
             SI_50000,
             SI_75000,
             SI_100000,
