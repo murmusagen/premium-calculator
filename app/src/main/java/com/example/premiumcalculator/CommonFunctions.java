@@ -32,7 +32,7 @@ import java.util.Map;
 public class CommonFunctions {
 
 
-
+    public static String INTENT_MEMBER_THRESHOLD = "member_threshold";
     public static String INTENT_MEMBER_NET_PREMIUM = "member_net_premium";
     public static String INTENT_MEMBER_COMMISSION = "member_commission";
     public static String YUVAAN_HEALTH_POLICY = "Yuvaan Health Policy";
@@ -248,6 +248,9 @@ public class CommonFunctions {
     public static String SI_1500000 = "1500000";
     public static String SI_2000000 = "2000000";
     public static String SI_2500000 = "2500000";
+    public static String SI_4500000 = "4500000";
+    public static String SI_7000000 = "7000000";
+    public static String SI_9500000 = "9500000";
     public static String SI_75000 = "75000";
     public static String SI_125000 = "125000";
     public static String SI_175000 = "175000";
@@ -272,6 +275,18 @@ public class CommonFunctions {
     public static String SI_925000 = "925000";
     public static String SI_950000 = "950000";
     public static String SI_975000 = "975000";
+    public static String SI_4000000 = "4000000";
+    public static String SI_6500000 = "6500000";
+    public static String SI_9000000 = "9000000";
+    public static String SI_3500000 = "3500000";
+    public static String SI_6000000 = "6000000";
+    public static String SI_8500000 = "8500000";
+    public static String SI_3000000 = "3000000";
+    public static String SI_5500000 = "5500000";
+    public static String SI_8000000 = "8000000";
+    public static String SI_5000000 = "5000000";
+    public static String SI_7500000 = "7500000";
+
     public static String[] IHP_SI_ARRAY = {
             SI_50000,
             SI_75000,
@@ -370,6 +385,65 @@ public class CommonFunctions {
             SI_1500000,
             SI_2000000,
             SI_2500000
+    };
+    public static String[] STUMP_THRESHOLD_ARRAY = {
+            SI_200000,
+            SI_300000,
+            SI_500000,
+            SI_1000000,
+            SI_1500000,
+            SI_2000000,
+            SI_2500000
+    };
+
+    public static String[] SUMP_SI_WHEN_THRESHOLD_200000_ARRAY = {
+            SI_300000,
+            SI_500000
+    };
+
+    public static String[] SUMP_SI_WHEN_THRESHOLD_300000_ARRAY = {
+            SI_300000,
+            SI_500000,
+            SI_700000
+    };
+
+    public static String[] SUMP_SI_WHEN_THRESHOLD_500000_ARRAY = {
+            SI_500000,
+            SI_1000000,
+            SI_1500000,
+            SI_2000000,
+            SI_4500000,
+            SI_7000000,
+            SI_9500000
+    };
+
+    public static String[] SUMP_SI_WHEN_THRESHOLD_1000000_ARRAY = {
+            SI_1000000,
+            SI_1500000,
+            SI_2000000,
+            SI_4000000,
+            SI_6500000,
+            SI_9000000
+    };
+
+    public static String[] SUMP_SI_WHEN_THRESHOLD_1500000_ARRAY = {
+            SI_1500000,
+            SI_3500000,
+            SI_6000000,
+            SI_8500000
+    };
+
+    public static String[] SUMP_SI_WHEN_THRESHOLD_2000000_ARRAY = {
+            SI_2000000,
+            SI_3000000,
+            SI_5500000,
+            SI_8000000
+    };
+
+    public static String[] SUMP_SI_WHEN_THRESHOLD_2500000_ARRAY = {
+            SI_2500000,
+            SI_5000000,
+            SI_7500000
     };
 
     public static String[] FAMILY_TYPE_ARRAY = {ONE_ADULT_ANY_CHILD, TWO_ADULT, TWO_ADULT_ANY_CHILD,};
@@ -1721,6 +1795,12 @@ public class CommonFunctions {
         parentLayout.removeView(nextView);
     }
 
+    public static void deleteLayout(LinearLayout linearLayout) {
+        ViewGroup parentLayout = (ViewGroup) linearLayout.getParent();
+        View nextView = parentLayout.getChildAt(parentLayout.indexOfChild(linearLayout) + 1);
+        parentLayout.removeView(linearLayout);
+    }
+
     public static String loadJSONFromAsset(Context context, String filename) {
         String json = null;
         try {
@@ -1996,9 +2076,9 @@ public class CommonFunctions {
         String totalFamilyDiscount = "0.00";
         String totalDailyCashPremium = "0.00";
 
-        if(coPaymentWaiverCheckbox){
+        if (coPaymentWaiverCheckbox) {
             fileName = "yuvaan_zone_a.json";
-        }else{
+        } else {
             if (zone.equalsIgnoreCase(ZONE_A)) {
                 fileName = "yuvaan_zone_a.json";
             } else if (zone.equalsIgnoreCase(ZONE_B)) {
@@ -2128,7 +2208,7 @@ public class CommonFunctions {
         String commission = "0.00";
         Double ageDouble = Double.parseDouble(age);
 
-        if(product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY)){
+        if (product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY)) {
             if (zone.equalsIgnoreCase(ZONE_A)) {
                 if (ageDouble >= 0 && ageDouble <= 45) {
                     commission = "7.50";
@@ -2235,7 +2315,7 @@ public class CommonFunctions {
 
     private static String getFamilyDiscount(String type, String familyComposition, boolean isAgeBetween40and50, String product) {
         String familyDiscount = "0.00";
-        if(product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(INDIVIDUAL_HEALTH_POLICY)){
+        if (product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(INDIVIDUAL_HEALTH_POLICY)) {
             if (type.equalsIgnoreCase(FLOATER)) {
                 if (familyComposition.equalsIgnoreCase(ONE_ADULT_ANY_CHILD)) {
                     familyDiscount = "15";
@@ -2252,8 +2332,8 @@ public class CommonFunctions {
                 }
             }
         } else if (product.equalsIgnoreCase(YUVAAN_HEALTH_POLICY)) {
-            if(type.equalsIgnoreCase(FLOATER)){
-                if(familyComposition.equalsIgnoreCase(ONE_ADULT_ANY_CHILD)){
+            if (type.equalsIgnoreCase(FLOATER)) {
+                if (familyComposition.equalsIgnoreCase(ONE_ADULT_ANY_CHILD)) {
                     familyDiscount = "15.00";
                 } else if (familyDiscount.equalsIgnoreCase(TWO_ADULT) || familyDiscount.equalsIgnoreCase(TWO_ADULT_ANY_CHILD)) {
                     familyDiscount = "25.00";
@@ -2464,9 +2544,9 @@ public class CommonFunctions {
 
 
         String fileName = "";
-        if(coPaymentWaiverCheckbox){
+        if (coPaymentWaiverCheckbox) {
             fileName = "yuvaan_zone_a.json";
-        }else{
+        } else {
             if (zone.equalsIgnoreCase(ZONE_A)) {
                 fileName = "yuvaan_zone_a.json";
             } else if (zone.equalsIgnoreCase(ZONE_B)) {
@@ -2643,7 +2723,7 @@ public class CommonFunctions {
                                     basicPremium = object.getString(age_slab);
 
                                     map1.put(INTENT_MEMBER_AGE, memberAge);
-                                    map1.put(INTENT_MEMBER_SI,memberSI);
+                                    map1.put(INTENT_MEMBER_SI, memberSI);
                                     map1.put(INTENT_MEMBER_BASIC_PREMIUM, basicPremium);
                                     map1.put(INTENT_MEMBER_NCD_PERCENTAGE, memberNCDPercentage);
                                     memberNCDAmount = Double.toString(Double.parseDouble(memberNCDPercentage) / 100.00 * Double.parseDouble(basicPremium));

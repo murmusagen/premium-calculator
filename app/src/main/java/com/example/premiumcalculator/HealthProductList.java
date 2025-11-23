@@ -53,5 +53,13 @@ public class HealthProductList extends AppCompatActivity {
             }
         });
 
+        stumpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HealthProductList.this, StumpDataEntry.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

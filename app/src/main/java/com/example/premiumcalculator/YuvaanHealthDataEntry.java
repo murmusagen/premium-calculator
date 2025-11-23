@@ -162,6 +162,7 @@ public class YuvaanHealthDataEntry extends AppCompatActivity {
                         for (int j = 0; j < i; j++) {
                             Map<String, View> map = new HashMap<>();
                             View dynamicLayout = inflater.inflate(R.layout.health_member_data_entry, container, false);
+                            CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
 
                             TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
 
