@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class FamilyMedicareDataEntry extends AppCompatActivity {
+public class YuvaanHealthDataEntry extends AppCompatActivity {
 
     LinearLayout container;
     LayoutInflater inflater;
@@ -39,15 +39,16 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
     EditText memberAgeEditText;
     ArrayList<HashMap<String, String>> premium = new ArrayList<>();
     CheckBox dailyCashCoverCheckBox;
-    CheckBox maternityCheckBox;
+    CheckBox coPaymentWaiverCheckBox;
     Button findZoneButton;
     TextView commissionTextView;
+    Spinner dailyCashAllowanceAmountSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_family_medicare_data_entry);
+        setContentView(R.layout.activity_yuvaan_health_data_entry);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -60,12 +61,29 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
         floateNCDLinearLayout = findViewById(R.id.floateNCDLinearLayout);
         noOfMembersEditText = findViewById(R.id.noOfMembersEditText);
         dailyCashCoverCheckBox = findViewById(R.id.dailyCashCoverCheckBox);
-        maternityCheckBox = findViewById(R.id.maternityCheckBox);
+        coPaymentWaiverCheckBox = findViewById(R.id.coPaymentWaiverCheckBox);
         findZoneButton = findViewById(R.id.findZoneButton);
         commissionTextView = findViewById(R.id.commissionTextView);
 
+        dailyCashAllowanceAmountSpinner = findViewById(R.id.dailyCashAllowanceAmountSpinner);
+        ArrayAdapter<String> dailyCashAllowanceAmountAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.DAILY_CASH_ALLOWANCE_ARRAY);
+        dailyCashAllowanceAmountAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dailyCashAllowanceAmountSpinner.setAdapter(dailyCashAllowanceAmountAdapter);
+        dailyCashAllowanceAmountSpinner.setEnabled(false);
 
-        Button calculateFmpPremiumButton = findViewById(R.id.calculateFmpPremiumButton);
+        dailyCashCoverCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dailyCashCoverCheckBox.isChecked()){
+                    dailyCashAllowanceAmountSpinner.setEnabled(true);
+                }else{
+                    dailyCashAllowanceAmountSpinner.setEnabled(false);
+                }
+            }
+        });
+
+
+        Button calculateYuvaanPremiumButton = findViewById(R.id.calculateYuvaanPremiumButton);
         ArrayList<Map<String, View>> memberDetailsArrayList = new ArrayList<Map<String, View>>();
 
         Spinner typeSpinner = findViewById(R.id.typeSpinner);
@@ -73,9 +91,9 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(typeAdapter);
 
-        ArrayAdapter<String> familyMedicareMemberSIAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_MEDICARE_SI_ARRAY);
-        ArrayAdapter<String> floaterSIAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_MEDICARE_SI_ARRAY);
-        ArrayAdapter<String> memberNCDAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.HEALTH_NCD_ARRAY);
+        ArrayAdapter<String> familyMedicareMemberSIAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.YUVAAN_SI_ARRAY);
+        ArrayAdapter<String> floaterSIAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.YUVAAN_SI_ARRAY);
+        ArrayAdapter<String> memberNCDAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.YUVAAN_NCD_ARRAY);
 
         Spinner familyTypeSpinner = findViewById(R.id.familyTypeSpinner);
         ArrayAdapter<String> familyTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY);
@@ -87,7 +105,6 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
         Spinner floaterSISpinner = findViewById(R.id.floaterSISpinner);
         familyMedicareMemberSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         floaterSISpinner.setAdapter(familyMedicareMemberSIAdapter);
-        floaterSISpinner.setSelection(5);
 
         Spinner floaterNCDSpinner = findViewById(R.id.floaterNCDSpinner);
         memberNCDAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -174,17 +191,17 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
 
                             memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
 
-                            EditText a = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                            EditText ageEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
 
 
                             Spinner familyMedicareMemberSISpinner = dynamicLayout.findViewById(R.id.familyMedicareMemberSISpinner);
                             familyMedicareMemberSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             familyMedicareMemberSISpinner.setAdapter(familyMedicareMemberSIAdapter);
                             if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                                familyMedicareMemberSISpinner.setSelection(0);
+                                /*familyMedicareMemberSISpinner.setSelection(0);*/
                                 familyMedicareMemberSISpinner.setEnabled(false);
                             } else {
-                                familyMedicareMemberSISpinner.setSelection(1);
+                                /*familyMedicareMemberSISpinner.setSelection(1);*/
                             }
 
                             Spinner memberNCDSpinner = dynamicLayout.findViewById(R.id.memberNCDSpinner);
@@ -201,7 +218,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                             container.addView(dynamicLayout);
                             count = count + 1;
 
-                            map.put(CommonFunctions.INTENT_MEMBER_AGE, a);
+                            map.put(CommonFunctions.INTENT_MEMBER_AGE, ageEditText);
                             map.put(CommonFunctions.INTENT_MEMBER_SI, familyMedicareMemberSISpinner);
                             map.put(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE, memberNCDSpinner);
                             memberDetailsArrayList.add(map);
@@ -223,7 +240,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
         findZoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(FamilyMedicareDataEntry.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(YuvaanHealthDataEntry.this);
                 builder.setTitle("Zone Information");
                 builder.setMessage(CommonFunctions.ALL_ZONE_TEXT);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -236,44 +253,47 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
             }
         });
 
-        calculateFmpPremiumButton.setOnClickListener(new View.OnClickListener() {
+        calculateYuvaanPremiumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 ArrayList<Boolean> errorList = new ArrayList<Boolean>();
                 if (noOfMembersEditText.getText().toString().trim().equalsIgnoreCase("")) {
-                    Toast.makeText(FamilyMedicareDataEntry.this, "Please Enter No. Of Members", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(YuvaanHealthDataEntry.this, "Please Enter No. Of Members", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
                     if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 1) {
-                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(YuvaanHealthDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
                     } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 2) {
-                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(YuvaanHealthDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
                     } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 2) {
-                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(YuvaanHealthDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
                     } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT_ANY_CHILD) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 3) {
-                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(YuvaanHealthDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
                     } else {
                         if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)) {
                             if (floaterSISpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.HEALTH_SI_0)) {
-                                Toast.makeText(FamilyMedicareDataEntry.this, "Please Enter Floater SI", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(YuvaanHealthDataEntry.this, "Please Enter Floater SI", Toast.LENGTH_SHORT).show();
                                 return;
                             } else {
-                                premium = CommonFunctions.calculateFamilyMedicarePremium(typeSpinner.getSelectedItem().toString(),
+
+                                premium = CommonFunctions.calculateYuvaanHealthPremiumFloater(typeSpinner.getSelectedItem().toString(),
                                         zoneSpinner.getSelectedItem().toString(),
                                         noOfMembersEditText.getText().toString(),
                                         floaterSISpinner.getSelectedItem().toString(),
                                         floaterNCDSpinner.getSelectedItem().toString(),
-                                        memberDetailsArrayList, FamilyMedicareDataEntry.this,
+                                        memberDetailsArrayList, YuvaanHealthDataEntry.this,
                                         familyTypeSpinner.getSelectedItem().toString(),
                                         dailyCashCoverCheckBox.isChecked(),
-                                        maternityCheckBox.isChecked());
-                                Intent intent = new Intent(FamilyMedicareDataEntry.this, HealthPremiumDisplay.class);
-                                intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.FAMILY_MEDICARE_POLICY);
+                                        coPaymentWaiverCheckBox.isChecked(),
+                                        dailyCashAllowanceAmountSpinner.getSelectedItem().toString());
+
+                                Intent intent = new Intent(YuvaanHealthDataEntry.this, HealthPremiumDisplay.class);
+                                intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.YUVAAN_HEALTH_POLICY);
                                 intent.putExtra(CommonFunctions.INTENT_TYPE, typeSpinner.getSelectedItem().toString());
                                 intent.putExtra(CommonFunctions.INTENT_ZONE, zoneSpinner.getSelectedItem().toString());
                                 intent.putExtra(CommonFunctions.INTENT_FLOATER_SI, floaterSISpinner.getSelectedItem().toString());
@@ -285,20 +305,22 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                             ArrayList<String> checkForAllMembersSIEntry = new ArrayList<>();
                             checkForAllMembersSIEntry = checkForAllMembersSIEntry(memberDetailsArrayList);
                             if (checkForAllMembersSIEntry.size() > 0) {
-                                Toast.makeText(FamilyMedicareDataEntry.this, checkForAllMembersSIEntry.get(1), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(YuvaanHealthDataEntry.this, checkForAllMembersSIEntry.get(1), Toast.LENGTH_SHORT).show();
                             } else {
-                                premium = CommonFunctions.calculateFamilyMedicarePremiumIndividual(typeSpinner.getSelectedItem().toString(),
+
+                                premium = CommonFunctions.calculateYuvaanHealthPremiumIndividual(typeSpinner.getSelectedItem().toString(),
                                         zoneSpinner.getSelectedItem().toString(),
                                         noOfMembersEditText.getText().toString(),
                                         floaterSISpinner.getSelectedItem().toString(),
                                         floaterNCDSpinner.getSelectedItem().toString(),
-                                        memberDetailsArrayList, FamilyMedicareDataEntry.this,
+                                        memberDetailsArrayList, YuvaanHealthDataEntry.this,
                                         familyTypeSpinner.getSelectedItem().toString(),
                                         dailyCashCoverCheckBox.isChecked(),
-                                        maternityCheckBox.isChecked());
+                                        coPaymentWaiverCheckBox.isChecked(),
+                                        dailyCashAllowanceAmountSpinner.getSelectedItem().toString());
 
-                                Intent intent = new Intent(FamilyMedicareDataEntry.this, HealthPremiumDisplay.class);
-                                intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.FAMILY_MEDICARE_POLICY);
+                                Intent intent = new Intent(YuvaanHealthDataEntry.this, HealthPremiumDisplay.class);
+                                intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.YUVAAN_HEALTH_POLICY);
                                 intent.putExtra(CommonFunctions.INTENT_TYPE, typeSpinner.getSelectedItem().toString());
                                 intent.putExtra(CommonFunctions.INTENT_ZONE, zoneSpinner.getSelectedItem().toString());
                                 intent.putExtra(CommonFunctions.INTENT_PREMIUM_AND_COMMISSION, premium);

@@ -45,6 +45,13 @@ public class HealthProductList extends AppCompatActivity {
             }
         });
 
+        yuvaanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HealthProductList.this, YuvaanHealthDataEntry.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

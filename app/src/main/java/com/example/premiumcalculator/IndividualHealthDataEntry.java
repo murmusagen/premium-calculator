@@ -148,7 +148,7 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
 
                             memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
 
-                            EditText a = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                            EditText memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
 
 
                             Spinner individualHealthMemberSISpinner = dynamicLayout.findViewById(R.id.familyMedicareMemberSISpinner);
@@ -163,9 +163,9 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
                             container.addView(dynamicLayout);
                             count = count + 1;
 
-                            map.put("member_age", a);
-                            map.put("member_si", individualHealthMemberSISpinner);
-                            map.put("member_ncd", individualHealthMemberNCDSpinner);
+                            map.put(CommonFunctions.INTENT_MEMBER_AGE, memberAgeEditText);
+                            map.put(CommonFunctions.INTENT_MEMBER_SI, individualHealthMemberSISpinner);
+                            map.put(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE, individualHealthMemberNCDSpinner);
                             memberDetailsArrayList.add(map);
                         }
                     }
@@ -207,10 +207,10 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
                                 dailyCashAllowanceAmountSpinner.getSelectedItem().toString());
 
                         Intent intent = new Intent(IndividualHealthDataEntry.this, HealthPremiumDisplay.class);
-                        intent.putExtra("product_name", CommonFunctions.INDIVIDUAL_HEALTH_POLICY);
-                        intent.putExtra("type", typeSpinner.getSelectedItem().toString());
-                        intent.putExtra("zone", zoneSpinner.getSelectedItem().toString());
-                        intent.putExtra("premiumAndCommission", premium);
+                        intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.INDIVIDUAL_HEALTH_POLICY);
+                        intent.putExtra(CommonFunctions.INTENT_TYPE, typeSpinner.getSelectedItem().toString());
+                        intent.putExtra(CommonFunctions.INTENT_ZONE, zoneSpinner.getSelectedItem().toString());
+                        intent.putExtra(CommonFunctions.INTENT_PREMIUM_AND_COMMISSION, premium);
                         startActivity(intent);
                     }
                 }

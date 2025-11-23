@@ -14,7 +14,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -32,11 +31,40 @@ import java.util.Map;
 
 public class CommonFunctions {
 
+
+
+    public static String INTENT_MEMBER_NET_PREMIUM = "member_net_premium";
+    public static String INTENT_MEMBER_COMMISSION = "member_commission";
+    public static String YUVAAN_HEALTH_POLICY = "Yuvaan Health Policy";
+    public static String INTENT_FLOATER_SI = "floater_si";
+    public static String INTENT_FLOATER_NCD = "floater_ncd";
+    public static String TOTAL_MATERNITY_PREMIUM = "total_maternity_premium";
+    public static String INTENT_MEMBER_DAILY_CASH_AMOUNT = "member_daily_cash_amount";
+    public static String INTENT_TOTAL_DAILY_CASH_AMOUNT = "daily_cash_amount";
+    public static String INTENT_TOTAL_BASIC_PREMIUM = "total_basic_premium";
+    public static String INTENT_TOTAL_NCD_AMOUNT = "total_ncd_amount";
+    public static String INTENT_TOTAL_FAMILY_DISCOUNT = "total_family_discount";
+    public static String INTENT_TOTAL_GROSS_PREMIUM = "total_gross_premium";
+    public static String INTENT_TOTAL_DAILY_CASH_PREMIUM = "total_daily_cash_premium";
+    public static String INTENT_TOTAL_GST = "total_gst";
+    public static String INTENT_TOTAL_NET_PREMIUM = "total_net_premium";
+    public static String INTENT_TOTAL_COMMISSION = "total_commission";
+    public static String INTENT_MEMBER_GROSS_PREMIUM = "member_gross_premium";
+    public static String INTENT_MEMBER_FAMILY_DISCOUNT = "member_family_discount";
+    public static String INTENT_MEMBER_NCD_AMOUNT = "member_ncd_amount";
+    public static String INTENT_MEMBER_NCD_PERCENTAGE = "member_ncd_percentage";
+    public static String INTENT_MEMBER_BASIC_PREMIUM = "member_basic_premium";
+    public static String INTENT_PREMIUM_AND_COMMISSION = "premium_and_commission";
+    public static String INTENT_ZONE = "zone";
+    public static String INTENT_TYPE = "type";
+    public static String INTENT_PRODUCT_NAME = "product_name";
+    public static String INTENT_MEMBER_AGE = "member_age";
+    public static String INTENT_MEMBER_SI = "member_si";
     public static String FAMILY_MEDICARE_POLICY = "Family Medicare Policy";
     public static String INDIVIDUAL_HEALTH_POLICY = "Individual Health Policy";
-    public static String DAILY_CASH_ALLOWANCE_500 = "500";
-    public static String DAILY_CASH_ALLOWANCE_1000 = "1000";
-    public static String DAILY_CASH_ALLOWANCE_2000 = "2000";
+    public static String DAILY_CASH_ALLOWANCE_500 = "500.00";
+    public static String DAILY_CASH_ALLOWANCE_1000 = "1000.00";
+    public static String DAILY_CASH_ALLOWANCE_2000 = "2000.00";
     public static String[] DAILY_CASH_ALLOWANCE_ARRAY = {
             DAILY_CASH_ALLOWANCE_500,
             DAILY_CASH_ALLOWANCE_1000,
@@ -149,7 +177,26 @@ public class CommonFunctions {
     public static String CNG_LPG_KIT_TP_PREMIUM = "60";
     public static String ONE_YEAR_OD_OR_TP = "1 Year OD/TP";
     public static String PNE_YEAR_OD_PLUS_ONE_YEAR_TP = "1 Year OD + 3 Year TP";
-    public static String[] PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY = {"NA", CommonFunctions.SI_10000, CommonFunctions.SI_20000, CommonFunctions.SI_30000, CommonFunctions.SI_40000, CommonFunctions.SI_50000, CommonFunctions.SI_60000, CommonFunctions.SI_70000, CommonFunctions.SI_80000, CommonFunctions.SI_90000, CommonFunctions.SI_100000, CommonFunctions.SI_110000, CommonFunctions.SI_120000, CommonFunctions.SI_130000, CommonFunctions.SI_140000, CommonFunctions.SI_150000, CommonFunctions.SI_160000, CommonFunctions.SI_170000, CommonFunctions.SI_180000, CommonFunctions.SI_190000, CommonFunctions.SI_200000};
+    public static String[] PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY = {"NA", SI_10000,
+            SI_20000,
+            SI_30000,
+            SI_40000,
+            SI_50000,
+            SI_60000,
+            SI_70000,
+            SI_80000,
+            SI_90000,
+            SI_100000,
+            SI_110000,
+            SI_120000,
+            SI_130000,
+            SI_140000,
+            SI_150000,
+            SI_160000,
+            SI_170000,
+            SI_180000,
+            SI_190000,
+            SI_200000};
     public static String[] TYPE_ARRAY = {PRE_OWNED, NEW};
     public static String[] HEALTH_TYPE_ARRAY = {FLOATER, INDIVIDUAL};
     public static String[] IS_SAOD_ARRAY = {NO, YES};
@@ -186,67 +233,93 @@ public class CommonFunctions {
     public static String HYUNDAI = "Hyundai";
     public static String HONDA = "Honda";
     public static String KIA = "Kia";
-    public static String FMP_SI_0 = "0";
-    public static String FMP_SI_100000 = "100000";
-    public static String FMP_SI_150000 = "150000";
-    public static String FMP_SI_200000 = "200000";
-    public static String FMP_SI_250000 = "250000";
-    public static String FMP_SI_300000 = "300000";
-    public static String FMP_SI_350000 = "350000";
-    public static String FMP_SI_400000 = "400000";
-    public static String FMP_SI_450000 = "450000";
-    public static String FMP_SI_500000 = "500000";
-    public static String FMP_SI_600000 = "600000";
-    public static String FMP_SI_700000 = "700000";
-    public static String FMP_SI_800000 = "800000";
-    public static String FMP_SI_900000 = "900000";
-    public static String FMP_SI_1000000 = "1000000";
-    public static String FMP_SI_1500000 = "1500000";
-    public static String FMP_SI_2000000 = "2000000";
-    public static String FMP_SI_2500000 = "2500000";
-    public static String IHP_SI_50000 = "50000";
-    public static String IHP_SI_75000 = "75000";
-    public static String IHP_SI_100000 = "100000";
-    public static String IHP_SI_125000 = "125000";
-    public static String IHP_SI_150000 = "150000";
-    public static String IHP_SI_175000 = "175000";
-    public static String IHP_SI_200000 = "200000";
-    public static String IHP_SI_225000 = "225000";
-    public static String IHP_SI_250000 = "250000";
-    public static String IHP_SI_275000 = "275000";
-    public static String IHP_SI_300000 = "300000";
-    public static String IHP_SI_325000 = "325000";
-    public static String IHP_SI_350000 = "350000";
-    public static String IHP_SI_375000 = "375000";
-    public static String IHP_SI_400000 = "400000";
-    public static String IHP_SI_425000 = "425000";
-    public static String IHP_SI_450000 = "450000";
-    public static String IHP_SI_475000 = "475000";
-    public static String IHP_SI_500000 = "500000";
-    public static String IHP_SI_525000 = "525000";
-    public static String IHP_SI_550000 = "550000";
-    public static String IHP_SI_575000 = "575000";
-    public static String IHP_SI_600000 = "600000";
-    public static String IHP_SI_625000 = "625000";
-    public static String IHP_SI_650000 = "650000";
-    public static String IHP_SI_675000 = "675000";
-    public static String IHP_SI_700000 = "700000";
-    public static String IHP_SI_725000 = "725000";
-    public static String IHP_SI_750000 = "750000";
-    public static String IHP_SI_775000 = "775000";
-    public static String IHP_SI_800000 = "800000";
-    public static String IHP_SI_825000 = "825000";
-    public static String IHP_SI_850000 = "850000";
-    public static String IHP_SI_875000 = "875000";
-    public static String IHP_SI_900000 = "900000";
-    public static String IHP_SI_925000 = "925000";
-    public static String IHP_SI_950000 = "950000";
-    public static String IHP_SI_975000 = "975000";
-    public static String IHP_SI_1000000 = "1000000";
-    public static String IHP_SI_1500000 = "1500000";
-    public static String IHP_SI_2000000 = "2000000";
-    public static String[] IHP_SI_ARRAY = {IHP_SI_50000, IHP_SI_75000, IHP_SI_100000, IHP_SI_125000, IHP_SI_150000, IHP_SI_175000, IHP_SI_200000, IHP_SI_225000, IHP_SI_250000, IHP_SI_275000, IHP_SI_300000, IHP_SI_325000, IHP_SI_350000, IHP_SI_375000, IHP_SI_400000, IHP_SI_425000, IHP_SI_450000, IHP_SI_475000, IHP_SI_500000, IHP_SI_525000, IHP_SI_550000, IHP_SI_575000, IHP_SI_600000, IHP_SI_625000, IHP_SI_650000, IHP_SI_675000, IHP_SI_700000, IHP_SI_725000, IHP_SI_750000, IHP_SI_775000, IHP_SI_800000, IHP_SI_825000, IHP_SI_850000, IHP_SI_875000, IHP_SI_900000, IHP_SI_925000, IHP_SI_950000, IHP_SI_975000, IHP_SI_1000000, IHP_SI_1500000, IHP_SI_2000000
-
+    public static String SI_0 = "0";
+    public static String SI_250000 = "250000";
+    public static String SI_300000 = "300000";
+    public static String SI_350000 = "350000";
+    public static String SI_400000 = "400000";
+    public static String SI_450000 = "450000";
+    public static String SI_500000 = "500000";
+    public static String SI_600000 = "600000";
+    public static String SI_700000 = "700000";
+    public static String SI_800000 = "800000";
+    public static String SI_900000 = "900000";
+    public static String SI_1000000 = "1000000";
+    public static String SI_1500000 = "1500000";
+    public static String SI_2000000 = "2000000";
+    public static String SI_2500000 = "2500000";
+    public static String SI_75000 = "75000";
+    public static String SI_125000 = "125000";
+    public static String SI_175000 = "175000";
+    public static String SI_225000 = "225000";
+    public static String SI_275000 = "275000";
+    public static String SI_325000 = "325000";
+    public static String SI_375000 = "375000";
+    public static String SI_425000 = "425000";
+    public static String SI_475000 = "475000";
+    public static String SI_525000 = "525000";
+    public static String SI_550000 = "550000";
+    public static String SI_575000 = "575000";
+    public static String SI_625000 = "625000";
+    public static String SI_650000 = "650000";
+    public static String SI_675000 = "675000";
+    public static String SI_725000 = "725000";
+    public static String SI_750000 = "750000";
+    public static String SI_775000 = "775000";
+    public static String SI_825000 = "825000";
+    public static String SI_850000 = "850000";
+    public static String SI_875000 = "875000";
+    public static String SI_925000 = "925000";
+    public static String SI_950000 = "950000";
+    public static String SI_975000 = "975000";
+    public static String[] SI_ARRAY = {
+            SI_50000,
+            SI_75000,
+            SI_100000,
+            SI_125000,
+            SI_150000,
+            SI_175000,
+            SI_200000,
+            SI_225000,
+            SI_250000,
+            SI_275000,
+            SI_300000,
+            SI_325000,
+            SI_350000,
+            SI_375000,
+            SI_400000,
+            SI_425000,
+            SI_450000,
+            SI_475000,
+            SI_500000,
+            SI_525000,
+            SI_550000,
+            SI_575000,
+            SI_600000,
+            SI_625000,
+            SI_650000,
+            SI_675000,
+            SI_700000,
+            SI_725000,
+            SI_750000,
+            SI_775000,
+            SI_800000,
+            SI_825000,
+            SI_850000,
+            SI_875000,
+            SI_900000,
+            SI_925000,
+            SI_950000,
+            SI_975000,
+            SI_1000000,
+            SI_1500000,
+            SI_2000000
+    };
+    public static String[] YUVAAN_SI_ARRAY = {
+            SI_500000,
+            SI_1000000,
+            SI_1500000,
+            SI_2000000
     };
 
     public static String ONE_ADULT = "1A";
@@ -269,11 +342,36 @@ public class CommonFunctions {
     public static String HEALTH_NCD_45 = "45";
     public static String HEALTH_NCD_47_5 = "47.5";
     public static String HEALTH_NCD_50 = "50";
+    public static String[] YUVAAN_NCD_ARRAY = {
+            HEALTH_NCD_0,
+            HEALTH_NCD_10,
+            HEALTH_NCD_20
+    };
     public static String[] ALL_STATES_ARRAY = {ANDAMAN_AND_NICOBAR_ISLANDS, ANDHRA_PRADESH, ARUNACHAL_PRADESH, ASSAM, BIHAR, CHANDIGARH, DELHI, GOA, GUJARAT, HARYANA, HIMACHAL_PRADESH, JAMMU_AND_KASHMIR, JHARKHAND, KARNATAKA, KERALA, MADHYA_PRADESH, MAHARASHTRA, MANIPUR, MEGHALAYA, MIZORAM, NAGALAND, ODISHA, PUDUCHERRY, PUNJAB, RAJASTHAN, TAMIL_NADU, TELANGANA, TRIPURA, UTTAR_PRADESH, UTTARAKHAND, WEST_BENGAL};
 
     public static String[] PVT_CAR_MANUFACTURER_ARRAY = {TATA, MARUTI, MAHINDRA, TOYOTA, HYUNDAI, HONDA, KIA, OTHERS};
 
-    public static String[] FAMILY_MEDICARE_SI_ARRAY = {FMP_SI_0, FMP_SI_100000, FMP_SI_150000, FMP_SI_200000, FMP_SI_250000, FMP_SI_300000, FMP_SI_350000, FMP_SI_400000, FMP_SI_450000, FMP_SI_500000, FMP_SI_600000, FMP_SI_700000, FMP_SI_800000, FMP_SI_900000, FMP_SI_1000000, FMP_SI_1500000, FMP_SI_2000000, FMP_SI_2500000};
+    public static String[] FAMILY_MEDICARE_SI_ARRAY = {
+            SI_0,
+            SI_100000,
+            SI_150000,
+            SI_200000,
+            SI_250000,
+            SI_300000,
+            SI_350000,
+            SI_400000,
+            SI_450000,
+            SI_500000,
+            SI_600000,
+            SI_700000,
+            SI_800000,
+            SI_900000,
+            SI_1000000,
+            SI_1500000,
+            SI_2000000,
+            SI_2500000
+    };
+
     public static String[] FAMILY_TYPE_ARRAY = {ONE_ADULT_ANY_CHILD, TWO_ADULT, TWO_ADULT_ANY_CHILD,};
 
     public static String[] FAMILY_TYPE_ARRAY_WITH_ONE_ADULT_SELECTION_ALSO = {ONE_ADULT, ONE_ADULT_ANY_CHILD, TWO_ADULT, TWO_ADULT_ANY_CHILD,};
@@ -1640,135 +1738,7 @@ public class CommonFunctions {
         return json;
     }
 
-    public static ArrayList<HashMap<String, String>> calculateFamilyMedicarePremium(String type, String zone, String noOfMembers, String floater_si, String floater_ncd, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCashCheckBox, boolean maternityCheckbox) {
-        /*
-        Output Orders:
-        Member Premium
-        */
-        String floaterDiscountPercentage = getFamilyDiscount(type, familyType, isAgeBetween40and50(memberDetailsArrayList));
-        ArrayList<Integer> ageArrayList = new ArrayList<>();
-        String commissionForDailyCash = "0.00";
-        ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
-        String fileName = "";
-        String dailyCashAllowancePremium = "0.00";
-        String dailyCashAllowanceAmount = "0.00";
-        String maternityPremium = "0.00";
-        Double floaterSIDouble = Double.parseDouble(floater_si);
-        ArrayList<Integer> individualPremiums = new ArrayList<Integer>();
-        if (zone.equalsIgnoreCase(ZONE_A)) {
-            fileName = "fmp_zone_a.json";
-        } else if (zone.equalsIgnoreCase(ZONE_B)) {
-            fileName = "fmp_zone_b.json";
-        } else if (zone.equalsIgnoreCase(ZONE_C)) {
-            fileName = "fmp_zone_c.json";
-        }
-
-        String jsonStr = loadJSONFromAsset(context, fileName);
-        if (jsonStr != null) {
-            try {
-                JSONArray jsonArray = new JSONArray(jsonStr);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject object = jsonArray.getJSONObject(i);
-                    String si = object.getString("SI");
-
-                    // If floater option is selected
-
-                    if (si.equalsIgnoreCase(floater_si)) {
-                        for (int j = 0; j < memberDetailsArrayList.size(); j++) {
-                            Map<String, View> map = memberDetailsArrayList.get(j);
-                            for (Iterator<Map.Entry<String, View>> it = map.entrySet().iterator(); it.hasNext(); ) {
-                                Map.Entry<String, View> entry = it.next();
-                                String s = entry.getKey();
-                                View v = entry.getValue();
-                                String t = "";
-                                String age = "";
-                                if (v instanceof EditText) {
-                                    HashMap<String, String> map1 = new HashMap<>();
-                                    age = ((EditText) v).getText().toString().trim();
-                                    String age_slab = getAgeSlab(age);
-
-                                    String basicPremium = object.getString(age_slab);
-                                    Double basicPremiumDouble = Double.parseDouble(basicPremium);
-
-                                    String ncd = Double.toString(Double.parseDouble(floater_ncd) / 100.00 * Double.parseDouble(basicPremium));
-                                    Double ncdDouble = Double.parseDouble(ncd);
-
-                                    Double floaterDiscountPercentageDouble = Double.parseDouble(floaterDiscountPercentage);
-                                    Double floaterDiscountDouble = floaterDiscountPercentageDouble / 100 * (basicPremiumDouble - ncdDouble);
-                                    String floaterDiscount = Double.toString(floaterDiscountDouble);
-                                    Double premiumForTheMemberDouble = basicPremiumDouble - ncdDouble - floaterDiscountDouble;
-                                    String premiumForTheMember = Double.toString(premiumForTheMemberDouble);
-                                    String commissionForTheMember = calculateCommission(zone, premiumForTheMember, age);
-
-                                    map1.put("age", age);
-                                    map1.put("basic_premium", basicPremium);
-                                    map1.put("ncd", ncd);
-                                    map1.put("floater_discount", floaterDiscount);
-                                    map1.put("net_premium", premiumForTheMember);
-                                    map1.put("commission", commissionForTheMember);
-                                    output1.add(map1);
-                                    ageArrayList.add(Integer.parseInt(age));
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-                if (dailyCashCheckBox) {
-                    ArrayList<String> output = new ArrayList<>();
-                    output = calculateDailyCashPremium(type, ageArrayList, "0.00", floater_si, FAMILY_MEDICARE_POLICY, "");
-                    dailyCashAllowancePremium = output.get(0);
-                    dailyCashAllowanceAmount = output.get(1);
-                }
-
-
-                if (maternityCheckbox) {
-                    if (floater_si.equalsIgnoreCase(FMP_SI_350000)) {
-                        maternityPremium = "12000.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_400000)) {
-                        maternityPremium = "13750.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_450000)) {
-                        maternityPremium = "15500.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_500000)) {
-                        maternityPremium = "17000.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_600000)) {
-                        maternityPremium = "20350.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_700000)) {
-                        maternityPremium = "20600.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_800000)) {
-                        maternityPremium = "20850.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_900000)) {
-                        maternityPremium = "21000.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_1000000)) {
-                        maternityPremium = "21200.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_1500000)) {
-                        maternityPremium = "22000.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_2000000)) {
-                        maternityPremium = "23000.00";
-                    } else if (floater_si.equalsIgnoreCase(FMP_SI_2500000)) {
-                        maternityPremium = "23500.00";
-                    } else {
-                        maternityPremium = "0.00";
-                    }
-                }
-
-                HashMap<String, String> map1 = new HashMap<>();
-                map1.put("daily_cash_premium", dailyCashAllowancePremium);
-                map1.put("daily_cash_amount", dailyCashAllowanceAmount);
-                map1.put("maternity_premium", maternityPremium);
-                output1.add(map1);
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return output1;
-    }
-
-    private static ArrayList<String> calculateDailyCashPremium(String type, ArrayList<Integer> ageArrayList, String memberAge, String floater_si, String product, String dailyCashOption) {
+    private static ArrayList<String> calculateDailyCashPremium(String type, ArrayList<Integer> ageArrayList, String memberAge, String floater_si, String product, String dailyCashAllowance) {
         ArrayList<String> output = new ArrayList<>();
         String dailyCashAllowancePremium = "0.00";
         String dailyCashAllowanceAmount = "0.00";
@@ -1847,14 +1817,25 @@ public class CommonFunctions {
                 }
             }
         } else if (product.equalsIgnoreCase(INDIVIDUAL_HEALTH_POLICY)) {
-            if (dailyCashOption.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_500)) {
+            if (dailyCashAllowance.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_500)) {
                 dailyCashAllowancePremium = "70.00";
                 dailyCashAllowanceAmount = "500.00";
-            } else if (dailyCashOption.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_1000)) {
+            } else if (dailyCashAllowance.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_1000)) {
                 dailyCashAllowancePremium = "140.00";
                 dailyCashAllowanceAmount = "1000.00";
-            } else if (dailyCashOption.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_2000)) {
+            } else if (dailyCashAllowance.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_2000)) {
                 dailyCashAllowancePremium = "280.00";
+                dailyCashAllowanceAmount = "2000.00";
+            }
+        } else if (product.equalsIgnoreCase(YUVAAN_HEALTH_POLICY)) {
+            if (dailyCashAllowance.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_500)) {
+                dailyCashAllowancePremium = "120.00";
+                dailyCashAllowanceAmount = "500.00";
+            } else if (dailyCashAllowance.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_1000)) {
+                dailyCashAllowancePremium = "240.00";
+                dailyCashAllowanceAmount = "1000.00";
+            } else if (dailyCashAllowance.equalsIgnoreCase(DAILY_CASH_ALLOWANCE_2000)) {
+                dailyCashAllowancePremium = "480.00";
                 dailyCashAllowanceAmount = "2000.00";
             }
         }
@@ -1866,7 +1847,7 @@ public class CommonFunctions {
     public static ArrayList<HashMap<String, String>> calculateFamilyMedicarePremiumIndividual(String type, String zone, String noOfMembers, String floater_si, String floater_ncd, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyComposition, boolean dailyCashCheckBox, boolean maternityCheckbox) {
         ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
         ArrayList<Integer> ageArrayList = new ArrayList<>();
-        String floaterDiscountPercentage = getFamilyDiscount(type, familyComposition, isAgeBetween40and50(memberDetailsArrayList));
+        String floaterDiscountPercentage = getFamilyDiscount(type, familyComposition, isAgeBetween40and50(memberDetailsArrayList), FAMILY_MEDICARE_POLICY);
         String fileName = "";
         String age = "";
         String memberSI = "0.00";
@@ -1889,6 +1870,7 @@ public class CommonFunctions {
         if (jsonStr != null) {
             try {
                 JSONArray jsonArray = new JSONArray(jsonStr);
+                ArrayList<Double> commssionArrayList = new ArrayList<>();
                 for (int i = 0; i < memberDetailsArrayList.size(); i++) {
                     Map<String, View> map = memberDetailsArrayList.get(i);
                     int count = 0;
@@ -1896,19 +1878,20 @@ public class CommonFunctions {
                         Map.Entry<String, View> entry = it.next();
                         String s = entry.getKey();
                         View v = entry.getValue();
-                        if (s.equalsIgnoreCase("member_si")) {
+                        if (s.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
                             if (v instanceof Spinner) {
                                 memberSI = ((Spinner) v).getSelectedItem().toString();
                                 count = count + 1;
                             }
-                        } else if (s.equalsIgnoreCase("member_ncd")) {
+                        } else if (s.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE)) {
                             if (v instanceof Spinner) {
                                 memberNCD = ((Spinner) v).getSelectedItem().toString();
                                 count = count + 1;
                             }
-                        } else if (s.equalsIgnoreCase("member_age")) {
+                        } else if (s.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
                             if (v instanceof EditText) {
                                 memberAge = ((EditText) v).getText().toString().trim();
+                                ageArrayList.add(Integer.parseInt(memberAge));
                                 age_slab = getAgeSlab(memberAge);
                                 count = count + 1;
                             }
@@ -1919,36 +1902,41 @@ public class CommonFunctions {
                                 JSONObject object = jsonArray.getJSONObject(k);
                                 String si = object.getString("SI");
                                 if (si.equalsIgnoreCase(memberSI)) {
-                                    String basicPremium = object.getString(age_slab);
-                                    String memberNCDAmount = Double.toString(Double.parseDouble(memberNCD) / 100.00 * Double.parseDouble(basicPremium));
-                                    String familyDiscountPercentage = getFamilyDiscount(type, familyComposition, isAgeBetween40and50(memberDetailsArrayList));
-                                    String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount)));
-                                    //String premiumForTheMember = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount) - Double.parseDouble(familyDiscountAmount));
-                                    String premiumForTheMember = "0.00";
+
                                     String memberDailyCashPremium = "0.00";
                                     String memberDailyCashAmount = "0.00";
+                                    String basicPremium = object.getString(age_slab);
+                                    String memberNCDAmount = Double.toString(Double.parseDouble(memberNCD) / 100.00 * Double.parseDouble(basicPremium));
+                                    String familyDiscountPercentage = getFamilyDiscount(type, familyComposition, isAgeBetween40and50(memberDetailsArrayList), FAMILY_MEDICARE_POLICY);
+                                    String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount)));
+                                    String premiumForTheMember = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount) - Double.parseDouble(familyDiscountAmount));
+
+                                    String dailyCashAllowanceCommissionAmount = "0.00";
+
                                     if (dailyCashCheckBox) {
                                         ArrayList<String> arrayList = calculateDailyCashPremium(type, ageArrayList, memberAge, memberSI, FAMILY_MEDICARE_POLICY, "");
                                         for (int j = 0; j < arrayList.size(); j++) {
                                             memberDailyCashPremium = arrayList.get(j);
                                             memberDailyCashAmount = arrayList.get(j + 1);
+                                            dailyCashAllowanceCommissionAmount = calculateCommission(zone, memberDailyCashPremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY);
+                                            commssionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
                                             break;
                                         }
                                     }
-                                    String commissionForTheMember = calculateCommission(zone, premiumForTheMember, memberAge);
+                                    String commissionForTheMember = calculateCommission(zone, premiumForTheMember, memberAge, FAMILY_MEDICARE_POLICY);
+                                    commssionArrayList.add(Double.parseDouble(commissionForTheMember));
 
-                                    map1.put("age", memberAge);
-                                    map1.put("member_si", memberSI);
-                                    map1.put("member_ncd", memberNCD);
-                                    map1.put("basic_premium", basicPremium);
-                                    map1.put("ncd", memberNCDAmount);
-                                    map1.put("floater_discount", familyDiscountAmount);
-                                    map1.put("net_premium", premiumForTheMember);
-                                    map1.put("commission", commissionForTheMember);
-                                    map1.put("member_daily_cash_premium", memberDailyCashPremium);
-                                    map1.put("member_daily_cash_amount", memberDailyCashAmount);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_AGE, memberAge);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_SI, memberSI);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE, memberNCD);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_BASIC_PREMIUM, basicPremium);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_NCD_AMOUNT, memberNCDAmount);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_FAMILY_DISCOUNT, familyDiscountAmount);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_NET_PREMIUM, premiumForTheMember);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_COMMISSION, commissionForTheMember);
+                                    map1.put(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM, memberDailyCashPremium);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_DAILY_CASH_AMOUNT, memberDailyCashAmount);
                                     output1.add(map1);
-                                    /*ageArrayList.add(Integer.parseInt(memberAge));*/
                                     totalBasicPremium = Double.toString(Double.parseDouble(totalBasicPremium) + Double.parseDouble(basicPremium));
                                     totalNCDAmount = Double.toString(Double.parseDouble(totalNCDAmount) + Double.parseDouble(memberNCDAmount));
                                     totalFamilyDiscount = Double.toString(Double.parseDouble(totalFamilyDiscount) + Double.parseDouble(familyDiscountAmount));
@@ -1961,17 +1949,28 @@ public class CommonFunctions {
 
 
                 HashMap<String, String> map1 = new HashMap<>();
-                map1.put("total_basic_premium", totalBasicPremium);
-                map1.put("total_ncd_amount", totalNCDAmount);
-                map1.put("totalFamilyDiscount", totalFamilyDiscount);
-                map1.put("total_daily_cash_premium", totalDailyCashPremium);
+                map1.put(INTENT_TOTAL_BASIC_PREMIUM, totalBasicPremium);
+                map1.put(INTENT_TOTAL_NCD_AMOUNT, totalNCDAmount);
+                map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, totalFamilyDiscount);
+                map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, totalDailyCashPremium);
                 String totalGrossPremium = Double.toString(Double.parseDouble(totalBasicPremium) - Double.parseDouble(totalNCDAmount) - Double.parseDouble(totalFamilyDiscount));
-                String totalGrossPremiumWithAddOns = Double.toString(Double.parseDouble(totalGrossPremium) + Double.parseDouble(totalDailyCashPremium));
-                map1.put("gross_premium", totalGrossPremiumWithAddOns);
-                String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumWithAddOns));
-                String netPremium = Double.toString(Double.parseDouble(totalGrossPremiumWithAddOns) + Double.parseDouble(gst));
-                map1.put("gst", gst);
-                map1.put("net_premium", netPremium);
+                String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(totalGrossPremium) + Double.parseDouble(totalDailyCashPremium));
+                map1.put(INTENT_TOTAL_GROSS_PREMIUM, totalGrossPremiumAfterAddOns);
+                String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+                String netPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst));
+                map1.put(INTENT_TOTAL_GST, gst);
+                map1.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+                String totalCommission = sumOfDoubleArrayList(commssionArrayList);
+
+                String incentive = "0.00";
+                String portalCharges = "50.00";
+                String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(totalCommission)).
+                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
+                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
+                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+
+                map1.put(INTENT_TOTAL_COMMISSION, commissionString);
                 output1.add(map1);
 
 
@@ -1982,32 +1981,204 @@ public class CommonFunctions {
         return output1;
     }
 
-    private static String calculateCommission(String zone, String premiumForTheMember, String age) {
+    public static ArrayList<HashMap<String, String>> calculateYuvaanHealthPremiumIndividual(String type, String zone, String noOfMembers, String floater_si, String floater_ncd, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyComposition, boolean dailyCashCheckBox, boolean coPaymentWaiverCheckbox, String dailyCashAllowanceAmount) {
+        ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
+        ArrayList<Integer> ageArrayList = new ArrayList<>();
+        String floaterDiscountPercentage = getFamilyDiscount(type, familyComposition, isAgeBetween40and50(memberDetailsArrayList), YUVAAN_HEALTH_POLICY);
+        String fileName = "";
+        String age = "";
+        String memberSI = "0.00";
+        String memberNCD = "0.00";
+        String memberAge = "0.00";
+        String age_slab = "0.00";
+        String totalBasicPremium = "0.00";
+        String totalNCDAmount = "0.00";
+        String totalFamilyDiscount = "0.00";
+        String totalDailyCashPremium = "0.00";
+
+        if(coPaymentWaiverCheckbox){
+            fileName = "yuvaan_zone_a.json";
+        }else{
+            if (zone.equalsIgnoreCase(ZONE_A)) {
+                fileName = "yuvaan_zone_a.json";
+            } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                fileName = "yuvaan_zone_b.json";
+            } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                fileName = "yuvaan_zone_c.json";
+            }
+        }
+
+
+        String jsonStr = loadJSONFromAsset(context, fileName);
+        if (jsonStr != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(jsonStr);
+                ArrayList<Double> commssionArrayList = new ArrayList<>();
+                for (int i = 0; i < memberDetailsArrayList.size(); i++) {
+                    Map<String, View> map = memberDetailsArrayList.get(i);
+                    int count = 0;
+                    for (Iterator<Map.Entry<String, View>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                        Map.Entry<String, View> entry = it.next();
+                        String s = entry.getKey();
+                        View v = entry.getValue();
+                        if (s.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
+                            if (v instanceof Spinner) {
+                                memberSI = ((Spinner) v).getSelectedItem().toString();
+                                count = count + 1;
+                            }
+                        } else if (s.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE)) {
+                            if (v instanceof Spinner) {
+                                memberNCD = ((Spinner) v).getSelectedItem().toString();
+                                count = count + 1;
+                            }
+                        } else if (s.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
+                            if (v instanceof EditText) {
+                                memberAge = ((EditText) v).getText().toString().trim();
+                                ageArrayList.add(Integer.parseInt(memberAge));
+                                age_slab = getAgeSlab(memberAge);
+                                count = count + 1;
+                            }
+                        }
+                        if (count == 3) {
+                            HashMap<String, String> map1 = new HashMap<>();
+                            for (int k = 0; k < jsonArray.length(); k++) {
+                                JSONObject object = jsonArray.getJSONObject(k);
+                                String si = object.getString("SI");
+                                if (si.equalsIgnoreCase(memberSI)) {
+
+                                    String memberDailyCashPremium = "0.00";
+                                    String memberDailyCashAmount = "0.00";
+                                    String basicPremium = object.getString(age_slab);
+                                    String memberNCDAmount = Double.toString(Double.parseDouble(memberNCD) / 100.00 * Double.parseDouble(basicPremium));
+                                    String familyDiscountPercentage = getFamilyDiscount(type, familyComposition, isAgeBetween40and50(memberDetailsArrayList), YUVAAN_HEALTH_POLICY);
+                                    String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount)));
+                                    String premiumForTheMember = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount) - Double.parseDouble(familyDiscountAmount));
+
+                                    String dailyCashAllowanceCommissionAmount = "0.00";
+
+                                    if (dailyCashCheckBox) {
+                                        ArrayList<String> arrayList = calculateDailyCashPremium(type, ageArrayList, memberAge, memberSI, YUVAAN_HEALTH_POLICY, dailyCashAllowanceAmount);
+                                        for (int j = 0; j < arrayList.size(); j++) {
+                                            memberDailyCashPremium = arrayList.get(j);
+                                            memberDailyCashAmount = arrayList.get(j + 1);
+                                            dailyCashAllowanceCommissionAmount = calculateCommission(zone, memberDailyCashPremium, Integer.toString(Collections.max(ageArrayList)), YUVAAN_HEALTH_POLICY);
+                                            commssionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
+                                            break;
+                                        }
+                                    }
+                                    String commissionForTheMember = calculateCommission(zone, premiumForTheMember, memberAge, YUVAAN_HEALTH_POLICY);
+                                    commssionArrayList.add(Double.parseDouble(commissionForTheMember));
+
+                                    map1.put(CommonFunctions.INTENT_MEMBER_AGE, memberAge);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_SI, memberSI);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE, memberNCD);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_BASIC_PREMIUM, basicPremium);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_NCD_AMOUNT, memberNCDAmount);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_FAMILY_DISCOUNT, familyDiscountAmount);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_NET_PREMIUM, premiumForTheMember);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_COMMISSION, commissionForTheMember);
+                                    map1.put(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM, memberDailyCashPremium);
+                                    map1.put(CommonFunctions.INTENT_MEMBER_DAILY_CASH_AMOUNT, memberDailyCashAmount);
+                                    output1.add(map1);
+                                    totalBasicPremium = Double.toString(Double.parseDouble(totalBasicPremium) + Double.parseDouble(basicPremium));
+                                    totalNCDAmount = Double.toString(Double.parseDouble(totalNCDAmount) + Double.parseDouble(memberNCDAmount));
+                                    totalFamilyDiscount = Double.toString(Double.parseDouble(totalFamilyDiscount) + Double.parseDouble(familyDiscountAmount));
+                                    totalDailyCashPremium = Double.toString(Double.parseDouble(totalDailyCashPremium) + Double.parseDouble(memberDailyCashPremium));
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put(INTENT_TOTAL_BASIC_PREMIUM, totalBasicPremium);
+                map1.put(INTENT_TOTAL_NCD_AMOUNT, totalNCDAmount);
+                map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, totalFamilyDiscount);
+                map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, totalDailyCashPremium);
+                String totalGrossPremium = Double.toString(Double.parseDouble(totalBasicPremium) - Double.parseDouble(totalNCDAmount) - Double.parseDouble(totalFamilyDiscount));
+                String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(totalGrossPremium) + Double.parseDouble(totalDailyCashPremium));
+                map1.put(INTENT_TOTAL_GROSS_PREMIUM, totalGrossPremiumAfterAddOns);
+                String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+                String netPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst));
+                map1.put(INTENT_TOTAL_GST, gst);
+                map1.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+                String totalCommission = sumOfDoubleArrayList(commssionArrayList);
+
+                String incentive = "0.00";
+                String portalCharges = "50.00";
+                String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(totalCommission)).
+                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
+                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
+                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+
+                map1.put(INTENT_TOTAL_COMMISSION, commissionString);
+                output1.add(map1);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return output1;
+    }
+
+    private static String calculateCommission(String zone, String premiumForTheMember, String age, String product) {
         String commission = "0.00";
         Double ageDouble = Double.parseDouble(age);
-        if (zone.equalsIgnoreCase(ZONE_A)) {
-            if (ageDouble >= 0 && ageDouble <= 45) {
-                commission = "7.50";
-            } else if (ageDouble > 45 && ageDouble <= 60) {
-                commission = "7.50";
-            } else {
-                commission = "3.00";
+
+        if(product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY)){
+            if (zone.equalsIgnoreCase(ZONE_A)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "7.50";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "7.50";
+                } else {
+                    commission = "3.00";
+                }
+            } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "20.00";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "15.00";
+                } else {
+                    commission = "5.00";
+                }
+            } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "20.00";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "15.00";
+                } else {
+                    commission = "5.00";
+                }
             }
-        } else if (zone.equalsIgnoreCase(ZONE_B)) {
-            if (ageDouble >= 0 && ageDouble <= 45) {
-                commission = "20.00";
-            } else if (ageDouble > 45 && ageDouble <= 60) {
-                commission = "15.00";
-            } else {
-                commission = "5.00";
-            }
-        } else if (zone.equalsIgnoreCase(ZONE_C)) {
-            if (ageDouble >= 0 && ageDouble <= 45) {
-                commission = "20.00";
-            } else if (ageDouble > 45 && ageDouble <= 60) {
-                commission = "15.00";
-            } else {
-                commission = "5.00";
+        } else if (product.equalsIgnoreCase(YUVAAN_HEALTH_POLICY)) {
+            if (zone.equalsIgnoreCase(ZONE_A)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "10.00";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "10.00";
+                } else {
+                    commission = "10.00";
+                }
+            } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "20.00";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "20.00";
+                } else {
+                    commission = "20.00";
+                }
+            } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "25.00";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "25.00";
+                } else {
+                    commission = "25.00";
+                }
             }
         }
         Double commissionDouble = Double.parseDouble(commission);
@@ -2062,20 +2233,32 @@ public class CommonFunctions {
         return false;
     }
 
-    private static String getFamilyDiscount(String type, String familyComposition, boolean isAgeBetween40and50) {
+    private static String getFamilyDiscount(String type, String familyComposition, boolean isAgeBetween40and50, String product) {
         String familyDiscount = "0.00";
-        if (type.equalsIgnoreCase(FLOATER)) {
-            if (familyComposition.equalsIgnoreCase(ONE_ADULT_ANY_CHILD)) {
-                familyDiscount = "15";
-            } else {
-                if (isAgeBetween40and50) {
-                    familyDiscount = "30";
+        if(product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(INDIVIDUAL_HEALTH_POLICY)){
+            if (type.equalsIgnoreCase(FLOATER)) {
+                if (familyComposition.equalsIgnoreCase(ONE_ADULT_ANY_CHILD)) {
+                    familyDiscount = "15";
                 } else {
-                    familyDiscount = "25";
+                    if (isAgeBetween40and50) {
+                        familyDiscount = "30";
+                    } else {
+                        familyDiscount = "25";
+                    }
+                }
+            } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
+                if (!familyComposition.equalsIgnoreCase(ONE_ADULT)) {
+                    familyDiscount = "5.00";
                 }
             }
-        } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
-            if (!familyComposition.equalsIgnoreCase(ONE_ADULT)) {
+        } else if (product.equalsIgnoreCase(YUVAAN_HEALTH_POLICY)) {
+            if(type.equalsIgnoreCase(FLOATER)){
+                if(familyComposition.equalsIgnoreCase(ONE_ADULT_ANY_CHILD)){
+                    familyDiscount = "15.00";
+                } else if (familyDiscount.equalsIgnoreCase(TWO_ADULT) || familyDiscount.equalsIgnoreCase(TWO_ADULT_ANY_CHILD)) {
+                    familyDiscount = "25.00";
+                }
+            } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
                 familyDiscount = "5.00";
             }
         }
@@ -2117,11 +2300,11 @@ public class CommonFunctions {
         }
     }
 
-    public static ArrayList<HashMap<String, String>> calculateFamilyMedicarePremiumTest(String type, String zone, String noOfMembers, String floaterSI, String floaterNCD, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCashCheckBox, boolean maternityCheckbox) {
+    public static ArrayList<HashMap<String, String>> calculateFamilyMedicarePremium(String type, String zone, String noOfMembers, String floaterSI, String floaterNCD, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCashCheckBox, boolean maternityCheckbox) {
 
         ArrayList<HashMap<String, String>> output = new ArrayList<>();
         ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
-        String familyDiscountPercentage = getFamilyDiscount(type, familyType, isAgeBetween40and50(memberDetailsArrayList));
+        String familyDiscountPercentage = getFamilyDiscount(type, familyType, isAgeBetween40and50(memberDetailsArrayList), FAMILY_MEDICARE_POLICY);
 
         String dailyCashAllowancePremium = "0.00";
         String dailyCashAllowanceAmount = "0.00";
@@ -2132,7 +2315,7 @@ public class CommonFunctions {
         ArrayList<Double> basicPremiumArrayList = new ArrayList<>();
         ArrayList<Double> ncdAmountArrayList = new ArrayList<>();
         ArrayList<Double> familyDiscountAmountArrayList = new ArrayList<>();
-        ArrayList<Double> grossPremiumArraList = new ArrayList<>();
+        ArrayList<Double> grossPremiumArrayList = new ArrayList<>();
         ArrayList<Double> commissionArrayList = new ArrayList<>();
 
 
@@ -2168,19 +2351,19 @@ public class CommonFunctions {
                                     String ncdAmount = Double.toString(Double.parseDouble(floaterNCD) / 100.00 * Double.parseDouble(basicPremium));
                                     String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount)));
                                     String grossPremium = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount) - Double.parseDouble(familyDiscountAmount));
-                                    String commission = calculateCommission(zone, grossPremium, memberAge);
+                                    String commission = calculateCommission(zone, grossPremium, memberAge, FAMILY_MEDICARE_POLICY);
 
-                                    map1.put("member_age", memberAge);
-                                    map1.put("member_basic_premium", basicPremium);
-                                    map1.put("member_ncd_amount", ncdAmount);
-                                    map1.put("member_family_discount", familyDiscountAmount);
-                                    map1.put("member_gross_premium", grossPremium);
+                                    map1.put(INTENT_MEMBER_AGE, memberAge);
+                                    map1.put(INTENT_MEMBER_BASIC_PREMIUM, basicPremium);
+                                    map1.put(INTENT_MEMBER_NCD_AMOUNT, ncdAmount);
+                                    map1.put(INTENT_MEMBER_FAMILY_DISCOUNT, familyDiscountAmount);
+                                    map1.put(INTENT_MEMBER_GROSS_PREMIUM, grossPremium);
                                     output1.add(map1);
                                     ageArrayList.add(Integer.parseInt(memberAge));
                                     basicPremiumArrayList.add(Double.parseDouble(basicPremium));
                                     ncdAmountArrayList.add(Double.parseDouble(ncdAmount));
                                     familyDiscountAmountArrayList.add(Double.parseDouble(familyDiscountAmount));
-                                    grossPremiumArraList.add(Double.parseDouble(grossPremium));
+                                    grossPremiumArrayList.add(Double.parseDouble(grossPremium));
                                     commissionArrayList.add(Double.parseDouble(commission));
                                 }
                             }
@@ -2193,65 +2376,65 @@ public class CommonFunctions {
                     output2 = calculateDailyCashPremium(type, ageArrayList, "0.00", floaterSI, FAMILY_MEDICARE_POLICY, "");
                     dailyCashAllowancePremium = output2.get(0);
                     dailyCashAllowanceAmount = output2.get(1);
-                    dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)));
+                    dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY);
                     commissionArrayList.add((Double.parseDouble(dailyCashAllowanceCommissionAmount)));
                 }
 
                 if (maternityCheckbox) {
-                    if (floaterSI.equalsIgnoreCase(FMP_SI_350000)) {
+                    if (floaterSI.equalsIgnoreCase(SI_350000)) {
                         maternityPremium = "12000.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_400000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_400000)) {
                         maternityPremium = "13750.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_450000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_450000)) {
                         maternityPremium = "15500.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_500000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_500000)) {
                         maternityPremium = "17000.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_600000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_600000)) {
                         maternityPremium = "20350.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_700000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_700000)) {
                         maternityPremium = "20600.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_800000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_800000)) {
                         maternityPremium = "20850.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_900000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_900000)) {
                         maternityPremium = "21000.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_1000000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_1000000)) {
                         maternityPremium = "21200.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_1500000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_1500000)) {
                         maternityPremium = "22000.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_2000000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_2000000)) {
                         maternityPremium = "23000.00";
-                    } else if (floaterSI.equalsIgnoreCase(FMP_SI_2500000)) {
+                    } else if (floaterSI.equalsIgnoreCase(SI_2500000)) {
                         maternityPremium = "23500.00";
                     } else {
                         maternityPremium = "0.00";
                     }
 
-                    maternityCommissionAmount = calculateCommission(zone, maternityPremium, Integer.toString(Collections.max(ageArrayList)));
+                    maternityCommissionAmount = calculateCommission(zone, maternityPremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY);
                     commissionArrayList.add((Double.parseDouble(maternityCommissionAmount)));
 
                 }
 
                 HashMap<String, String> map1 = new HashMap<>();
-                map1.put("total_basic_premium", sumOfDoubleArrayList(basicPremiumArrayList));
-                map1.put("total_ncd_amount", sumOfDoubleArrayList(ncdAmountArrayList));
-                map1.put("total_family_discount", sumOfDoubleArrayList(familyDiscountAmountArrayList));
-                map1.put("total_gross_premium", sumOfDoubleArrayList(grossPremiumArraList));
-                map1.put("daily_cash_premium", dailyCashAllowancePremium);
-                map1.put("daily_cash_amount", dailyCashAllowanceAmount);
-                map1.put("maternity_premium", maternityPremium);
-                String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(sumOfDoubleArrayList(grossPremiumArraList)) + Double.parseDouble(dailyCashAllowancePremium) + Double.parseDouble(maternityPremium));
+                map1.put(INTENT_TOTAL_BASIC_PREMIUM, sumOfDoubleArrayList(basicPremiumArrayList));
+                map1.put(INTENT_TOTAL_NCD_AMOUNT, sumOfDoubleArrayList(ncdAmountArrayList));
+                map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, sumOfDoubleArrayList(familyDiscountAmountArrayList));
+                map1.put(INTENT_TOTAL_GROSS_PREMIUM, sumOfDoubleArrayList(grossPremiumArrayList));
+                map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
+                map1.put(INTENT_TOTAL_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
+                map1.put(TOTAL_MATERNITY_PREMIUM, maternityPremium);
+                String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(sumOfDoubleArrayList(grossPremiumArrayList)) + Double.parseDouble(dailyCashAllowancePremium) + Double.parseDouble(maternityPremium));
                 String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                map1.put("gst", gst);
-                String netPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst));
-                map1.put("net_premium", netPremium);
-                String commission = CommonFunctions.uptoTwoDecimal(Double.toString(Double.parseDouble(sumOfDoubleArrayList(commissionArrayList))));
+                map1.put(INTENT_TOTAL_GST, gst);
+                String netPremium = uptoTwoDecimal(Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst)));
+                map1.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+                String commission = uptoTwoDecimal(Double.toString(Double.parseDouble(sumOfDoubleArrayList(commissionArrayList))));
                 String incentive = "0.00";
                 String portalCharges = "50.00";
                 String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                String commissionString = "Approx Commission : ".concat(CommonFunctions.uptoTwoDecimal(commission)).
-                        concat("\nApprox Incentive : ").concat(CommonFunctions.uptoTwoDecimal(incentive)).
-                        concat("\nPortal Charges : ").concat(CommonFunctions.uptoTwoDecimal(portalCharges)).
-                        concat("\nPortal Incentive : ").concat(CommonFunctions.uptoTwoDecimal(portalIncentive));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).
+                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
+                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
+                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
                 map1.put("total_commission", commissionString);
                 output1.add(map1);
             } catch (JSONException e) {
@@ -2260,6 +2443,121 @@ public class CommonFunctions {
         }
         return output1;
     }
+
+    public static ArrayList<HashMap<String, String>> calculateYuvaanHealthPremiumFloater(String type, String zone, String noOfMembers, String floaterSI, String floaterNCD, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCashCheckBox, boolean coPaymentWaiverCheckbox, String dailyCashAllowanceAmount) {
+
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
+        String familyDiscountPercentage = getFamilyDiscount(type, familyType, isAgeBetween40and50(memberDetailsArrayList), YUVAAN_HEALTH_POLICY);
+
+        String dailyCashAllowancePremium = "0.00";
+        String dailyCashAllowanceCommissionAmount = "0.00";
+        String maternityCommissionAmount = "0.00";
+        String maternityPremium = "0.00";
+        ArrayList<Integer> ageArrayList = new ArrayList<>();
+        ArrayList<Double> basicPremiumArrayList = new ArrayList<>();
+        ArrayList<Double> ncdAmountArrayList = new ArrayList<>();
+        ArrayList<Double> dailyCashAllowancePremiumArrayList = new ArrayList<>();
+        ArrayList<Double> familyDiscountAmountArrayList = new ArrayList<>();
+        ArrayList<Double> grossPremiumArrayList = new ArrayList<>();
+        ArrayList<Double> commissionArrayList = new ArrayList<>();
+
+
+        String fileName = "";
+        if(coPaymentWaiverCheckbox){
+            fileName = "yuvaan_zone_a.json";
+        }else{
+            if (zone.equalsIgnoreCase(ZONE_A)) {
+                fileName = "yuvaan_zone_a.json";
+            } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                fileName = "yuvaan_zone_b.json";
+            } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                fileName = "yuvaan_zone_c.json";
+            }
+        }
+
+        String jsonStr = loadJSONFromAsset(context, fileName);
+        if (jsonStr != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(jsonStr);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject object = jsonArray.getJSONObject(i);
+                    String si = object.getString("SI");
+                    if (si.equalsIgnoreCase(floaterSI)) {
+                        for (int j = 0; j < memberDetailsArrayList.size(); j++) {
+                            Map<String, View> map = memberDetailsArrayList.get(j);
+                            for (Iterator<Map.Entry<String, View>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                                Map.Entry<String, View> entry = it.next();
+                                String key = entry.getKey();
+                                View v = entry.getValue();
+                                String memberAge = "0";
+                                if (v instanceof EditText) {
+                                    HashMap<String, String> map1 = new HashMap<>();
+                                    memberAge = ((EditText) v).getText().toString().trim();
+                                    String age_slab = getAgeSlab(memberAge);
+                                    String basicPremium = object.getString(age_slab);
+                                    String ncdAmount = Double.toString(Double.parseDouble(floaterNCD) / 100.00 * Double.parseDouble(basicPremium));
+                                    String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount)));
+                                    String grossPremium = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount) - Double.parseDouble(familyDiscountAmount));
+                                    String commission = calculateCommission(zone, grossPremium, memberAge, YUVAAN_HEALTH_POLICY);
+
+                                    if (dailyCashCheckBox) {
+                                        ArrayList<String> output2 = new ArrayList<>();
+                                        output2 = calculateDailyCashPremium(type, ageArrayList, "0.00", floaterSI, YUVAAN_HEALTH_POLICY, dailyCashAllowanceAmount);
+                                        dailyCashAllowancePremium = output2.get(0);
+                                        dailyCashAllowancePremiumArrayList.add(Double.parseDouble(dailyCashAllowancePremium));
+                                        dailyCashAllowanceAmount = output2.get(1);
+                                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, memberAge, YUVAAN_HEALTH_POLICY);
+                                        commissionArrayList.add((Double.parseDouble(dailyCashAllowanceCommissionAmount)));
+                                    }
+
+                                    map1.put(INTENT_MEMBER_AGE, memberAge);
+                                    map1.put(INTENT_MEMBER_BASIC_PREMIUM, basicPremium);
+                                    map1.put(INTENT_MEMBER_NCD_AMOUNT, ncdAmount);
+                                    map1.put(INTENT_MEMBER_FAMILY_DISCOUNT, familyDiscountAmount);
+                                    map1.put(INTENT_MEMBER_GROSS_PREMIUM, grossPremium);
+                                    output1.add(map1);
+                                    ageArrayList.add(Integer.parseInt(memberAge));
+                                    basicPremiumArrayList.add(Double.parseDouble(basicPremium));
+                                    ncdAmountArrayList.add(Double.parseDouble(ncdAmount));
+                                    familyDiscountAmountArrayList.add(Double.parseDouble(familyDiscountAmount));
+                                    grossPremiumArrayList.add(Double.parseDouble(grossPremium));
+                                    commissionArrayList.add(Double.parseDouble(commission));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                HashMap<String, String> map1 = new HashMap<>();
+                map1.put(INTENT_TOTAL_BASIC_PREMIUM, sumOfDoubleArrayList(basicPremiumArrayList));
+                map1.put(INTENT_TOTAL_NCD_AMOUNT, sumOfDoubleArrayList(ncdAmountArrayList));
+                map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, sumOfDoubleArrayList(familyDiscountAmountArrayList));
+                map1.put(INTENT_TOTAL_GROSS_PREMIUM, sumOfDoubleArrayList(grossPremiumArrayList));
+                map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, sumOfDoubleArrayList(dailyCashAllowancePremiumArrayList));
+                map1.put(INTENT_TOTAL_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
+                String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(sumOfDoubleArrayList(grossPremiumArrayList)) + Double.parseDouble(dailyCashAllowancePremium) + Double.parseDouble(maternityPremium));
+                String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+                map1.put(INTENT_TOTAL_GST, gst);
+                String netPremium = uptoTwoDecimal(Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst)));
+                map1.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+                String commission = uptoTwoDecimal(Double.toString(Double.parseDouble(sumOfDoubleArrayList(commissionArrayList))));
+                String incentive = "0.00";
+                String portalCharges = "50.00";
+                String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).
+                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
+                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
+                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+                map1.put("total_commission", commissionString);
+                output1.add(map1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return output1;
+    }
+
 
     private static String sumOfDoubleArrayList(ArrayList<Double> arrayList) {
         String output = "0.00";
@@ -2277,7 +2575,7 @@ public class CommonFunctions {
 
         ArrayList<HashMap<String, String>> output = new ArrayList<>();
         ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
-        String familyDiscountPercentage = getFamilyDiscount(type, familyType, isAgeBetween40and50(memberDetailsArrayList));
+        String familyDiscountPercentage = getFamilyDiscount(type, familyType, isAgeBetween40and50(memberDetailsArrayList), INDIVIDUAL_HEALTH_POLICY);
 
         String dailyCashAllowancePremium = "0.00";
         String dailyCashAllowanceCommissionAmount = "0.00";
@@ -2322,15 +2620,15 @@ public class CommonFunctions {
                         String key = entry.getKey();
                         View v = entry.getValue();
 
-                        if (key.equalsIgnoreCase("member_age")) {
+                        if (key.equalsIgnoreCase(INTENT_MEMBER_AGE)) {
                             if (v instanceof EditText) {
                                 memberAge = ((EditText) v).getText().toString().trim();
                             }
-                        } else if (key.equalsIgnoreCase("member_si")) {
+                        } else if (key.equalsIgnoreCase(INTENT_MEMBER_SI)) {
                             if (v instanceof Spinner) {
                                 memberSI = ((Spinner) v).getSelectedItem().toString();
                             }
-                        } else if (key.equalsIgnoreCase("member_ncd")) {
+                        } else if (key.equalsIgnoreCase(INTENT_MEMBER_NCD_PERCENTAGE)) {
                             if (v instanceof Spinner) {
                                 memberNCDPercentage = ((Spinner) v).getSelectedItem().toString();
                             }
@@ -2344,16 +2642,17 @@ public class CommonFunctions {
                                     String age_slab = getAgeSlab(memberAge);
                                     basicPremium = object.getString(age_slab);
 
-                                    map1.put("member_age", memberAge);
-                                    map1.put("member_basic_premium", basicPremium);
-                                    map1.put("member_ncd_percentage", memberNCDPercentage);
+                                    map1.put(INTENT_MEMBER_AGE, memberAge);
+                                    map1.put(INTENT_MEMBER_SI,memberSI);
+                                    map1.put(INTENT_MEMBER_BASIC_PREMIUM, basicPremium);
+                                    map1.put(INTENT_MEMBER_NCD_PERCENTAGE, memberNCDPercentage);
                                     memberNCDAmount = Double.toString(Double.parseDouble(memberNCDPercentage) / 100.00 * Double.parseDouble(basicPremium));
-                                    map1.put("member_ncd_amount", memberNCDAmount);
+                                    map1.put(INTENT_MEMBER_NCD_AMOUNT, memberNCDAmount);
                                     String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount)));
-                                    map1.put("member_family_discount", familyDiscountAmount);
+                                    map1.put(INTENT_MEMBER_FAMILY_DISCOUNT, familyDiscountAmount);
                                     String grossPremium = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount) - Double.parseDouble(familyDiscountAmount));
-                                    map1.put("member_gross_premium", grossPremium);
-                                    String commission = calculateCommission(zone, grossPremium, memberAge);
+                                    map1.put(INTENT_MEMBER_GROSS_PREMIUM, grossPremium);
+                                    String commission = calculateCommission(zone, grossPremium, memberAge, INDIVIDUAL_HEALTH_POLICY);
 
                                     ageArrayList.add(Integer.parseInt(memberAge));
                                     basicPremiumArrayList.add(Double.parseDouble(basicPremium));
@@ -2367,8 +2666,9 @@ public class CommonFunctions {
                                         outputDailyCash = calculateDailyCashPremium(type, null, "", "", INDIVIDUAL_HEALTH_POLICY, dailyCashAllowanceAmount);
                                         dailyCashAllowancePremium = outputDailyCash.get(0);
                                         dailyCashAllowanceAmount = outputDailyCash.get(1);
+                                        map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                                         dailyCashAllowancePremiumArrayList.add(Double.parseDouble(dailyCashAllowancePremium));
-                                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)));
+                                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), INDIVIDUAL_HEALTH_POLICY);
                                         commissionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
                                     }
                                     output1.add(map1);
@@ -2380,25 +2680,26 @@ public class CommonFunctions {
                 }
 
                 HashMap<String, String> map2 = new HashMap<>();
-                map2.put("total_basic_premium", sumOfDoubleArrayList(basicPremiumArrayList));
-                map2.put("total_ncd_amount", sumOfDoubleArrayList(ncdAmountArrayList));
-                map2.put("total_family_discount", sumOfDoubleArrayList(familyDiscountAmountArrayList));
-                map2.put("total_gross_premium", sumOfDoubleArrayList(grossPremiumArrayList));
-                map2.put("total_daily_cash_premium", sumOfDoubleArrayList(dailyCashAllowancePremiumArrayList));
+                map2.put(INTENT_TOTAL_BASIC_PREMIUM, sumOfDoubleArrayList(basicPremiumArrayList));
+                map2.put(INTENT_TOTAL_NCD_AMOUNT, sumOfDoubleArrayList(ncdAmountArrayList));
+                map2.put(INTENT_TOTAL_FAMILY_DISCOUNT, sumOfDoubleArrayList(familyDiscountAmountArrayList));
+                map2.put(INTENT_TOTAL_GROSS_PREMIUM, sumOfDoubleArrayList(grossPremiumArrayList));
+                map2.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, sumOfDoubleArrayList(dailyCashAllowancePremiumArrayList));
+                map2.put(INTENT_TOTAL_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                 String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(sumOfDoubleArrayList(grossPremiumArrayList)) + Double.parseDouble(sumOfDoubleArrayList(dailyCashAllowancePremiumArrayList)));
                 String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                map2.put("gst", gst);
+                map2.put(INTENT_TOTAL_GST, gst);
                 String netPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst));
-                map2.put("net_premium", netPremium);
-                String commission = CommonFunctions.uptoTwoDecimal(Double.toString(Double.parseDouble(sumOfDoubleArrayList(commissionArrayList))));
+                map2.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+                String commission = uptoTwoDecimal(Double.toString(Double.parseDouble(sumOfDoubleArrayList(commissionArrayList))));
                 String incentive = "0.00";
                 String portalCharges = "50.00";
                 String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                String commissionString = "Approx Commission : ".concat(CommonFunctions.uptoTwoDecimal(commission)).
-                        concat("\nApprox Incentive : ").concat(CommonFunctions.uptoTwoDecimal(incentive)).
-                        concat("\nPortal Charges : ").concat(CommonFunctions.uptoTwoDecimal(portalCharges)).
-                        concat("\nPortal Incentive : ").concat(CommonFunctions.uptoTwoDecimal(portalIncentive));
-                map2.put("total_commission", commissionString);
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).
+                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
+                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
+                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+                map2.put(INTENT_TOTAL_COMMISSION, commissionString);
                 output1.add(map2);
                 int k = 0;
             } catch (JSONException e) {
