@@ -98,7 +98,9 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                         String value = entry.getValue();
                         if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
                             View dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
-                            CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
+/*
+                            CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
+*/
                             String variableName = "Member ".concat(Integer.toString(i + 1));
                             TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
                             TextView memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
@@ -217,7 +219,9 @@ public class HealthPremiumDisplay extends AppCompatActivity {
             for (int i = 0; i < premiumAndCommission.size(); i++) {
                 if (count < premiumAndCommission.size() - 1) {
                     dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
+/*
                     CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
+*/
                     String variableName = "Member ".concat(Integer.toString(i + 1));
                     TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
                     TextView memberAgeTextView = dynamicLayout.findViewById(R.id.memberAgeEditText);
@@ -259,7 +263,11 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
                             floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
-                            dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
+                            }else{
+                                dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
                             grossPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
