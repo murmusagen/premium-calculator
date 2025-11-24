@@ -292,7 +292,7 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                         String value = entry.getValue();
                         if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
                             View dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
-                            CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
+                            //CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
                             String variableName = "Member ".concat(Integer.toString(i + 1));
                             TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
                             TextView memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
@@ -314,16 +314,18 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                             if (value.equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
                             } else {
-                                dailyCashDisplay.setText(value);
+                                dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_AMOUNT)) {
-                            if (!value.equalsIgnoreCase("0.00")) {
-                                dailyCashAmountDisplay.setText(value.concat(" Per Day"));
+                            if(value.equalsIgnoreCase("0.00")){
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
+                            }else{
+                                dailyCashAmountDisplay.setText(CommonFunctions.uptoTwoDecimal(value).concat(" Per Day"));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
-                            gstDisplay.setText(value);
+                            gstDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NET_PREMIUM)) {
-                            netPremiumDisplay.setText(value);
+                            netPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_COMMISSION)) {
                             commissionTextView.setText(value);
                         }

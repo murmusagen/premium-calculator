@@ -175,7 +175,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
 
                             memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
 
-                            EditText a = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                            EditText memberAge = dynamicLayout.findViewById(R.id.memberAgeEditText);
 
 
                             Spinner familyMedicareMemberSISpinner = dynamicLayout.findViewById(R.id.familyMedicareMemberSISpinner);
@@ -202,7 +202,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                             container.addView(dynamicLayout);
                             count = count + 1;
 
-                            map.put(CommonFunctions.INTENT_MEMBER_AGE, a);
+                            map.put(CommonFunctions.INTENT_MEMBER_AGE, memberAge);
                             map.put(CommonFunctions.INTENT_MEMBER_SI, familyMedicareMemberSISpinner);
                             map.put(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE, memberNCDSpinner);
                             memberDetailsArrayList.add(map);

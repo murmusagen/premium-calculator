@@ -2589,6 +2589,9 @@ public class CommonFunctions {
                                         dailyCashAllowanceAmount = output2.get(1);
                                         dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, memberAge, YUVAAN_HEALTH_POLICY);
                                         commissionArrayList.add((Double.parseDouble(dailyCashAllowanceCommissionAmount)));
+                                    }else{
+                                        dailyCashAllowancePremium = "0.00";
+                                        dailyCashAllowanceAmount = "0.00";
                                     }
 
                                     map1.put(INTENT_MEMBER_AGE, memberAge);
@@ -2629,7 +2632,7 @@ public class CommonFunctions {
                         concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
                         concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
                         concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
-                map1.put("total_commission", commissionString);
+                map1.put(INTENT_TOTAL_COMMISSION, commissionString);
                 output1.add(map1);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -2788,5 +2791,9 @@ public class CommonFunctions {
             int k = 0;
         }
         return output1;
+    }
+
+    public static ArrayList<HashMap<String, String>> calculateSTUMPPremiumFloater(String type, String noOfMembers, String floaterThreshold, String floaterSI, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCash) {
+    return null;
     }
 }

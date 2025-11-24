@@ -155,6 +155,7 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
                             individualHealthMemberSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             individualHealthMemberSISpinner.setAdapter(individualHealthMemberSIAdapter);
                             individualHealthMemberSISpinner.setSelection(6);
+                            CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
 
                             Spinner individualHealthMemberNCDSpinner = dynamicLayout.findViewById(R.id.memberNCDSpinner);
                             individualHealthNCDAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

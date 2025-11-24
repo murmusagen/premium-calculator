@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class StumpDataEntry extends AppCompatActivity {
     Button findZoneButton;
     TextView commissionTextView;
     LinearLayout floaterThresholdLinearLayout;
+    Button calculateSTUMPPremiumButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class StumpDataEntry extends AppCompatActivity {
         noOfMembersEditText = findViewById(R.id.noOfMembersEditText);
         dailyCashCoverCheckBox = findViewById(R.id.dailyCashCoverCheckBox);
         commissionTextView = findViewById(R.id.commissionTextView);
+        calculateSTUMPPremiumButton = findViewById(R.id.calculateSTUMPPremiumButton);
 
         ArrayList<Map<String, View>> memberDetailsArrayList = new ArrayList<Map<String, View>>();
 
@@ -265,37 +268,6 @@ public class StumpDataEntry extends AppCompatActivity {
                             map.put(CommonFunctions.INTENT_MEMBER_SI, stumpMemberSISpinner);
                             memberDetailsArrayList.add(map);
 
-
-
-
-                            /*Spinner familyMedicareMemberSISpinner = dynamicLayout.findViewById(R.id.familyMedicareMemberSISpinner);
-                            familyMedicareMemberSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            familyMedicareMemberSISpinner.setAdapter(familyMedicareMemberSIAdapter);
-                            if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                                familyMedicareMemberSISpinner.setSelection(0);
-                                familyMedicareMemberSISpinner.setEnabled(false);
-                            } else {
-                                familyMedicareMemberSISpinner.setSelection(1);
-                            }
-
-                            Spinner memberNCDSpinner = dynamicLayout.findViewById(R.id.memberNCDSpinner);
-                            memberNCDAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            memberNCDSpinner.setAdapter(memberNCDAdapter);
-                            if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                                memberNCDSpinner.setEnabled(false);
-                            }
-
-                            if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                                CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForIndividualLinearLayout));
-                            }
-
-                            container.addView(dynamicLayout);
-                            count = count + 1;
-
-                            map.put(CommonFunctions.INTENT_MEMBER_AGE, memberAge);
-                            map.put(CommonFunctions.INTENT_MEMBER_SI, familyMedicareMemberSISpinner);
-                            map.put(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE, memberNCDSpinner);
-                            memberDetailsArrayList.add(map);*/
                         }
                     }
                 } else {
@@ -306,6 +278,43 @@ public class StumpDataEntry extends AppCompatActivity {
         });
 
 
-        Button calculateSTUMPPremiumButton = findViewById(R.id.calculateSTUMPPremiumButton);
+        calculateSTUMPPremiumButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (noOfMembersEditText.getText().toString().trim().equalsIgnoreCase("")) {
+                    Toast.makeText(StumpDataEntry.this, "Please Enter No. Of Members", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 1) {
+                        Toast.makeText(StumpDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 2) {
+                        Toast.makeText(StumpDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 2) {
+                        Toast.makeText(StumpDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT_ANY_CHILD) &&
+                            Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 3) {
+                        Toast.makeText(StumpDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                    }else{
+                        if(typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)){
+
+                        } else if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
+
+                            premium = CommonFunctions.calculateSTUMPPremiumFloater(typeSpinner.getSelectedItem().toString(),
+                                    noOfMembersEditText.getText().toString(),
+                                    floaterThresholdSpinner.getSelectedItem().toString(),
+                                    floaterSISpinner.getSelectedItem().toString(),
+                                    memberDetailsArrayList,
+                                    StumpDataEntry.this,
+                                    familyTypeSpinner.getSelectedItem().toString(),
+                                    dailyCashCoverCheckBox.isChecked());
+                        }
+                    }
+
+                }
+            }
+        });
     }
 }
