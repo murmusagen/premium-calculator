@@ -1,5 +1,8 @@
 package com.example.premiumcalculator;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -62,6 +65,7 @@ public class StumpDataEntry extends AppCompatActivity {
         dailyCashCoverCheckBox = findViewById(R.id.dailyCashCoverCheckBox);
         commissionTextView = findViewById(R.id.commissionTextView);
         calculateSTUMPPremiumButton = findViewById(R.id.calculateSTUMPPremiumButton);
+        findZoneButton = findViewById(R.id.findZoneButton);
 
         ArrayList<Map<String, View>> memberDetailsArrayList = new ArrayList<Map<String, View>>();
 
@@ -69,6 +73,28 @@ public class StumpDataEntry extends AppCompatActivity {
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.HEALTH_TYPE_ARRAY);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(typeAdapter);
+
+        String[] healthZoneArray = {CommonFunctions.ZONE_C, CommonFunctions.ZONE_B, CommonFunctions.ZONE_A};
+        Spinner zoneSpinner = findViewById(R.id.zoneSpinner);
+        ArrayAdapter<String> zoneAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, healthZoneArray);
+        zoneAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        zoneSpinner.setAdapter(zoneAdapter);
+
+        findZoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(StumpDataEntry.this);
+                builder.setTitle("Zone Information");
+                builder.setMessage(CommonFunctions.ALL_ZONE_TEXT);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.create().show();
+            }
+        });
 
         Spinner familyTypeSpinner = findViewById(R.id.familyTypeSpinner);
         ArrayAdapter<String> familyTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY);
@@ -108,6 +134,7 @@ public class StumpDataEntry extends AppCompatActivity {
         ArrayAdapter<String> floaterThresholdArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.STUMP_THRESHOLD_ARRAY);
         floaterThresholdArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         floaterThresholdSpinner.setAdapter(floaterThresholdArrayAdapter);
+        floaterThresholdSpinner.setSelection(2);
 
         ArrayAdapter<String> floaterSIWhen200000ArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.SUMP_SI_WHEN_THRESHOLD_200000_ARRAY);
         ArrayAdapter<String> floaterSIWhen300000ArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.SUMP_SI_WHEN_THRESHOLD_300000_ARRAY);
@@ -300,6 +327,7 @@ public class StumpDataEntry extends AppCompatActivity {
                     }else{
                         if(typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)){
                             premium = CommonFunctions.calculateSTUMPPremiumFloater(typeSpinner.getSelectedItem().toString(),
+                                    zoneSpinner.getSelectedItem().toString(),
                                     noOfMembersEditText.getText().toString(),
                                     floaterThresholdSpinner.getSelectedItem().toString(),
                                     floaterSISpinner.getSelectedItem().toString(),
@@ -307,6 +335,16 @@ public class StumpDataEntry extends AppCompatActivity {
                                     StumpDataEntry.this,
                                     familyTypeSpinner.getSelectedItem().toString(),
                                     dailyCashCoverCheckBox.isChecked());
+
+                            Intent intent = new Intent(StumpDataEntry.this, HealthPremiumDisplay.class);
+                            intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.STUMP);
+                            intent.putExtra(CommonFunctions.INTENT_TYPE, typeSpinner.getSelectedItem().toString());
+                            intent.putExtra(CommonFunctions.INTENT_ZONE, zoneSpinner.getSelectedItem().toString());
+                            intent.putExtra(CommonFunctions.INTENT_FLOATER_THRESHOLD, floaterThresholdSpinner.getSelectedItem().toString());
+                            intent.putExtra(CommonFunctions.INTENT_FLOATER_SI, floaterSISpinner.getSelectedItem().toString());
+                            intent.putExtra(CommonFunctions.INTENT_PREMIUM_AND_COMMISSION, premium);
+                            startActivity(intent);
+
                         } else if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
 
                         }

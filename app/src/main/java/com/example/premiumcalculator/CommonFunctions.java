@@ -1,6 +1,7 @@
 package com.example.premiumcalculator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +71,7 @@ public class CommonFunctions {
     public static String INTENT_MEMBER_COMMISSION = "member_commission";
     public static String YUVAAN_HEALTH_POLICY = "Yuvaan Health Policy";
     public static String INTENT_FLOATER_SI = "floater_si";
+    public static String INTENT_FLOATER_THRESHOLD = "floater_threshold";
     public static String INTENT_FLOATER_NCD = "floater_ncd";
     public static String TOTAL_MATERNITY_PREMIUM = "total_maternity_premium";
     public static String INTENT_MEMBER_DAILY_CASH_AMOUNT = "member_daily_cash_amount";
@@ -2281,6 +2283,10 @@ public class CommonFunctions {
 
     private static String calculateCommission(String zone, String premiumForTheMember, String age, String product) {
         String commission = "0.00";
+        String incentive = "0.00";
+        String portalCharges = "50.00";
+        String portalIncentive = "0.25";
+        String output = "";
         Double ageDouble = Double.parseDouble(age);
 
         if (product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY)) {
@@ -2309,6 +2315,12 @@ public class CommonFunctions {
                     commission = "5.00";
                 }
             }
+
+            Double commissionDouble = Double.parseDouble(commission);
+            Double premiumForTheMemberDouble = Double.parseDouble(premiumForTheMember);
+            Double commissionAmountDouble = commissionDouble / 100.00 * premiumForTheMemberDouble;
+            output =  Double.toString(commissionAmountDouble);
+
         } else if (product.equalsIgnoreCase(YUVAAN_HEALTH_POLICY)) {
             if (zone.equalsIgnoreCase(ZONE_A)) {
                 if (ageDouble >= 0 && ageDouble <= 45) {
@@ -2335,11 +2347,49 @@ public class CommonFunctions {
                     commission = "25.00";
                 }
             }
+
+            Double commissionDouble = Double.parseDouble(commission);
+            Double premiumForTheMemberDouble = Double.parseDouble(premiumForTheMember);
+            Double commissionAmountDouble = commissionDouble / 100.00 * premiumForTheMemberDouble;
+            output  = Double.toString(commissionAmountDouble);
+
+        } else if (product.equalsIgnoreCase(STUMP)) {
+            if (zone.equalsIgnoreCase(ZONE_A)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "20.00";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "15.00";
+                } else if (ageDouble > 60) {
+                    commission = "3.00";
+                }
+            } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "30.00";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "20.00";
+                } else if (ageDouble > 60) {
+                    commission = "5.00";
+                }
+            } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                if (ageDouble >= 0 && ageDouble <= 45) {
+                    commission = "30.00";
+                } else if (ageDouble > 45 && ageDouble <= 60) {
+                    commission = "20.00";
+                } else if (ageDouble > 60) {
+                    commission = "5.00";
+                }
+            }
+
+            String commissionAmount = Double.toString(Double.parseDouble(commission) / 100.00 * Double.parseDouble(premiumForTheMember));
+            String portalIncentiveAmount1 = Double.toString(Double.parseDouble(portalIncentive)/100.00 * Double.parseDouble(premiumForTheMember));
+
+            output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).
+                    concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
+                    concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
+                    concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount1));
+
         }
-        Double commissionDouble = Double.parseDouble(commission);
-        Double premiumForTheMemberDouble = Double.parseDouble(premiumForTheMember);
-        Double commissionAmountDouble = commissionDouble / 100.00 * premiumForTheMemberDouble;
-        return Double.toString(commissionAmountDouble);
+        return output;
     }
 
     private static boolean isAgeBetween40and50(ArrayList<Map<String, View>> memberDetailsArrayList) {
@@ -2892,7 +2942,7 @@ public class CommonFunctions {
         return output1;
     }
 
-    public static ArrayList<HashMap<String, String>> calculateSTUMPPremiumFloater(String type, String noOfMembers, String floaterThreshold, String floaterSI, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCash) {
+    public static ArrayList<HashMap<String, String>> calculateSTUMPPremiumFloater(String type, String zone, String noOfMembers, String floaterThreshold, String floaterSI, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCash) {
 
         ArrayList<HashMap<String, String>> output = new ArrayList<>();
         ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
@@ -2961,15 +3011,27 @@ public class CommonFunctions {
                         dailyCashAllowanceAmount = output2.get(1);
                     }
 
-                    map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM,dailyCashAllowancePremium);
+                    String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * Double.parseDouble(basicPremium));
+                    map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, uptoTwoDecimal(familyDiscountAmount));
+                    String grossPremiumBeforeAddOn = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(familyDiscountAmount));
+                    map1.put(INTENT_TOTAL_GROSS_PREMIUM, grossPremiumBeforeAddOn);
+
+                    map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
                     map1.put(INTENT_TOTAL_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
 
-                    String gst = Double.toString(GST_0/100.00 * Double.parseDouble(basicPremium));
-                    String netPremium = Double.toString(Double.parseDouble(basicPremium) + Double.parseDouble(dailyCashAllowancePremium) + Double.parseDouble(gst));
-                    map1.put(INTENT_TOTAL_GST,gst);
-                    map1.put(INTENT_TOTAL_NET_PREMIUM,netPremium);
+                    String grossPremiumAfterAddOn = Double.toString(Double.parseDouble(grossPremiumBeforeAddOn) + Double.parseDouble(dailyCashAllowancePremium));
+
+                    String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(grossPremiumAfterAddOn));
+                    String netPremium = Double.toString(Double.parseDouble(grossPremiumAfterAddOn) + Double.parseDouble(gst));
+
+                    map1.put(INTENT_TOTAL_GST, gst);
+                    map1.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+
+                    String commission = calculateCommission(zone, grossPremiumAfterAddOn, Integer.toString(maxAge), STUMP);
+
+                    map1.put(INTENT_TOTAL_COMMISSION, commission);
+
                     output1.add(map1);
-                    int k = 0;
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -2979,6 +3041,6 @@ public class CommonFunctions {
 
         }
 
-        return null;
+        return output1;
     }
 }

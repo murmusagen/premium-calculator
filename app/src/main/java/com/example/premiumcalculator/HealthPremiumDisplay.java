@@ -63,6 +63,7 @@ public class HealthPremiumDisplay extends AppCompatActivity {
         TextView maternityDisplay = findViewById(R.id.maternityDisplay);
         TextView disclaimerTextView = findViewById(R.id.disclaimerTextView);
         TextView commissionTextView = findViewById(R.id.commissionTextView);
+        TextView floaterThresholdDisplay = findViewById(R.id.floaterThresholdDisplay);
 
         disclaimerTextView.setText(CommonFunctions.DISCLAIMER_TEXT);
 
@@ -82,6 +83,7 @@ public class HealthPremiumDisplay extends AppCompatActivity {
         zoneDisplay.setText(zone);
 
         if (productName.equalsIgnoreCase(CommonFunctions.FAMILY_MEDICARE_POLICY)) {
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterThresholdLinearLayout));
             if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
                 if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
                     floaterSIDisplay.setText(floaterSI);
@@ -209,6 +211,7 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                 }
             }
         } else if (productName.equalsIgnoreCase(CommonFunctions.INDIVIDUAL_HEALTH_POLICY)) {
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterThresholdLinearLayout));
             CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDInnerLayout));
 
 
@@ -263,9 +266,9 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
                             floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
-                            if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
-                            }else{
+                            } else {
                                 dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
@@ -282,6 +285,7 @@ public class HealthPremiumDisplay extends AppCompatActivity {
             }
         } else if (productName.equalsIgnoreCase(CommonFunctions.YUVAAN_HEALTH_POLICY)) {
 
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterNCDLinearLayout));
             CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
 
             if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
@@ -325,9 +329,9 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                                 dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_AMOUNT)) {
-                            if(value.equalsIgnoreCase("0.00")){
+                            if (value.equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
-                            }else{
+                            } else {
                                 dailyCashAmountDisplay.setText(CommonFunctions.uptoTwoDecimal(value).concat(" Per Day"));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
@@ -395,6 +399,65 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                                 commissionTextView.setText(value);
                             }
                         }
+                    }
+                }
+            }
+        } else if (productName.equalsIgnoreCase(CommonFunctions.STUMP)) {
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterNCDLinearLayout));
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
+            floaterThresholdDisplay.setText(intent.getStringExtra(CommonFunctions.INTENT_FLOATER_THRESHOLD));
+            floaterSIDisplay.setText(intent.getStringExtra(CommonFunctions.INTENT_FLOATER_SI));
+            for (int i = 0; i < premiumAndCommission.size(); i++) {
+                HashMap<String, String> map = premiumAndCommission.get(i);
+                for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                    Map.Entry<String, String> entry = it.next();
+                    String key = entry.getKey();
+                    String value = entry.getValue();
+                    if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
+                        View dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
+
+                        CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.healthMemberDataForIndividualLinearLayout));
+                        CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
+
+
+                        String variableName = "Member ".concat(Integer.toString(i + 1));
+                        TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
+                        TextView memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                        memberNoTextView.setText(variableName);
+                        memberAgeEditText.setText(value.concat(" Yrs"));
+                        container.addView(dynamicLayout);
+
+                    } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
+                        totalBasicPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                    } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
+                        if(value.equalsIgnoreCase("0.00")){
+                            CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalFamilyDiscountLinearLayout));
+                        }else{
+                            floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                        }
+                    } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
+                        grossPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                    } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
+                        if(value.equalsIgnoreCase("0.00")){
+                            CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
+                        }else{
+                            dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                        }
+                    } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_AMOUNT)) {
+                        if(value.equalsIgnoreCase("0.00")){
+                            if(findViewById(R.id.dailyCashLinearLayout)!=null){
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
+                            }
+                        }else {
+                            dailyCashAmountDisplay.setText(CommonFunctions.uptoTwoDecimal(value).concat(" Per Day"));
+                        }
+                    } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
+                        gstDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                    } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NET_PREMIUM)) {
+                        netPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                    } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_COMMISSION)) {
+                        commissionTextView.setText(value);
                     }
                 }
             }
