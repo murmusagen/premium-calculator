@@ -32,6 +32,39 @@ import java.util.Map;
 public class CommonFunctions {
 
 
+    public static final String ALL_ZONE_TEXT = "Zone - A : All Districts in NCT of Delhi (incl. Shahdara), Faridabad, Palwal, Gurugram, Rohtak, Jhajjar, Ghaziabad, Gautam Buddh Nagar, Bulandshahr, Ahmedabad, Ahmedabad City, Gandhi Nagar, Vadodara, Surat, Mumbai, Mumbai Suburban, Thane, Raigad (MH), Palghar\n\nZone - B : Ahmed Nagar, Amritsar, Anand, Bengaluru, Bhopal, Chennai, Coimbatore, Dakshina Kannada, Ernakulam, Howrah, Hyderabad, Indore, Jaipur, Jalgaon, Jodhpur, Kanpur Nagar, Kheda, Kolhapur, Kolkata, Kottayam, Krishna, Lucknow, Ludhiana, Nagpur, Nashik, North 24 Parganas, Pune, Rajkot, Ranga Reddy, Solapur, Thiruvananthapuram, Tiruvallur, Valsad, Visakhapatnam\n\nZone - C : Rest of India";
+    public static final String ANDAMAN_AND_NICOBAR_ISLANDS = "Andaman and Nicobar Islands";
+    public static final String ANDHRA_PRADESH = "Andhra Pradesh";
+    public static final String ARUNACHAL_PRADESH = "Arunachal Pradesh";
+    public static final String ASSAM = "Assam";
+    public static final String BIHAR = "Bihar";
+    public static final String CHANDIGARH = "Chandigarh";
+    public static final String DELHI = "Delhi";
+    public static final String GOA = "Goa";
+    public static final String GUJARAT = "Gujarat";
+    public static final String HARYANA = "Haryana";
+    public static final String HIMACHAL_PRADESH = "Himachal Pradesh";
+    public static final String JAMMU_AND_KASHMIR = "Jammu and Kashmir";
+    public static final String JHARKHAND = "Jharkhand";
+    public static final String KARNATAKA = "Karnataka";
+    public static final String KERALA = "Kerala";
+    public static final String MADHYA_PRADESH = "Madhya Pradesh";
+    public static final String MAHARASHTRA = "Maharashtra";
+    public static final String MANIPUR = "Manipur";
+    public static final String MEGHALAYA = "Meghalaya";
+    public static final String MIZORAM = "Mizoram";
+    public static final String NAGALAND = "Nagaland";
+    public static final String ODISHA = "Odisha";
+    public static final String PUDUCHERRY = "Puducherry";
+    public static final String PUNJAB = "Punjab";
+    public static final String RAJASTHAN = "Rajasthan";
+    public static final String TAMIL_NADU = "Tamil Nadu";
+    public static final String TELANGANA = "Telangana";
+    public static final String TRIPURA = "Tripura";
+    public static final String UTTAR_PRADESH = "Uttar Pradesh";
+    public static final String UTTARAKHAND = "Uttarakhand";
+    public static final String WEST_BENGAL = "West Bengal";
+    public static String STUMP = "Super Top-Up";
     public static String INTENT_MEMBER_THRESHOLD = "member_threshold";
     public static String INTENT_MEMBER_NET_PREMIUM = "member_net_premium";
     public static String INTENT_MEMBER_COMMISSION = "member_commission";
@@ -71,38 +104,6 @@ public class CommonFunctions {
             DAILY_CASH_ALLOWANCE_2000
     };
     public static String DISCLAIMER_TEXT = "The premium calculation provided by this app is for informational purposes only and does not constitute a binding quote or offer of insurance. Insurance premiums are subject to approval by the insurer and may vary due to underwriting criteria, changes in policy terms, state regulations, and other factors beyond the app's control. We recommend consulting with an authorized insurance agent or company to obtain an official premium quote before making any decisions.";
-    public static final String ALL_ZONE_TEXT = "Zone - A : All Districts in NCT of Delhi (incl. Shahdara), Faridabad, Palwal, Gurugram, Rohtak, Jhajjar, Ghaziabad, Gautam Buddh Nagar, Bulandshahr, Ahmedabad, Ahmedabad City, Gandhi Nagar, Vadodara, Surat, Mumbai, Mumbai Suburban, Thane, Raigad (MH), Palghar\n\nZone - B : Ahmed Nagar, Amritsar, Anand, Bengaluru, Bhopal, Chennai, Coimbatore, Dakshina Kannada, Ernakulam, Howrah, Hyderabad, Indore, Jaipur, Jalgaon, Jodhpur, Kanpur Nagar, Kheda, Kolhapur, Kolkata, Kottayam, Krishna, Lucknow, Ludhiana, Nagpur, Nashik, North 24 Parganas, Pune, Rajkot, Ranga Reddy, Solapur, Thiruvananthapuram, Tiruvallur, Valsad, Visakhapatnam\n\nZone - C : Rest of India";
-    public static final String ANDAMAN_AND_NICOBAR_ISLANDS = "Andaman and Nicobar Islands";
-    public static final String ANDHRA_PRADESH = "Andhra Pradesh";
-    public static final String ARUNACHAL_PRADESH = "Arunachal Pradesh";
-    public static final String ASSAM = "Assam";
-    public static final String BIHAR = "Bihar";
-    public static final String CHANDIGARH = "Chandigarh";
-    public static final String DELHI = "Delhi";
-    public static final String GOA = "Goa";
-    public static final String GUJARAT = "Gujarat";
-    public static final String HARYANA = "Haryana";
-    public static final String HIMACHAL_PRADESH = "Himachal Pradesh";
-    public static final String JAMMU_AND_KASHMIR = "Jammu and Kashmir";
-    public static final String JHARKHAND = "Jharkhand";
-    public static final String KARNATAKA = "Karnataka";
-    public static final String KERALA = "Kerala";
-    public static final String MADHYA_PRADESH = "Madhya Pradesh";
-    public static final String MAHARASHTRA = "Maharashtra";
-    public static final String MANIPUR = "Manipur";
-    public static final String MEGHALAYA = "Meghalaya";
-    public static final String MIZORAM = "Mizoram";
-    public static final String NAGALAND = "Nagaland";
-    public static final String ODISHA = "Odisha";
-    public static final String PUDUCHERRY = "Puducherry";
-    public static final String PUNJAB = "Punjab";
-    public static final String RAJASTHAN = "Rajasthan";
-    public static final String TAMIL_NADU = "Tamil Nadu";
-    public static final String TELANGANA = "Telangana";
-    public static final String TRIPURA = "Tripura";
-    public static final String UTTAR_PRADESH = "Uttar Pradesh";
-    public static final String UTTARAKHAND = "Uttarakhand";
-    public static final String WEST_BENGAL = "West Bengal";
     public static String FLOATER = "Floater";
     public static String INDIVIDUAL = "Individual";
     public static String TWO_WHEELER = "two_wheeler";
@@ -2341,6 +2342,12 @@ public class CommonFunctions {
             } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
                 familyDiscount = "5.00";
             }
+        } else if (product.equalsIgnoreCase(STUMP)) {
+            if (type.equalsIgnoreCase(INDIVIDUAL)) {
+                if (!familyComposition.equalsIgnoreCase(ONE_ADULT)) {
+                    familyDiscount = "5.00";
+                }
+            }
         }
         return familyDiscount;
     }
@@ -2589,7 +2596,7 @@ public class CommonFunctions {
                                         dailyCashAllowanceAmount = output2.get(1);
                                         dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, memberAge, YUVAAN_HEALTH_POLICY);
                                         commissionArrayList.add((Double.parseDouble(dailyCashAllowanceCommissionAmount)));
-                                    }else{
+                                    } else {
                                         dailyCashAllowancePremium = "0.00";
                                         dailyCashAllowanceAmount = "0.00";
                                     }
@@ -2794,6 +2801,25 @@ public class CommonFunctions {
     }
 
     public static ArrayList<HashMap<String, String>> calculateSTUMPPremiumFloater(String type, String noOfMembers, String floaterThreshold, String floaterSI, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCash) {
-    return null;
+
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        ArrayList<HashMap<String, String>> output1 = new ArrayList<>();
+        String familyDiscountPercentage = getFamilyDiscount(type, familyType, false, STUMP);
+
+        String dailyCashAllowancePremium = "0.00";
+        String dailyCashAllowanceAmount = "0.00";
+        String dailyCashAllowanceCommissionAmount = "0.00";
+        String maternityCommissionAmount = "0.00";
+        String maternityPremium = "0.00";
+        ArrayList<Integer> ageArrayList = new ArrayList<>();
+        ArrayList<Double> basicPremiumArrayList = new ArrayList<>();
+        ArrayList<Double> ncdAmountArrayList = new ArrayList<>();
+        ArrayList<Double> familyDiscountAmountArrayList = new ArrayList<>();
+        ArrayList<Double> grossPremiumArrayList = new ArrayList<>();
+        ArrayList<Double> commissionArrayList = new ArrayList<>();
+
+        
+
+        return null;
     }
 }
