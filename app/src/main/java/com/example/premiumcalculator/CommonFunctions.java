@@ -1919,6 +1919,80 @@ public class CommonFunctions {
                 dailyCashAllowancePremium = "480.00";
                 dailyCashAllowanceAmount = "2000.00";
             }
+        } else if (product.equalsIgnoreCase(STUMP)) {
+            int age = Integer.parseInt(memberAge);
+
+            if (Double.parseDouble(floater_si) < 500000) {
+                if (age >= 0 && age <= 35) {
+                    dailyCashAllowancePremium = "55.00";
+                    dailyCashAllowanceAmount = "500.00";
+                } else if (age >= 36 && age <= 45) {
+                    dailyCashAllowancePremium = "73.00";
+                    dailyCashAllowanceAmount = "500.00";
+                } else if (age >= 46 && age <= 60) {
+                    dailyCashAllowancePremium = "127.00";
+                    dailyCashAllowanceAmount = "500.00";
+                } else if (age >= 61 && age <= 65) {
+                    dailyCashAllowancePremium = "227.00";
+                    dailyCashAllowanceAmount = "500.00";
+                } else if (age >= 66 && age <= 70) {
+                    dailyCashAllowancePremium = "309.00";
+                    dailyCashAllowanceAmount = "500.00";
+                } else if (age >= 71 && age <= 75) {
+                    dailyCashAllowancePremium = "436.00";
+                    dailyCashAllowanceAmount = "500.00";
+                } else if (age > 75) {
+                    dailyCashAllowancePremium = "545.00";
+                    dailyCashAllowanceAmount = "500.00";
+                }
+            } else if (Double.parseDouble(floater_si) == 500000) {
+                if (age >= 0 && age <= 35) {
+                    dailyCashAllowancePremium = "73.00";
+                    dailyCashAllowanceAmount = "1000.00";
+                } else if (age >= 36 && age <= 45) {
+                    dailyCashAllowancePremium = "100.00";
+                    dailyCashAllowanceAmount = "1000.00";
+                } else if (age >= 46 && age <= 60) {
+                    dailyCashAllowancePremium = "182.00";
+                    dailyCashAllowanceAmount = "1000.00";
+                } else if (age >= 61 && age <= 65) {
+                    dailyCashAllowancePremium = "255.00";
+                    dailyCashAllowanceAmount = "1000.00";
+                } else if (age >= 66 && age <= 70) {
+                    dailyCashAllowancePremium = "400.00";
+                    dailyCashAllowanceAmount = "1000.00";
+                } else if (age >= 71 && age <= 75) {
+                    dailyCashAllowancePremium = "491.00";
+                    dailyCashAllowanceAmount = "1000.00";
+                } else if (age > 75) {
+                    dailyCashAllowancePremium = "582.00";
+                    dailyCashAllowanceAmount = "1000.00";
+                }
+            } else if (Double.parseDouble(floater_si) > 500000) {
+                if (age >= 0 && age <= 35) {
+                    dailyCashAllowancePremium = "91.00";
+                    dailyCashAllowanceAmount = "2000.00";
+                } else if (age >= 36 && age <= 45) {
+                    dailyCashAllowancePremium = "127.00";
+                    dailyCashAllowanceAmount = "2000.00";
+                } else if (age >= 46 && age <= 60) {
+                    dailyCashAllowancePremium = "236.00";
+                    dailyCashAllowanceAmount = "2000.00";
+                } else if (age >= 61 && age <= 65) {
+                    dailyCashAllowancePremium = "309.00";
+                    dailyCashAllowanceAmount = "2000.00";
+                } else if (age >= 66 && age <= 70) {
+                    dailyCashAllowancePremium = "545.00";
+                    dailyCashAllowanceAmount = "2000.00";
+                } else if (age >= 71 && age <= 75) {
+                    dailyCashAllowancePremium = "691.00";
+                    dailyCashAllowanceAmount = "2000.00";
+                } else if (age > 75) {
+                    dailyCashAllowancePremium = "818.00";
+                    dailyCashAllowanceAmount = "2000.00";
+                }
+            }
+
         }
         output.add(dailyCashAllowancePremium);
         output.add(dailyCashAllowanceAmount);
@@ -2336,7 +2410,7 @@ public class CommonFunctions {
             if (type.equalsIgnoreCase(FLOATER)) {
                 if (familyComposition.equalsIgnoreCase(ONE_ADULT_ANY_CHILD)) {
                     familyDiscount = "15.00";
-                } else if (familyDiscount.equalsIgnoreCase(TWO_ADULT) || familyDiscount.equalsIgnoreCase(TWO_ADULT_ANY_CHILD)) {
+                } else if (familyComposition.equalsIgnoreCase(TWO_ADULT) || familyComposition.equalsIgnoreCase(TWO_ADULT_ANY_CHILD)) {
                     familyDiscount = "25.00";
                 }
             } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
@@ -2388,7 +2462,7 @@ public class CommonFunctions {
             if (intAge >= 0 && intAge <= 35) {
                 age_slab = "0-35";
             } else if (intAge >= 36 && intAge <= 45) {
-                age_slab = "35-45";
+                age_slab = "36-45";
             } else if (intAge >= 46 && intAge <= 60) {
                 age_slab = "46-60";
             } else if (intAge >= 61 && intAge <= 65) {
@@ -2839,36 +2913,63 @@ public class CommonFunctions {
         String fileName = "";
 
         if (type.equalsIgnoreCase(FLOATER)) {
-            fileName = "stump_floater_".concat(floaterThreshold).concat(".json");
+            if (Integer.parseInt(noOfMembers) == 2) {
+                fileName = "health/stump/stump_floater_2_person_".concat(floaterThreshold).concat(".json");
+            } else if (Integer.parseInt(noOfMembers) > 2) {
+                fileName = "health/stump/stump_floater_more_than_2_person_".concat(floaterThreshold).concat(".json");
+            }
 
             String jsonStr = loadJSONFromAsset(context, fileName);
+            int m = 0;
             if (jsonStr != null) {
                 try {
+                    for (int j = 0; j < memberDetailsArrayList.size(); j++) {
+                        Map<String, View> map = memberDetailsArrayList.get(j);
+                        for (Iterator<Map.Entry<String, View>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                            Map.Entry<String, View> entry = it.next();
+                            String key = entry.getKey();
+                            View v = entry.getValue();
+                            String memberAge = "0";
+                            if (v instanceof EditText) {
+                                HashMap<String, String> map1 = new HashMap<>();
+                                memberAge = ((EditText) v).getText().toString().trim();
+                                ageArrayList.add(Integer.parseInt(memberAge));
+                                map1.put(INTENT_MEMBER_AGE, memberAge);
+                                output1.add(map1);
+                            }
+                        }
+                    }
+                    int maxAge = Collections.max(ageArrayList);
                     JSONArray jsonArray = new JSONArray(jsonStr);
+                    String basicPremium = "0.00";
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         String si = object.getString("SI");
                         if (si.equalsIgnoreCase(floaterSI)) {
-                            for (int j = 0; j < memberDetailsArrayList.size(); j++) {
-                                Map<String, View> map = memberDetailsArrayList.get(j);
-                                for (Iterator<Map.Entry<String, View>> it = map.entrySet().iterator(); it.hasNext(); ) {
-                                    Map.Entry<String, View> entry = it.next();
-                                    String key = entry.getKey();
-                                    View v = entry.getValue();
-                                    String memberAge = "0";
-                                    if (v instanceof EditText) {
-                                        HashMap<String, String> map1 = new HashMap<>();
-                                        memberAge = ((EditText) v).getText().toString().trim();
-                                        String age_slab = getAgeSlab(memberAge, STUMP);
-                                        String basicPremium = object.getString(age_slab);
-                                        int k = 0;
-
-                                    }
-                                }
-
-                            }
+                            String maxAgeSlab = getAgeSlab(Integer.toString(maxAge), STUMP);
+                            basicPremium = object.getString(maxAgeSlab);
+                            break;
                         }
                     }
+                    HashMap<String, String> map1 = new HashMap<>();
+                    map1.put(INTENT_TOTAL_BASIC_PREMIUM, basicPremium);
+
+                    if (dailyCash) {
+                        ArrayList<String> output2 = new ArrayList<>();
+                        output2 = calculateDailyCashPremium(type, ageArrayList, Integer.toString(maxAge), floaterThreshold, STUMP, "");
+                        dailyCashAllowancePremium = output2.get(0);
+                        dailyCashAllowanceAmount = output2.get(1);
+                    }
+
+                    map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM,dailyCashAllowancePremium);
+                    map1.put(INTENT_TOTAL_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
+
+                    String gst = Double.toString(GST_0/100.00 * Double.parseDouble(basicPremium));
+                    String netPremium = Double.toString(Double.parseDouble(basicPremium) + Double.parseDouble(dailyCashAllowancePremium) + Double.parseDouble(gst));
+                    map1.put(INTENT_TOTAL_GST,gst);
+                    map1.put(INTENT_TOTAL_NET_PREMIUM,netPremium);
+                    output1.add(map1);
+                    int k = 0;
 
                 } catch (JSONException e) {
                     e.printStackTrace();
