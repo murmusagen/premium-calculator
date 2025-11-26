@@ -1973,7 +1973,7 @@ public class CommonFunctions {
                             if (v instanceof EditText) {
                                 memberAge = ((EditText) v).getText().toString().trim();
                                 ageArrayList.add(Integer.parseInt(memberAge));
-                                age_slab = getAgeSlab(memberAge);
+                                age_slab = getAgeSlab(memberAge, FAMILY_MEDICARE_POLICY);
                                 count = count + 1;
                             }
                         }
@@ -2116,7 +2116,7 @@ public class CommonFunctions {
                             if (v instanceof EditText) {
                                 memberAge = ((EditText) v).getText().toString().trim();
                                 ageArrayList.add(Integer.parseInt(memberAge));
-                                age_slab = getAgeSlab(memberAge);
+                                age_slab = getAgeSlab(memberAge, YUVAAN_HEALTH_POLICY);
                                 count = count + 1;
                             }
                         }
@@ -2352,40 +2352,58 @@ public class CommonFunctions {
         return familyDiscount;
     }
 
-    private static String getAgeSlab(String age) {
+    private static String getAgeSlab(String age, String product) {
         int intAge = Integer.parseInt(age);
-        String age_slab = "";
+        String age_slab = "0";
 
-        if (intAge >= 0 && intAge <= 17) {
-            return "0-17";
-        } else if (intAge >= 18 && intAge <= 25) {
-            return "18-25";
-        } else if (intAge >= 26 && intAge <= 30) {
-            return "26-30";
-        } else if (intAge >= 31 && intAge <= 35) {
-            return "31-35";
-        } else if (intAge >= 36 && intAge <= 40) {
-            return "36-40";
-        } else if (intAge >= 41 && intAge <= 45) {
-            return "41-45";
-        } else if (intAge >= 46 && intAge <= 50) {
-            return "46-50";
-        } else if (intAge >= 51 && intAge <= 55) {
-            return "51-55";
-        } else if (intAge >= 56 && intAge <= 60) {
-            return "56-60";
-        } else if (intAge >= 61 && intAge <= 65) {
-            return "61-65";
-        } else if (intAge >= 66 && intAge <= 70) {
-            return "66-70";
-        } else if (intAge >= 71 && intAge <= 75) {
-            return "71-75";
-        } else if (intAge > 75) {
-            return ">75";
-        } else {
-            return "Invalid Age";
+        if (product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(INDIVIDUAL_HEALTH_POLICY) || product.equalsIgnoreCase(YUVAAN_HEALTH_POLICY)) {
+            if (intAge >= 0 && intAge <= 17) {
+                age_slab = "0-17";
+            } else if (intAge >= 18 && intAge <= 25) {
+                age_slab = "18-25";
+            } else if (intAge >= 26 && intAge <= 30) {
+                age_slab = "26-30";
+            } else if (intAge >= 31 && intAge <= 35) {
+                age_slab = "31-35";
+            } else if (intAge >= 36 && intAge <= 40) {
+                age_slab = "36-40";
+            } else if (intAge >= 41 && intAge <= 45) {
+                age_slab = "41-45";
+            } else if (intAge >= 46 && intAge <= 50) {
+                age_slab = "46-50";
+            } else if (intAge >= 51 && intAge <= 55) {
+                age_slab = "51-55";
+            } else if (intAge >= 56 && intAge <= 60) {
+                age_slab = "56-60";
+            } else if (intAge >= 61 && intAge <= 65) {
+                age_slab = "61-65";
+            } else if (intAge >= 66 && intAge <= 70) {
+                age_slab = "66-70";
+            } else if (intAge >= 71 && intAge <= 75) {
+                age_slab = "71-75";
+            } else if (intAge > 75) {
+                age_slab = ">75";
+            }
+        } else if (product.equalsIgnoreCase(STUMP)) {
+            if (intAge >= 0 && intAge <= 35) {
+                age_slab = "0-35";
+            } else if (intAge >= 36 && intAge <= 45) {
+                age_slab = "35-45";
+            } else if (intAge >= 46 && intAge <= 60) {
+                age_slab = "46-60";
+            } else if (intAge >= 61 && intAge <= 65) {
+                age_slab = "61-65";
+            } else if (intAge >= 66 && intAge <= 70) {
+                age_slab = "66-70";
+            } else if (intAge >= 71 && intAge <= 75) {
+                age_slab = "71-75";
+            } else if (intAge > 75) {
+                age_slab = "75+";
+            }
         }
+        return age_slab;
     }
+
 
     public static ArrayList<HashMap<String, String>> calculateFamilyMedicarePremium(String type, String zone, String noOfMembers, String floaterSI, String floaterNCD, ArrayList<Map<String, View>> memberDetailsArrayList, Context context, String familyType, boolean dailyCashCheckBox, boolean maternityCheckbox) {
 
@@ -2433,7 +2451,7 @@ public class CommonFunctions {
                                 if (v instanceof EditText) {
                                     HashMap<String, String> map1 = new HashMap<>();
                                     memberAge = ((EditText) v).getText().toString().trim();
-                                    String age_slab = getAgeSlab(memberAge);
+                                    String age_slab = getAgeSlab(memberAge, FAMILY_MEDICARE_POLICY);
                                     String basicPremium = object.getString(age_slab);
                                     String ncdAmount = Double.toString(Double.parseDouble(floaterNCD) / 100.00 * Double.parseDouble(basicPremium));
                                     String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount)));
@@ -2581,7 +2599,7 @@ public class CommonFunctions {
                                 if (v instanceof EditText) {
                                     HashMap<String, String> map1 = new HashMap<>();
                                     memberAge = ((EditText) v).getText().toString().trim();
-                                    String age_slab = getAgeSlab(memberAge);
+                                    String age_slab = getAgeSlab(memberAge, YUVAAN_HEALTH_POLICY);
                                     String basicPremium = object.getString(age_slab);
                                     String ncdAmount = Double.toString(Double.parseDouble(floaterNCD) / 100.00 * Double.parseDouble(basicPremium));
                                     String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount)));
@@ -2729,7 +2747,7 @@ public class CommonFunctions {
                                 JSONObject object = jsonArray.getJSONObject(i);
                                 String si = object.getString("SI");
                                 if (si.equalsIgnoreCase(memberSI)) {
-                                    String age_slab = getAgeSlab(memberAge);
+                                    String age_slab = getAgeSlab(memberAge, INDIVIDUAL_HEALTH_POLICY);
                                     basicPremium = object.getString(age_slab);
 
                                     map1.put(INTENT_MEMBER_AGE, memberAge);
@@ -2818,7 +2836,47 @@ public class CommonFunctions {
         ArrayList<Double> grossPremiumArrayList = new ArrayList<>();
         ArrayList<Double> commissionArrayList = new ArrayList<>();
 
-        
+        String fileName = "";
+
+        if (type.equalsIgnoreCase(FLOATER)) {
+            fileName = "stump_floater_".concat(floaterThreshold).concat(".json");
+
+            String jsonStr = loadJSONFromAsset(context, fileName);
+            if (jsonStr != null) {
+                try {
+                    JSONArray jsonArray = new JSONArray(jsonStr);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        String si = object.getString("SI");
+                        if (si.equalsIgnoreCase(floaterSI)) {
+                            for (int j = 0; j < memberDetailsArrayList.size(); j++) {
+                                Map<String, View> map = memberDetailsArrayList.get(j);
+                                for (Iterator<Map.Entry<String, View>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                                    Map.Entry<String, View> entry = it.next();
+                                    String key = entry.getKey();
+                                    View v = entry.getValue();
+                                    String memberAge = "0";
+                                    if (v instanceof EditText) {
+                                        HashMap<String, String> map1 = new HashMap<>();
+                                        memberAge = ((EditText) v).getText().toString().trim();
+                                        String age_slab = getAgeSlab(memberAge, STUMP);
+                                        String basicPremium = object.getString(age_slab);
+                                        int k = 0;
+
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
+
+        }
 
         return null;
     }

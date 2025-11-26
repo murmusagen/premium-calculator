@@ -299,9 +299,6 @@ public class StumpDataEntry extends AppCompatActivity {
                         Toast.makeText(StumpDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
                     }else{
                         if(typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)){
-
-                        } else if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
-
                             premium = CommonFunctions.calculateSTUMPPremiumFloater(typeSpinner.getSelectedItem().toString(),
                                     noOfMembersEditText.getText().toString(),
                                     floaterThresholdSpinner.getSelectedItem().toString(),
@@ -310,6 +307,8 @@ public class StumpDataEntry extends AppCompatActivity {
                                     StumpDataEntry.this,
                                     familyTypeSpinner.getSelectedItem().toString(),
                                     dailyCashCoverCheckBox.isChecked());
+                        } else if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
+
                         }
                     }
 
