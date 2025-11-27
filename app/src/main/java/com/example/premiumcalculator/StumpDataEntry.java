@@ -346,7 +346,22 @@ public class StumpDataEntry extends AppCompatActivity {
                             startActivity(intent);
 
                         } else if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
+                            premium = CommonFunctions.calculateSTUMPPremiumFloater(typeSpinner.getSelectedItem().toString(),
+                                    zoneSpinner.getSelectedItem().toString(),
+                                    noOfMembersEditText.getText().toString(),
+                                    floaterThresholdSpinner.getSelectedItem().toString(),
+                                    floaterSISpinner.getSelectedItem().toString(),
+                                    memberDetailsArrayList,
+                                    StumpDataEntry.this,
+                                    familyTypeSpinner.getSelectedItem().toString(),
+                                    dailyCashCoverCheckBox.isChecked());
 
+                            Intent intent = new Intent(StumpDataEntry.this, HealthPremiumDisplay.class);
+                            intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.STUMP);
+                            intent.putExtra(CommonFunctions.INTENT_TYPE, typeSpinner.getSelectedItem().toString());
+                            intent.putExtra(CommonFunctions.INTENT_ZONE, zoneSpinner.getSelectedItem().toString());
+                            intent.putExtra(CommonFunctions.INTENT_PREMIUM_AND_COMMISSION, premium);
+                            startActivity(intent);
                         }
                     }
 

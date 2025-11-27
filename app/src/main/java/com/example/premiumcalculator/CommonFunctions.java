@@ -75,6 +75,7 @@ public class CommonFunctions {
     public static String INTENT_FLOATER_NCD = "floater_ncd";
     public static String TOTAL_MATERNITY_PREMIUM = "total_maternity_premium";
     public static String INTENT_MEMBER_DAILY_CASH_AMOUNT = "member_daily_cash_amount";
+    public static String INTENT_MEMBER_DAILY_CASH_PREMIUM = "member_daily_cash_premium";
     public static String INTENT_TOTAL_DAILY_CASH_AMOUNT = "daily_cash_amount";
     public static String INTENT_TOTAL_BASIC_PREMIUM = "total_basic_premium";
     public static String INTENT_TOTAL_NCD_AMOUNT = "total_ncd_amount";
@@ -1924,74 +1925,148 @@ public class CommonFunctions {
         } else if (product.equalsIgnoreCase(STUMP)) {
             int age = Integer.parseInt(memberAge);
 
-            if (Double.parseDouble(floater_si) < 500000) {
-                if (age >= 0 && age <= 35) {
-                    dailyCashAllowancePremium = "55.00";
-                    dailyCashAllowanceAmount = "500.00";
-                } else if (age >= 36 && age <= 45) {
-                    dailyCashAllowancePremium = "73.00";
-                    dailyCashAllowanceAmount = "500.00";
-                } else if (age >= 46 && age <= 60) {
-                    dailyCashAllowancePremium = "127.00";
-                    dailyCashAllowanceAmount = "500.00";
-                } else if (age >= 61 && age <= 65) {
-                    dailyCashAllowancePremium = "227.00";
-                    dailyCashAllowanceAmount = "500.00";
-                } else if (age >= 66 && age <= 70) {
-                    dailyCashAllowancePremium = "309.00";
-                    dailyCashAllowanceAmount = "500.00";
-                } else if (age >= 71 && age <= 75) {
-                    dailyCashAllowancePremium = "436.00";
-                    dailyCashAllowanceAmount = "500.00";
-                } else if (age > 75) {
-                    dailyCashAllowancePremium = "545.00";
-                    dailyCashAllowanceAmount = "500.00";
+            if(type.equalsIgnoreCase(FLOATER)){
+                if (Double.parseDouble(floater_si) < 500000) {
+                    if (age >= 0 && age <= 35) {
+                        dailyCashAllowancePremium = "55.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 36 && age <= 45) {
+                        dailyCashAllowancePremium = "73.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 46 && age <= 60) {
+                        dailyCashAllowancePremium = "127.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 61 && age <= 65) {
+                        dailyCashAllowancePremium = "227.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 66 && age <= 70) {
+                        dailyCashAllowancePremium = "309.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 71 && age <= 75) {
+                        dailyCashAllowancePremium = "436.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age > 75) {
+                        dailyCashAllowancePremium = "545.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    }
+                } else if (Double.parseDouble(floater_si) == 500000) {
+                    if (age >= 0 && age <= 35) {
+                        dailyCashAllowancePremium = "73.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 36 && age <= 45) {
+                        dailyCashAllowancePremium = "100.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 46 && age <= 60) {
+                        dailyCashAllowancePremium = "182.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 61 && age <= 65) {
+                        dailyCashAllowancePremium = "255.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 66 && age <= 70) {
+                        dailyCashAllowancePremium = "400.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 71 && age <= 75) {
+                        dailyCashAllowancePremium = "491.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age > 75) {
+                        dailyCashAllowancePremium = "582.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    }
+                } else if (Double.parseDouble(floater_si) > 500000) {
+                    if (age >= 0 && age <= 35) {
+                        dailyCashAllowancePremium = "91.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 36 && age <= 45) {
+                        dailyCashAllowancePremium = "127.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 46 && age <= 60) {
+                        dailyCashAllowancePremium = "236.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 61 && age <= 65) {
+                        dailyCashAllowancePremium = "309.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 66 && age <= 70) {
+                        dailyCashAllowancePremium = "545.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 71 && age <= 75) {
+                        dailyCashAllowancePremium = "691.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age > 75) {
+                        dailyCashAllowancePremium = "818.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    }
                 }
-            } else if (Double.parseDouble(floater_si) == 500000) {
-                if (age >= 0 && age <= 35) {
-                    dailyCashAllowancePremium = "73.00";
-                    dailyCashAllowanceAmount = "1000.00";
-                } else if (age >= 36 && age <= 45) {
-                    dailyCashAllowancePremium = "100.00";
-                    dailyCashAllowanceAmount = "1000.00";
-                } else if (age >= 46 && age <= 60) {
-                    dailyCashAllowancePremium = "182.00";
-                    dailyCashAllowanceAmount = "1000.00";
-                } else if (age >= 61 && age <= 65) {
-                    dailyCashAllowancePremium = "255.00";
-                    dailyCashAllowanceAmount = "1000.00";
-                } else if (age >= 66 && age <= 70) {
-                    dailyCashAllowancePremium = "400.00";
-                    dailyCashAllowanceAmount = "1000.00";
-                } else if (age >= 71 && age <= 75) {
-                    dailyCashAllowancePremium = "491.00";
-                    dailyCashAllowanceAmount = "1000.00";
-                } else if (age > 75) {
-                    dailyCashAllowancePremium = "582.00";
-                    dailyCashAllowanceAmount = "1000.00";
-                }
-            } else if (Double.parseDouble(floater_si) > 500000) {
-                if (age >= 0 && age <= 35) {
-                    dailyCashAllowancePremium = "91.00";
-                    dailyCashAllowanceAmount = "2000.00";
-                } else if (age >= 36 && age <= 45) {
-                    dailyCashAllowancePremium = "127.00";
-                    dailyCashAllowanceAmount = "2000.00";
-                } else if (age >= 46 && age <= 60) {
-                    dailyCashAllowancePremium = "236.00";
-                    dailyCashAllowanceAmount = "2000.00";
-                } else if (age >= 61 && age <= 65) {
-                    dailyCashAllowancePremium = "309.00";
-                    dailyCashAllowanceAmount = "2000.00";
-                } else if (age >= 66 && age <= 70) {
-                    dailyCashAllowancePremium = "545.00";
-                    dailyCashAllowanceAmount = "2000.00";
-                } else if (age >= 71 && age <= 75) {
-                    dailyCashAllowancePremium = "691.00";
-                    dailyCashAllowanceAmount = "2000.00";
-                } else if (age > 75) {
-                    dailyCashAllowancePremium = "818.00";
-                    dailyCashAllowanceAmount = "2000.00";
+            } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
+
+                if (Double.parseDouble(floater_si) < 500000) {
+                    if (age >= 0 && age <= 35) {
+                        dailyCashAllowancePremium = "9.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 36 && age <= 45) {
+                        dailyCashAllowancePremium = "36.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 46 && age <= 60) {
+                        dailyCashAllowancePremium = "73.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 61 && age <= 65) {
+                        dailyCashAllowancePremium = "127.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 66 && age <= 70) {
+                        dailyCashAllowancePremium = "182.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age >= 71 && age <= 75) {
+                        dailyCashAllowancePremium = "255.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    } else if (age > 75) {
+                        dailyCashAllowancePremium = "318.00";
+                        dailyCashAllowanceAmount = "500.00";
+                    }
+                } else if (Double.parseDouble(floater_si) == 500000) {
+                    if (age >= 0 && age <= 35) {
+                        dailyCashAllowancePremium = "18.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 36 && age <= 45) {
+                        dailyCashAllowancePremium = "55.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 46 && age <= 60) {
+                        dailyCashAllowancePremium = "91.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 61 && age <= 65) {
+                        dailyCashAllowancePremium = "209.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 66 && age <= 70) {
+                        dailyCashAllowancePremium = "309.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age >= 71 && age <= 75) {
+                        dailyCashAllowancePremium = "400.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    } else if (age > 75) {
+                        dailyCashAllowancePremium = "455.00";
+                        dailyCashAllowanceAmount = "1000.00";
+                    }
+                } else if (Double.parseDouble(floater_si) > 500000) {
+                    if (age >= 0 && age <= 35) {
+                        dailyCashAllowancePremium = "27.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 36 && age <= 45) {
+                        dailyCashAllowancePremium = "82.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 46 && age <= 60) {
+                        dailyCashAllowancePremium = "164.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 61 && age <= 65) {
+                        dailyCashAllowancePremium = "327.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 66 && age <= 70) {
+                        dailyCashAllowancePremium = "473.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age >= 71 && age <= 75) {
+                        dailyCashAllowancePremium = "582.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    } else if (age > 75) {
+                        dailyCashAllowancePremium = "727.00";
+                        dailyCashAllowanceAmount = "2000.00";
+                    }
                 }
             }
 
@@ -2955,6 +3030,7 @@ public class CommonFunctions {
         String maternityPremium = "0.00";
         ArrayList<Integer> ageArrayList = new ArrayList<>();
         ArrayList<Double> basicPremiumArrayList = new ArrayList<>();
+        ArrayList<Double> dailyCashAllowancePremiumArrayList = new ArrayList<>();
         ArrayList<Double> ncdAmountArrayList = new ArrayList<>();
         ArrayList<Double> familyDiscountAmountArrayList = new ArrayList<>();
         ArrayList<Double> grossPremiumArrayList = new ArrayList<>();
@@ -2964,9 +3040,9 @@ public class CommonFunctions {
 
         if (type.equalsIgnoreCase(FLOATER)) {
             if (Integer.parseInt(noOfMembers) == 2) {
-                fileName = "health/stump/stump_floater_2_person_".concat(floaterThreshold).concat(".json");
+                fileName = "health/stump/stump_floater_2_member_".concat(floaterThreshold).concat(".json");
             } else if (Integer.parseInt(noOfMembers) > 2) {
-                fileName = "health/stump/stump_floater_more_than_2_person_".concat(floaterThreshold).concat(".json");
+                fileName = "health/stump/stump_floater_more_than_2_member_".concat(floaterThreshold).concat(".json");
             }
 
             String jsonStr = loadJSONFromAsset(context, fileName);
@@ -3038,7 +3114,81 @@ public class CommonFunctions {
                 }
             }
         } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
+            try{
+                for (int j = 0; j < memberDetailsArrayList.size(); j++) {
+                    Map<String, View> map = memberDetailsArrayList.get(j);
+                    int count = 0;
+                    String age_slab = "";
+                    String memberAge = "0";
+                    String memberThreshold = "0.00";
+                    String memberSI = "0.00";
+                    String basicPremium = "0.00";
+                    for (Iterator<Map.Entry<String, View>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                        Map.Entry<String, View> entry = it.next();
+                        String key = entry.getKey();
+                        View v = entry.getValue();
+                        HashMap<String, String> map1 = new HashMap<>();
+                        if(key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)){
+                            if(v instanceof EditText){
+                                memberAge = ((EditText) v).getText().toString().trim();
 
+                                ageArrayList.add(Integer.parseInt(memberAge));
+                                age_slab = getAgeSlab(memberAge, STUMP);
+                                count = count + 1;
+                            }
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_THRESHOLD)) {
+                            if(v instanceof Spinner){
+                                memberThreshold = ((Spinner) v).getSelectedItem().toString();
+
+                                count = count + 1;
+                            }
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
+                            if(v instanceof Spinner){
+                                memberSI = ((Spinner) v).getSelectedItem().toString();
+
+                                count = count + 1;
+                            }
+                        }
+
+                        if(count == 3){
+
+                            map1.put(INTENT_MEMBER_AGE,memberAge);
+                            map1.put(INTENT_MEMBER_THRESHOLD,memberThreshold.toString());
+                            map1.put(INTENT_MEMBER_SI,memberSI.toString());
+
+                            fileName = "health/stump/stump_individual_".concat(memberThreshold).concat(".json");
+                            String jsonStr = loadJSONFromAsset(context, fileName);
+                            if (jsonStr != null) {
+                                JSONArray jsonArray = new JSONArray(jsonStr);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    String si = object.getString("SI");
+                                    if (si.equalsIgnoreCase(memberSI)) {
+                                        String maxAgeSlab = getAgeSlab(memberAge, STUMP);
+                                        basicPremium = object.getString(maxAgeSlab);
+                                        basicPremiumArrayList.add(Double.parseDouble(basicPremium));
+
+                                        if(dailyCash){
+                                            ArrayList<String> output2 = new ArrayList<>();
+                                            output2 = calculateDailyCashPremium(type,ageArrayList,memberAge,memberSI,STUMP,"");
+                                            dailyCashAllowancePremium = output2.get(0);
+                                            dailyCashAllowanceAmount = output2.get(1);
+                                            map1.put(INTENT_MEMBER_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
+                                            dailyCashAllowancePremiumArrayList.add(Double.parseDouble(dailyCashAllowancePremium));
+                                            map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
+                                        }
+                                    }
+                                }
+                                output1.add(map1);
+                            }
+                        }
+
+                        int k = 0;
+                    }
+                }
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
         }
 
         return output1;
