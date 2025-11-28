@@ -2150,12 +2150,12 @@ public class CommonFunctions {
                                         for (int j = 0; j < arrayList.size(); j++) {
                                             memberDailyCashPremium = arrayList.get(j);
                                             memberDailyCashAmount = arrayList.get(j + 1);
-                                            dailyCashAllowanceCommissionAmount = calculateCommission(zone, memberDailyCashPremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY);
+                                            dailyCashAllowanceCommissionAmount = calculateCommission(zone, memberDailyCashPremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY, false);
                                             commssionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
                                             break;
                                         }
                                     }
-                                    String commissionForTheMember = calculateCommission(zone, premiumForTheMember, memberAge, FAMILY_MEDICARE_POLICY);
+                                    String commissionForTheMember = calculateCommission(zone, premiumForTheMember, memberAge, FAMILY_MEDICARE_POLICY, false);
                                     commssionArrayList.add(Double.parseDouble(commissionForTheMember));
 
                                     map1.put(CommonFunctions.INTENT_MEMBER_AGE, memberAge);
@@ -2293,12 +2293,12 @@ public class CommonFunctions {
                                         for (int j = 0; j < arrayList.size(); j++) {
                                             memberDailyCashPremium = arrayList.get(j);
                                             memberDailyCashAmount = arrayList.get(j + 1);
-                                            dailyCashAllowanceCommissionAmount = calculateCommission(zone, memberDailyCashPremium, Integer.toString(Collections.max(ageArrayList)), YUVAAN_HEALTH_POLICY);
+                                            dailyCashAllowanceCommissionAmount = calculateCommission(zone, memberDailyCashPremium, Integer.toString(Collections.max(ageArrayList)), YUVAAN_HEALTH_POLICY, false);
                                             commssionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
                                             break;
                                         }
                                     }
-                                    String commissionForTheMember = calculateCommission(zone, premiumForTheMember, memberAge, YUVAAN_HEALTH_POLICY);
+                                    String commissionForTheMember = calculateCommission(zone, premiumForTheMember, memberAge, YUVAAN_HEALTH_POLICY, false);
                                     commssionArrayList.add(Double.parseDouble(commissionForTheMember));
 
                                     map1.put(CommonFunctions.INTENT_MEMBER_AGE, memberAge);
@@ -2356,7 +2356,7 @@ public class CommonFunctions {
         return output1;
     }
 
-    private static String calculateCommission(String zone, String premiumForTheMember, String age, String product) {
+    private static String calculateCommission(String zone, String premiumForTheMember, String age, String product, boolean stringStatementRequired) {
         String commission = "0.00";
         String incentive = "0.00";
         String portalCharges = "50.00";
@@ -2458,11 +2458,14 @@ public class CommonFunctions {
             String commissionAmount = Double.toString(Double.parseDouble(commission) / 100.00 * Double.parseDouble(premiumForTheMember));
             String portalIncentiveAmount1 = Double.toString(Double.parseDouble(portalIncentive)/100.00 * Double.parseDouble(premiumForTheMember));
 
-            output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).
-                    concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
-                    concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
-                    concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount1));
-
+            if(stringStatementRequired){
+                output = commissionAmount;
+            }else{
+                output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).
+                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
+                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
+                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount1));
+            }
         }
         return output;
     }
@@ -2655,7 +2658,7 @@ public class CommonFunctions {
                                     String ncdAmount = Double.toString(Double.parseDouble(floaterNCD) / 100.00 * Double.parseDouble(basicPremium));
                                     String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount)));
                                     String grossPremium = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount) - Double.parseDouble(familyDiscountAmount));
-                                    String commission = calculateCommission(zone, grossPremium, memberAge, FAMILY_MEDICARE_POLICY);
+                                    String commission = calculateCommission(zone, grossPremium, memberAge, FAMILY_MEDICARE_POLICY, false);
 
                                     map1.put(INTENT_MEMBER_AGE, memberAge);
                                     map1.put(INTENT_MEMBER_BASIC_PREMIUM, basicPremium);
@@ -2680,7 +2683,7 @@ public class CommonFunctions {
                     output2 = calculateDailyCashPremium(type, ageArrayList, "0.00", floaterSI, FAMILY_MEDICARE_POLICY, "");
                     dailyCashAllowancePremium = output2.get(0);
                     dailyCashAllowanceAmount = output2.get(1);
-                    dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY);
+                    dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY, false);
                     commissionArrayList.add((Double.parseDouble(dailyCashAllowanceCommissionAmount)));
                 }
 
@@ -2713,7 +2716,7 @@ public class CommonFunctions {
                         maternityPremium = "0.00";
                     }
 
-                    maternityCommissionAmount = calculateCommission(zone, maternityPremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY);
+                    maternityCommissionAmount = calculateCommission(zone, maternityPremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY, false);
                     commissionArrayList.add((Double.parseDouble(maternityCommissionAmount)));
 
                 }
@@ -2803,7 +2806,7 @@ public class CommonFunctions {
                                     String ncdAmount = Double.toString(Double.parseDouble(floaterNCD) / 100.00 * Double.parseDouble(basicPremium));
                                     String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * (Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount)));
                                     String grossPremium = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(ncdAmount) - Double.parseDouble(familyDiscountAmount));
-                                    String commission = calculateCommission(zone, grossPremium, memberAge, YUVAAN_HEALTH_POLICY);
+                                    String commission = calculateCommission(zone, grossPremium, memberAge, YUVAAN_HEALTH_POLICY, false);
 
                                     if (dailyCashCheckBox) {
                                         ArrayList<String> output2 = new ArrayList<>();
@@ -2811,7 +2814,7 @@ public class CommonFunctions {
                                         dailyCashAllowancePremium = output2.get(0);
                                         dailyCashAllowancePremiumArrayList.add(Double.parseDouble(dailyCashAllowancePremium));
                                         dailyCashAllowanceAmount = output2.get(1);
-                                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, memberAge, YUVAAN_HEALTH_POLICY);
+                                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, memberAge, YUVAAN_HEALTH_POLICY, false);
                                         commissionArrayList.add((Double.parseDouble(dailyCashAllowanceCommissionAmount)));
                                     } else {
                                         dailyCashAllowancePremium = "0.00";
@@ -2959,7 +2962,7 @@ public class CommonFunctions {
                                     map1.put(INTENT_MEMBER_FAMILY_DISCOUNT, familyDiscountAmount);
                                     String grossPremium = Double.toString(Double.parseDouble(basicPremium) - Double.parseDouble(memberNCDAmount) - Double.parseDouble(familyDiscountAmount));
                                     map1.put(INTENT_MEMBER_GROSS_PREMIUM, grossPremium);
-                                    String commission = calculateCommission(zone, grossPremium, memberAge, INDIVIDUAL_HEALTH_POLICY);
+                                    String commission = calculateCommission(zone, grossPremium, memberAge, INDIVIDUAL_HEALTH_POLICY, false);
 
                                     ageArrayList.add(Integer.parseInt(memberAge));
                                     basicPremiumArrayList.add(Double.parseDouble(basicPremium));
@@ -2975,7 +2978,7 @@ public class CommonFunctions {
                                         dailyCashAllowanceAmount = outputDailyCash.get(1);
                                         map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                                         dailyCashAllowancePremiumArrayList.add(Double.parseDouble(dailyCashAllowancePremium));
-                                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), INDIVIDUAL_HEALTH_POLICY);
+                                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), INDIVIDUAL_HEALTH_POLICY, false);
                                         commissionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
                                     }
                                     output1.add(map1);
@@ -3085,6 +3088,8 @@ public class CommonFunctions {
                         output2 = calculateDailyCashPremium(type, ageArrayList, Integer.toString(maxAge), floaterThreshold, STUMP, "");
                         dailyCashAllowancePremium = output2.get(0);
                         dailyCashAllowanceAmount = output2.get(1);
+                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY, false);
+
                     }
 
                     String familyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * Double.parseDouble(basicPremium));
@@ -3103,7 +3108,7 @@ public class CommonFunctions {
                     map1.put(INTENT_TOTAL_GST, gst);
                     map1.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
 
-                    String commission = calculateCommission(zone, grossPremiumAfterAddOn, Integer.toString(maxAge), STUMP);
+                    String commission = calculateCommission(zone, grossPremiumAfterAddOn, Integer.toString(maxAge), STUMP, true);
 
                     map1.put(INTENT_TOTAL_COMMISSION, commission);
 
@@ -3167,6 +3172,9 @@ public class CommonFunctions {
                                         String maxAgeSlab = getAgeSlab(memberAge, STUMP);
                                         basicPremium = object.getString(maxAgeSlab);
                                         basicPremiumArrayList.add(Double.parseDouble(basicPremium));
+                                        commissionAmount = calculateCommission(zone,basicPremium,memberAge,STUMP,false);
+                                        commissionArrayList.add(Double.parseDouble(commissionAmount));
+
 
                                         if(dailyCash){
                                             ArrayList<String> output2 = new ArrayList<>();
@@ -3176,6 +3184,10 @@ public class CommonFunctions {
                                             map1.put(INTENT_MEMBER_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
                                             dailyCashAllowancePremiumArrayList.add(Double.parseDouble(dailyCashAllowancePremium));
                                             map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
+                                            dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), STUMP, false);
+                                            commissionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
+
+
                                         }
                                     }
                                 }
