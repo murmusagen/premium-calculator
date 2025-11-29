@@ -2459,12 +2459,12 @@ public class CommonFunctions {
             String portalIncentiveAmount1 = Double.toString(Double.parseDouble(portalIncentive)/100.00 * Double.parseDouble(premiumForTheMember));
 
             if(stringStatementRequired){
-                output = commissionAmount;
-            }else{
                 output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).
                         concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
                         concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
                         concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount1));
+            }else{
+                output = commissionAmount;
             }
         }
         return output;
@@ -3088,7 +3088,7 @@ public class CommonFunctions {
                         output2 = calculateDailyCashPremium(type, ageArrayList, Integer.toString(maxAge), floaterThreshold, STUMP, "");
                         dailyCashAllowancePremium = output2.get(0);
                         dailyCashAllowanceAmount = output2.get(1);
-                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), FAMILY_MEDICARE_POLICY, false);
+                        dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), STUMP, false);
 
                     }
 
@@ -3133,8 +3133,8 @@ public class CommonFunctions {
                         String key = entry.getKey();
                         View v = entry.getValue();
                         HashMap<String, String> map1 = new HashMap<>();
-                        if(key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)){
-                            if(v instanceof EditText){
+                        if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
+                            if (v instanceof EditText) {
                                 memberAge = ((EditText) v).getText().toString().trim();
 
                                 ageArrayList.add(Integer.parseInt(memberAge));
@@ -3142,24 +3142,24 @@ public class CommonFunctions {
                                 count = count + 1;
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_THRESHOLD)) {
-                            if(v instanceof Spinner){
+                            if (v instanceof Spinner) {
                                 memberThreshold = ((Spinner) v).getSelectedItem().toString();
 
                                 count = count + 1;
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
-                            if(v instanceof Spinner){
+                            if (v instanceof Spinner) {
                                 memberSI = ((Spinner) v).getSelectedItem().toString();
 
                                 count = count + 1;
                             }
                         }
 
-                        if(count == 3){
+                        if (count == 3) {
 
-                            map1.put(INTENT_MEMBER_AGE,memberAge);
-                            map1.put(INTENT_MEMBER_THRESHOLD,memberThreshold.toString());
-                            map1.put(INTENT_MEMBER_SI,memberSI.toString());
+                            map1.put(INTENT_MEMBER_AGE, memberAge);
+                            map1.put(INTENT_MEMBER_THRESHOLD, memberThreshold.toString());
+                            map1.put(INTENT_MEMBER_SI, memberSI.toString());
 
                             fileName = "health/stump/stump_individual_".concat(memberThreshold).concat(".json");
                             String jsonStr = loadJSONFromAsset(context, fileName);
@@ -3172,13 +3172,15 @@ public class CommonFunctions {
                                         String maxAgeSlab = getAgeSlab(memberAge, STUMP);
                                         basicPremium = object.getString(maxAgeSlab);
                                         basicPremiumArrayList.add(Double.parseDouble(basicPremium));
-                                        commissionAmount = calculateCommission(zone,basicPremium,memberAge,STUMP,false);
+                                        commissionAmount = calculateCommission(zone, basicPremium, memberAge, STUMP, false);
                                         commissionArrayList.add(Double.parseDouble(commissionAmount));
+                                        String memberFamilyDiscountAmount = Double.toString(Double.parseDouble(familyDiscountPercentage) / 100.00 * Double.parseDouble(basicPremium));
+                                        familyDiscountAmountArrayList.add(Double.parseDouble(memberFamilyDiscountAmount));
 
 
-                                        if(dailyCash){
+                                        if (dailyCash) {
                                             ArrayList<String> output2 = new ArrayList<>();
-                                            output2 = calculateDailyCashPremium(type,ageArrayList,memberAge,memberSI,STUMP,"");
+                                            output2 = calculateDailyCashPremium(type, ageArrayList, memberAge, memberSI, STUMP, "");
                                             dailyCashAllowancePremium = output2.get(0);
                                             dailyCashAllowanceAmount = output2.get(1);
                                             map1.put(INTENT_MEMBER_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
@@ -3186,8 +3188,6 @@ public class CommonFunctions {
                                             map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                                             dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), STUMP, false);
                                             commissionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
-
-
                                         }
                                     }
                                 }
@@ -3195,7 +3195,19 @@ public class CommonFunctions {
                             }
                         }
 
-                        int k = 0;
+                        String totalBasicPremium = sumOfDoubleArrayList(basicPremiumArrayList);
+                        String totalFamilyDiscount = sumOfDoubleArrayList(familyDiscountAmountArrayList);
+                        String totalGrossPremiumBeforeAddOn = Double.toString(Double.parseDouble(totalBasicPremium) - Double.parseDouble(totalFamilyDiscount));
+                        String totalDailyCashPremium = sumOfDoubleArrayList(dailyCashAllowancePremiumArrayList);
+                        String totalGrossPremiumAfterAddOn = Double.toString(Double.parseDouble(totalGrossPremiumBeforeAddOn) + Double.parseDouble(totalDailyCashPremium));
+                        String totalGST = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOn));
+                        String totalNetPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOn) + Double.parseDouble(totalGST));
+                        map1.put(INTENT_TOTAL_BASIC_PREMIUM, totalBasicPremium);
+                        map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, totalFamilyDiscount);
+                        map1.put(INTENT_TOTAL_GROSS_PREMIUM, totalGrossPremiumBeforeAddOn);
+                        map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, totalDailyCashPremium);
+                        map1.put(INTENT_TOTAL_GST, totalGST);
+                        map1.put(INTENT_TOTAL_NET_PREMIUM, totalNetPremium);
                     }
                 }
             }catch (JSONException e){
