@@ -29,15 +29,18 @@
                 android:text="PREMIUM CALCULATOR"
                 android:textAlignment="center"
                 android:textSize="30dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold">
+            </TextView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="VERSION 1.1"
+                android:text=""
                 android:textAlignment="center"
                 android:textSize="30dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"
+                android:id="@+id/appVersion">
+            </TextView>
 
         </LinearLayout>
 
@@ -46,6 +49,21 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/appUpdateLinearLayout">
+
+            <Button
+                android:id="@+id/updateAppButton"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="NEW UPDATE AVAILABLE. CLICK TO UPDATE TO NEW VERSION"
+                android:textSize="20sp" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/motorButton"

@@ -1,7 +1,6 @@
 package com.example.premiumcalculator;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -27,44 +28,46 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 
 
 public class CommonFunctions {
 
 
-    public static final String ALL_ZONE_TEXT = "Zone - A : All Districts in NCT of Delhi (incl. Shahdara), Faridabad, Palwal, Gurugram, Rohtak, Jhajjar, Ghaziabad, Gautam Buddh Nagar, Bulandshahr, Ahmedabad, Ahmedabad City, Gandhi Nagar, Vadodara, Surat, Mumbai, Mumbai Suburban, Thane, Raigad (MH), Palghar\n\nZone - B : Ahmed Nagar, Amritsar, Anand, Bengaluru, Bhopal, Chennai, Coimbatore, Dakshina Kannada, Ernakulam, Howrah, Hyderabad, Indore, Jaipur, Jalgaon, Jodhpur, Kanpur Nagar, Kheda, Kolhapur, Kolkata, Kottayam, Krishna, Lucknow, Ludhiana, Nagpur, Nashik, North 24 Parganas, Pune, Rajkot, Ranga Reddy, Solapur, Thiruvananthapuram, Tiruvallur, Valsad, Visakhapatnam\n\nZone - C : Rest of India";
-    public static final String ANDAMAN_AND_NICOBAR_ISLANDS = "Andaman and Nicobar Islands";
-    public static final String ANDHRA_PRADESH = "Andhra Pradesh";
-    public static final String ARUNACHAL_PRADESH = "Arunachal Pradesh";
-    public static final String ASSAM = "Assam";
-    public static final String BIHAR = "Bihar";
-    public static final String CHANDIGARH = "Chandigarh";
-    public static final String DELHI = "Delhi";
-    public static final String GOA = "Goa";
-    public static final String GUJARAT = "Gujarat";
-    public static final String HARYANA = "Haryana";
-    public static final String HIMACHAL_PRADESH = "Himachal Pradesh";
-    public static final String JAMMU_AND_KASHMIR = "Jammu and Kashmir";
-    public static final String JHARKHAND = "Jharkhand";
-    public static final String KARNATAKA = "Karnataka";
-    public static final String KERALA = "Kerala";
-    public static final String MADHYA_PRADESH = "Madhya Pradesh";
-    public static final String MAHARASHTRA = "Maharashtra";
-    public static final String MANIPUR = "Manipur";
-    public static final String MEGHALAYA = "Meghalaya";
-    public static final String MIZORAM = "Mizoram";
-    public static final String NAGALAND = "Nagaland";
-    public static final String ODISHA = "Odisha";
-    public static final String PUDUCHERRY = "Puducherry";
-    public static final String PUNJAB = "Punjab";
-    public static final String RAJASTHAN = "Rajasthan";
-    public static final String TAMIL_NADU = "Tamil Nadu";
-    public static final String TELANGANA = "Telangana";
-    public static final String TRIPURA = "Tripura";
-    public static final String UTTAR_PRADESH = "Uttar Pradesh";
-    public static final String UTTARAKHAND = "Uttarakhand";
-    public static final String WEST_BENGAL = "West Bengal";
+    public static String ALL_ZONE_TEXT = "Zone - A : All Districts in NCT of Delhi (incl. Shahdara), Faridabad, Palwal, Gurugram, Rohtak, Jhajjar, Ghaziabad, Gautam Buddh Nagar, Bulandshahr, Ahmedabad, Ahmedabad City, Gandhi Nagar, Vadodara, Surat, Mumbai, Mumbai Suburban, Thane, Raigad (MH), Palghar\n\nZone - B : Ahmed Nagar, Amritsar, Anand, Bengaluru, Bhopal, Chennai, Coimbatore, Dakshina Kannada, Ernakulam, Howrah, Hyderabad, Indore, Jaipur, Jalgaon, Jodhpur, Kanpur Nagar, Kheda, Kolhapur, Kolkata, Kottayam, Krishna, Lucknow, Ludhiana, Nagpur, Nashik, North 24 Parganas, Pune, Rajkot, Ranga Reddy, Solapur, Thiruvananthapuram, Tiruvallur, Valsad, Visakhapatnam\n\nZone - C : Rest of India";
+    public static String ANDAMAN_AND_NICOBAR_ISLANDS = "Andaman and Nicobar Islands";
+    public static String ANDHRA_PRADESH = "Andhra Pradesh";
+    public static String ARUNACHAL_PRADESH = "Arunachal Pradesh";
+    public static String ASSAM = "Assam";
+    public static String BIHAR = "Bihar";
+    public static String CHANDIGARH = "Chandigarh";
+    public static String DELHI = "Delhi";
+    public static String GOA = "Goa";
+    public static String GUJARAT = "Gujarat";
+    public static String HARYANA = "Haryana";
+    public static String HIMACHAL_PRADESH = "Himachal Pradesh";
+    public static String JAMMU_AND_KASHMIR = "Jammu and Kashmir";
+    public static String JHARKHAND = "Jharkhand";
+    public static String KARNATAKA = "Karnataka";
+    public static String KERALA = "Kerala";
+    public static String MADHYA_PRADESH = "Madhya Pradesh";
+    public static String MAHARASHTRA = "Maharashtra";
+    public static String MANIPUR = "Manipur";
+    public static String MEGHALAYA = "Meghalaya";
+    public static String MIZORAM = "Mizoram";
+    public static String NAGALAND = "Nagaland";
+    public static String ODISHA = "Odisha";
+    public static String PUDUCHERRY = "Puducherry";
+    public static  String PUNJAB = "Punjab";
+    public static String RAJASTHAN = "Rajasthan";
+    public static String TAMIL_NADU = "Tamil Nadu";
+    public static String TELANGANA = "Telangana";
+    public static String TRIPURA = "Tripura";
+    public static String UTTAR_PRADESH = "Uttar Pradesh";
+    public static String UTTARAKHAND = "Uttarakhand";
+    public static String WEST_BENGAL = "West Bengal";
+    public static String APP_VERSION = "VERSION 1.1";
     public static String STUMP = "Super Top-Up";
     public static String INTENT_MEMBER_THRESHOLD = "member_threshold";
     public static String INTENT_MEMBER_NET_PREMIUM = "member_net_premium";
@@ -101,11 +104,7 @@ public class CommonFunctions {
     public static String DAILY_CASH_ALLOWANCE_500 = "500.00";
     public static String DAILY_CASH_ALLOWANCE_1000 = "1000.00";
     public static String DAILY_CASH_ALLOWANCE_2000 = "2000.00";
-    public static String[] DAILY_CASH_ALLOWANCE_ARRAY = {
-            DAILY_CASH_ALLOWANCE_500,
-            DAILY_CASH_ALLOWANCE_1000,
-            DAILY_CASH_ALLOWANCE_2000
-    };
+    public static String[] DAILY_CASH_ALLOWANCE_ARRAY = {DAILY_CASH_ALLOWANCE_500, DAILY_CASH_ALLOWANCE_1000, DAILY_CASH_ALLOWANCE_2000};
     public static String DISCLAIMER_TEXT = "The premium calculation provided by this app is for informational purposes only and does not constitute a binding quote or offer of insurance. Insurance premiums are subject to approval by the insurer and may vary due to underwriting criteria, changes in policy terms, state regulations, and other factors beyond the app's control. We recommend consulting with an authorized insurance agent or company to obtain an official premium quote before making any decisions.";
     public static String FLOATER = "Floater";
     public static String INDIVIDUAL = "Individual";
@@ -181,26 +180,7 @@ public class CommonFunctions {
     public static String CNG_LPG_KIT_TP_PREMIUM = "60";
     public static String ONE_YEAR_OD_OR_TP = "1 Year OD/TP";
     public static String PNE_YEAR_OD_PLUS_ONE_YEAR_TP = "1 Year OD + 3 Year TP";
-    public static String[] PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY = {"NA", SI_10000,
-            SI_20000,
-            SI_30000,
-            SI_40000,
-            SI_50000,
-            SI_60000,
-            SI_70000,
-            SI_80000,
-            SI_90000,
-            SI_100000,
-            SI_110000,
-            SI_120000,
-            SI_130000,
-            SI_140000,
-            SI_150000,
-            SI_160000,
-            SI_170000,
-            SI_180000,
-            SI_190000,
-            SI_200000};
+    public static String[] PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY = {"NA", SI_10000, SI_20000, SI_30000, SI_40000, SI_50000, SI_60000, SI_70000, SI_80000, SI_90000, SI_100000, SI_110000, SI_120000, SI_130000, SI_140000, SI_150000, SI_160000, SI_170000, SI_180000, SI_190000, SI_200000};
     public static String[] TYPE_ARRAY = {PRE_OWNED, NEW};
     public static String[] HEALTH_TYPE_ARRAY = {FLOATER, INDIVIDUAL};
     public static String[] IS_SAOD_ARRAY = {NO, YES};
@@ -291,55 +271,8 @@ public class CommonFunctions {
     public static String SI_5000000 = "5000000";
     public static String SI_7500000 = "7500000";
 
-    public static String[] IHP_SI_ARRAY = {
-            SI_50000,
-            SI_75000,
-            SI_100000,
-            SI_125000,
-            SI_150000,
-            SI_175000,
-            SI_200000,
-            SI_225000,
-            SI_250000,
-            SI_275000,
-            SI_300000,
-            SI_325000,
-            SI_350000,
-            SI_375000,
-            SI_400000,
-            SI_425000,
-            SI_450000,
-            SI_475000,
-            SI_500000,
-            SI_525000,
-            SI_550000,
-            SI_575000,
-            SI_600000,
-            SI_625000,
-            SI_650000,
-            SI_675000,
-            SI_700000,
-            SI_725000,
-            SI_750000,
-            SI_775000,
-            SI_800000,
-            SI_825000,
-            SI_850000,
-            SI_875000,
-            SI_900000,
-            SI_925000,
-            SI_950000,
-            SI_975000,
-            SI_1000000,
-            SI_1500000,
-            SI_2000000
-    };
-    public static String[] YUVAAN_SI_ARRAY = {
-            SI_500000,
-            SI_1000000,
-            SI_1500000,
-            SI_2000000
-    };
+    public static String[] IHP_SI_ARRAY = {SI_50000, SI_75000, SI_100000, SI_125000, SI_150000, SI_175000, SI_200000, SI_225000, SI_250000, SI_275000, SI_300000, SI_325000, SI_350000, SI_375000, SI_400000, SI_425000, SI_450000, SI_475000, SI_500000, SI_525000, SI_550000, SI_575000, SI_600000, SI_625000, SI_650000, SI_675000, SI_700000, SI_725000, SI_750000, SI_775000, SI_800000, SI_825000, SI_850000, SI_875000, SI_900000, SI_925000, SI_950000, SI_975000, SI_1000000, SI_1500000, SI_2000000};
+    public static String[] YUVAAN_SI_ARRAY = {SI_500000, SI_1000000, SI_1500000, SI_2000000};
 
     public static String ONE_ADULT = "1A";
     public static String ONE_ADULT_ANY_CHILD = "1A + Any Child";
@@ -361,94 +294,27 @@ public class CommonFunctions {
     public static String HEALTH_NCD_45 = "45";
     public static String HEALTH_NCD_47_5 = "47.5";
     public static String HEALTH_NCD_50 = "50";
-    public static String[] YUVAAN_NCD_ARRAY = {
-            HEALTH_NCD_0,
-            HEALTH_NCD_10,
-            HEALTH_NCD_20
-    };
+    public static String[] YUVAAN_NCD_ARRAY = {HEALTH_NCD_0, HEALTH_NCD_10, HEALTH_NCD_20};
     public static String[] ALL_STATES_ARRAY = {ANDAMAN_AND_NICOBAR_ISLANDS, ANDHRA_PRADESH, ARUNACHAL_PRADESH, ASSAM, BIHAR, CHANDIGARH, DELHI, GOA, GUJARAT, HARYANA, HIMACHAL_PRADESH, JAMMU_AND_KASHMIR, JHARKHAND, KARNATAKA, KERALA, MADHYA_PRADESH, MAHARASHTRA, MANIPUR, MEGHALAYA, MIZORAM, NAGALAND, ODISHA, PUDUCHERRY, PUNJAB, RAJASTHAN, TAMIL_NADU, TELANGANA, TRIPURA, UTTAR_PRADESH, UTTARAKHAND, WEST_BENGAL};
 
     public static String[] PVT_CAR_MANUFACTURER_ARRAY = {TATA, MARUTI, MAHINDRA, TOYOTA, HYUNDAI, HONDA, KIA, OTHERS};
 
-    public static String[] FAMILY_MEDICARE_SI_ARRAY = {
-            SI_0,
-            SI_100000,
-            SI_150000,
-            SI_200000,
-            SI_250000,
-            SI_300000,
-            SI_350000,
-            SI_400000,
-            SI_450000,
-            SI_500000,
-            SI_600000,
-            SI_700000,
-            SI_800000,
-            SI_900000,
-            SI_1000000,
-            SI_1500000,
-            SI_2000000,
-            SI_2500000
-    };
-    public static String[] STUMP_THRESHOLD_ARRAY = {
-            SI_200000,
-            SI_300000,
-            SI_500000,
-            SI_1000000,
-            SI_1500000,
-            SI_2000000,
-            SI_2500000
-    };
+    public static String[] FAMILY_MEDICARE_SI_ARRAY = {SI_0, SI_100000, SI_150000, SI_200000, SI_250000, SI_300000, SI_350000, SI_400000, SI_450000, SI_500000, SI_600000, SI_700000, SI_800000, SI_900000, SI_1000000, SI_1500000, SI_2000000, SI_2500000};
+    public static String[] STUMP_THRESHOLD_ARRAY = {SI_200000, SI_300000, SI_500000, SI_1000000, SI_1500000, SI_2000000, SI_2500000};
 
-    public static String[] SUMP_SI_WHEN_THRESHOLD_200000_ARRAY = {
-            SI_300000,
-            SI_500000
-    };
+    public static String[] SUMP_SI_WHEN_THRESHOLD_200000_ARRAY = {SI_300000, SI_500000};
 
-    public static String[] SUMP_SI_WHEN_THRESHOLD_300000_ARRAY = {
-            SI_300000,
-            SI_500000,
-            SI_700000
-    };
+    public static String[] SUMP_SI_WHEN_THRESHOLD_300000_ARRAY = {SI_300000, SI_500000, SI_700000};
 
-    public static String[] SUMP_SI_WHEN_THRESHOLD_500000_ARRAY = {
-            SI_500000,
-            SI_1000000,
-            SI_1500000,
-            SI_2000000,
-            SI_4500000,
-            SI_7000000,
-            SI_9500000
-    };
+    public static String[] SUMP_SI_WHEN_THRESHOLD_500000_ARRAY = {SI_500000, SI_1000000, SI_1500000, SI_2000000, SI_4500000, SI_7000000, SI_9500000};
 
-    public static String[] SUMP_SI_WHEN_THRESHOLD_1000000_ARRAY = {
-            SI_1000000,
-            SI_1500000,
-            SI_2000000,
-            SI_4000000,
-            SI_6500000,
-            SI_9000000
-    };
+    public static String[] SUMP_SI_WHEN_THRESHOLD_1000000_ARRAY = {SI_1000000, SI_1500000, SI_2000000, SI_4000000, SI_6500000, SI_9000000};
 
-    public static String[] SUMP_SI_WHEN_THRESHOLD_1500000_ARRAY = {
-            SI_1500000,
-            SI_3500000,
-            SI_6000000,
-            SI_8500000
-    };
+    public static String[] SUMP_SI_WHEN_THRESHOLD_1500000_ARRAY = {SI_1500000, SI_3500000, SI_6000000, SI_8500000};
 
-    public static String[] SUMP_SI_WHEN_THRESHOLD_2000000_ARRAY = {
-            SI_2000000,
-            SI_3000000,
-            SI_5500000,
-            SI_8000000
-    };
+    public static String[] SUMP_SI_WHEN_THRESHOLD_2000000_ARRAY = {SI_2000000, SI_3000000, SI_5500000, SI_8000000};
 
-    public static String[] SUMP_SI_WHEN_THRESHOLD_2500000_ARRAY = {
-            SI_2500000,
-            SI_5000000,
-            SI_7500000
-    };
+    public static String[] SUMP_SI_WHEN_THRESHOLD_2500000_ARRAY = {SI_2500000, SI_5000000, SI_7500000};
 
     public static String[] FAMILY_TYPE_ARRAY = {ONE_ADULT_ANY_CHILD, TWO_ADULT, TWO_ADULT_ANY_CHILD,};
 
@@ -1156,6 +1022,14 @@ public class CommonFunctions {
                 output = String.format("%.2f", value);
             }
         }
+        return output;
+    }
+
+    public static String uptoZeroDecimal(String input) {
+        String output = "0.00";
+        double value = Double.parseDouble(input);
+        long rounded = Math.round(value);
+        output = String.valueOf(rounded);
         return output;
     }
 
@@ -1925,7 +1799,7 @@ public class CommonFunctions {
         } else if (product.equalsIgnoreCase(STUMP)) {
             int age = Integer.parseInt(memberAge);
 
-            if(type.equalsIgnoreCase(FLOATER)){
+            if (type.equalsIgnoreCase(FLOATER)) {
                 if (Double.parseDouble(floater_si) < 500000) {
                     if (age >= 0 && age <= 35) {
                         dailyCashAllowancePremium = "55.00";
@@ -2197,10 +2071,7 @@ public class CommonFunctions {
                 String incentive = "0.00";
                 String portalCharges = "50.00";
                 String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(totalCommission)).
-                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
-                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
-                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(totalCommission)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
 
                 map1.put(INTENT_TOTAL_COMMISSION, commissionString);
                 output1.add(map1);
@@ -2340,10 +2211,7 @@ public class CommonFunctions {
                 String incentive = "0.00";
                 String portalCharges = "50.00";
                 String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(totalCommission)).
-                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
-                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
-                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(totalCommission)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
 
                 map1.put(INTENT_TOTAL_COMMISSION, commissionString);
                 output1.add(map1);
@@ -2394,7 +2262,7 @@ public class CommonFunctions {
             Double commissionDouble = Double.parseDouble(commission);
             Double premiumForTheMemberDouble = Double.parseDouble(premiumForTheMember);
             Double commissionAmountDouble = commissionDouble / 100.00 * premiumForTheMemberDouble;
-            output =  Double.toString(commissionAmountDouble);
+            output = Double.toString(commissionAmountDouble);
 
         } else if (product.equalsIgnoreCase(YUVAAN_HEALTH_POLICY)) {
             if (zone.equalsIgnoreCase(ZONE_A)) {
@@ -2426,7 +2294,7 @@ public class CommonFunctions {
             Double commissionDouble = Double.parseDouble(commission);
             Double premiumForTheMemberDouble = Double.parseDouble(premiumForTheMember);
             Double commissionAmountDouble = commissionDouble / 100.00 * premiumForTheMemberDouble;
-            output  = Double.toString(commissionAmountDouble);
+            output = Double.toString(commissionAmountDouble);
 
         } else if (product.equalsIgnoreCase(STUMP)) {
             if (zone.equalsIgnoreCase(ZONE_A)) {
@@ -2456,14 +2324,11 @@ public class CommonFunctions {
             }
 
             String commissionAmount = Double.toString(Double.parseDouble(commission) / 100.00 * Double.parseDouble(premiumForTheMember));
-            String portalIncentiveAmount1 = Double.toString(Double.parseDouble(portalIncentive)/100.00 * Double.parseDouble(premiumForTheMember));
+            String portalIncentiveAmount1 = Double.toString(Double.parseDouble(portalIncentive) / 100.00 * Double.parseDouble(premiumForTheMember));
 
-            if(stringStatementRequired){
-                output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).
-                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
-                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
-                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount1));
-            }else{
+            if (stringStatementRequired) {
+                output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount1));
+            } else {
                 output = commissionAmount;
             }
         }
@@ -2738,10 +2603,7 @@ public class CommonFunctions {
                 String incentive = "0.00";
                 String portalCharges = "50.00";
                 String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).
-                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
-                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
-                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
                 map1.put("total_commission", commissionString);
                 output1.add(map1);
             } catch (JSONException e) {
@@ -2855,10 +2717,7 @@ public class CommonFunctions {
                 String incentive = "0.00";
                 String portalCharges = "50.00";
                 String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).
-                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
-                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
-                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
                 map1.put(INTENT_TOTAL_COMMISSION, commissionString);
                 output1.add(map1);
             } catch (JSONException e) {
@@ -3005,10 +2864,7 @@ public class CommonFunctions {
                 String incentive = "0.00";
                 String portalCharges = "50.00";
                 String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
-                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).
-                        concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).
-                        concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).
-                        concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
                 map2.put(INTENT_TOTAL_COMMISSION, commissionString);
                 output1.add(map2);
                 int k = 0;
@@ -3119,7 +2975,7 @@ public class CommonFunctions {
                 }
             }
         } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
-            try{
+            try {
                 for (int j = 0; j < memberDetailsArrayList.size(); j++) {
                     Map<String, View> map = memberDetailsArrayList.get(j);
                     int count = 0;
@@ -3155,7 +3011,9 @@ public class CommonFunctions {
                             }
                         }
 
+
                         if (count == 3) {
+
 
                             map1.put(INTENT_MEMBER_AGE, memberAge);
                             map1.put(INTENT_MEMBER_THRESHOLD, memberThreshold.toString());
@@ -3188,33 +3046,78 @@ public class CommonFunctions {
                                             map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                                             dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), STUMP, false);
                                             commissionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
+                                        } else {
+                                            map1.put(INTENT_MEMBER_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
+                                            map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                                         }
                                     }
                                 }
                                 output1.add(map1);
+                                break;
                             }
+
+
                         }
 
-                        String totalBasicPremium = sumOfDoubleArrayList(basicPremiumArrayList);
-                        String totalFamilyDiscount = sumOfDoubleArrayList(familyDiscountAmountArrayList);
-                        String totalGrossPremiumBeforeAddOn = Double.toString(Double.parseDouble(totalBasicPremium) - Double.parseDouble(totalFamilyDiscount));
-                        String totalDailyCashPremium = sumOfDoubleArrayList(dailyCashAllowancePremiumArrayList);
-                        String totalGrossPremiumAfterAddOn = Double.toString(Double.parseDouble(totalGrossPremiumBeforeAddOn) + Double.parseDouble(totalDailyCashPremium));
-                        String totalGST = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOn));
-                        String totalNetPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOn) + Double.parseDouble(totalGST));
-                        map1.put(INTENT_TOTAL_BASIC_PREMIUM, totalBasicPremium);
-                        map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, totalFamilyDiscount);
-                        map1.put(INTENT_TOTAL_GROSS_PREMIUM, totalGrossPremiumBeforeAddOn);
-                        map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, totalDailyCashPremium);
-                        map1.put(INTENT_TOTAL_GST, totalGST);
-                        map1.put(INTENT_TOTAL_NET_PREMIUM, totalNetPremium);
                     }
                 }
-            }catch (JSONException e){
+                HashMap<String, String> map1 = new HashMap<>();
+                String totalBasicPremium = sumOfDoubleArrayList(basicPremiumArrayList);
+                String totalFamilyDiscount = sumOfDoubleArrayList(familyDiscountAmountArrayList);
+                String totalGrossPremiumBeforeAddOn = Double.toString(Double.parseDouble(totalBasicPremium) - Double.parseDouble(totalFamilyDiscount));
+                String totalDailyCashPremium = sumOfDoubleArrayList(dailyCashAllowancePremiumArrayList);
+                String totalGrossPremiumAfterAddOn = Double.toString(Double.parseDouble(totalGrossPremiumBeforeAddOn) + Double.parseDouble(totalDailyCashPremium));
+                String totalGST = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOn));
+                String totalNetPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOn) + Double.parseDouble(totalGST));
+                map1.put(INTENT_TOTAL_BASIC_PREMIUM, totalBasicPremium);
+                map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, totalFamilyDiscount);
+                map1.put(INTENT_TOTAL_GROSS_PREMIUM, totalGrossPremiumBeforeAddOn);
+                map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, totalDailyCashPremium);
+                map1.put(INTENT_TOTAL_GST, totalGST);
+                map1.put(INTENT_TOTAL_NET_PREMIUM, totalNetPremium);
+                output1.add(map1);
+                int g = 0;
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
         return output1;
+    }
+
+    public static String setCurrencyFormat(String value) {
+
+        long number = Math.round(Double.parseDouble(value));
+
+        // Convert to Indian format with commas
+        StringBuilder sb = new StringBuilder();
+        String numStr = Long.toString(number);
+        int len = numStr.length();
+
+        if (len > 3) {
+            // Handle last 3 digits separately
+            String lastThree = numStr.substring(len - 3);
+            String remaining = numStr.substring(0, len - 3);
+            // Insert commas every two digits in remaining part
+            int remLen = remaining.length();
+            int firstGroupLen = remLen % 2;
+            if (firstGroupLen > 0) {
+                sb.append(remaining.substring(0, firstGroupLen));
+                if (remLen > firstGroupLen) {
+                    sb.append(",");
+                }
+            }
+            for (int i = firstGroupLen; i < remLen; i += 2) {
+                sb.append(remaining.substring(i, i + 2));
+                if (i + 2 < remLen) {
+                    sb.append(",");
+                }
+            }
+            sb.append(",").append(lastThree);
+        } else {
+            // If length <= 3, just append the number
+            sb.append(numStr);
+        }
+        return sb.toString();
     }
 }

@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="3"
-                    android:id="@+id/memberCashAllowanceLinearLayout">
+                    android:id="@+id/memberCashAllowanceLinearLayoutForIHP">
 
                     <TextView
                         android:layout_width="0dp"
@@ -206,7 +206,32 @@
                             android:layout_weight="2" />
 
                     </LinearLayout>
+
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    android:id="@+id/memberCashAllowanceLinearLayoutForSTUMP">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Daily Cash - "
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/memberCashAllowanceDisplay"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
