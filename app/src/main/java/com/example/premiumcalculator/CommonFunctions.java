@@ -2232,7 +2232,7 @@ public class CommonFunctions {
         String output = "";
         Double ageDouble = Double.parseDouble(age);
 
-        if (product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY)) {
+        if (product.equalsIgnoreCase(FAMILY_MEDICARE_POLICY) || product.equalsIgnoreCase(INDIVIDUAL_HEALTH_POLICY)) {
             if (zone.equalsIgnoreCase(ZONE_A)) {
                 if (ageDouble >= 0 && ageDouble <= 45) {
                     commission = "7.50";
@@ -2835,10 +2835,14 @@ public class CommonFunctions {
                                         outputDailyCash = calculateDailyCashPremium(type, null, "", "", INDIVIDUAL_HEALTH_POLICY, dailyCashAllowanceAmount);
                                         dailyCashAllowancePremium = outputDailyCash.get(0);
                                         dailyCashAllowanceAmount = outputDailyCash.get(1);
+                                        map1.put(INTENT_MEMBER_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
                                         map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                                         dailyCashAllowancePremiumArrayList.add(Double.parseDouble(dailyCashAllowancePremium));
                                         dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), INDIVIDUAL_HEALTH_POLICY, false);
                                         commissionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
+                                    }else{
+                                        map1.put(INTENT_MEMBER_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
+                                        map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                                     }
                                     output1.add(map1);
                                     break;

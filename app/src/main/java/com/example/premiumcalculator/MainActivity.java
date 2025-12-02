@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -27,11 +28,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Handler handler;
-    private Runnable periodicRunnable;
-    private Thread currentThread;
-    private boolean isRunning;
     LinearLayout appUpdateLinearLayout;
 
     @Override
@@ -45,28 +41,26 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Test For HTTP Connect
-        handler = new Handler();
-        periodicRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if(isRunning){
-                    executeNetworkTask();
-                    handler.postDelayed(periodicRunnable, 60 * 1000);
-                }
-
-            }
-        };
-
 
         Button healthButton = findViewById(R.id.healthButton);
         Button motorButton = findViewById(R.id.motorButton);
         TextView appVersion = findViewById(R.id.appVersion);
-        Button updateAppButton = findViewById(R.id.updateAppButton);
-        appUpdateLinearLayout = findViewById(R.id.appUpdateLinearLayout);
-        CommonFunctions.deleteLayout(appUpdateLinearLayout);
+        Button checkForUpdates = findViewById(R.id.checkForUpdates);
 
         appVersion.setText(CommonFunctions.APP_VERSION);
+
+        checkForUpdates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkAppUpdate();
+                    }
+                }).start();
+            }
+        });
 
         healthButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,51 +79,72 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void executeNetworkTask() {
-        if (currentThread != null && currentThread.isAlive()) {
-            return; // Prevent multiple threads
+    private void checkAppUpdate() {
+        try {
+            String result = NetworkUtils.connectToWebsite(NetworkUtils.APP_VERSION_URL);
+            if (result == null) {
+                showUpdateDialog();
+            } else {
+                showNoNewUpdateDialog();
+            }
+        } catch (Exception e) {
+            showNoInternetDialog();
         }
-        currentThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String result = NetworkUtils.connectToWebsite("https://www.programiz.com/java-programming/online-compiler1/");
+    }
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(result==null){
-                            Toast.makeText(MainActivity.this, "Hello, Update Available", Toast.LENGTH_LONG).show();
-                        }else{
-                            Toast.makeText(MainActivity.this, "Hello, Update Not Available", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+    private void showNoInternetDialog() {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("No Internet")
+                        .setMessage("Unable to connect to internet")
+                        .setPositiveButton("Skip", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
             }
         });
-        currentThread.start();
     }
 
-    protected void onResume() {
-        super.onResume();
-        startPeriodicTask();
+    private void showNoNewUpdateDialog() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("No Update Available")
+                .setMessage("You are already using latest update")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        stopPeriodicTask();
-    }
-
-    private void startPeriodicTask() {
-        isRunning = true;
-        handler.post(periodicRunnable);
-    }
-
-    private void stopPeriodicTask() {
-        isRunning = false;
-        handler.removeCallbacks(periodicRunnable);
-        if (currentThread != null && currentThread.isAlive()) {
-            currentThread.interrupt();
-        }
+    private void showUpdateDialog() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Update Available")
+                        .setMessage("A new Version is available. Update now?")
+                        .setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(NetworkUtils.URL_FOR_DOWNLOADING_NEW_APP));
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Skip", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
     }
 }

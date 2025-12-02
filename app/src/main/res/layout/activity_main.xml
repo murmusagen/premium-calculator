@@ -42,7 +42,24 @@
                 android:id="@+id/appVersion">
             </TextView>
 
+            <Button
+                android:id="@+id/checkForUpdates"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="CHECK FOR UPDATES"
+                android:textSize="20sp" />
+
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,27 +67,12 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/appUpdateLinearLayout">
-
-            <Button
-                android:id="@+id/updateAppButton"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="NEW UPDATE AVAILABLE. CLICK TO UPDATE TO NEW VERSION"
-                android:textSize="20sp" />
-            </LinearLayout>
-
             <Button
                 android:id="@+id/motorButton"
                 android:layout_width="300dp"
+                android:layout_marginTop="30dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
                 android:text="MOTOR"
                 android:textSize="20sp" />
@@ -83,6 +85,15 @@
                 android:layout_marginBottom="30dp"
                 android:text="HEALTH"
                 android:textSize="20sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
 
         </LinearLayout>
 

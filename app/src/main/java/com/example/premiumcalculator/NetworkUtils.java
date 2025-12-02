@@ -9,6 +9,9 @@ import java.net.URL;
 
 public class NetworkUtils {
 
+    public static String APP_VERSION_URL = "https://www.programiz.com/java-programming/online-compiler";
+    public static String URL_FOR_DOWNLOADING_NEW_APP = "https://www.google.com";
+
     public static String connectToWebsite(String urlString) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
