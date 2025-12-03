@@ -185,7 +185,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                                 familyMedicareMemberSISpinner.setSelection(0);
                                 familyMedicareMemberSISpinner.setEnabled(false);
                             } else {
-                                familyMedicareMemberSISpinner.setSelection(1);
+                                familyMedicareMemberSISpinner.setSelection(5);
                             }
 
                             Spinner memberNCDSpinner = dynamicLayout.findViewById(R.id.memberNCDSpinner);

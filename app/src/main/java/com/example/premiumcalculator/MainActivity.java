@@ -7,6 +7,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -53,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                new Thread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         checkAppUpdate();
                     }
-                }).start();
+                });
             }
         });
 
@@ -80,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkAppUpdate() {
+        if (!isInternetAvailable()) {
+            showNoInternetDialog();
+            return;
+        }
         try {
             String result = NetworkUtils.connectToWebsite(NetworkUtils.APP_VERSION_URL);
             if (result == null) {
@@ -90,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             showNoInternetDialog();
         }
+    }
+
+    private boolean isInternetAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
     private void showNoInternetDialog() {
