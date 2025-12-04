@@ -131,7 +131,7 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                             if (!value.equalsIgnoreCase("0.00")) {
                                 dailyCashAmountDisplay.setText(value.concat(" Per Day"));
                             }
-                        } else if (key.equalsIgnoreCase(CommonFunctions.TOTAL_MATERNITY_PREMIUM)) {
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_MATERNITY_PREMIUM)) {
                             if (value.equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
                             } else {
@@ -178,12 +178,6 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                                 }else{
                                     memberCashAllowanceDisplay.setText(CommonFunctions.setCurrencyFormat(value).concat(" Per Day"));
                                 }
-                            } else if (key.equalsIgnoreCase(CommonFunctions.TOTAL_MATERNITY_PREMIUM)) {
-                                if (value.equalsIgnoreCase("0.00")) {
-                                    CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.maternityLinearLayout));
-                                } else {
-                                    maternityDisplay.setText(CommonFunctions.setCurrencyFormat(value));
-                                }
                             }
                         }
                         count++;
@@ -213,6 +207,12 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                                     CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
                                 }else{
                                     dailyCashDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                }
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_MATERNITY_PREMIUM)) {
+                                if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
+                                }else{
+                                    maternityDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                                 }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
                                 grossPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));

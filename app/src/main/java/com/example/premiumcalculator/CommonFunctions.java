@@ -14,8 +14,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -28,7 +26,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 
 
@@ -59,7 +56,7 @@ public class CommonFunctions {
     public static String NAGALAND = "Nagaland";
     public static String ODISHA = "Odisha";
     public static String PUDUCHERRY = "Puducherry";
-    public static  String PUNJAB = "Punjab";
+    public static String PUNJAB = "Punjab";
     public static String RAJASTHAN = "Rajasthan";
     public static String TAMIL_NADU = "Tamil Nadu";
     public static String TELANGANA = "Telangana";
@@ -76,7 +73,7 @@ public class CommonFunctions {
     public static String INTENT_FLOATER_SI = "floater_si";
     public static String INTENT_FLOATER_THRESHOLD = "floater_threshold";
     public static String INTENT_FLOATER_NCD = "floater_ncd";
-    public static String TOTAL_MATERNITY_PREMIUM = "total_maternity_premium";
+    public static String INTENT_TOTAL_MATERNITY_PREMIUM = "total_maternity_premium";
     public static String INTENT_MEMBER_DAILY_CASH_AMOUNT = "member_daily_cash_amount";
     public static String INTENT_MEMBER_DAILY_CASH_PREMIUM = "member_daily_cash_premium";
     public static String INTENT_TOTAL_DAILY_CASH_AMOUNT = "daily_cash_amount";
@@ -1977,6 +1974,20 @@ public class CommonFunctions {
             try {
                 JSONArray jsonArray = new JSONArray(jsonStr);
                 ArrayList<Double> commssionArrayList = new ArrayList<>();
+                int memberSelectedForMaternity = 0;
+                String maternityPremium = "0.00";
+                if (maternityCheckbox) {
+                    if (familyComposition.equalsIgnoreCase(ONE_ADULT)) {
+                        memberSelectedForMaternity = 0;
+                    } else if (familyComposition.equalsIgnoreCase(ONE_ADULT_ANY_CHILD)) {
+                        memberSelectedForMaternity = 0;
+                    } else if (familyComposition.equalsIgnoreCase(TWO_ADULT)) {
+                        memberSelectedForMaternity = 1;
+                    } else if (familyComposition.equalsIgnoreCase(TWO_ADULT_ANY_CHILD)) {
+                        memberSelectedForMaternity = 1;
+                    }
+                }
+
                 for (int i = 0; i < memberDetailsArrayList.size(); i++) {
                     Map<String, View> map = memberDetailsArrayList.get(i);
                     int count = 0;
@@ -2032,6 +2043,41 @@ public class CommonFunctions {
                                     String commissionForTheMember = calculateCommission(zone, premiumForTheMember, memberAge, FAMILY_MEDICARE_POLICY, false);
                                     commssionArrayList.add(Double.parseDouble(commissionForTheMember));
 
+                                    if (maternityCheckbox) {
+
+                                        if (i == memberSelectedForMaternity) {
+                                            if (memberSI.equalsIgnoreCase(SI_350000)) {
+                                                maternityPremium = "12000.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_400000)) {
+                                                maternityPremium = "13750.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_450000)) {
+                                                maternityPremium = "15500.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_500000)) {
+                                                maternityPremium = "17000.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_600000)) {
+                                                maternityPremium = "20350.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_700000)) {
+                                                maternityPremium = "20600.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_800000)) {
+                                                maternityPremium = "20850.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_900000)) {
+                                                maternityPremium = "21000.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_1000000)) {
+                                                maternityPremium = "21200.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_1500000)) {
+                                                maternityPremium = "22000.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_2000000)) {
+                                                maternityPremium = "23000.00";
+                                            } else if (memberSI.equalsIgnoreCase(SI_2500000)) {
+                                                maternityPremium = "23500.00";
+                                            } else {
+                                                maternityPremium = "0.00";
+                                            }
+
+                                            String maternityCommissionAmount = calculateCommission(zone, maternityPremium, memberAge, INDIVIDUAL_HEALTH_POLICY, false);
+                                            commssionArrayList.add((Double.parseDouble(maternityCommissionAmount)));
+                                        }
+                                    }
                                     map1.put(CommonFunctions.INTENT_MEMBER_AGE, memberAge);
                                     map1.put(CommonFunctions.INTENT_MEMBER_SI, memberSI);
                                     map1.put(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE, memberNCD);
@@ -2059,9 +2105,10 @@ public class CommonFunctions {
                 map1.put(INTENT_TOTAL_NCD_AMOUNT, totalNCDAmount);
                 map1.put(INTENT_TOTAL_FAMILY_DISCOUNT, totalFamilyDiscount);
                 map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, totalDailyCashPremium);
-                String totalGrossPremium = Double.toString(Double.parseDouble(totalBasicPremium) - Double.parseDouble(totalNCDAmount) - Double.parseDouble(totalFamilyDiscount));
-                String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(totalGrossPremium) + Double.parseDouble(totalDailyCashPremium));
-                map1.put(INTENT_TOTAL_GROSS_PREMIUM, totalGrossPremiumAfterAddOns);
+                map1.put(INTENT_TOTAL_MATERNITY_PREMIUM, maternityPremium);
+                String totalGrossPremiumBeforeAddOns = Double.toString(Double.parseDouble(totalBasicPremium) - Double.parseDouble(totalNCDAmount) - Double.parseDouble(totalFamilyDiscount));
+                String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(totalGrossPremiumBeforeAddOns) + Double.parseDouble(totalDailyCashPremium) + Double.parseDouble(maternityPremium));
+                map1.put(INTENT_TOTAL_GROSS_PREMIUM, totalGrossPremiumBeforeAddOns);
                 String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOns));
                 String netPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(gst));
                 map1.put(INTENT_TOTAL_GST, gst);
@@ -2593,7 +2640,7 @@ public class CommonFunctions {
                 map1.put(INTENT_TOTAL_GROSS_PREMIUM, sumOfDoubleArrayList(grossPremiumArrayList));
                 map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
                 map1.put(INTENT_TOTAL_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
-                map1.put(TOTAL_MATERNITY_PREMIUM, maternityPremium);
+                map1.put(INTENT_TOTAL_MATERNITY_PREMIUM, maternityPremium);
                 String totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(sumOfDoubleArrayList(grossPremiumArrayList)) + Double.parseDouble(dailyCashAllowancePremium) + Double.parseDouble(maternityPremium));
                 String gst = Double.toString(GST_0 / 100.00 * Double.parseDouble(totalGrossPremiumAfterAddOns));
                 map1.put(INTENT_TOTAL_GST, gst);
@@ -2840,7 +2887,7 @@ public class CommonFunctions {
                                         dailyCashAllowancePremiumArrayList.add(Double.parseDouble(dailyCashAllowancePremium));
                                         dailyCashAllowanceCommissionAmount = calculateCommission(zone, dailyCashAllowancePremium, Integer.toString(Collections.max(ageArrayList)), INDIVIDUAL_HEALTH_POLICY, false);
                                         commissionArrayList.add(Double.parseDouble(dailyCashAllowanceCommissionAmount));
-                                    }else{
+                                    } else {
                                         map1.put(INTENT_MEMBER_DAILY_CASH_PREMIUM, dailyCashAllowancePremium);
                                         map1.put(INTENT_MEMBER_DAILY_CASH_AMOUNT, dailyCashAllowanceAmount);
                                     }
