@@ -364,7 +364,6 @@ public class StumpDataEntry extends AppCompatActivity {
                             startActivity(intent);
                         }
                     }
-
                 }
             }
         });

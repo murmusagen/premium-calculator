@@ -3062,9 +3062,7 @@ public class CommonFunctions {
                             }
                         }
 
-
                         if (count == 3) {
-
 
                             map1.put(INTENT_MEMBER_AGE, memberAge);
                             map1.put(INTENT_MEMBER_THRESHOLD, memberThreshold.toString());
@@ -3106,10 +3104,7 @@ public class CommonFunctions {
                                 output1.add(map1);
                                 break;
                             }
-
-
                         }
-
                     }
                 }
                 HashMap<String, String> map1 = new HashMap<>();
@@ -3126,6 +3121,12 @@ public class CommonFunctions {
                 map1.put(INTENT_TOTAL_DAILY_CASH_PREMIUM, totalDailyCashPremium);
                 map1.put(INTENT_TOTAL_GST, totalGST);
                 map1.put(INTENT_TOTAL_NET_PREMIUM, totalNetPremium);
+                String commission = sumOfDoubleArrayList(commissionArrayList);
+                String incentive = "0.00";
+                String portalCharges = "50.00";
+                String portalIncentive = Double.toString(0.25 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOn));
+                String commissionString = "Approx Commission : ".concat(uptoTwoDecimal(commission)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentive));
+                map1.put(INTENT_TOTAL_COMMISSION, commissionString);
                 output1.add(map1);
                 int g = 0;
             } catch (JSONException e) {
