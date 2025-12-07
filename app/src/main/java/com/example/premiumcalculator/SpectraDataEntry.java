@@ -85,7 +85,6 @@ public class SpectraDataEntry extends AppCompatActivity {
         Spinner floaterSISpinner = findViewById(R.id.floaterSISpinner);
         spectraMemberSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         floaterSISpinner.setAdapter(spectraMemberSIAdapter);
-        floaterSISpinner.setSelection(5);
 
         Spinner floaterNCDSpinner = findViewById(R.id.floaterNCDSpinner);
         memberNCDAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

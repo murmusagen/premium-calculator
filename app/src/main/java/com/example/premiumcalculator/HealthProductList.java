@@ -29,6 +29,7 @@ public class HealthProductList extends AppCompatActivity {
         Button yuvaanButton = findViewById(R.id.yuvaanButton);
         Button stumpButton = findViewById(R.id.stumpButton);
         Button spectraButton = findViewById(R.id.spectraButton);
+        Button uniCritiCareButton = findViewById(R.id.uniCritiCareButton);
 
         familyMedicareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +67,14 @@ public class HealthProductList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HealthProductList.this, SpectraDataEntry.class);
+                startActivity(intent);
+            }
+        });
+
+        uniCritiCareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HealthProductList.this, UniCritiCareDataEntry.class);
                 startActivity(intent);
             }
         });

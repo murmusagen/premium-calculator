@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -22,7 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class SplashActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
-    private ImageView logoImage;
+    private Button skipButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class SplashActivity extends AppCompatActivity {
         });
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        skipButton = findViewById(R.id.skipButton);
 
         new Thread(new Runnable() {
             @Override
@@ -43,6 +46,13 @@ public class SplashActivity extends AppCompatActivity {
                 checkAppUpdate();
             }
         }).start();
+
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                proceedToMain();
+            }
+        });
     }
 
     private void checkAppUpdate() {

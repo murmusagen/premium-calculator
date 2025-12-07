@@ -83,6 +83,15 @@
                     android:text="SPECTRA"
                     android:textSize="20sp" />
 
+                <Button
+                    android:id="@+id/uniCritiCareButton"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="30dp"
+                    android:text="UNI CRITI CARE"
+                    android:textSize="20sp" />
+
             </LinearLayout>
         </ScrollView>
 

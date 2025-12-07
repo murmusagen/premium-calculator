@@ -17,6 +17,9 @@
         android:windowSoftInputMode="adjustResize"
         tools:targetApi="31">
         <activity
+            android:name=".UniCritiCareDataEntry"
+            android:exported="false" />
+        <activity
             android:name=".SpectraDataEntry"
             android:exported="false" />
         <activity
@@ -68,7 +71,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

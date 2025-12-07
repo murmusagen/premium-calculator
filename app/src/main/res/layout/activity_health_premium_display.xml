@@ -139,6 +139,7 @@
                     android:background="@color/black" />
 
                 <LinearLayout
+                    android:id="@+id/zoneLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -185,12 +186,12 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/floaterThresholdLinearLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:orientation="horizontal"
-                            android:weightSum="3"
-                            android:id="@+id/floaterThresholdLinearLayout">
+                            android:weightSum="3">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -218,12 +219,12 @@
                             android:background="@color/black" />
 
                         <LinearLayout
+                            android:id="@+id/floaterSILinearLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:orientation="horizontal"
-                            android:weightSum="3"
-                            android:id="@+id/floaterSILinearLayout">
+                            android:weightSum="3">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -251,12 +252,12 @@
                             android:background="@color/black" />
 
                         <LinearLayout
+                            android:id="@+id/floaterNCDLinearLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:orientation="horizontal"
-                            android:weightSum="3"
-                            android:id="@+id/floaterNCDLinearLayout">
+                            android:weightSum="3">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -338,12 +339,12 @@
                     android:background="@color/black" />
 
                 <LinearLayout
+                    android:id="@+id/totalNcdDisplay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
-                    android:weightSum="3"
-                    android:id="@+id/totalNcdDisplay">
+                    android:weightSum="3">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -371,12 +372,12 @@
                     android:background="@color/black" />
 
                 <LinearLayout
+                    android:id="@+id/totalFamilyDiscountLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
-                    android:weightSum="3"
-                    android:id="@+id/totalFamilyDiscountLinearLayout">
+                    android:weightSum="3">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -655,10 +656,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_margin="10dp"
+                    android:paddingBottom="10dp"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -667,11 +666,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="The premium calculation provided by this app is for informational purposes only and does not constitute a binding quote or offer of insurance. Insurance premiums are subject to approval by the insurer and may vary due to underwriting criteria, changes in policy terms, state regulations, and other factors beyond the app's control. We recommend consulting with an authorized insurance agent or company to obtain an official premium quote before making any decisions."
+                        android:text=""
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
 
                 <View
                     android:layout_width="match_parent"

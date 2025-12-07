@@ -8,7 +8,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".FamilyMedicareDataEntry">
+    tools:context=".UniCritiCareDataEntry">
 
     <LinearLayout
         android:id="@+id/myLinearLayout"
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="FAMILY MEDICARE"
+            android:text="INDIVIDUAL HEALTH"
             android:textAlignment="center"
             android:textSize="30dp"
             android:textStyle="bold">
@@ -95,7 +95,7 @@
                     android:background="@color/black" />
 
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -122,17 +122,16 @@
                         android:id="@+id/findZoneButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Find Zone"
                         android:layout_weight="1"
-                        />
+                        android:text="Find Zone" />
 
-                </LinearLayout>
+                </LinearLayout>-->
 
-                <View
+                <!--<View
                     android:layout_width="390dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
-                    android:background="@color/black" />
+                    android:background="@color/black" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -196,74 +195,6 @@
                     android:layout_gravity="center"
                     android:background="@color/black" />
 
-                <LinearLayout
-                    android:id="@+id/floaterSILinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Floater SI"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/floaterSISpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/floateNCDLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Floater NCD"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/floaterNCDSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -284,51 +215,61 @@
                     android:background="@color/black" />
 
                 <LinearLayout
+                    android:id="@+id/container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/container">
+                    android:orientation="vertical">
 
                 </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Add-Ons"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <CheckBox
-                    android:id="@+id/dailyCashCoverCheckBox"
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Daily Cash" />
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                <CheckBox
-                    android:id="@+id/maternityCheckBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Maternity" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Add-Ons"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
 
-            </LinearLayout>
-            </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/dailyCashLayoutIndividual"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
 
-                <View
+                            <CheckBox
+                                android:id="@+id/dailyCashCoverCheckBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Daily Cash"
+                                android:layout_weight="1"/>
+
+                            <Spinner
+                                android:id="@+id/dailyCashAllowanceAmountSpinner"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>-->
+
+                <!--<View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/black" />
@@ -336,11 +277,11 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/black" />
+                    android:background="@color/black" />-->
 
 
                 <Button
-                    android:id="@+id/calculateFmpPremiumButton"
+                    android:id="@+id/calculateUniCritiCarePremiumButton"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

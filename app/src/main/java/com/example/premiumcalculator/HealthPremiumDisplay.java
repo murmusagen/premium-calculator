@@ -108,15 +108,15 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
                             totalBasicPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NCD_AMOUNT)) {
-                            if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
-                            }else{
+                            } else {
                                 ncdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
-                            if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalFamilyDiscountLinearLayout));
-                            }else{
+                            } else {
                                 floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
@@ -173,9 +173,9 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE)) {
                                 memberNCDTextView.setText(value.concat(" %"));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_DAILY_CASH_AMOUNT)) {
-                                if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                     CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.memberCashAllowanceLinearLayoutForIHP));
-                                }else{
+                                } else {
                                     memberCashAllowanceDisplay.setText(CommonFunctions.setCurrencyFormat(value).concat(" Per Day"));
                                 }
                             }
@@ -191,27 +191,27 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                             if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
                                 totalBasicPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NCD_AMOUNT)) {
-                                if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                     CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
-                                }else{
+                                } else {
                                     ncdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                                 }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
-                                if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                     CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalFamilyDiscountLinearLayout));
-                                }else{
+                                } else {
                                     floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                                 }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
-                                if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                     CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
-                                }else{
+                                } else {
                                     dailyCashDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                                 }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_MATERNITY_PREMIUM)) {
-                                if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                     CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
-                                }else{
+                                } else {
                                     maternityDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                                 }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
@@ -277,15 +277,15 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                         if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
                             totalBasicPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NCD_AMOUNT)) {
-                            if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
-                            }else{
+                            } else {
                                 ncdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
-                            if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalFamilyDiscountLinearLayout));
-                            }else{
+                            } else {
                                 floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
@@ -313,7 +313,7 @@ public class HealthPremiumDisplay extends AppCompatActivity {
 
             if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
                 if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                    floaterSIDisplay.setText(floaterSI);
+                    floaterSIDisplay.setText(CommonFunctions.setCurrencyFormat(floaterSI));
                     floaterNCDDisplay.setText(floaterNCD.concat(" %"));
                 } else if (type.equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
                     CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDLayout));
@@ -338,29 +338,33 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                                 CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForIndividualLinearLayout));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
-                            totalBasicPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            totalBasicPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NCD_AMOUNT)) {
-                            ncdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
+                            } else {
+                                ncdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
-                            floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
-                            grossPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            grossPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
                             if (value.equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
                             } else {
-                                dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                                dailyCashDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_AMOUNT)) {
                             if (value.equalsIgnoreCase("0.00")) {
                                 CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
                             } else {
-                                dailyCashAmountDisplay.setText(CommonFunctions.uptoTwoDecimal(value).concat(" Per Day"));
+                                dailyCashAmountDisplay.setText(CommonFunctions.setCurrencyFormat(value).concat(" Per Day"));
                             }
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
-                            gstDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            gstDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NET_PREMIUM)) {
-                            netPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                            netPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                         } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_COMMISSION)) {
                             commissionTextView.setText(value);
                         }
@@ -389,11 +393,15 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                             if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
                                 memberAgeTextView.setText(value.concat(" Yrs"));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
-                                memberSITextView.setText(value.concat(" /-"));
+                                memberSITextView.setText(CommonFunctions.setCurrencyFormat(value).concat(" /-"));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE)) {
                                 memberNCDTextView.setText(value.concat(" %"));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_DAILY_CASH_AMOUNT)) {
-                                memberCashAllowanceDisplay.setText(value.concat(" Per Day"));
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.memberCashAllowanceLinearLayoutForIHP));
+                                } else {
+                                    memberCashAllowanceDisplay.setText(CommonFunctions.setCurrencyFormat(value).concat(" Per Day"));
+                                }
                             }
                         }
                         count++;
@@ -405,19 +413,27 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                             String key = entry.getKey();
                             String value = entry.getValue();
                             if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
-                                totalBasicPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                                totalBasicPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NCD_AMOUNT)) {
-                                ncdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
+                                } else {
+                                    ncdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
-                                floaterDiscountdDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                                floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
-                                dailyCashDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
+                                } else {
+                                    dailyCashDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
-                                grossPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                                grossPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
-                                gstDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                                gstDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NET_PREMIUM)) {
-                                netPremiumDisplay.setText(CommonFunctions.uptoTwoDecimal(value));
+                                netPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_COMMISSION)) {
                                 commissionTextView.setText(value);
                             }
@@ -558,6 +574,215 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                             }
                         }
                     }
+                }
+            }
+        } else if (productName.equalsIgnoreCase(CommonFunctions.SPECTRA_HEALTH_POLICY)) {
+
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterThresholdLinearLayout));
+            if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
+                if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
+                    floaterSIDisplay.setText(CommonFunctions.setCurrencyFormat(floaterSI));
+                    floaterNCDDisplay.setText(floaterNCD.concat(" %"));
+                } else if (type.equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
+                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDLayout));
+                }
+                String totalBasicPremium = "0.00";
+                for (int i = 0; i < premiumAndCommission.size(); i++) {
+                    HashMap<String, String> map = premiumAndCommission.get(i);
+                    for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                        Map.Entry<String, String> entry = it.next();
+                        String key = entry.getKey();
+                        String value = entry.getValue();
+                        if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
+                            View dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
+/*
+                            CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
+*/
+                            String variableName = "Member ".concat(Integer.toString(i + 1));
+                            TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
+                            TextView memberAgeEditText = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                            memberNoTextView.setText(variableName);
+                            memberAgeEditText.setText(value.concat(" Yrs"));
+                            container.addView(dynamicLayout);
+                            if (type.equalsIgnoreCase(CommonFunctions.FLOATER)) {
+                                CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForIndividualLinearLayout));
+                            }
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
+                            totalBasicPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NCD_AMOUNT)) {
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
+                            } else {
+                                ncdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            }
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalFamilyDiscountLinearLayout));
+                            } else {
+                                floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            }
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
+                            grossPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
+                            if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
+                            } else {
+                                dailyCashDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            }
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_AMOUNT)) {
+                            if (!value.equalsIgnoreCase("0.00")) {
+                                dailyCashAmountDisplay.setText(value.concat(" Per Day"));
+                            }
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_MATERNITY_PREMIUM)) {
+                            if (value.equalsIgnoreCase("0.00")) {
+                                CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
+                            } else {
+                                maternityDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            }
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
+                            gstDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NET_PREMIUM)) {
+                            netPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_COMMISSION)) {
+                            commissionTextView.setText(value);
+                        }
+                    }
+                }
+            } else if (type.equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
+                CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDInnerLayout));
+                int count = 0;
+                View dynamicLayout = null;
+                for (int i = 0; i < premiumAndCommission.size(); i++) {
+                    if (count < premiumAndCommission.size() - 1) {
+                        dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
+                        CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
+                        String variableName = "Member ".concat(Integer.toString(i + 1));
+                        TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
+                        TextView memberAgeTextView = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                        TextView memberSITextView = dynamicLayout.findViewById(R.id.memberSITextView);
+                        TextView memberNCDTextView = dynamicLayout.findViewById(R.id.memberNCDTextView);
+                        TextView memberCashAllowanceDisplay = dynamicLayout.findViewById(R.id.memberCashAllowanceDisplay);
+                        memberNoTextView.setText(variableName);
+                        HashMap<String, String> map = premiumAndCommission.get(i);
+                        for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                            Map.Entry<String, String> entry = it.next();
+                            String key = entry.getKey();
+                            String value = entry.getValue();
+                            if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
+                                memberAgeTextView.setText(value.concat(" Yrs"));
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
+                                memberSITextView.setText(CommonFunctions.setCurrencyFormat(value).concat(" /-"));
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_NCD_PERCENTAGE)) {
+                                memberNCDTextView.setText(value.concat(" %"));
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_DAILY_CASH_AMOUNT)) {
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.memberCashAllowanceLinearLayoutForIHP));
+                                } else {
+                                    memberCashAllowanceDisplay.setText(CommonFunctions.setCurrencyFormat(value).concat(" Per Day"));
+                                }
+                            }
+                        }
+                        count++;
+                        container.addView(dynamicLayout);
+                    } else {
+                        HashMap<String, String> map = premiumAndCommission.get(i);
+                        for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                            Map.Entry<String, String> entry = it.next();
+                            String key = entry.getKey();
+                            String value = entry.getValue();
+                            if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
+                                totalBasicPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NCD_AMOUNT)) {
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
+                                } else {
+                                    ncdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                }
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalFamilyDiscountLinearLayout));
+                                } else {
+                                    floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                }
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
+                                } else {
+                                    dailyCashDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                }
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_MATERNITY_PREMIUM)) {
+                                if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+                                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
+                                } else {
+                                    maternityDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                }
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
+                                grossPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
+                                gstDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NET_PREMIUM)) {
+                                netPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                            } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_COMMISSION)) {
+                                commissionTextView.setText(value);
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (productName.equalsIgnoreCase(CommonFunctions.UNI_CRITI_CARE_HEALTH_POLICY)) {
+
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterThresholdLinearLayout));
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.floaterSIAndNCDInnerLayout));
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.maternityLinearLayout));
+            CommonFunctions.deleteLayoutAndView(findViewById(R.id.zoneLinearLayout));
+
+            int count = 0;
+            View dynamicLayout = null;
+            for (int i = 0; i < premiumAndCommission.size(); i++) {
+                if (count < premiumAndCommission.size() - 1) {
+                    dynamicLayout = inflater.inflate(R.layout.health_member_data_entry_display, container, false);
+                    CommonFunctions.deleteLayout(dynamicLayout.findViewById(R.id.healthMemberDataForSTUMPIndividualLinearLayout));
+                    CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.memberCashAllowanceLinearLayoutForIHP));
+                    CommonFunctions.deleteLayoutAndView(dynamicLayout.findViewById(R.id.ncdLinearLayout));
+                    String variableName = "Member ".concat(Integer.toString(i + 1));
+                    TextView memberNoTextView = dynamicLayout.findViewById(R.id.memberNoTextView);
+                    TextView memberAgeTextView = dynamicLayout.findViewById(R.id.memberAgeEditText);
+                    TextView memberSITextView = dynamicLayout.findViewById(R.id.memberSITextView);
+                    memberNoTextView.setText(variableName);
+                    HashMap<String, String> map = premiumAndCommission.get(i);
+                    for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                        Map.Entry<String, String> entry = it.next();
+                        String key = entry.getKey();
+                        String value = entry.getValue();
+                        if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_AGE)) {
+                            memberAgeTextView.setText(value.concat(" Yrs"));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
+                            memberSITextView.setText(CommonFunctions.setCurrencyFormat(value).concat(" /-"));
+                        }
+                    }
+                    count++;
+                    container.addView(dynamicLayout);
+                } else {
+                    HashMap<String, String> map = premiumAndCommission.get(i);
+                    for (Iterator<Map.Entry<String, String>> it = map.entrySet().iterator(); it.hasNext(); ) {
+                        Map.Entry<String, String> entry = it.next();
+                        String key = entry.getKey();
+                        String value = entry.getValue();
+                        if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_BASIC_PREMIUM)) {
+                            totalBasicPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GROSS_PREMIUM)) {
+                            grossPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_GST)) {
+                            gstDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_NET_PREMIUM)) {
+                            netPremiumDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                        } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_COMMISSION)) {
+                            commissionTextView.setText(value);
+                        }
+                    }
+                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalNcdDisplay));
+                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalFamilyDiscountLinearLayout));
+                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
                 }
             }
         }

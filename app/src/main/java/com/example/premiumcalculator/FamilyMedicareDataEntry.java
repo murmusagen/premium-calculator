@@ -34,14 +34,15 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
     LinearLayout container;
     LayoutInflater inflater;
     LinearLayout floaterSILinearLayout;
+    View floateSISingleLineView;
     LinearLayout floateNCDLinearLayout;
+    View floateNCDSingleLineView;
     EditText noOfMembersEditText;
     EditText memberAgeEditText;
     ArrayList<HashMap<String, String>> premium = new ArrayList<>();
     CheckBox dailyCashCoverCheckBox;
     CheckBox maternityCheckBox;
     Button findZoneButton;
-    TextView commissionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,28 +58,28 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
         container = findViewById(R.id.container);
         inflater = LayoutInflater.from(this);
         floaterSILinearLayout = findViewById(R.id.floaterSILinearLayout);
+        floateSISingleLineView = findViewById(R.id.floateSISingleLineView);
         floateNCDLinearLayout = findViewById(R.id.floateNCDLinearLayout);
+        floateNCDSingleLineView = findViewById(R.id.floateNCDSingleLineView);
         noOfMembersEditText = findViewById(R.id.noOfMembersEditText);
         dailyCashCoverCheckBox = findViewById(R.id.dailyCashCoverCheckBox);
         maternityCheckBox = findViewById(R.id.maternityCheckBox);
         findZoneButton = findViewById(R.id.findZoneButton);
-        commissionTextView = findViewById(R.id.commissionTextView);
 
 
         Button calculateFmpPremiumButton = findViewById(R.id.calculateFmpPremiumButton);
-        ArrayList<Map<String, View>> memberDetailsArrayList = new ArrayList<Map<String, View>>();
+        ArrayList<Map<String, View>> memberDetailsArrayList = new ArrayList<>();
 
         Spinner typeSpinner = findViewById(R.id.typeSpinner);
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.HEALTH_TYPE_ARRAY);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.HEALTH_TYPE_ARRAY);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeSpinner.setAdapter(typeAdapter);
 
-        ArrayAdapter<String> familyMedicareMemberSIAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_MEDICARE_SI_ARRAY);
-        ArrayAdapter<String> floaterSIAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_MEDICARE_SI_ARRAY);
-        ArrayAdapter<String> memberNCDAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.HEALTH_NCD_ARRAY);
+        ArrayAdapter<String> familyMedicareMemberSIAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_MEDICARE_SI_ARRAY);
+        ArrayAdapter<String> memberNCDAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.HEALTH_NCD_ARRAY);
 
         Spinner familyTypeSpinner = findViewById(R.id.familyTypeSpinner);
-        ArrayAdapter<String> familyTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY);
+        ArrayAdapter<String> familyTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY);
         ArrayAdapter<String> familyTypeAdapterWithOneAdultOption = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.FAMILY_TYPE_ARRAY_WITH_ONE_ADULT_SELECTION_ALSO);
         familyTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         familyTypeAdapterWithOneAdultOption.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,7 +88,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
         Spinner floaterSISpinner = findViewById(R.id.floaterSISpinner);
         familyMedicareMemberSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         floaterSISpinner.setAdapter(familyMedicareMemberSIAdapter);
-        floaterSISpinner.setSelection(5);
+        floaterSISpinner.setSelection(4);
 
         Spinner floaterNCDSpinner = findViewById(R.id.floaterNCDSpinner);
         memberNCDAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -98,14 +99,18 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) {
                     floaterSILinearLayout.setVisibility(View.VISIBLE);
+                    floateSISingleLineView.setVisibility(View.VISIBLE);
                     floateNCDLinearLayout.setVisibility(View.VISIBLE);
+                    floateNCDSingleLineView.setVisibility(View.VISIBLE);
                     if (!noOfMembersEditText.getText().toString().equalsIgnoreCase("")) {
                         noOfMembersEditText.setText("");
                     }
                     familyTypeSpinner.setAdapter(familyTypeAdapter);
                 } else if (i == 1) {
                     floaterSILinearLayout.setVisibility(View.GONE);
+                    floateSISingleLineView.setVisibility(View.GONE);
                     floateNCDLinearLayout.setVisibility(View.GONE);
+                    floateNCDSingleLineView.setVisibility(View.GONE);
                     if (!noOfMembersEditText.getText().toString().equalsIgnoreCase("")) {
                         noOfMembersEditText.setText("");
                     }
@@ -138,7 +143,6 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                     if (i == 0) {
                         container.removeAllViews();
                         memberDetailsArrayList.clear();
-                        return;
                     } else {
                         container.removeAllViews();
                         int count = 1;
@@ -185,7 +189,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                                 familyMedicareMemberSISpinner.setSelection(0);
                                 familyMedicareMemberSISpinner.setEnabled(false);
                             } else {
-                                familyMedicareMemberSISpinner.setSelection(5);
+                                familyMedicareMemberSISpinner.setSelection(4);
                             }
 
                             Spinner memberNCDSpinner = dynamicLayout.findViewById(R.id.memberNCDSpinner);
@@ -217,23 +221,14 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
 
         String[] healthZoneArray = {CommonFunctions.ZONE_C, CommonFunctions.ZONE_B, CommonFunctions.ZONE_A};
         Spinner zoneSpinner = findViewById(R.id.zoneSpinner);
-        ArrayAdapter<String> zoneAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, healthZoneArray);
+        ArrayAdapter<String> zoneAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, healthZoneArray);
         zoneAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         zoneSpinner.setAdapter(zoneAdapter);
 
         findZoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(FamilyMedicareDataEntry.this);
-                builder.setTitle("Zone Information");
-                builder.setMessage(CommonFunctions.ALL_ZONE_TEXT);
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.create().show();
+                CommonFunctions.createAlertBuilder(FamilyMedicareDataEntry.this, "Zone Information", CommonFunctions.ALL_ZONE_TEXT, "Ok", "");
             }
         });
 
@@ -241,30 +236,27 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ArrayList<Boolean> errorList = new ArrayList<Boolean>();
                 if (noOfMembersEditText.getText().toString().trim().equalsIgnoreCase("")) {
-                    Toast.makeText(FamilyMedicareDataEntry.this, "Please Enter No. Of Members", Toast.LENGTH_SHORT).show();
-                    return;
+                    CommonFunctions.createAlertBuilder(FamilyMedicareDataEntry.this, "Alert", "Please Enter No. Of Members", "Ok", "");
                 } else {
                     if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 1) {
-                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                        CommonFunctions.createAlertBuilder(FamilyMedicareDataEntry.this, "Alert", "Please Select Proper Family Type/No Of Family", "Ok", "");
                     } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 2) {
-                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                        CommonFunctions.createAlertBuilder(FamilyMedicareDataEntry.this, "Alert", "Please Select Proper Family Type/No Of Family", "Ok", "");
                     } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) != 2) {
-                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                        CommonFunctions.createAlertBuilder(FamilyMedicareDataEntry.this, "Alert", "Please Select Proper Family Type/No Of Family", "Ok", "");
                     } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT_ANY_CHILD) &&
                             Integer.parseInt(noOfMembersEditText.getText().toString().trim()) < 3) {
-                        Toast.makeText(FamilyMedicareDataEntry.this, "Please Select Proper Family Type/No Of Family", Toast.LENGTH_SHORT).show();
+                        CommonFunctions.createAlertBuilder(FamilyMedicareDataEntry.this, "Alert", "Please Select Proper Family Type/No Of Family", "Ok", "");
                     } else {
                         if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FLOATER)) {
-                            if (floaterSISpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.SI_0)) {
-                                Toast.makeText(FamilyMedicareDataEntry.this, "Please Enter Floater SI", Toast.LENGTH_SHORT).show();
-                                return;
+                            if (maternityCheckBox.isChecked() && Double.parseDouble(floaterSISpinner.getSelectedItem().toString()) < 350000) {
+                                CommonFunctions.createAlertBuilder(FamilyMedicareDataEntry.this, "Alert", "Maternity Cannot Be Opted For SI Less Than 350000", "Ok", "");
                             } else {
-                                premium = CommonFunctions.calculateFamilyMedicarePremium(typeSpinner.getSelectedItem().toString(),
+                                premium = CommonFunctions.calculateFamilyMedicarePremiumFloater(typeSpinner.getSelectedItem().toString(),
                                         zoneSpinner.getSelectedItem().toString(),
                                         noOfMembersEditText.getText().toString(),
                                         floaterSISpinner.getSelectedItem().toString(),
@@ -284,7 +276,15 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                             }
                         } else if (typeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.INDIVIDUAL)) {
                             ArrayList<String> checkForAllMembersSIEntry = new ArrayList<>();
-                            checkForAllMembersSIEntry = checkForAllMembersSIEntry(memberDetailsArrayList);
+                            int memberSelectedForMaternity = 0;
+                            if (maternityCheckBox.isChecked()) {
+                                if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT) || familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.ONE_ADULT_ANY_CHILD)) {
+                                    memberSelectedForMaternity = 0;
+                                } else if (familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT) || familyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.TWO_ADULT_ANY_CHILD)) {
+                                    memberSelectedForMaternity = 1;
+                                }
+                            }
+                            checkForAllMembersSIEntry = checkForAllMembersSIEntry(memberDetailsArrayList, maternityCheckBox.isChecked(), memberSelectedForMaternity);
                             if (checkForAllMembersSIEntry.size() > 0) {
                                 Toast.makeText(FamilyMedicareDataEntry.this, checkForAllMembersSIEntry.get(1), Toast.LENGTH_SHORT).show();
                             } else {
@@ -296,7 +296,8 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                                         memberDetailsArrayList, FamilyMedicareDataEntry.this,
                                         familyTypeSpinner.getSelectedItem().toString(),
                                         dailyCashCoverCheckBox.isChecked(),
-                                        maternityCheckBox.isChecked());
+                                        maternityCheckBox.isChecked(),
+                                        memberSelectedForMaternity);
 
                                 Intent intent = new Intent(FamilyMedicareDataEntry.this, HealthPremiumDisplay.class);
                                 intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.FAMILY_MEDICARE_POLICY);
@@ -312,7 +313,7 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
         });
     }
 
-    private ArrayList<String> checkForAllMembersSIEntry(ArrayList<Map<String, View>> memberDetailsArrayList) {
+    private ArrayList<String> checkForAllMembersSIEntry(ArrayList<Map<String, View>> memberDetailsArrayList, boolean maternityCheckBox, int memberSelectedForMaternity) {
         boolean allOK = true;
         ArrayList<String> output = new ArrayList<>();
         String error = "No";
@@ -326,24 +327,25 @@ public class FamilyMedicareDataEntry extends AppCompatActivity {
                 Map.Entry<String, View> entry = it.next();
                 String s = entry.getKey();
                 View v = entry.getValue();
-                String t = "";
                 String si = "";
                 String age = "";
                 if (v instanceof Spinner) {
-                    HashMap<String, String> map1 = new HashMap<>();
                     si = ((Spinner) v).getSelectedItem().toString();
                     if (s.equalsIgnoreCase(CommonFunctions.INTENT_MEMBER_SI)) {
-                        if (si.equalsIgnoreCase(CommonFunctions.SI_0)) {
-                            allOK = false;
-                            error = "Yes";
-                            errorMsg = "Please Enter Sum Insured";
-                            output.add(error);
-                            output.add(errorMsg);
-                            break;
+                        if (maternityCheckBox) {
+                            if (memberSelectedForMaternity == j) {
+                                if (Double.parseDouble(si) < 350000) {
+                                    allOK = false;
+                                    error = "Yes";
+                                    errorMsg = "Maternity Cannot Be Opted For SI < 350000";
+                                    output.add(error);
+                                    output.add(errorMsg);
+                                    break;
+                                }
+                            }
                         }
                     }
                 } else if (v instanceof EditText) {
-                    HashMap<String, String> map1 = new HashMap<>();
                     age = ((EditText) v).getText().toString().trim();
                     if (age.equalsIgnoreCase("")) {
                         allOK = false;
