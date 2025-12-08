@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -48,19 +49,32 @@ public class MainActivity extends AppCompatActivity {
         Button motorButton = findViewById(R.id.motorButton);
         TextView appVersion = findViewById(R.id.appVersion);
         Button checkForUpdates = findViewById(R.id.checkForUpdates);
-
-        appVersion.setText(CommonFunctions.APP_VERSION);
+        String versionName = "Unknown";
+        try {
+            versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            appVersion.setText("Unknown");
+        }
+        appVersion.setText("VERSION ".concat(versionName));
 
         checkForUpdates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                runOnUiThread(new Runnable() {
+                /*runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         checkAppUpdate();
                     }
-                });
+                });*/
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkAppUpdate();
+                    }
+                }).start();
             }
         });
 
@@ -87,7 +101,10 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         try {
+            String result = null;
+/*
             String result = NetworkUtils.connectToWebsite(NetworkUtils.APP_VERSION_URL);
+*/
             if (result == null) {
                 showUpdateDialog();
             } else {
@@ -122,16 +139,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNoNewUpdateDialog() {
-        new AlertDialog.Builder(MainActivity.this)
-                .setTitle("No Update Available")
-                .setMessage("You are already using latest update")
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .show();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("No Update Available")
+                        .setMessage("You are already using latest version")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
     }
 
     private void showUpdateDialog() {

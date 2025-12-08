@@ -21,6 +21,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.regex.Pattern;
+
 public class SplashActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
@@ -63,12 +68,29 @@ public class SplashActivity extends AppCompatActivity {
         }
         simulateProgress(20, 80, 200);
         try{
-            String result = NetworkUtils.connectToWebsite(NetworkUtils.APP_VERSION_URL);
+            /*String result = NetworkUtils.connectToWebsite(NetworkUtils.APP_VERSION_URL);
+            JSONArray posts = new JSONArray(result);
+            if (posts.length() > 0) {
+                JSONObject post = posts.getJSONObject(0);
+                String title = post.getJSONObject("title").getString("rendered");
+                int k = 0;
+            }
             if(result == null){
                 showUpdateDialog();
             }else{
                 proceedToMain();
-            }
+            }*/
+            String postUrl = "https://premiumcalculator6.wordpress.com/2025/12/07/version-1-1/";
+            /*NetworkUtils.fetchPostTitle(SplashActivity.this, postUrl, new NetworkUtils.TitleCallback() {
+                @Override
+                public void onTitleFetched(String title) {
+                    String k = title;
+                    int l = 0;
+                }
+            });*/
+            NetworkUtils.checkPostAvailability();
+
+
         }catch (Exception e){
             showNoInternetDialog();
         }
