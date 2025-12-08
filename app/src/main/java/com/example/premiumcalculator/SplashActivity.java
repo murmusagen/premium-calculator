@@ -67,31 +67,16 @@ public class SplashActivity extends AppCompatActivity {
             return;
         }
         simulateProgress(20, 80, 200);
-        try{
-            /*String result = NetworkUtils.connectToWebsite(NetworkUtils.APP_VERSION_URL);
-            JSONArray posts = new JSONArray(result);
-            if (posts.length() > 0) {
-                JSONObject post = posts.getJSONObject(0);
-                String title = post.getJSONObject("title").getString("rendered");
-                int k = 0;
-            }
-            if(result == null){
-                showUpdateDialog();
-            }else{
+        try {
+            int responseCode = NetworkUtils.checkPostAvailability();
+            if (responseCode == 200) {
                 proceedToMain();
-            }*/
-            String postUrl = "https://premiumcalculator6.wordpress.com/2025/12/07/version-1-1/";
-            /*NetworkUtils.fetchPostTitle(SplashActivity.this, postUrl, new NetworkUtils.TitleCallback() {
-                @Override
-                public void onTitleFetched(String title) {
-                    String k = title;
-                    int l = 0;
-                }
-            });*/
-            NetworkUtils.checkPostAvailability();
-
-
-        }catch (Exception e){
+            } else if (responseCode == 404) {
+                showUpdateDialog();
+            } else {
+                showUpdateErrorDialog();
+            }
+        } catch (Exception e) {
             showNoInternetDialog();
         }
     }
@@ -138,6 +123,24 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
+    private void showUpdateErrorDialog() {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                updateProgress(100);
+                new AlertDialog.Builder(SplashActivity.this)
+                        .setTitle("Update Error")
+                        .setMessage("Unable to connect to server. Please try again later.")
+                        .setPositiveButton("Skip", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                proceedToMain();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+            }
+        });
+    }
+
     private void updateProgress(final int progress) {
         runOnUiThread(new Runnable() {
             public void run() {
@@ -145,7 +148,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
     private boolean isInternetAvailable() {
@@ -165,7 +167,7 @@ public class SplashActivity extends AppCompatActivity {
                         .setPositiveButton("Update", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(NetworkUtils.URL_FOR_DOWNLOADING_NEW_APP));
                                 startActivity(intent);
                                 finish();
                             }

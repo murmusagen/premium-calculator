@@ -62,13 +62,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                /*runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        checkAppUpdate();
-                    }
-                });*/
-
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -101,18 +94,34 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         try {
-            String result = null;
-/*
-            String result = NetworkUtils.connectToWebsite(NetworkUtils.APP_VERSION_URL);
-*/
-            if (result == null) {
+            int responseCode = NetworkUtils.checkPostAvailability();
+            if (responseCode == 200) {
+                showNoNewUpdateDialog();
+            } else if (responseCode == 404) {
                 showUpdateDialog();
             } else {
-                showNoNewUpdateDialog();
+                showUpdateErrorDialog();
             }
         } catch (Exception e) {
             showNoInternetDialog();
         }
+    }
+
+    private void showUpdateErrorDialog() {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Update Error")
+                        .setMessage("Unable to connect to server. Please try again later.")
+                        .setPositiveButton("Skip", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+            }
+        });
     }
 
     private boolean isInternetAvailable() {
