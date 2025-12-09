@@ -421,7 +421,11 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                                     ncdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
                                 }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_FAMILY_DISCOUNT)) {
-                                floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                if(CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")){
+                                    CommonFunctions.deleteLayoutAndView(findViewById(R.id.totalFamilyDiscountLinearLayout));
+                                }else{
+                                    floaterDiscountdDisplay.setText(CommonFunctions.setCurrencyFormat(value));
+                                }
                             } else if (key.equalsIgnoreCase(CommonFunctions.INTENT_TOTAL_DAILY_CASH_PREMIUM)) {
                                 if (CommonFunctions.uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
                                     CommonFunctions.deleteLayoutAndView(findViewById(R.id.dailyCashLinearLayout));
