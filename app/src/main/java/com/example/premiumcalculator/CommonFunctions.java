@@ -2649,7 +2649,9 @@ public class CommonFunctions {
                     familyDiscount = "25.00";
                 }
             } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
-                familyDiscount = "5.00";
+                if(!familyComposition.equalsIgnoreCase(ONE_ADULT)){
+                    familyDiscount = "5.00";
+                }
             }
         } else if (product.equalsIgnoreCase(STUMP)) {
             if (type.equalsIgnoreCase(INDIVIDUAL)) {
