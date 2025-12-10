@@ -2562,6 +2562,8 @@ public class CommonFunctions {
 
             if (stringStatementRequired) {
                 output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentive)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount1));
+                return output;
+
             } else {
                 output = commissionAmount;
             }
@@ -2668,8 +2670,10 @@ public class CommonFunctions {
                 } else if (Integer.parseInt(noOfMembers) > 3) {
                     familyDiscount = "25.00";
                 }
-            } else {
-                familyDiscount = "5.00";
+            } else if(type.equalsIgnoreCase(INDIVIDUAL)){
+                if(Integer.parseInt(noOfMembers)>1){
+                    familyDiscount = "5.00";
+                }
             }
         }
         return familyDiscount;
