@@ -1,9 +1,11 @@
 package com.example.premiumcalculator;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -57,6 +60,9 @@ public class HealthPremiumDisplay extends AppCompatActivity {
         TextView disclaimerTextView = findViewById(R.id.disclaimerTextView);
         TextView commissionTextView = findViewById(R.id.commissionTextView);
         TextView floaterThresholdDisplay = findViewById(R.id.floaterThresholdDisplay);
+        Button shareQuoteButton = findViewById(R.id.shareQuoteButton);
+        View targetLayoutForShare = findViewById(R.id.targetLayoutForShare);
+        Button shareBrochureButton = findViewById(R.id.shareBrochureButton);
 
         disclaimerTextView.setText(CommonFunctions.DISCLAIMER_TEXT);
 
@@ -790,5 +796,35 @@ public class HealthPremiumDisplay extends AppCompatActivity {
                 }
             }
         }
+
+        // Share as Image
+        /*shareQuoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bitmap bitmap = CommonFunctions.getBitmapFromView(targetLayoutForShare);
+                File imageFile = CommonFunctions.saveBitmapToCache(HealthPremiumDisplay.this, bitmap);
+                if (imageFile != null) {
+                    CommonFunctions.shareImage(HealthPremiumDisplay.this, imageFile);
+                }
+            }
+        });*/
+        // Share as PDF
+        shareQuoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bitmap bitmap = CommonFunctions.getBitmapFromView(targetLayoutForShare);
+                File pdfFile = CommonFunctions.saveBitmapToPdf(HealthPremiumDisplay.this,bitmap, productName);
+                if (pdfFile != null) {
+                    CommonFunctions.sharePdf(HealthPremiumDisplay.this,pdfFile);
+                }
+            }
+        });
+
+        shareBrochureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommonFunctions.shareBrochure(HealthPremiumDisplay.this,productName);
+            }
+        });
     }
 }

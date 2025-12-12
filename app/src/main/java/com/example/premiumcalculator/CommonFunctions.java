@@ -3,17 +3,26 @@ package com.example.premiumcalculator;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import androidx.core.content.FileProvider;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -29,6 +38,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import android.graphics.pdf.PdfDocument;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;  // ← ADD THIS
+import android.graphics.drawable.ColorDrawable;
+import androidx.core.content.FileProvider;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 
 
 public class CommonFunctions {
@@ -3680,5 +3701,150 @@ public class CommonFunctions {
             });
         }
         builder.create().show();
+    }
+
+    public static Bitmap getBitmapFromView(View view) {
+        // Ensure it has correct size, even if off‑screen in ScrollView
+        int width = view.getWidth();
+        int height = view.getHeight();
+        if (width == 0 || height == 0) {
+            view.measure(
+                    View.MeasureSpec.makeMeasureSpec(((View)view.getParent()).getWidth(), View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            );
+            width = view.getMeasuredWidth();
+            height = view.getMeasuredHeight();
+            view.layout(0, 0, width, height);
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawColor(Color.WHITE);  // ← ADD THIS LINE
+
+        view.draw(canvas);
+        return bitmap;
+    }
+
+    public static File saveBitmapToCache(Context context, Bitmap bitmap, String product) {
+        File cachePath = new File(context.getCacheDir(), "images");
+        if (!cachePath.exists()) {
+            cachePath.mkdirs();
+        }
+        File file = new File(cachePath, product.concat(" Quote.png"));
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            return file;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (fos != null) {
+                try { fos.close(); } catch (IOException ignore) {}
+            }
+        }
+    }
+
+    public static void shareImage(Context context, File imageFile) {
+        String authority = context.getPackageName() + ".fileprovider";
+        Uri uri = FileProvider.getUriForFile(context, authority, imageFile);
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("image/png");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        context.startActivity(Intent.createChooser(shareIntent, "Share section"));
+    }
+
+    public static File saveBitmapToPdf(Context context, Bitmap bitmap, String product) {
+        File cachePath = new File(context.getCacheDir(), "pdfs");
+        if (!cachePath.exists()) {
+            cachePath.mkdirs();
+        }
+        File pdfFile = new File(cachePath, product.concat(" Quote.pdf"));
+
+        PdfDocument document = new PdfDocument();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(bitmap.getWidth(), bitmap.getHeight(), 1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+
+        Canvas canvas = page.getCanvas();
+        Paint paint = new Paint();
+        paint.setColor(Color.WHITE);
+        canvas.drawPaint(paint);  // Fill page with white
+        canvas.drawBitmap(bitmap, 0, 0, null);
+
+        document.finishPage(page);
+
+        try {
+            document.writeTo(new FileOutputStream(pdfFile));
+            document.close();
+            return pdfFile;
+        } catch (IOException e) {
+            e.printStackTrace();
+            document.close();
+            return null;
+        }
+    }
+
+    public static void sharePdf(Context context, File pdfFile) {
+        String authority = context.getPackageName() + ".fileprovider";
+        Uri uri = FileProvider.getUriForFile(context, authority, pdfFile);
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("application/pdf");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        context.startActivity(Intent.createChooser(shareIntent, "Share PDF"));
+    }
+
+    public static void shareBrochure(Context context, String productName) {
+        String fileName = "";
+        String cacheFileName = "";
+        if(productName.equalsIgnoreCase(FAMILY_MEDICARE_POLICY)){
+            fileName = "health/fmp/fmp_prospectus.pdf";
+            cacheFileName = "fmp_prospectus.pdf";
+        } else if (productName.equalsIgnoreCase(INDIVIDUAL_HEALTH_POLICY)) {
+            fileName = "health/ihp/ihp_prospectus.pdf";
+            cacheFileName = "ihp_prospectus.pdf";
+        } else if (productName.equalsIgnoreCase(YUVAAN_HEALTH_POLICY)) {
+            fileName = "health/yuvaan/yuvaan_prospectus.pdf";
+            cacheFileName = "yuvaan_prospectus.pdf";
+        } else if (productName.equalsIgnoreCase(STUMP)) {
+            fileName = "health/stump/stump_prospectus.pdf";
+            cacheFileName = "stump_prospectus.pdf";
+        } else if (productName.equalsIgnoreCase(SPECTRA_HEALTH_POLICY)) {
+            fileName = "health/spectra/spectra_prospectus.pdf";
+            cacheFileName = "spectra_prospectus.pdf";
+        }else if (productName.equalsIgnoreCase(UNI_CRITI_CARE_HEALTH_POLICY)){
+            fileName = "health/unicriticare/unicriticare_prospectus.pdf";
+            cacheFileName = "unicriticare_prospectus.pdf";
+        }
+        try {
+            File cacheFile = new File(context.getCacheDir(), cacheFileName);
+            AssetManager a = context.getAssets();
+            InputStream inputStream = context.getAssets().open(fileName);
+            FileOutputStream outputStream = new FileOutputStream(cacheFile);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, length);
+            }
+            outputStream.close();
+            inputStream.close();
+
+            Uri uri = FileProvider.getUriForFile(context, context.getPackageName() + ".fileprovider", cacheFile);
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("application/pdf");
+            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            context.startActivity(Intent.createChooser(shareIntent, "Share Prospectus"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
