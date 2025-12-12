@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         Button motorButton = findViewById(R.id.motorButton);
         TextView appVersion = findViewById(R.id.appVersion);
         Button checkForUpdates = findViewById(R.id.checkForUpdates);
+        Button paButton = findViewById(R.id.paButton);
+
         String versionName = "Unknown";
         try {
             versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
@@ -83,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MotorProductList.class);
+                startActivity(intent);
+            }
+        });
+
+        paButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PersonalAccidentList.class);
                 startActivity(intent);
             }
         });

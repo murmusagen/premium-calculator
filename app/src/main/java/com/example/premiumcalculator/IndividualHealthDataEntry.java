@@ -86,7 +86,7 @@ public class IndividualHealthDataEntry extends AppCompatActivity {
         typeSpinner.setAdapter(typeAdapter);
 
         ArrayAdapter<String> individualHealthMemberSIAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.IHP_SI_ARRAY);
-        ArrayAdapter<String> individualHealthNCDAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.NCB_ARRAY);
+        ArrayAdapter<String> individualHealthNCDAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.INDIVIDUAL_NCD_ARRAY);
 
 
         String[] healthZoneArray = {CommonFunctions.ZONE_C, CommonFunctions.ZONE_B, CommonFunctions.ZONE_A};

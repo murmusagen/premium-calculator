@@ -17,6 +17,12 @@
         android:windowSoftInputMode="adjustResize"
         tools:targetApi="31">
         <activity
+            android:name=".IndividualPersonalAccidentDataEntry"
+            android:exported="false" />
+        <activity
+            android:name=".PersonalAccidentList"
+            android:exported="false" />
+        <activity
             android:name=".UniCritiCareDataEntry"
             android:exported="false" />
         <activity
@@ -72,6 +78,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -81,7 +88,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>
