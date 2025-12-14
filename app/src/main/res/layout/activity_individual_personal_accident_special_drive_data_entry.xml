@@ -8,7 +8,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".IndividualPersonalAccidentDataEntry">
+    tools:context=".IndividualPersonalAccidentSpecialDriveDataEntry">
 
     <LinearLayout
         android:id="@+id/myLinearLayout"
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INDIVIDUAL PA"
+            android:text="IPA SPECIAL DRIVE"
             android:textAlignment="center"
             android:textSize="30dp"
             android:textStyle="bold">
@@ -141,19 +141,20 @@
                     android:weightSum="3">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:text="Sum Insured"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/sumInsuredEditText"
-                        android:layout_width="0dp"
+                    <Spinner
+                        android:id="@+id/ipaSpeciaDriveSISpinner"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:inputType="number" />
+                        android:layout_weight="1"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -163,48 +164,13 @@
                     android:layout_gravity="center"
                     android:background="@color/black" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Add-Ons"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:orientation="vertical">
-
-                        <CheckBox
-                            android:id="@+id/medicalExtensionCheckBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Medical Extension" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/black" />
 
                 <Button
-                    android:id="@+id/calculateIHPPremiumButton"
+                    android:id="@+id/calculateIPASpecialDrivePremiumButton"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

@@ -38,6 +38,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
 import android.graphics.pdf.PdfDocument;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -45,16 +46,44 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;  // ← ADD THIS
 import android.graphics.drawable.ColorDrawable;
+
 import androidx.core.content.FileProvider;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 
-
 public class CommonFunctions {
 
 
+    public static String INDIVIDUAL_PERSONAL_ACCIDENT_SPECIAL_DRIVE = "IPA Special Drive";
+    public static String INTENT_SUM_INSURED = "Sum Insured";
+    public static String INTENT_COVER_TABLE = "Cover Table";
+    public static String INTENT_RISK_GROUP = "Risk Group";
+    public static String INDIVIDUAL_PERSONAL_ACCIDENT = "Individual Personal Accident";
+    public static String INTENT_TOTAL_MEDICAL_EXTENSION_PREMUIM = "medical_extension_premium";
+    public static String PA_COVER_TABLE_I = "Table I DEATH";
+    public static String PA_COVER_TABLE_II = "Table II DEATH PTD";
+    public static String PA_COVER_TABLE_III = "Table III DEATH PTD PPD";
+    public static String PA_COVER_TABLE_IV = "Table IV DEATH PTD PPD TTD";
+    public static String[] PA_COVER_TABLE_ARRAY = {
+            PA_COVER_TABLE_I,
+            PA_COVER_TABLE_II,
+            PA_COVER_TABLE_III,
+            PA_COVER_TABLE_IV
+    };
+    public static String[] PA_SPECIAL_DRIVE_COVER_TABLE_ARRAY = {
+            PA_COVER_TABLE_I,
+            PA_COVER_TABLE_II
+    };
+    public static String PA_RISK_CATEGORY_I = "Group I";
+    public static String PA_RISK_CATEGORY_II = "Group II";
+    public static String PA_RISK_CATEGORY_III = "Group III";
+    public static String[] PA_RISK_CATEGORY_ARRAY = {PA_RISK_CATEGORY_I, PA_RISK_CATEGORY_II, PA_RISK_CATEGORY_III};
+    public static String[] PA_SPECIAL_DRIVE_RISK_CATEGORY_ARRAY = {PA_RISK_CATEGORY_I, PA_RISK_CATEGORY_II};
+
+    public static String ALL_RISK_CATEGORY_TEXT = "RISK GROUP I:\nAccountants, Doctors, Lawyers, Architects, Consulting Engineers, Teachers, Bankers, Persons engaged in administrative functions, Persons primarily engaged in occupations of similar hazard.\n\nRISK GROUP II:\nBuilders, Contractors and Engineers engaged in superintending functions only, Veterinary Doctors, Paid drivers of Motor Cars and Light Motor Vehicles and persons engaged in occupations of similar hazard and not engaged in manual labour. All persons engaged in manual labour (except those falling under Group III), Cash carrying employees, Garage and Motor mechanics, Machine Operators, Drivers of truck or lorries and other heavy vehicles, Professional Athletes and Sportsmen, Woodworking machinists and persons engaged in occupations of similar hazard.\n\nRISK GROUP III:\nPersons working in underground mines, explosives, magazines, workers involved in electrical installation with high tension supply. Jockey’s, Circus personnel, persons engaged in activities like racing on wheels or horseback, big game hunting, mountaineering, winter sports, skiing, ice hockey, ballooning, hand gliding, river rafting, polo and persons engaged in occupations/activities of similar hazard.";
     public static String ALL_ZONE_TEXT = "Zone - A : All Districts in NCT of Delhi (incl. Shahdara), Faridabad, Palwal, Gurugram, Rohtak, Jhajjar, Ghaziabad, Gautam Buddh Nagar, Bulandshahr, Ahmedabad, Ahmedabad City, Gandhi Nagar, Vadodara, Surat, Mumbai, Mumbai Suburban, Thane, Raigad (MH), Palghar\n\nZone - B : Ahmed Nagar, Amritsar, Anand, Bengaluru, Bhopal, Chennai, Coimbatore, Dakshina Kannada, Ernakulam, Howrah, Hyderabad, Indore, Jaipur, Jalgaon, Jodhpur, Kanpur Nagar, Kheda, Kolhapur, Kolkata, Kottayam, Krishna, Lucknow, Ludhiana, Nagpur, Nashik, North 24 Parganas, Pune, Rajkot, Ranga Reddy, Solapur, Thiruvananthapuram, Tiruvallur, Valsad, Visakhapatnam\n\nZone - C : Rest of India";
     public static String ANDAMAN_AND_NICOBAR_ISLANDS = "Andaman and Nicobar Islands";
     public static String ANDHRA_PRADESH = "Andhra Pradesh";
@@ -196,6 +225,7 @@ public class CommonFunctions {
     public static String SI_180000 = "180000";
     public static String SI_190000 = "190000";
     public static String SI_200000 = "200000";
+
     public static String GEO_EXTENSION_OD_PREMIUM = "400";
     public static String GEO_EXTENSION_TP_PREMIUM = "50";
     public static String CNG_LPG_KIT_TP_PREMIUM = "60";
@@ -317,7 +347,7 @@ public class CommonFunctions {
     public static String HEALTH_NCD_47_5 = "47.5";
     public static String HEALTH_NCD_50 = "50";
     public static String[] YUVAAN_NCD_ARRAY = {HEALTH_NCD_0, HEALTH_NCD_10, HEALTH_NCD_20};
-    public static String[] INDIVIDUAL_NCD_ARRAY = {HEALTH_NCD_0, HEALTH_NCD_5,HEALTH_NCD_10,HEALTH_NCD_15,HEALTH_NCD_20,HEALTH_NCD_25};
+    public static String[] INDIVIDUAL_NCD_ARRAY = {HEALTH_NCD_0, HEALTH_NCD_5, HEALTH_NCD_10, HEALTH_NCD_15, HEALTH_NCD_20, HEALTH_NCD_25};
     public static String[] ALL_STATES_ARRAY = {ANDAMAN_AND_NICOBAR_ISLANDS, ANDHRA_PRADESH, ARUNACHAL_PRADESH, ASSAM, BIHAR, CHANDIGARH, DELHI, GOA, GUJARAT, HARYANA, HIMACHAL_PRADESH, JAMMU_AND_KASHMIR, JHARKHAND, KARNATAKA, KERALA, MADHYA_PRADESH, MAHARASHTRA, MANIPUR, MEGHALAYA, MIZORAM, NAGALAND, ODISHA, PUDUCHERRY, PUNJAB, RAJASTHAN, TAMIL_NADU, TELANGANA, TRIPURA, UTTAR_PRADESH, UTTARAKHAND, WEST_BENGAL};
 
     public static String[] PVT_CAR_MANUFACTURER_ARRAY = {TATA, MARUTI, MAHINDRA, TOYOTA, HYUNDAI, HONDA, KIA, OTHERS};
@@ -382,6 +412,11 @@ public class CommonFunctions {
     public static String additionalIncentiveODAmount = "0.00";
     public static String additionalIncentiveTPRate = "0.00";
     public static String additionalIncentiveTPAmount = "0.00";
+    public static String[] PA_SPECIAL_DRIVE_SI_ARRAY ={
+            SI_250000,
+            SI_500000,
+            SI_1000000
+    };
 
 
     public static String[] calculateNDCoverPremium(String vehicle, int years, int months, String ndCoverRate, String basicODPremium) {
@@ -2673,7 +2708,7 @@ public class CommonFunctions {
                     familyDiscount = "25.00";
                 }
             } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
-                if(!familyComposition.equalsIgnoreCase(ONE_ADULT)){
+                if (!familyComposition.equalsIgnoreCase(ONE_ADULT)) {
                     familyDiscount = "5.00";
                 }
             }
@@ -2692,8 +2727,8 @@ public class CommonFunctions {
                 } else if (Integer.parseInt(noOfMembers) > 3) {
                     familyDiscount = "25.00";
                 }
-            } else if(type.equalsIgnoreCase(INDIVIDUAL)){
-                if(Integer.parseInt(noOfMembers)>1){
+            } else if (type.equalsIgnoreCase(INDIVIDUAL)) {
+                if (Integer.parseInt(noOfMembers) > 1) {
                     familyDiscount = "5.00";
                 }
             }
@@ -3693,7 +3728,7 @@ public class CommonFunctions {
                 dialogInterface.dismiss();
             }
         });
-        if(!negative.equalsIgnoreCase("")){
+        if (!negative.equalsIgnoreCase("")) {
             builder.setNegativeButton(negative, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -3710,7 +3745,7 @@ public class CommonFunctions {
         int height = view.getHeight();
         if (width == 0 || height == 0) {
             view.measure(
-                    View.MeasureSpec.makeMeasureSpec(((View)view.getParent()).getWidth(), View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(((View) view.getParent()).getWidth(), View.MeasureSpec.EXACTLY),
                     View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
             );
             width = view.getMeasuredWidth();
@@ -3743,7 +3778,10 @@ public class CommonFunctions {
             return null;
         } finally {
             if (fos != null) {
-                try { fos.close(); } catch (IOException ignore) {}
+                try {
+                    fos.close();
+                } catch (IOException ignore) {
+                }
             }
         }
     }
@@ -3804,7 +3842,7 @@ public class CommonFunctions {
     public static void shareBrochure(Context context, String productName) {
         String fileName = "";
         String cacheFileName = "";
-        if(productName.equalsIgnoreCase(FAMILY_MEDICARE_POLICY)){
+        if (productName.equalsIgnoreCase(FAMILY_MEDICARE_POLICY)) {
             fileName = "health/fmp/fmp_prospectus.pdf";
             cacheFileName = "fmp_prospectus.pdf";
         } else if (productName.equalsIgnoreCase(INDIVIDUAL_HEALTH_POLICY)) {
@@ -3819,9 +3857,12 @@ public class CommonFunctions {
         } else if (productName.equalsIgnoreCase(SPECTRA_HEALTH_POLICY)) {
             fileName = "health/spectra/spectra_prospectus.pdf";
             cacheFileName = "spectra_prospectus.pdf";
-        }else if (productName.equalsIgnoreCase(UNI_CRITI_CARE_HEALTH_POLICY)){
+        } else if (productName.equalsIgnoreCase(UNI_CRITI_CARE_HEALTH_POLICY)) {
             fileName = "health/unicriticare/unicriticare_prospectus.pdf";
             cacheFileName = "unicriticare_prospectus.pdf";
+        } else if (productName.equalsIgnoreCase(INDIVIDUAL_PERSONAL_ACCIDENT) || productName.equalsIgnoreCase(INDIVIDUAL_PERSONAL_ACCIDENT_SPECIAL_DRIVE)) {
+            fileName = "personal_accident/ipa_brochure.pdf";
+            cacheFileName = "ipa_brochure.pdf";
         }
         try {
             File cacheFile = new File(context.getCacheDir(), cacheFileName);
@@ -3844,8 +3885,117 @@ public class CommonFunctions {
             context.startActivity(Intent.createChooser(shareIntent, "Share Prospectus"));
         } catch (IOException e) {
             e.printStackTrace();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<HashMap<String, String>> calculateIPAPremium(String riskCategory, String coverTable, String sumInsured, boolean medicalExtension, boolean isSpecialDrive) {
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+
+        String basicPremiumRate = "0.00";
+        String basicPremiumAmount;
+        String medicalExtensionPremium = "0.00";
+        String totalGstAmount;
+        String totalGrossPremiumAfterAddOns;
+        String totalNetPremium;
+        String commission;
+
+        if(isSpecialDrive){
+            if(coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)) {
+                if(sumInsured.equalsIgnoreCase(CommonFunctions.SI_250000)){
+                    basicPremiumRate = "0.4";
+                } else if (sumInsured.equalsIgnoreCase(CommonFunctions.SI_500000)) {
+                    basicPremiumRate = "0.4";
+                } else if (sumInsured.equalsIgnoreCase(CommonFunctions.SI_1000000)) {
+                    basicPremiumRate = "0.35";
+                }
+            } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_II)) {
+                if(sumInsured.equalsIgnoreCase(CommonFunctions.SI_250000)){
+                    basicPremiumRate = "0.5";
+                } else if (sumInsured.equalsIgnoreCase(CommonFunctions.SI_500000)) {
+                    basicPremiumRate = "0.45";
+                } else if (sumInsured.equalsIgnoreCase(CommonFunctions.SI_1000000)) {
+                    basicPremiumRate = "0.45";
+                }
+            }
+        }else{
+            if(riskCategory.equalsIgnoreCase(PA_RISK_CATEGORY_I)){
+                if(coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)){
+                    basicPremiumRate = "0.42";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_II)) {
+                    basicPremiumRate = "0.65";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_III)) {
+                    basicPremiumRate = "0.95";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_IV)) {
+                    basicPremiumRate = "1.50";
+                }
+            } else if (riskCategory.equalsIgnoreCase(PA_RISK_CATEGORY_II)) {
+                if(coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)){
+                    basicPremiumRate = "0.60";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_II)) {
+                    basicPremiumRate = "0.90";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_III)) {
+                    basicPremiumRate = "1.25";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_IV)) {
+                    basicPremiumRate = "2.00";
+                }
+            } else if (riskCategory.equalsIgnoreCase(PA_RISK_CATEGORY_III)) {
+                if(coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)){
+                    basicPremiumRate = "0.90";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_II)) {
+                    basicPremiumRate = "1.30";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_III)) {
+                    basicPremiumRate = "1.75";
+                } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_IV)) {
+                    basicPremiumRate = "3.00";
+                }
+            }
+        }
+
+        basicPremiumAmount = Double.toString(Double.parseDouble(sumInsured)/1000.00 * Double.parseDouble(basicPremiumRate));
+        if(Double.parseDouble(basicPremiumAmount)<50){
+            basicPremiumAmount = "50.00";
+        }
+        if(medicalExtension){
+            medicalExtensionPremium = Double.toString(20.00/100.00 * Double.parseDouble(basicPremiumAmount));
+        }
+        totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(basicPremiumAmount) + Double.parseDouble(medicalExtensionPremium));
+        totalGstAmount = Double.toString(GST_0/100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+        totalNetPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(totalGstAmount));
+        commission = calculateCommissionForPA(totalGrossPremiumAfterAddOns, isSpecialDrive);
+        map.put(INTENT_TOTAL_BASIC_PREMIUM,basicPremiumAmount);
+        map.put(INTENT_TOTAL_GROSS_PREMIUM,totalGrossPremiumAfterAddOns);
+        map.put(INTENT_TOTAL_MEDICAL_EXTENSION_PREMUIM, medicalExtensionPremium);
+        map.put(INTENT_TOTAL_GST, totalGstAmount);
+        map.put(INTENT_TOTAL_NET_PREMIUM, totalNetPremium);
+        map.put(INTENT_TOTAL_COMMISSION, commission);
+        output.add(map);
+        int i = 0;
+        return output;
+    }
+
+    private static String calculateCommissionForPA(String premium, boolean isSpecialDrive) {
+        String output;
+        String commissionRate;
+        if(isSpecialDrive){
+            commissionRate = "20.00";
+        }else{
+            commissionRate = "25.00";
+        }
+        String incentiveRate = "0.00";
+        String portalCharges;
+        if(Double.parseDouble(premium)>=500){
+            portalCharges = "50.00";
+        }else{
+            portalCharges = "20.00";
+        }
+        String portalIncentiveRate = "0.25";
+        String commissionAmount = Double.toString(Double.parseDouble(commissionRate)/100.00 * Double.parseDouble(premium));
+        String incentiveAmount = Double.toString(Double.parseDouble(incentiveRate)/100.00 * Double.parseDouble(premium));
+        String portalIncentiveAmount = Double.toString(Double.parseDouble(portalIncentiveRate)/100.00 * Double.parseDouble(premium));
+        output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentiveAmount)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount));
+        return output;
     }
 }

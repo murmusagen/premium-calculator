@@ -27,13 +27,22 @@ public class PersonalAccidentList extends AppCompatActivity {
             return insets;
         });
 
-        individualPAButton = findViewById(R.id.paSpecialDriveButton);
+        individualPAButton = findViewById(R.id.individualPAButton);
         paSpecialDriveButton = findViewById(R.id.paSpecialDriveButton);
 
         individualPAButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PersonalAccidentList.this, IndividualPersonalAccidentDataEntry.class);
+                startActivity(intent);
+            }
+        });
+
+        paSpecialDriveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PersonalAccidentList.this, IndividualPersonalAccidentSpecialDriveDataEntry.class);
+                startActivity(intent);
             }
         });
 
