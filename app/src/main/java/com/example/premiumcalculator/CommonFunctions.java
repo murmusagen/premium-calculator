@@ -40,23 +40,57 @@ import java.util.Iterator;
 import java.util.Map;
 
 import android.graphics.pdf.PdfDocument;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.pdf.PdfDocument;  // ← ADD THIS
-import android.graphics.drawable.ColorDrawable;
-
-import androidx.core.content.FileProvider;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import android.widget.TextView;
 
 
 public class CommonFunctions {
 
 
+    public static String INTENT_TP_PASSENGER_LIABILITY_PREMIUM = "llToPassengerPremium";
+    public static String INTENT_MOTOR_PASSENGER_CAPACITY = "passengerCapacityEditText";
+    public static  String INTENT_MOTOR_PCV_CATEGORY = "pcvCategorySpinner";
+    public static String INTENT_MOTOR_PCV_TYPE = "pcvTypeSpinner";
+    public static String INTENT_BASIC_OD_TYRE_AND_RIM_PROTECTOR_SI = "tyreAndRimProtectorSI";
+    public static String INTENT_BASIC_OD_TYRE_AND_RIM_PROTECTOR_PREMIUM = "tyreAndRimProtectorPremium";
+    public static String INTENT_BASIC_OD_EV_PROTECT_PREMIUM = "evProtectPremium";
+    public static String INTENT_BASIC_OD_LPG_CNG_KIT = "lpgCngKitOD";
+    public static String INTENT_BASIC_TP_LPG_CNG_KIT = "lpgCngKitTP";
+
+    public static String INTENT_BASIC_OD_IMT23 = "imt23Premium";
+    public static String INTENT_BASIC_TP_GEOGRAPHICAL_EXTENSION = "geoExtensionTPPremium";
+    public static String INTENT_BASIC_OD_ADDITIONAL_TOWING = "additionalTowingPremium";
+    public static String INTENT_BASIC_OD_GEOGRAPHICAL_EXTENSION = "geoExtensionODPremium";
+    public static String INTENT_MOTOR_GCV_TYPE = "gcvTypeSpinner";
+    public static String INTENT_MOTOR_GVW = "gvwEditText";
+    public static String INTENT_MOTOR_MANUFACTURER = "pvtCarManufacturerSpinner";
+    public static String INTENT_BASIC_OD_PERSONAL_EFFECT_SI = "personalEffectSI";
+    public static String INTENT_BASIC_OD_PERSONAL_EFFECT_PREMIUM = "personalEffectPremium";
+    public static String INTENT_TOTAL_GST_RATE = "gstRate";
+    public static String ROLL_OVER = "Roll Over";
+    public static String RENEWAL = "Renewal";
+    public static String[] MOTOR_TRANSACTION_TYPE_ARRAY_WITH_NA = {
+            "NA",
+            ROLL_OVER,
+            RENEWAL
+    };
+
+    public static String[] MOTOR_TRANSACTION_TYPE_ARRAY_WITHOUT_NA = {
+            ROLL_OVER,
+            RENEWAL
+    };
+    public static String MOTOR_PACKAGE = "Package";
+    public static String MOTOR_STANDALONE_OD = "Standalone OD";
+    public static String MOTOR_LIABILITY_ONLY = "Liability Only";
+    public static String[] MOTOR_POLICY_TYPE_ARRAY = {
+            MOTOR_PACKAGE,
+            MOTOR_STANDALONE_OD,
+            MOTOR_LIABILITY_ONLY
+    };
+    public static String[] MOTOR_POLICY_TYPE_WITHOUT_SAOD_ARRAY = {
+            MOTOR_PACKAGE,
+            MOTOR_LIABILITY_ONLY
+    };
     public static String INDIVIDUAL_PERSONAL_ACCIDENT_SPECIAL_DRIVE = "IPA Special Drive";
     public static String INTENT_SUM_INSURED = "Sum Insured";
     public static String INTENT_COVER_TABLE = "Cover Table";
@@ -133,6 +167,28 @@ public class CommonFunctions {
     public static String INTENT_TOTAL_NCD_AMOUNT = "total_ncd_amount";
     public static String INTENT_TOTAL_FAMILY_DISCOUNT = "total_family_discount";
     public static String INTENT_TOTAL_GROSS_PREMIUM = "total_gross_premium";
+    public static String INTENT_BASIC_OD_RATE = "basicODRate";
+    public static String INTENT_BASIC_OD_PREMIUM = "basicODPremium";
+    public static String INTENT_BASIC_OD_DISCOUNT_RATE = "odDiscount";
+    public static String INTENT_OD_DISCOUNT_AMOUNT = "discountApplied";
+    public static String INTENT_BASIC_OD_ND_RATE = "ndCoverRate";
+    public static String INTENT_BASIC_OD_ND_AMOUNT = "ndCoverPremium";
+    public static String INTENT_BASIC_OD_CONSUMABLES = "consumablesPremium";
+    public static String INTENT_BASIC_OD_ENGINE_PROTECTION = "engineProtectionPremium";
+    public static String INTENT_BASIC_OD_RTI = "rtiPremium";
+    public static String INTENT_BASIC_OD_LOSS_OF_KEY_PREMIUM = "lossOfKeyPremium";
+    public static String INTENT_BASIC_OD_LOSS_OF_KEY_SI = "lossOfKeySI";
+    public static String INTENT_BASIC_OD_RSA = "rsaPremium";
+    public static String INTENT_BASIC_OD_NCB_RATE = "ncb";
+    public static String INTENT_BASIC_OD_NCB_AMOUNT = "ncbAmount";
+    public static String INTENT_BASIC_OD_TOTAL_OD_PREMIUM = "totalODPremium";
+    public static String INTENT_TP_BASIC = "basicTPPremium";
+    public static String INTENT_TP_CPA = "cpaPremium";
+    public static String INTENT_TP_LL_TO_PAID_DRIVER = "llToPaidDriverPremium";
+    public static String INTENT_TP_PA_TO_PAID_DRIVER = "paToPaidDriverPremium";
+    public static String INTENT_TP_PA_TO_PASSENGER_PREMIUM = "paToPassengerPremium";
+    public static String INTENT_TP_PA_TO_PASSENGER_SI = "paToPassengerTotalSI";
+    public static String INTENT_TP_TOTAL_TP_PREMIUM = "totalTPPremium";
     public static String INTENT_TOTAL_DAILY_CASH_PREMIUM = "total_daily_cash_premium";
     public static String INTENT_TOTAL_GST = "total_gst";
     public static String INTENT_TOTAL_NET_PREMIUM = "total_net_premium";
@@ -146,6 +202,14 @@ public class CommonFunctions {
     public static String INTENT_ZONE = "zone";
     public static String INTENT_TYPE = "type";
     public static String INTENT_PRODUCT_NAME = "product_name";
+    public static String INTENT_MOTOR_POLICY_TYPE = "policyTypeSpinner";
+    public static String INTENT_MOTOR_VEHICLE_TYPE = "typeSpinner";
+    public static String INTENT_MOTOR_TRANSACTION_TYPE = "transactionTypeSpinner";
+    public static String INTENT_MOTOR_RTO_STATE = "rtoStateSpinner";
+    public static String INTENT_MOTOR_VEHICLE_AGE = "ageOfTheVehicle";
+    public static String INTENT_MOTOR_FUEL_TYPE = "fuelTypeSpinner";
+    public static String INTENT_MOTOR_CC = "ccEditText";
+    public static String INTENT_MOTOR_IDV = "idvEditText";
     public static String INTENT_MEMBER_AGE = "member_age";
     public static String INTENT_MEMBER_SI = "member_si";
     public static String FAMILY_MEDICARE_POLICY = "Family Medicare Policy";
@@ -202,11 +266,16 @@ public class CommonFunctions {
     public static String NCB_50 = "50";
     public static String OTHER_THAN_THREE_WHEELER = "Other Than 3 Wheeler";
     public static String THREE_WHEELER = "3 Wheeler";
+    public static String[] MOTOR_GCV_TYPE_ARRAY = {
+            OTHER_THAN_THREE_WHEELER,
+            THREE_WHEELER
+    };
     public static String THREE_WHEELER_PCV = "3 Wheeler PCV";
     public static String FOUR_WHEELER_PCV = "Taxi/Cab";
     public static String BUS_MAXI_LUXURY_PCV = "Bus/Maxi/Luxury Cab";
     public static String SI_10000 = "10000";
     public static String SI_20000 = "20000";
+    public static String SI_25000 = "25000";
     public static String SI_30000 = "30000";
     public static String SI_40000 = "40000";
     public static String SI_50000 = "50000";
@@ -233,12 +302,14 @@ public class CommonFunctions {
     public static String PNE_YEAR_OD_PLUS_ONE_YEAR_TP = "1 Year OD + 3 Year TP";
     public static String[] PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY = {"NA", SI_10000, SI_20000, SI_30000, SI_40000, SI_50000, SI_60000, SI_70000, SI_80000, SI_90000, SI_100000, SI_110000, SI_120000, SI_130000, SI_140000, SI_150000, SI_160000, SI_170000, SI_180000, SI_190000, SI_200000};
     public static String[] TYPE_ARRAY = {PRE_OWNED, NEW};
+    public static String[] TYPE_ARRAY_PRE_OWNED_ONLY = {PRE_OWNED};
     public static String[] HEALTH_TYPE_ARRAY = {FLOATER, INDIVIDUAL};
     public static String[] IS_SAOD_ARRAY = {NO, YES};
     public static String[] ZONE_TW_PVT_ARRAY = {ZONE_B, ZONE_A};
     public static String[] TW_FUEL_TYPE = {PETROL, ELECTRIC};
     public static String[] PVT_FUEL_TYPE = {PETROL, DIESEL, ELECTRIC};
-    public static String[] CPA_ARRAY = {"No", ONE_YEAR, FIVE_YEAR};
+    public static String[] CPA_ARRAY_LONG_TERM = {"No", ONE_YEAR, FIVE_YEAR};
+    public static String[] CPA_ARRAY_ONE_YEAR = {"No", ONE_YEAR};
     public static String[] TW_CC_PETROL_ARRAY = {UPTO_75, BETWEEN_76_150, BETWEEN_151_350, ABOVE_350};
     //public static String[] PVT_CC_PETROL_ARRAY = {UPTO_1000, BETWEEN_1001_1500, ABOVE_1500};
     //02/11/2025
@@ -412,12 +483,63 @@ public class CommonFunctions {
     public static String additionalIncentiveODAmount = "0.00";
     public static String additionalIncentiveTPRate = "0.00";
     public static String additionalIncentiveTPAmount = "0.00";
-    public static String[] PA_SPECIAL_DRIVE_SI_ARRAY ={
+    public static String[] PA_SPECIAL_DRIVE_SI_ARRAY = {
             SI_250000,
             SI_500000,
             SI_1000000
     };
+    public static String[] GCV_FUEL_TYPE = {
+            PETROL,
+            DIESEL,
+            ELECTRIC
+    };
 
+    public static String[] ZONE_GCV = {
+            ZONE_C,
+            ZONE_B,
+            ZONE_A
+    };
+    public static String[] TYRE_AND_RIM_PROTECTOR_SI_ARRAY = {
+            "NA",
+            SI_25000,
+            SI_50000,
+            SI_100000,
+            SI_200000
+    };
+
+    public static String[] MOTOR_PCV_TYPE_ARRAY = {
+            THREE_WHEELER_PCV,
+            FOUR_WHEELER_PCV,
+            BUS_MAXI_LUXURY_PCV
+    };
+
+    public static String[] MOTOR_PCV_BUS_CATEGORY = {
+            OTHERS,
+            INSTITUTION_BUS,
+    };
+
+    public static String[] MOTOR_PCV_ZONE_A_B_C = {
+            ZONE_C,
+            ZONE_B,
+            ZONE_A
+    };
+
+    public static String[] MOTOR_PCV_ZONE_A_B = {
+            ZONE_B,
+            ZONE_A
+    };
+
+    public static String[] MOTOR_PCV_FUEL_TYPE_OTHERS = {
+            PETROL,
+            DIESEL,
+            ELECTRIC
+    };
+
+    public static String[] MOTOR_PCV_FUEL_TYPE_FOR_THREE_WHEELERS = {
+            PETROL,
+            DIESEL,
+            E_RIKSHAW
+    };
 
     public static String[] calculateNDCoverPremium(String vehicle, int years, int months, String ndCoverRate, String basicODPremium) {
 
@@ -429,11 +551,19 @@ public class CommonFunctions {
                 } else {
                     ndCoverRate = "20";
                 }
-            } else if (years == 1 || years == 2 || years == 3) {
+            } else if (years == 1) {
                 if (months <= 5) {
                     ndCoverRate = "20";
                 } else {
                     ndCoverRate = "30";
+                }
+            } else if (years == 2 || years == 3) {
+                ndCoverRate = "30";
+            } else if (years == 4) {
+                if (months <= 5) {
+                    ndCoverRate = "30";
+                } else {
+                    ndCoverRate = "40";
                 }
             } else {
                 ndCoverRate = "40";
@@ -604,6 +734,7 @@ public class CommonFunctions {
         return rsaPremium;
     }
 
+/*
     public static String calculateBasicODRateForTW(String ageOfTheVehicle, Spinner zoneSpinner, Spinner ccSpinner) {
         String basicODRate = "0.00";
         if (zoneSpinner.getSelectedItem().toString().equalsIgnoreCase(ZONE_A)) {
@@ -661,6 +792,68 @@ public class CommonFunctions {
         }
         return basicODRate;
     }
+*/
+
+    public static String calculateBasicODRateForTW(String ageOfTheVehicle, String zone, String cc) {
+        String basicODRate = "0.00";
+        if (zone.equalsIgnoreCase(ZONE_A)) {
+            if (Double.parseDouble(ageOfTheVehicle) <= 5.00) {
+                if (Double.parseDouble(cc) <= 150) {
+                    basicODRate = "1.708";
+                } else if (Double.parseDouble(cc) >= 151 && Double.parseDouble(cc) <= 350) {
+                    basicODRate = "1.793";
+                } else if (Double.parseDouble(cc) <= 351) {
+                    basicODRate = "1.879";
+                }
+            } else if (Double.parseDouble(ageOfTheVehicle) > 5.00 && Double.parseDouble(ageOfTheVehicle) <= 10.00) {
+                if (Double.parseDouble(cc) <= 150) {
+                    basicODRate = "1.793";
+                } else if (Double.parseDouble(cc) >= 151 && Double.parseDouble(cc) <= 350) {
+                    basicODRate = "1.883";
+                } else if (Double.parseDouble(cc) <= 351) {
+                    basicODRate = "1.973";
+                }
+            } else if (Double.parseDouble(ageOfTheVehicle) > 10.00) {
+
+                if (Double.parseDouble(cc) <= 150) {
+                    basicODRate = "1.836";
+                } else if (Double.parseDouble(cc) >= 151 && Double.parseDouble(cc) <= 350) {
+                    basicODRate = "1.928";
+                } else if (Double.parseDouble(cc) <= 351) {
+                    basicODRate = "2.020";
+                }
+            }
+        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+            if (Double.parseDouble(ageOfTheVehicle) <= 5.00) {
+                if (Double.parseDouble(cc) <= 150) {
+                    basicODRate = "1.676";
+                } else if (Double.parseDouble(cc) >= 151 && Double.parseDouble(cc) <= 350) {
+                    basicODRate = "1.760";
+                } else if (Double.parseDouble(cc) <= 351) {
+                    basicODRate = "1.844";
+                }
+            } else if (Double.parseDouble(ageOfTheVehicle) > 5.00 && Double.parseDouble(ageOfTheVehicle) <= 10.00) {
+
+                if (Double.parseDouble(cc) <= 150) {
+                    basicODRate = "1.760";
+                } else if (Double.parseDouble(cc) >= 151 && Double.parseDouble(cc) <= 350) {
+                    basicODRate = "1.848";
+                } else if (Double.parseDouble(cc) <= 351) {
+                    basicODRate = "1.936";
+                }
+            } else if (Double.parseDouble(ageOfTheVehicle) > 10.00) {
+                if (Double.parseDouble(cc) <= 150) {
+                    basicODRate = "1.802";
+                } else if (Double.parseDouble(cc) >= 151 && Double.parseDouble(cc) <= 350) {
+                    basicODRate = "1.892";
+                } else if (Double.parseDouble(cc) <= 351) {
+                    basicODRate = "1.982";
+                }
+            }
+        }
+        return basicODRate;
+    }
+
 
     public static String calculateBasicODRateForGCV(String ageOfTheVehicle, Spinner typeSpinner, Spinner zoneSpinner) {
         String basicODRate = "0.00";
@@ -935,6 +1128,18 @@ public class CommonFunctions {
         return cpaPremium;
     }
 
+    public static String calculateCPAPremiumNew(String cpaOption) {
+        String cpaPremium = "0.00";
+        if (cpaOption.equalsIgnoreCase("No")) {
+            cpaPremium = "0.00";
+        } else if (cpaOption.equalsIgnoreCase(CommonFunctions.ONE_YEAR)) {
+            cpaPremium = "275";
+        } else if (cpaOption.equalsIgnoreCase(CommonFunctions.FIVE_YEAR)) {
+            cpaPremium = "1375";
+        }
+        return cpaPremium;
+    }
+
     public static String calculateBasicTPPremiumForGCV(EditText gvw, Spinner typeSpinner, String fuel) {
         String basicTPPremium = "0.00";
         if (!gvw.getText().toString().trim().equalsIgnoreCase("")) {
@@ -1026,12 +1231,9 @@ public class CommonFunctions {
             tpPremium = Double.toString(Double.parseDouble(tpPremium) - (Double.parseDouble(HYBRID_DISCOUNT) / 100.00 * Double.parseDouble(tpPremium)));
             perPassenger = Double.toString(Double.parseDouble(perPassenger) - (Double.parseDouble(HYBRID_DISCOUNT) / 100.00 * Double.parseDouble(perPassenger)));
         }
-
         tpArray[0] = tpPremium;
         tpArray[1] = perPassenger;
-
         return tpArray;
-
     }
 
     public static String calculateBasicTPPremiumForPrivateCar(Spinner fuelTypeSpinner, Spinner typeSpinner, String cc) {
@@ -1227,6 +1429,95 @@ public class CommonFunctions {
 
         return payout;
     }
+
+    public static String calculatePayoutForTwoWheelerNew(String fuel, String cc, String rtoState, String isSAOD, String netPremium) {
+
+        commissionRate = "0.00";
+        commissionAmount = "0.00";
+        incentiveRate = "0.00";
+        incentiveAmount = "0.00";
+        portalChargesRate = "0.00";
+        portalChargesRateAmount = "0.00";
+        portalIncentiveRate = "0.00";
+        portalIncentiveAmount = "0.00";
+
+        if (Double.parseDouble(netPremium) <= 500.00) {
+            portalChargesRate = "20.00";
+        } else {
+            portalChargesRate = "50.00";
+        }
+        portalIncentiveRate = "0.75";
+        String[] payout = new String[8];
+
+        if (isSAOD.equalsIgnoreCase(CommonFunctions.YES)) {
+            commissionRate = "20.00";
+        } else {
+            if (fuel.equalsIgnoreCase(PETROL)) {
+                if (Double.parseDouble(cc) <= 350) {
+                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                            rtoState.equalsIgnoreCase(KERALA) ||
+                            rtoState.equalsIgnoreCase(KARNATAKA) ||
+                            rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                            rtoState.equalsIgnoreCase(ASSAM)) {
+                        commissionRate = "5.00";
+                        incentiveRate = "0.00";
+                    } else {
+                        commissionRate = "22.50";
+                        incentiveRate = "0.00";
+                    }
+                } else if (Double.parseDouble(cc) > 350) {
+                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                            rtoState.equalsIgnoreCase(KERALA) ||
+                            rtoState.equalsIgnoreCase(KARNATAKA) ||
+                            rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                            rtoState.equalsIgnoreCase(ASSAM)) {
+                        commissionRate = "5.00";
+                        incentiveRate = "0.00";
+                    } else {
+                        commissionRate = "17.50";
+                        incentiveRate = "0.00";
+                    }
+                }
+            } else if (fuel.equalsIgnoreCase(ELECTRIC)) {
+                if (rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                        rtoState.equalsIgnoreCase(KERALA) ||
+                        rtoState.equalsIgnoreCase(KARNATAKA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(ASSAM)) {
+                    commissionRate = "5.00";
+                    incentiveRate = "0.00";
+                } else {
+                    commissionRate = "22.50";
+                    incentiveRate = "0.00";
+                }
+            }
+        }
+
+        payout[0] = setCurrencyFormat(Double.toString((Double.parseDouble(commissionRate) / 100.00) * Double.parseDouble(netPremium)));
+        payout[1] = " ( ".concat(commissionRate).concat(" % of Net Premium )");
+        payout[2] = setCurrencyFormat(Double.toString((Double.parseDouble(incentiveRate) / 100.00) * Double.parseDouble(netPremium)));
+        ;
+        payout[3] = " ( ".concat(incentiveRate).concat(" % of Net Premium )");
+        payout[4] = setCurrencyFormat(portalChargesRate);
+        payout[5] = " ( Fixed Charges )";
+        payout[6] = setCurrencyFormat(Double.toString((Double.parseDouble(portalIncentiveRate) / 100.00) * Double.parseDouble(netPremium)));
+        payout[7] = " ( ".concat(portalIncentiveRate).concat(" % of Net Premium )");
+
+        String output = "Approx Commission: ".
+                concat(payout[0]).
+                concat(payout[1]).concat("\n").
+                concat("Approx Incentive: ").
+                concat(payout[2]).
+                concat(payout[3]).concat("\n").
+                concat("Approx Portal Charges: ").
+                concat(payout[4]).
+                concat(payout[5]).concat("\n").
+                concat("Approx Portal Incentive: ").
+                concat(payout[6]).
+                concat(payout[7]);
+        return output;
+    }
+
 
     public static ArrayList<String> calculatePayoutForPvtCar(String fuel, String cc, String isSAOD, String type, String manufacturer, String netPremium, String totalODPremium, String totalTPPremium, String rtoState) {
 
@@ -1648,8 +1939,25 @@ public class CommonFunctions {
         return result;
     }
 
+    public static String[] calculatePAToPassengerNew(String vehicle, String paToPassengerSI, String noOfPassenger) {
 
-    public static String[] calculatePayoutForPCV(String type, String rtoState, String netPremium, String fuelType, String passengerCapacity, String category) {
+        String[] result = new String[2];
+        double rate = 0.00;
+        if (vehicle.equalsIgnoreCase(PRIVATE_CAR) || vehicle.equalsIgnoreCase(TWO_WHEELER)) {
+            rate = 5.00;
+        } else if (vehicle.equalsIgnoreCase(GCV) || vehicle.equalsIgnoreCase(PCV)) {
+            rate = 7.00;
+        }
+        String paToPassengerSIOutput = Double.toString(Double.parseDouble(paToPassengerSI) / 10000.00 * rate);
+        String paToPassengerTotalSI = Double.toString(Double.parseDouble(paToPassengerSI) * Double.parseDouble(noOfPassenger));
+        String paToPassengerPremium = Double.toString(Double.parseDouble(noOfPassenger) * Double.parseDouble(paToPassengerSIOutput));
+        result[0] = paToPassengerPremium;
+        result[1] = paToPassengerTotalSI;
+        return result;
+    }
+
+
+    public static String calculatePayoutForPCV(String type, String rtoState, String netPremium, String fuelType, String passengerCapacity, String category) {
         String[] payout = new String[8];
         commissionRate = "0.00";
         commissionAmount = "0.00";
@@ -1673,66 +1981,83 @@ public class CommonFunctions {
         }
         if (type.equalsIgnoreCase(BUS_MAXI_LUXURY_PCV)) {
             if (category.equalsIgnoreCase(INSTITUTION_BUS)) {
-                if (rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU)) {
-                    commissionRate = "30.00";
-                } else {
-                    commissionRate = "30.00";
-                    incentiveRate = "32.50";
-                }
+                commissionRate = "62.50";
             } else {
                 if (passenger <= 10) {
-                    if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(RAJASTHAN)) {
+                    if (rtoState.equalsIgnoreCase(HARYANA) ||
+                            rtoState.equalsIgnoreCase(RAJASTHAN)) {
                         commissionRate = "10.00";
                     } else {
-                        commissionRate = "10.00";
-                        incentiveRate = "10.00";
+                        commissionRate = "20.00";
                     }
                 } else if (passenger > 10 && passenger <= 20) {
-                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(KARNATAKA)) {
+                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                            rtoState.equalsIgnoreCase(KARNATAKA)) {
                         commissionRate = "10.00";
                     } else {
-                        commissionRate = "10.00";
-                        incentiveRate = "10.00";
+                        commissionRate = "20.00";
                     }
                 } else if (passenger > 20 && passenger <= 30) {
-                    if (rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
-                        commissionRate = "7.50";
-                    } else {
-                        commissionRate = "7.50";
-                        incentiveRate = "2.50";
+                    if(fuelType.equalsIgnoreCase(ELECTRIC)){
+                        commissionRate = "10.00";
+                    }else{
+                        if (rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                                rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                                rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+                            commissionRate = "7.50";
+                        } else {
+                            commissionRate = "10.00";
+                        }
                     }
                 } else if (passenger > 30) {
-                    commissionRate = "5.00";
+                    if(fuelType.equalsIgnoreCase(ELECTRIC)){
+                        commissionRate = "10.00";
+                    }else{
+                        commissionRate = "5.00";
+                    }
                 }
             }
         } else if (type.equalsIgnoreCase(THREE_WHEELER_PCV)) {
-            if (rtoState.equalsIgnoreCase(KERALA) || rtoState.equalsIgnoreCase(MADHYA_PRADESH) || rtoState.equalsIgnoreCase(TAMIL_NADU)) {
+            if (rtoState.equalsIgnoreCase(MADHYA_PRADESH)) {
                 commissionRate = "25.00";
             } else {
-                commissionRate = "25.00";
-                incentiveRate = "12.50";
+                commissionRate = "40.00";
             }
         } else if (type.equalsIgnoreCase(FOUR_WHEELER_PCV)) {
-            if (rtoState.equalsIgnoreCase(HARYANA) || rtoState.equalsIgnoreCase(KARNATAKA) || rtoState.equalsIgnoreCase(RAJASTHAN) || rtoState.equalsIgnoreCase(TAMIL_NADU) || rtoState.equalsIgnoreCase(UTTAR_PRADESH) || rtoState.equalsIgnoreCase(MADHYA_PRADESH)) {
+            if (rtoState.equalsIgnoreCase(HARYANA) ||
+                    rtoState.equalsIgnoreCase(KARNATAKA) ||
+                    rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                    rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                    rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
+                    rtoState.equalsIgnoreCase(MADHYA_PRADESH)) {
                 commissionRate = "15.00";
             } else {
-                commissionRate = "15.00";
-                incentiveRate = "10.00";
+                commissionRate = "25.00";
             }
         }
 
-        payout[0] = Double.toString((Double.parseDouble(commissionRate) / 100.00) * Double.parseDouble(netPremium));
+        payout[0] = setCurrencyFormat(Double.toString((Double.parseDouble(commissionRate) / 100.00) * Double.parseDouble(netPremium)));
         payout[1] = " ( ".concat(commissionRate).concat(" % of Net Premium )");
-        payout[2] = Double.toString((Double.parseDouble(incentiveRate) / 100.00) * Double.parseDouble(netPremium));
-        ;
+        payout[2] = setCurrencyFormat(Double.toString((Double.parseDouble(incentiveRate) / 100.00) * Double.parseDouble(netPremium)));
         payout[3] = " ( ".concat(incentiveRate).concat(" % of Net Premium )");
-        payout[4] = portalChargesRate;
+        payout[4] = setCurrencyFormat(portalChargesRate);
         payout[5] = " ( Fixed Charges )";
-        payout[6] = Double.toString((Double.parseDouble(portalIncentiveRate) / 100.00) * Double.parseDouble(netPremium));
-        ;
+        payout[6] = setCurrencyFormat(Double.toString((Double.parseDouble(portalIncentiveRate) / 100.00) * Double.parseDouble(netPremium)));
         payout[7] = " ( ".concat(portalIncentiveRate).concat(" % of Net Premium )");
 
-        return payout;
+        String output = "Approx Commission: ".
+                concat(payout[0]).
+                concat(payout[1]).concat("\n").
+                concat("Approx Incentive: ").
+                concat(payout[2]).
+                concat(payout[3]).concat("\n").
+                concat("Approx Portal Charges: ").
+                concat(payout[4]).
+                concat(payout[5]).concat("\n").
+                concat("Approx Portal Incentive: ").
+                concat(payout[6]).
+                concat(payout[7]);
+        return output;
     }
 
     public static long convertStringToCalenderObject(String dateString) {
@@ -1750,16 +2075,20 @@ public class CommonFunctions {
     }
 
     public static void deleteLayoutAndView(LinearLayout linearLayout) {
-        ViewGroup parentLayout = (ViewGroup) linearLayout.getParent();
-        View nextView = parentLayout.getChildAt(parentLayout.indexOfChild(linearLayout) + 1);
-        parentLayout.removeView(linearLayout);
-        parentLayout.removeView(nextView);
+        if (linearLayout != null) {
+            ViewGroup parentLayout = (ViewGroup) linearLayout.getParent();
+            View nextView = parentLayout.getChildAt(parentLayout.indexOfChild(linearLayout) + 1);
+            parentLayout.removeView(linearLayout);
+            parentLayout.removeView(nextView);
+        }
     }
 
     public static void deleteLayout(LinearLayout linearLayout) {
-        ViewGroup parentLayout = (ViewGroup) linearLayout.getParent();
-        View nextView = parentLayout.getChildAt(parentLayout.indexOfChild(linearLayout) + 1);
-        parentLayout.removeView(linearLayout);
+        if (linearLayout != null) {
+            ViewGroup parentLayout = (ViewGroup) linearLayout.getParent();
+            View nextView = parentLayout.getChildAt(parentLayout.indexOfChild(linearLayout) + 1);
+            parentLayout.removeView(linearLayout);
+        }
     }
 
     public static String loadJSONFromAsset(Context context, String filename) {
@@ -3902,9 +4231,9 @@ public class CommonFunctions {
         String totalNetPremium;
         String commission;
 
-        if(isSpecialDrive){
-            if(coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)) {
-                if(sumInsured.equalsIgnoreCase(CommonFunctions.SI_250000)){
+        if (isSpecialDrive) {
+            if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)) {
+                if (sumInsured.equalsIgnoreCase(CommonFunctions.SI_250000)) {
                     basicPremiumRate = "0.4";
                 } else if (sumInsured.equalsIgnoreCase(CommonFunctions.SI_500000)) {
                     basicPremiumRate = "0.4";
@@ -3912,7 +4241,7 @@ public class CommonFunctions {
                     basicPremiumRate = "0.35";
                 }
             } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_II)) {
-                if(sumInsured.equalsIgnoreCase(CommonFunctions.SI_250000)){
+                if (sumInsured.equalsIgnoreCase(CommonFunctions.SI_250000)) {
                     basicPremiumRate = "0.5";
                 } else if (sumInsured.equalsIgnoreCase(CommonFunctions.SI_500000)) {
                     basicPremiumRate = "0.45";
@@ -3920,9 +4249,9 @@ public class CommonFunctions {
                     basicPremiumRate = "0.45";
                 }
             }
-        }else{
-            if(riskCategory.equalsIgnoreCase(PA_RISK_CATEGORY_I)){
-                if(coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)){
+        } else {
+            if (riskCategory.equalsIgnoreCase(PA_RISK_CATEGORY_I)) {
+                if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)) {
                     basicPremiumRate = "0.42";
                 } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_II)) {
                     basicPremiumRate = "0.65";
@@ -3932,7 +4261,7 @@ public class CommonFunctions {
                     basicPremiumRate = "1.50";
                 }
             } else if (riskCategory.equalsIgnoreCase(PA_RISK_CATEGORY_II)) {
-                if(coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)){
+                if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)) {
                     basicPremiumRate = "0.60";
                 } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_II)) {
                     basicPremiumRate = "0.90";
@@ -3942,7 +4271,7 @@ public class CommonFunctions {
                     basicPremiumRate = "2.00";
                 }
             } else if (riskCategory.equalsIgnoreCase(PA_RISK_CATEGORY_III)) {
-                if(coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)){
+                if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_I)) {
                     basicPremiumRate = "0.90";
                 } else if (coverTable.equalsIgnoreCase(PA_COVER_TABLE_II)) {
                     basicPremiumRate = "1.30";
@@ -3954,19 +4283,19 @@ public class CommonFunctions {
             }
         }
 
-        basicPremiumAmount = Double.toString(Double.parseDouble(sumInsured)/1000.00 * Double.parseDouble(basicPremiumRate));
-        if(Double.parseDouble(basicPremiumAmount)<50){
+        basicPremiumAmount = Double.toString(Double.parseDouble(sumInsured) / 1000.00 * Double.parseDouble(basicPremiumRate));
+        if (Double.parseDouble(basicPremiumAmount) < 50) {
             basicPremiumAmount = "50.00";
         }
-        if(medicalExtension){
-            medicalExtensionPremium = Double.toString(20.00/100.00 * Double.parseDouble(basicPremiumAmount));
+        if (medicalExtension) {
+            medicalExtensionPremium = Double.toString(20.00 / 100.00 * Double.parseDouble(basicPremiumAmount));
         }
         totalGrossPremiumAfterAddOns = Double.toString(Double.parseDouble(basicPremiumAmount) + Double.parseDouble(medicalExtensionPremium));
-        totalGstAmount = Double.toString(GST_0/100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
+        totalGstAmount = Double.toString(GST_0 / 100 * Double.parseDouble(totalGrossPremiumAfterAddOns));
         totalNetPremium = Double.toString(Double.parseDouble(totalGrossPremiumAfterAddOns) + Double.parseDouble(totalGstAmount));
         commission = calculateCommissionForPA(totalGrossPremiumAfterAddOns, isSpecialDrive);
-        map.put(INTENT_TOTAL_BASIC_PREMIUM,basicPremiumAmount);
-        map.put(INTENT_TOTAL_GROSS_PREMIUM,totalGrossPremiumAfterAddOns);
+        map.put(INTENT_TOTAL_BASIC_PREMIUM, basicPremiumAmount);
+        map.put(INTENT_TOTAL_GROSS_PREMIUM, totalGrossPremiumAfterAddOns);
         map.put(INTENT_TOTAL_MEDICAL_EXTENSION_PREMUIM, medicalExtensionPremium);
         map.put(INTENT_TOTAL_GST, totalGstAmount);
         map.put(INTENT_TOTAL_NET_PREMIUM, totalNetPremium);
@@ -3979,23 +4308,1821 @@ public class CommonFunctions {
     private static String calculateCommissionForPA(String premium, boolean isSpecialDrive) {
         String output;
         String commissionRate;
-        if(isSpecialDrive){
+        if (isSpecialDrive) {
             commissionRate = "20.00";
-        }else{
+        } else {
             commissionRate = "25.00";
         }
         String incentiveRate = "0.00";
         String portalCharges;
-        if(Double.parseDouble(premium)>=500){
+        if (Double.parseDouble(premium) >= 500) {
             portalCharges = "50.00";
-        }else{
+        } else {
             portalCharges = "20.00";
         }
         String portalIncentiveRate = "0.25";
-        String commissionAmount = Double.toString(Double.parseDouble(commissionRate)/100.00 * Double.parseDouble(premium));
-        String incentiveAmount = Double.toString(Double.parseDouble(incentiveRate)/100.00 * Double.parseDouble(premium));
-        String portalIncentiveAmount = Double.toString(Double.parseDouble(portalIncentiveRate)/100.00 * Double.parseDouble(premium));
+        String commissionAmount = Double.toString(Double.parseDouble(commissionRate) / 100.00 * Double.parseDouble(premium));
+        String incentiveAmount = Double.toString(Double.parseDouble(incentiveRate) / 100.00 * Double.parseDouble(premium));
+        String portalIncentiveAmount = Double.toString(Double.parseDouble(portalIncentiveRate) / 100.00 * Double.parseDouble(premium));
         output = "Approx Commission : ".concat(uptoTwoDecimal(commissionAmount)).concat("\nApprox Incentive : ").concat(uptoTwoDecimal(incentiveAmount)).concat("\nPortal Charges : ").concat(uptoTwoDecimal(portalCharges)).concat("\nPortal Incentive : ").concat(uptoTwoDecimal(portalIncentiveAmount));
         return output;
+    }
+
+    public static ArrayList<HashMap<String, String>> calculatePremiumForTwoWheeler(
+            String transactionType,
+            String paToPassengerSI,
+            String noOfPassenger,
+            String paToPaidDriver,
+            String llToPaidDriver,
+            String cpaOption,
+            String type,
+            int years,
+            int months,
+            String ageOfTheVehicle,
+            String policyType,
+            String zone,
+            String rtoState,
+            String fuelType,
+            String cc,
+            String idv,
+            String ncb,
+            String odDiscount,
+            boolean ndCover,
+            boolean consumables,
+            boolean engineProtection,
+            boolean rti,
+            boolean lossOfKey,
+            boolean rsa) {
+
+        String basicODRate = "0.00";
+        String basicODPremium = "0.00";
+        String basicODPremiumAfterDiscount;
+        String discountApplied = "0.00";
+        String ndCoverPremium = "0.00";
+        String ndCoverRate = "0.00";
+        String consumablesPremium = "0.00";
+        String engineProtectionPremium = "0.00";
+        String rtiPremium = "0.00";
+        String lossOfKeyPremium = "0.00";
+        String lossOfKeySI = "0.00";
+        String rsaPremium = "0.00";
+        String totalODPremium = "0.00";
+        String ncbAmount = "0.00";
+        String basicTPPremium = "0.00";
+        String cpaPremium = "0.00";
+        String llToPaidDriverPremium = "0.00";
+        String paToPaidDriverPremium = "0.00";
+        String paToPassengerPremium = "0.00";
+        String paToPassengerTotalSI = "0.00";
+        String totalTPPremium = "0.00";
+        String grossPremium = "0.00";
+        String gstAmount = "0.00";
+        String netPremium = "0.00";
+        String payout = "0.00";
+        String gstRate = "0.00";
+
+
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+
+        if (policyType.equalsIgnoreCase(MOTOR_PACKAGE) || policyType.equalsIgnoreCase(MOTOR_STANDALONE_OD)) {
+            basicODRate = calculateBasicODRateForTW(ageOfTheVehicle, zone, cc);
+            basicODPremium = Double.toString((Double.parseDouble(basicODRate) / 100) * Double.parseDouble(idv));
+
+            if (odDiscount.equalsIgnoreCase("")) {
+                basicODPremiumAfterDiscount = basicODPremium;
+            } else {
+                discountApplied = Double.toString((Double.parseDouble(odDiscount) / 100) * Double.parseDouble(basicODPremium));
+                basicODPremiumAfterDiscount = Double.toString(Double.parseDouble(basicODPremium) - Double.parseDouble(discountApplied));
+            }
+
+            if (ndCover) {
+                String tempBasicODPremium = "0.00";
+                if(transactionType.equalsIgnoreCase(RENEWAL)){
+                    tempBasicODPremium = Double.toString(Double.parseDouble(basicODPremium) - (5.00/100.00 * Double.parseDouble(basicODPremium)));
+                }else {
+                    tempBasicODPremium = basicODPremium;
+                }
+                String[] result = calculateNDCoverPremium(CommonFunctions.TWO_WHEELER, years, months, ndCoverRate, tempBasicODPremium);
+                ndCoverPremium = result[0];
+                ndCoverRate = result[1];
+            }
+
+            if (consumables) {
+                consumablesPremium = CommonFunctions.calculateConsumablesPremiumNew(TWO_WHEELER, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+            if (engineProtection) {
+                engineProtectionPremium = CommonFunctions.calculateEngineProtectionPremiumNew(TWO_WHEELER, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+            if (rti) {
+                rtiPremium = CommonFunctions.calculateRTIPremiumNew(TWO_WHEELER, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+            if (lossOfKey) {
+                String[] result = CommonFunctions.calculateLossOfKey(TWO_WHEELER, "0.00");
+                lossOfKeyPremium = result[0];
+                lossOfKeySI = result[1];
+            }
+
+            if (rsa) {
+                rsaPremium = CommonFunctions.calculateRSAPremium(TWO_WHEELER);
+            }
+            totalODPremium = Double.toString(Double.parseDouble(basicODPremium) -
+                    Double.parseDouble(discountApplied) +
+                    Double.parseDouble(ndCoverPremium) +
+                    Double.parseDouble(rtiPremium));
+
+            ncbAmount = Double.toString(Double.parseDouble(ncb) / 100 * Double.parseDouble(totalODPremium));
+
+
+            totalODPremium = Double.toString(Double.parseDouble(totalODPremium) -
+                    Double.parseDouble(ncbAmount) +
+                    Double.parseDouble(consumablesPremium) +
+                    Double.parseDouble(engineProtectionPremium) +
+                    Double.parseDouble(lossOfKeyPremium) +
+                    Double.parseDouble(rsaPremium));
+
+        }
+
+        if (policyType.equalsIgnoreCase(MOTOR_PACKAGE) || policyType.equalsIgnoreCase(MOTOR_LIABILITY_ONLY)) {
+
+            basicTPPremium = CommonFunctions.calculateBasicTPPremiumForTWNew(fuelType, type, cc);
+            cpaPremium = CommonFunctions.calculateCPAPremiumNew(cpaOption);
+            if (llToPaidDriver.equalsIgnoreCase("")) {
+                llToPaidDriverPremium = "0.00";
+            } else {
+                llToPaidDriverPremium = Double.toString(Double.parseDouble(llToPaidDriver) * 50);
+            }
+            if (!paToPaidDriver.equalsIgnoreCase("NA")) {
+                paToPaidDriverPremium = Double.toString((Double.parseDouble(paToPaidDriver) / 10000.00) * 7.00);
+            }
+            if (!noOfPassenger.equalsIgnoreCase("")) {
+                String[] paToPassengerArray = CommonFunctions.calculatePAToPassengerNew(CommonFunctions.TWO_WHEELER, paToPassengerSI, noOfPassenger);
+                paToPassengerPremium = paToPassengerArray[0];
+                paToPassengerTotalSI = paToPassengerArray[1];
+            }
+
+            totalTPPremium = Double.toString(Double.parseDouble(basicTPPremium) +
+                    Double.parseDouble(cpaPremium) +
+                    Double.parseDouble(llToPaidDriverPremium) +
+                    Double.parseDouble(paToPaidDriverPremium) +
+                    Double.parseDouble(paToPassengerPremium));
+        }
+
+        netPremium = Double.toString(Double.parseDouble(totalODPremium) + Double.parseDouble(totalTPPremium));
+        gstRate = Double.toString(GST_18);
+        gstAmount = CommonFunctions.roundUp(Double.toString(Double.parseDouble(gstRate) / 100.00 * (Double.parseDouble(netPremium))));
+        grossPremium = Double.toString(Double.parseDouble(netPremium) + Double.parseDouble(gstAmount));
+        String isSAOD = CommonFunctions.NO;
+        if(policyType.equalsIgnoreCase(CommonFunctions.MOTOR_STANDALONE_OD)){
+            isSAOD = CommonFunctions.YES;
+        }
+        payout = CommonFunctions.calculatePayoutForTwoWheelerNew(fuelType, cc, rtoState, isSAOD, netPremium);
+
+
+        map.put(INTENT_BASIC_OD_PREMIUM, basicODPremium);
+        map.put(INTENT_BASIC_OD_RATE, basicODRate);
+        map.put(INTENT_OD_DISCOUNT_AMOUNT, discountApplied);
+        map.put(INTENT_BASIC_OD_DISCOUNT_RATE, odDiscount);
+        map.put(INTENT_BASIC_OD_ND_RATE, ndCoverRate);
+        map.put(INTENT_BASIC_OD_ND_AMOUNT, ndCoverPremium);
+        map.put(INTENT_BASIC_OD_CONSUMABLES, consumablesPremium);
+        map.put(INTENT_BASIC_OD_ENGINE_PROTECTION, engineProtectionPremium);
+        map.put(INTENT_BASIC_OD_RTI, rtiPremium);
+        map.put(INTENT_BASIC_OD_LOSS_OF_KEY_PREMIUM, lossOfKeyPremium);
+        map.put(INTENT_BASIC_OD_LOSS_OF_KEY_SI, lossOfKeySI);
+        map.put(INTENT_BASIC_OD_RSA, rsaPremium);
+        map.put(INTENT_BASIC_OD_NCB_RATE, ncb);
+        map.put(INTENT_BASIC_OD_NCB_AMOUNT, ncbAmount);
+        map.put(INTENT_BASIC_OD_TOTAL_OD_PREMIUM, totalODPremium);
+        map.put(INTENT_TP_BASIC, basicTPPremium);
+        map.put(INTENT_TP_CPA, cpaPremium);
+        map.put(INTENT_TP_LL_TO_PAID_DRIVER, llToPaidDriverPremium);
+        map.put(INTENT_TP_PA_TO_PAID_DRIVER, paToPaidDriverPremium);
+        map.put(INTENT_TP_PA_TO_PASSENGER_PREMIUM, paToPassengerPremium);
+        map.put(INTENT_TP_PA_TO_PASSENGER_SI, paToPassengerTotalSI);
+        map.put(INTENT_TP_TOTAL_TP_PREMIUM, totalTPPremium);
+        map.put(INTENT_TOTAL_GROSS_PREMIUM, grossPremium);
+        map.put(INTENT_TOTAL_GST, gstAmount);
+        map.put(INTENT_TOTAL_GST_RATE, gstRate);
+        map.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+        map.put(INTENT_PREMIUM_AND_COMMISSION, payout);
+
+        output.add(map);
+
+        return output;
+    }
+
+    private static String[] calculateNDCoverPremiumAndRate(String transactionType, int years, int months, String basicODPremium) {
+        String tempBasicODPremium;
+        if (transactionType.equalsIgnoreCase(CommonFunctions.RENEWAL)) {
+            tempBasicODPremium = Double.toString(Double.parseDouble(basicODPremium) - (5 / 100 * Double.parseDouble(basicODPremium)));
+        } else {
+            tempBasicODPremium = basicODPremium;
+        }
+        String[] result = CommonFunctions.calculateNDCoverPremium(TWO_WHEELER, years, months, "0.00", tempBasicODPremium);
+        return result;
+    }
+
+
+    private static String calculateBasicTPPremiumForTWNew(String fuelType, String type, String cc) {
+
+
+        String basicTPPremium = "0.00";
+        if (fuelType.equalsIgnoreCase(PETROL)) {
+            if (type.equalsIgnoreCase(PRE_OWNED)) {
+                if (Double.parseDouble(cc) <= 75) {
+                    basicTPPremium = "538";
+                } else if (Double.parseDouble(cc) > 75 && Double.parseDouble(cc) <= 150) {
+                    basicTPPremium = "714";
+                } else if (Double.parseDouble(cc) > 150 && Double.parseDouble(cc) <= 350) {
+                    basicTPPremium = "1366";
+                } else if (Double.parseDouble(cc) > 350) {
+                    basicTPPremium = "2804";
+                }
+            } else {
+                if (Double.parseDouble(cc) <= 75) {
+                    basicTPPremium = "2901";
+                } else if (Double.parseDouble(cc) > 75 && Double.parseDouble(cc) <= 150) {
+                    basicTPPremium = "3851";
+                } else if (Double.parseDouble(cc) > 150 && Double.parseDouble(cc) <= 350) {
+                    basicTPPremium = "7365";
+                } else if (Double.parseDouble(cc) > 350) {
+                    basicTPPremium = "15117";
+                }
+            }
+        } else {
+            if (type.equalsIgnoreCase(PRE_OWNED)) {
+                if (Double.parseDouble(cc) <= 3) {
+                    basicTPPremium = "457";
+                } else if (Double.parseDouble(cc) > 3 && Double.parseDouble(cc) <= 7) {
+                    basicTPPremium = "607";
+                } else if (Double.parseDouble(cc) > 7 && Double.parseDouble(cc) <= 16) {
+                    basicTPPremium = "1161";
+                } else if (Double.parseDouble(cc) > 16) {
+                    basicTPPremium = "2383";
+                }
+            } else {
+                if (Double.parseDouble(cc) <= 3) {
+                    basicTPPremium = "2466";
+                } else if (Double.parseDouble(cc) > 3 && Double.parseDouble(cc) <= 7) {
+                    basicTPPremium = "3273";
+                } else if (Double.parseDouble(cc) > 7 && Double.parseDouble(cc) <= 16) {
+                    basicTPPremium = "6260";
+                } else if (Double.parseDouble(cc) > 16) {
+                    basicTPPremium = "12849";
+                }
+            }
+        }
+        return basicTPPremium;
+    }
+
+    private static String calculateRTIPremiumNew(String vehicle, double ageOfTheVehicle, String idv) {
+
+        String rtiPremium = "0.00";
+        if (vehicle.equalsIgnoreCase(TWO_WHEELER) || vehicle.equalsIgnoreCase(PRIVATE_CAR) || vehicle.equalsIgnoreCase(GCV)) {
+            if (ageOfTheVehicle <= 0.5) {
+                rtiPremium = Double.toString(0.15 / 100 * Double.parseDouble(idv));
+            } else if (ageOfTheVehicle > 0.5 && ageOfTheVehicle <= 1.5) {
+                rtiPremium = Double.toString(0.20 / 100 * Double.parseDouble(idv));
+            } else if (ageOfTheVehicle > 1.5) {
+                rtiPremium = Double.toString(0.25 / 100 * Double.parseDouble(idv));
+            }
+        }
+        return rtiPremium;
+    }
+
+    private static String calculateEngineProtectionPremiumNew(String vehicle, double ageOfTheVehicle, String idv) {
+
+        String engineProtectionPremium = "0.00";
+        if (vehicle.equalsIgnoreCase(TWO_WHEELER)) {
+            if ((int) Math.round(ageOfTheVehicle) < 1) {
+                engineProtectionPremium = Double.toString(0.07 / 100 * Double.parseDouble(idv));
+            } else if ((int) Math.round(ageOfTheVehicle) >= 1 && (int) Math.round(ageOfTheVehicle) < 2) {
+                engineProtectionPremium = Double.toString(0.09 / 100 * Double.parseDouble(idv));
+            } else if ((int) Math.round(ageOfTheVehicle) >= 2 && (int) Math.round(ageOfTheVehicle) < 3) {
+                engineProtectionPremium = Double.toString(0.12 / 100 * Double.parseDouble(idv));
+            } else if ((int) Math.round(ageOfTheVehicle) >= 3 && (int) Math.round(ageOfTheVehicle) < 4) {
+                engineProtectionPremium = Double.toString(0.17 / 100 * Double.parseDouble(idv));
+            } else if ((int) Math.round(ageOfTheVehicle) >= 4) {
+                engineProtectionPremium = Double.toString(0.22 / 100 * Double.parseDouble(idv));
+            }
+        } else if (vehicle.equalsIgnoreCase(PRIVATE_CAR)) {
+            if ((int) Math.round(ageOfTheVehicle) < 1) {
+                engineProtectionPremium = Double.toString(0.13 / 100 * Double.parseDouble(idv));
+            } else if ((int) Math.round(ageOfTheVehicle) >= 1 && (int) Math.round(ageOfTheVehicle) < 2) {
+                engineProtectionPremium = Double.toString(0.16 / 100 * Double.parseDouble(idv));
+            } else if ((int) Math.round(ageOfTheVehicle) >= 2 && (int) Math.round(ageOfTheVehicle) < 3) {
+                engineProtectionPremium = Double.toString(0.21 / 100 * Double.parseDouble(idv));
+            } else if ((int) Math.round(ageOfTheVehicle) >= 3 && (int) Math.round(ageOfTheVehicle) < 4) {
+                engineProtectionPremium = Double.toString(0.27 / 100 * Double.parseDouble(idv));
+            } else if ((int) Math.round(ageOfTheVehicle) >= 4) {
+                engineProtectionPremium = Double.toString(0.32 / 100 * Double.parseDouble(idv));
+            }
+        }
+        return engineProtectionPremium;
+    }
+
+    private static String calculateConsumablesPremiumNew(String vehicle, double ageOfTheVehicle, String idv) {
+
+        String consumablesPremium = "0.00";
+        double consumableRate = 0.00;
+        if (vehicle.equalsIgnoreCase(TWO_WHEELER) || vehicle.equalsIgnoreCase(PRIVATE_CAR)) {
+            if ((int) Math.round(ageOfTheVehicle) < 1) {
+                consumableRate = 0.10;
+            } else if ((int) Math.round(ageOfTheVehicle) >= 1 && (int) Math.round(ageOfTheVehicle) < 2) {
+                consumableRate = 0.12;
+            } else if ((int) Math.round(ageOfTheVehicle) >= 2 && (int) Math.round(ageOfTheVehicle) < 3) {
+                consumableRate = 0.15;
+            } else if ((int) Math.round(ageOfTheVehicle) >= 3 && (int) Math.round(ageOfTheVehicle) < 4) {
+                consumableRate = 0.17;
+            } else if ((int) Math.round(ageOfTheVehicle) >= 4) {
+                consumableRate = 0.20;
+            }
+        } else if (vehicle.equalsIgnoreCase(GCV) || vehicle.equalsIgnoreCase(PCV)) {
+            if ((int) Math.round(ageOfTheVehicle) < 1) {
+                consumableRate = 0.15;
+            } else if ((int) Math.round(ageOfTheVehicle) >= 1 && (int) Math.round(ageOfTheVehicle) < 2) {
+                consumableRate = 0.18;
+            } else if ((int) Math.round(ageOfTheVehicle) >= 2 && (int) Math.round(ageOfTheVehicle) < 3) {
+                consumableRate = 0.22;
+            } else if ((int) Math.round(ageOfTheVehicle) >= 3 && (int) Math.round(ageOfTheVehicle) < 4) {
+                consumableRate = 0.25;
+            } else if ((int) Math.round(ageOfTheVehicle) >= 4) {
+                consumableRate = 0.30;
+            }
+        }
+        consumablesPremium = Double.toString(consumableRate / 100 * Double.parseDouble(idv));
+        return consumablesPremium;
+    }
+
+    public static void setDisplayValue(String key, String value, TextView textView, LinearLayout layout) {
+        if (uptoTwoDecimal(value).equalsIgnoreCase("0.00")) {
+            deleteLayoutAndView(layout);
+        } else {
+            textView.setText(setCurrencyFormat(value));
+        }
+    }
+
+    public static void setDisplayValueAdditional(String key, String value, TextView textView, String concatStart, String concatEnd) {
+        if (!textView.getText().toString().trim().equalsIgnoreCase("0.00")) {
+            textView.setText(textView.getText().toString().trim().concat(concatStart).concat(value.concat(concatEnd)));
+        }
+    }
+
+    public static ArrayList<HashMap<String, String>> calculatePremiumForPrivateCar(
+            String pvtCarManufacturer,
+            String transactionType,
+            String paToPassengerSI,
+            String noOfPassenger,
+            String paToPaidDriver,
+            String llToPaidDriver,
+            String cpaOption,
+            String vehicleType,
+            int years,
+            int months,
+            String ageOfTheVehicle,
+            String policyType,
+            String zone,
+            String rtoState,
+            String fuelType,
+            String cc,
+            String idv,
+            String ncb,
+            String odDiscount,
+            boolean ndCover,
+            boolean consumables,
+            boolean engineProtection,
+            boolean rti,
+            boolean lossOfKey,
+            boolean rsa,
+            String lossOfKeySI,
+            boolean personalEffect,
+            String personalEffectSI,
+            boolean evProtect,
+            boolean tyreAndRimProtector,
+            String tyreAndRimProtectorSI,
+            boolean lpgCng
+    ) {
+        String basicODRate = "0.00";
+        String basicODPremium = "0.00";
+        String basicODPremiumAfterDiscount;
+        String discountApplied = "0.00";
+        String ndCoverPremium = "0.00";
+        String ndCoverRate = "0.00";
+        String consumablesPremium = "0.00";
+        String engineProtectionPremium = "0.00";
+        String rtiPremium = "0.00";
+        String lossOfKeyPremium = "0.00";
+        String rsaPremium = "0.00";
+        String totalODPremium = "0.00";
+        String ncbAmount = "0.00";
+        String basicTPPremium = "0.00";
+        String cpaPremium = "0.00";
+        String llToPaidDriverPremium = "0.00";
+        String paToPaidDriverPremium = "0.00";
+        String paToPassengerPremium = "0.00";
+        String paToPassengerTotalSI = "0.00";
+        String totalTPPremium = "0.00";
+        String grossPremium = "0.00";
+        String gstAmount = "0.00";
+        String netPremium = "0.00";
+        String payout = "0.00";
+        String gstRate = "0.00";
+        String personalEffectPremium = "0.00";
+        String evProtectPremium = "0.00";
+        String tyreAndRimProtectorPremium = "0.00";
+        String lpgCngKitOD = "0.00";
+        String lpgCngKitTP = "0.00";
+
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+
+        if (policyType.equalsIgnoreCase(MOTOR_PACKAGE) || policyType.equalsIgnoreCase(MOTOR_STANDALONE_OD)) {
+            basicODRate = CommonFunctions.calculateBasicODRateForPvtCarNew(ageOfTheVehicle, zone, cc, fuelType);
+            basicODPremium = Double.toString((Double.parseDouble(basicODRate) / 100) * Double.parseDouble(idv));
+
+            if (odDiscount.equalsIgnoreCase("")) {
+                basicODPremiumAfterDiscount = basicODPremium;
+            } else {
+                discountApplied = Double.toString((Double.parseDouble(odDiscount) / 100) * Double.parseDouble(basicODPremium));
+                basicODPremiumAfterDiscount = Double.toString(Double.parseDouble(basicODPremium) - Double.parseDouble(discountApplied));
+            }
+            if (lpgCng) {
+                lpgCngKitOD = Double.toString(5.00 / 100.00 * Double.parseDouble(basicODPremiumAfterDiscount));
+            }
+            if (ndCover) {
+                String tempBasicODPremium = "0.00";
+                if(transactionType.equalsIgnoreCase(RENEWAL)){
+                    tempBasicODPremium = Double.toString(Double.parseDouble(basicODPremium) - (5.00/100.00 * Double.parseDouble(basicODPremium)));
+                }else {
+                    tempBasicODPremium = basicODPremium;
+                }
+                String[] result = calculateNDCoverPremium(CommonFunctions.PRIVATE_CAR, years, months, ndCoverRate, tempBasicODPremium);
+                ndCoverPremium = result[0];
+                ndCoverRate = result[1];
+            }
+            if (consumables) {
+                consumablesPremium = CommonFunctions.calculateConsumablesPremiumNew(PRIVATE_CAR, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+            if (engineProtection) {
+                engineProtectionPremium = CommonFunctions.calculateEngineProtectionPremiumNew(PRIVATE_CAR, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+            if (rti) {
+                rtiPremium = CommonFunctions.calculateRTIPremiumNew(PRIVATE_CAR, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+
+            if (!lossOfKeySI.equalsIgnoreCase("NA")) {
+                String[] result = CommonFunctions.calculateLossOfKey(CommonFunctions.PRIVATE_CAR, lossOfKeySI);
+                lossOfKeyPremium = result[0];
+                lossOfKeySI = result[1];
+            }
+            if (!personalEffectSI.equalsIgnoreCase("NA")) {
+                String[] result = CommonFunctions.calculatePersonalEffectPremium(CommonFunctions.PRIVATE_CAR, personalEffectSI);
+                personalEffectPremium = result[0];
+                personalEffectSI = result[1];
+            }
+            if (rsa) {
+                rsaPremium = CommonFunctions.calculateRSAPremium(PRIVATE_CAR);
+            }
+            if (evProtect) {
+                evProtectPremium = CommonFunctions.calculateEVProtectPremiumForPvtCar(ageOfTheVehicle, fuelType, idv);
+            }
+            if (tyreAndRimProtector) {
+                tyreAndRimProtectorPremium = CommonFunctions.calculateTyreAndRimProtectorPremium(CommonFunctions.PRIVATE_CAR, vehicleType, tyreAndRimProtectorSI);
+            }
+            totalODPremium = Double.toString(Double.parseDouble(basicODPremium) -
+                    Double.parseDouble(discountApplied) +
+                    Double.parseDouble(ndCoverPremium) +
+                    Double.parseDouble(rtiPremium));
+
+            ncbAmount = Double.toString(Double.parseDouble(ncb) / 100 * Double.parseDouble(totalODPremium));
+
+            totalODPremium = Double.toString(Double.parseDouble(totalODPremium) -
+                    Double.parseDouble(ncbAmount) +
+                    Double.parseDouble(consumablesPremium) +
+                    Double.parseDouble(engineProtectionPremium) +
+                    Double.parseDouble(lossOfKeyPremium) +
+                    Double.parseDouble(rsaPremium) +
+                    Double.parseDouble(personalEffectPremium) +
+                    Double.parseDouble(evProtectPremium) +
+                    Double.parseDouble(tyreAndRimProtectorPremium) +
+                    Double.parseDouble(lpgCngKitOD));
+        }
+        if (policyType.equalsIgnoreCase(MOTOR_PACKAGE) || policyType.equalsIgnoreCase(MOTOR_LIABILITY_ONLY)) {
+
+            basicTPPremium = CommonFunctions.calculateBasicTPPremiumForPrivateCarNew(fuelType, vehicleType, cc);
+
+            if (lpgCng) {
+                if(vehicleType.equalsIgnoreCase(PRE_OWNED)){
+                    lpgCngKitTP = CommonFunctions.CNG_LPG_KIT_TP_PREMIUM;
+                } else if (vehicleType.equalsIgnoreCase(NEW)) {
+                    lpgCngKitTP = Double.toString(Double.parseDouble(CommonFunctions.CNG_LPG_KIT_TP_PREMIUM) *3);
+                }
+
+            }
+
+            cpaPremium = CommonFunctions.calculateCPAPremiumNew(cpaOption);
+
+            if (llToPaidDriver.equalsIgnoreCase("")) {
+                llToPaidDriverPremium = "0.00";
+            } else {
+                llToPaidDriverPremium = Double.toString(Double.parseDouble(llToPaidDriver) * 50);
+                if (vehicleType.equalsIgnoreCase(NEW)) {
+                    llToPaidDriverPremium = Double.toString(Double.parseDouble(llToPaidDriverPremium) * 3);
+                }
+            }
+            if (!paToPaidDriver.equalsIgnoreCase("NA")) {
+                paToPaidDriverPremium = Double.toString((Double.parseDouble(paToPaidDriver) / 10000.00) * 7.00);
+            }
+            if (!noOfPassenger.equalsIgnoreCase("")) {
+                String[] paToPassengerArray = CommonFunctions.calculatePAToPassengerNew(CommonFunctions.PRIVATE_CAR, paToPassengerSI, noOfPassenger);
+                paToPassengerPremium = paToPassengerArray[0];
+                paToPassengerTotalSI = paToPassengerArray[1];
+            }
+
+            totalTPPremium = Double.toString(Double.parseDouble(basicTPPremium) +
+                    Double.parseDouble(cpaPremium) +
+                    Double.parseDouble(llToPaidDriverPremium) +
+                    Double.parseDouble(paToPaidDriverPremium) +
+                    Double.parseDouble(paToPassengerPremium) +
+                    Double.parseDouble(lpgCngKitTP));
+        }
+
+        netPremium = Double.toString(Double.parseDouble(totalODPremium) + Double.parseDouble(totalTPPremium));
+        gstRate = Double.toString(GST_18);
+        gstAmount = CommonFunctions.roundUp(Double.toString(Double.parseDouble(gstRate) / 100.00 * (Double.parseDouble(netPremium))));
+        grossPremium = Double.toString(Double.parseDouble(netPremium) + Double.parseDouble(gstAmount));
+        payout = CommonFunctions.calculatePayoutForPvtCarNew(fuelType, cc, policyType, vehicleType, pvtCarManufacturer, netPremium, totalODPremium, totalTPPremium, rtoState);
+
+        map.put(INTENT_BASIC_OD_PREMIUM, basicODPremium);
+        map.put(INTENT_BASIC_OD_RATE, basicODRate);
+        map.put(INTENT_OD_DISCOUNT_AMOUNT, discountApplied);
+        map.put(INTENT_BASIC_OD_DISCOUNT_RATE, odDiscount);
+        map.put(INTENT_BASIC_OD_ND_RATE, ndCoverRate);
+        map.put(INTENT_BASIC_OD_ND_AMOUNT, ndCoverPremium);
+        map.put(INTENT_BASIC_OD_CONSUMABLES, consumablesPremium);
+        map.put(INTENT_BASIC_OD_ENGINE_PROTECTION, engineProtectionPremium);
+        map.put(INTENT_BASIC_OD_RTI, rtiPremium);
+        map.put(INTENT_BASIC_OD_LOSS_OF_KEY_PREMIUM, lossOfKeyPremium);
+        map.put(INTENT_BASIC_OD_LOSS_OF_KEY_SI, lossOfKeySI);
+        map.put(INTENT_BASIC_OD_PERSONAL_EFFECT_PREMIUM, personalEffectPremium);
+        map.put(INTENT_BASIC_OD_PERSONAL_EFFECT_SI, personalEffectSI);
+        map.put(INTENT_BASIC_OD_RSA, rsaPremium);
+        map.put(INTENT_BASIC_OD_NCB_RATE, ncb);
+        map.put(INTENT_BASIC_OD_NCB_AMOUNT, ncbAmount);
+        map.put(INTENT_BASIC_OD_LPG_CNG_KIT, lpgCngKitOD);
+        map.put(INTENT_BASIC_OD_TOTAL_OD_PREMIUM, totalODPremium);
+        map.put(INTENT_BASIC_OD_EV_PROTECT_PREMIUM, evProtectPremium);
+        map.put(INTENT_BASIC_OD_TYRE_AND_RIM_PROTECTOR_PREMIUM, tyreAndRimProtectorPremium);
+        map.put(INTENT_BASIC_OD_TYRE_AND_RIM_PROTECTOR_SI, tyreAndRimProtectorSI);
+        map.put(INTENT_TP_BASIC, basicTPPremium);
+        map.put(INTENT_TP_CPA, cpaPremium);
+        map.put(INTENT_TP_LL_TO_PAID_DRIVER, llToPaidDriverPremium);
+        map.put(INTENT_TP_PA_TO_PAID_DRIVER, paToPaidDriverPremium);
+        map.put(INTENT_TP_PA_TO_PASSENGER_PREMIUM, paToPassengerPremium);
+        map.put(INTENT_TP_PA_TO_PASSENGER_SI, paToPassengerTotalSI);
+        map.put(INTENT_BASIC_TP_LPG_CNG_KIT, lpgCngKitTP);
+        map.put(INTENT_TP_TOTAL_TP_PREMIUM, totalTPPremium);
+        map.put(INTENT_TOTAL_GROSS_PREMIUM, grossPremium);
+        map.put(INTENT_TOTAL_GST, gstAmount);
+        map.put(INTENT_TOTAL_GST_RATE, gstRate);
+        map.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+        map.put(INTENT_PREMIUM_AND_COMMISSION, payout);
+
+        output.add(map);
+
+        return output;
+    }
+
+    private static String calculateTyreAndRimProtectorPremium(String product, String vehicleType, String tyreAndRimProtectorSI) {
+        String output = "0.00";
+        if (product.equalsIgnoreCase(PRIVATE_CAR)) {
+            if (vehicleType.equalsIgnoreCase(PRE_OWNED)) {
+                if (tyreAndRimProtectorSI.equalsIgnoreCase(SI_25000)) {
+                    output = "1000.00";
+                } else if (tyreAndRimProtectorSI.equalsIgnoreCase(SI_50000)) {
+                    output = "2000.00";
+                } else if (tyreAndRimProtectorSI.equalsIgnoreCase(SI_100000)) {
+                    output = "4000.00";
+                } else if (tyreAndRimProtectorSI.equalsIgnoreCase(SI_200000)) {
+                    output = "8000.00";
+                }
+            } else if (product.equalsIgnoreCase(NEW)) {
+                if (tyreAndRimProtectorSI.equalsIgnoreCase(SI_25000)) {
+                    output = "2500.00";
+                } else if (tyreAndRimProtectorSI.equalsIgnoreCase(SI_50000)) {
+                    output = "5000.00";
+                } else if (tyreAndRimProtectorSI.equalsIgnoreCase(SI_100000)) {
+                    output = "10000.00";
+                } else if (tyreAndRimProtectorSI.equalsIgnoreCase(SI_200000)) {
+                    output = "20000.00";
+                }
+            }
+        }
+        return output;
+    }
+
+    private static String calculateEVProtectPremiumForPvtCar(String ageOfTheVehicle, String fuelType, String idv) {
+        boolean isHybrid = false;
+        boolean isElectric = false;
+        double rate = 0.00;
+        double ageYears = Double.parseDouble(ageOfTheVehicle);
+        String output;
+
+        if (fuelType.equalsIgnoreCase(HYBRID)) {
+            isHybrid = true;
+        } else if (fuelType.equalsIgnoreCase(ELECTRIC)) {
+            isElectric = true;
+        }
+
+        if (isElectric) {
+            // Fully Electric Private Car
+            if (ageYears < 1.0) {
+                rate = 0.0025;        // 0.25% of IDV
+            } else if (ageYears < 2.0) {
+                rate = 0.0030;        // 0.30% of IDV
+            } else if (ageYears < 3.0) {
+                rate = 0.0035;        // 0.35% of IDV
+            } else if (ageYears < 4.0) {
+                rate = 0.0040;        // 0.40% of IDV
+            } else if (ageYears < 5.0) {
+                rate = 0.0050;        // 0.50% of IDV
+            } else {
+                // Age beyond table; adjust as per business rule
+                rate = 0.0050;
+            }
+        } else {
+            // Electric Hybrid Private Cars
+            if (ageYears < 1.0) {
+                rate = 0.0015;        // 0.15% of IDV
+            } else if (ageYears < 2.0) {
+                rate = 0.0020;        // 0.20% of IDV
+            } else if (ageYears < 3.0) {
+                rate = 0.0025;        // 0.25% of IDV
+            } else if (ageYears < 4.0) {
+                rate = 0.0030;        // 0.30% of IDV
+            } else if (ageYears < 5.0) {
+                rate = 0.0035;        // 0.35% of IDV
+            } else {
+                // Age beyond table; adjust as per business rule
+                rate = 0.0035;
+            }
+        }
+        output = Double.toString(rate * Double.parseDouble(idv));
+        return output;
+    }
+
+    private static String calculatePayoutForPvtCarNew(String fuelType, String cc, String policyType, String type, String pvtCarManufacturer, String netPremium, String totalODPremium, String totalTPPremium, String rtoState) {
+
+
+        commissionRate = "0.00";
+        commissionAmount = "0.00";
+        incentiveRate = "0.00";
+        incentiveAmount = "0.00";
+        portalChargesRate = "0.00";
+        portalChargesRateAmount = "0.00";
+        portalIncentiveRate = "0.00";
+        portalIncentiveAmount = "0.00";
+        additionalIncentiveODRate = "0.00";
+        additionalIncentiveODAmount = "0.00";
+        additionalIncentiveTPRate = "0.00";
+        additionalIncentiveTPAmount = "0.00";
+
+        double doubleCc = Double.parseDouble(cc);
+
+        if (Double.parseDouble(netPremium) <= 500.00) {
+            portalChargesRate = "20.00";
+        } else {
+            portalChargesRate = "50.00";
+        }
+        portalIncentiveRate = "0.75";
+        ArrayList<String> payout = new ArrayList<String>();
+
+        if (policyType.equalsIgnoreCase(MOTOR_STANDALONE_OD)) {
+            if(!fuelType.equalsIgnoreCase(ELECTRIC)){
+                commissionRate = "12.00";
+            }else {
+                commissionRate = "17.00";
+            }
+        } else {
+            if (type.equalsIgnoreCase(CommonFunctions.NEW)) {
+                if (fuelType.equalsIgnoreCase(CommonFunctions.DIESEL)) {
+                    if (doubleCc <= 1500.00) {
+                        commissionRate = "10.00";
+                    } else if (doubleCc > 1500.00 && doubleCc <= 2500.00) {
+                        commissionRate = "27.50";
+                    } else if (doubleCc > 2500.00) {
+                        if (pvtCarManufacturer.equalsIgnoreCase(CommonFunctions.OTHERS)) {
+                            commissionRate = "10.00";
+                        } else {
+                            commissionRate = "27.50";
+                        }
+                    }
+                } else if (fuelType.equalsIgnoreCase(CommonFunctions.PETROL)) {
+                    if (doubleCc > 2500.00) {
+                        if (pvtCarManufacturer.equalsIgnoreCase(CommonFunctions.OTHERS)) {
+                            commissionRate = "10.00";
+                        } else {
+                            commissionRate = "27.50";
+                        }
+                    } else {
+                        commissionRate = "27.50";
+                    }
+                } else if (fuelType.equalsIgnoreCase(CommonFunctions.ELECTRIC)) {
+                    commissionRate = "27.50";
+                }
+            } else {
+                if (fuelType.equalsIgnoreCase(CommonFunctions.DIESEL)) {
+                    if (doubleCc <= 1500.00) {
+                        commissionRate = "5.00";
+                    } else if (doubleCc > 1500.00 && doubleCc <= 2500.00) {
+                        commissionRate = "20.00";
+                    } else if (doubleCc > 2500.00) {
+                        if (pvtCarManufacturer.equalsIgnoreCase(CommonFunctions.OTHERS)) {
+                            commissionRate = "5.00";
+                        } else {
+                            commissionRate = "20.00";
+                        }
+                    }
+                } else if (fuelType.equalsIgnoreCase(CommonFunctions.PETROL)) {
+                    if (doubleCc > 2500.00) {
+                        if (pvtCarManufacturer.equalsIgnoreCase(CommonFunctions.OTHERS)) {
+                            commissionRate = "5.00";
+                        } else {
+                            commissionRate = "20.00";
+                        }
+                    } else {
+                        commissionRate = "20.00";
+                    }
+                } else if (fuelType.equalsIgnoreCase(CommonFunctions.ELECTRIC)) {
+                    commissionRate = "17.00";
+                }
+            }
+        }
+
+        if (fuelType.equalsIgnoreCase(ELECTRIC)) {
+            additionalIncentiveODRate = "2.50";
+            additionalIncentiveTPRate = "15.00";
+        } else {
+            if (doubleCc > 1000.00 && doubleCc <= 1200.00) {
+                if (rtoState.equalsIgnoreCase(KARNATAKA) ||
+                        rtoState.equalsIgnoreCase(HARYANA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU)) {
+
+                } else {
+                    additionalIncentiveODRate = "2.50";
+                    additionalIncentiveTPRate = "15.00";
+                }
+            } else if (doubleCc > 1500.00 && doubleCc <= 2000.00) {
+                additionalIncentiveODRate = "2.50";
+                additionalIncentiveTPRate = "15.00";
+            } else if (doubleCc > 2000.00) {
+                if (rtoState.equalsIgnoreCase(KARNATAKA) ||
+                        rtoState.equalsIgnoreCase(HARYANA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                        rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+
+                } else {
+                    additionalIncentiveODRate = "10.00";
+                    additionalIncentiveTPRate = "10.00";
+                }
+            }
+        }
+
+        payout.add(setCurrencyFormat(Double.toString((Double.parseDouble(commissionRate) / 100.00) * Double.parseDouble(netPremium))));
+        payout.add(" ( ".concat(commissionRate).concat(" % of Net Premium )"));
+        payout.add(setCurrencyFormat(Double.toString((Double.parseDouble(incentiveRate) / 100.00) * Double.parseDouble(netPremium))));
+        payout.add(" ( ".concat(incentiveRate).concat(" % of Net Premium )"));
+        payout.add(portalChargesRate);
+        payout.add(" ( Fixed Charges )");
+        payout.add(setCurrencyFormat(Double.toString((Double.parseDouble(portalIncentiveRate) / 100.00) * Double.parseDouble(netPremium))));
+        payout.add(" ( ".concat(portalIncentiveRate).concat(" % of Net Premium )"));
+        payout.add(setCurrencyFormat(Double.toString(Double.parseDouble(additionalIncentiveODRate) / 100.00 * Double.parseDouble(totalODPremium))));
+        payout.add(" ( ".concat(additionalIncentiveODRate).concat(" % of OD Premium)"));
+        payout.add(setCurrencyFormat(Double.toString(Double.parseDouble(additionalIncentiveTPRate) / 100.00 * Double.parseDouble(totalTPPremium))));
+        payout.add(" ( ".concat(additionalIncentiveTPRate).concat(" % of TP Premium)"));
+
+        String output = "Approx Commission: ".concat(payout.get(0)).concat(payout.get(1))
+                .concat("\n").concat("Approx Incentive: ").concat(payout.get(2)).concat(payout.get(3))
+                .concat("\n").concat("Approx Portal Charges: ").concat(payout.get(4)).concat(payout.get(5))
+                .concat("\n").concat("Approx Portal Incentive: ").concat(payout.get(6)).concat(payout.get(7))
+                .concat("\n").concat("Additional OD Incentive: ").concat(payout.get(8)).concat(payout.get(9))
+                .concat("\n").concat("Additional TP Incentive: ").concat(payout.get(10)).concat(payout.get(11));
+        return output;
+
+
+    }
+
+    private static String calculateBasicTPPremiumForPrivateCarNew(String fuelType, String type, String cc) {
+
+        String basicTPPremium = "0.00";
+        Double doubleCc = Double.parseDouble(cc);
+
+        if (fuelType.equalsIgnoreCase(PETROL) || fuelType.equalsIgnoreCase(DIESEL)) {
+            if (type.equalsIgnoreCase(PRE_OWNED)) {
+                if (doubleCc <= 1000.00) {
+                    basicTPPremium = "2094";
+                } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                    basicTPPremium = "3416";
+                } else if (doubleCc > 1500.00) {
+                    basicTPPremium = "7897";
+                }
+            } else {
+                if (doubleCc <= 1000.00) {
+                    basicTPPremium = "6521";
+                } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                    basicTPPremium = "10640";
+                } else if (doubleCc > 1500.00) {
+                    basicTPPremium = "24596";
+                }
+            }
+        } else if (fuelType.equalsIgnoreCase(HYBRID)) {
+            String hybridDiscount = "7.5";
+            if (type.equalsIgnoreCase(PRE_OWNED)) {
+                if (doubleCc <= 1000.00) {
+                    basicTPPremium = "2094";
+                } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                    basicTPPremium = "3416";
+                } else if (doubleCc > 1500.00) {
+                    basicTPPremium = "7897";
+                }
+            } else {
+                if (doubleCc <= 1000.00) {
+                    basicTPPremium = "6521";
+                } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                    basicTPPremium = "10640";
+                } else if (doubleCc > 1500.00) {
+                    basicTPPremium = "24596";
+                }
+            }
+            basicTPPremium = Double.toString(Double.parseDouble(basicTPPremium) - Double.parseDouble(hybridDiscount) / 100.00 * Double.parseDouble(basicTPPremium));
+        } else {
+            if (type.equalsIgnoreCase(PRE_OWNED)) {
+                if (doubleCc <= 30.00) {
+                    basicTPPremium = "1780";
+                } else if (doubleCc > 30.00 && doubleCc <= 65.00) {
+                    basicTPPremium = "2904";
+                } else if (doubleCc > 65.00) {
+                    basicTPPremium = "6712";
+                }
+            } else {
+                if (doubleCc <= 30.00) {
+                    basicTPPremium = "5543";
+                } else if (doubleCc > 30.00 && doubleCc <= 65.00) {
+                    basicTPPremium = "9044";
+                } else if (doubleCc > 65.00) {
+                    basicTPPremium = "20907";
+                }
+            }
+        }
+        return basicTPPremium;
+    }
+
+    private static String calculateBasicODRateForPvtCarNew(String ageOfTheVehicle, String zone, String cc, String fuelType) {
+
+        String basicODRate = "0.00";
+        Double doubleCc = Double.parseDouble(cc);
+        if (zone.equalsIgnoreCase(ZONE_A)) {
+            if (fuelType.equalsIgnoreCase(ELECTRIC)) {
+                if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                    basicODRate = "3.283";
+                } else {
+                    basicODRate = "3.447";
+                }
+            } else {
+                if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                    if (doubleCc <= 1000.00) {
+                        basicODRate = "3.127";
+                    } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                        basicODRate = "3.283";
+                    } else if (doubleCc > 1500.00) {
+                        basicODRate = "3.440";
+                    }
+                } else if (Double.parseDouble(ageOfTheVehicle) >= 5.00 && Double.parseDouble(ageOfTheVehicle) < 10.00) {
+                    if (doubleCc <= 1000.00) {
+                        basicODRate = "3.283";
+                    } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                        basicODRate = "3.447";
+                    } else if (doubleCc > 1500.00) {
+                        basicODRate = "3.612";
+                    }
+                } else if (Double.parseDouble(ageOfTheVehicle) >= 10.00) {
+                    if (doubleCc <= 1000.00) {
+                        basicODRate = "3.362";
+                    } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                        basicODRate = "3.529";
+                    } else if (doubleCc > 1500.00) {
+                        basicODRate = "3.698";
+                    }
+                }
+            }
+        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+            if (fuelType.equalsIgnoreCase(ELECTRIC)) {
+                if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                    basicODRate = "3.191";
+                } else {
+                    basicODRate = "3.351";
+                }
+            } else {
+                if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                    if (doubleCc <= 1000.00) {
+                        basicODRate = "3.039";
+                    } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                        basicODRate = "3.191";
+                    } else if (doubleCc > 1500.00) {
+                        basicODRate = "3.343";
+                    }
+                } else if (Double.parseDouble(ageOfTheVehicle) >= 5.00 && Double.parseDouble(ageOfTheVehicle) < 10.00) {
+                    if (doubleCc <= 1000.00) {
+                        basicODRate = "3.191";
+                    } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                        basicODRate = "3.351";
+                    } else if (doubleCc > 1500.00) {
+                        basicODRate = "3.510";
+                    }
+                } else if (Double.parseDouble(ageOfTheVehicle) >= 10.00) {
+                    if (doubleCc <= 1000.00) {
+                        basicODRate = "3.267";
+                    } else if (doubleCc > 1000.00 && doubleCc <= 1500.00) {
+                        basicODRate = "3.430";
+                    } else if (doubleCc > 1500.00) {
+                        basicODRate = "3.594";
+                    }
+                }
+            }
+        }
+        return basicODRate;
+    }
+
+    public static ArrayList<HashMap<String, String>> calculatePremiumForGCV(
+            String gcvType,
+            String transactionType,
+            String paToPassengerSI,
+            String noOfPassenger,
+            String paToPaidDriver,
+            String llToPaidDriver,
+            String cpaOption,
+            String type,
+            int years,
+            int months,
+            String ageOfTheVehicle,
+            String policyType,
+            String zone,
+            String rtoState,
+            String fuelType,
+            String gvw,
+            String idv,
+            String ncb,
+            String odDiscount,
+            boolean ndCover,
+            boolean consumables,
+            boolean rti,
+            boolean rsa,
+            boolean lpgCng,
+            boolean geoExtension,
+            boolean additionalTowing,
+            String additionalTowingSI,
+            boolean imt23
+    ) {
+        String basicODRate = "0.00";
+        String basicODPremium = "0.00";
+        String basicODPremiumAfterDiscount;
+        String discountApplied = "0.00";
+        String ndCoverPremium = "0.00";
+        String ndCoverRate = "0.00";
+        String consumablesPremium = "0.00";
+        String engineProtectionPremium = "0.00";
+        String rtiPremium = "0.00";
+        String lossOfKeyPremium = "0.00";
+        String lossOfKeySI = "0.00";
+        String rsaPremium = "0.00";
+        String totalODPremium = "0.00";
+        String ncbAmount = "0.00";
+        String basicTPPremium = "0.00";
+        String cpaPremium = "0.00";
+        String llToPaidDriverPremium = "0.00";
+        String paToPaidDriverPremium = "0.00";
+        String paToPassengerPremium = "0.00";
+        String paToPassengerTotalSI = "0.00";
+        String totalTPPremium = "0.00";
+        String grossPremium = "0.00";
+        String gstAmount = "0.00";
+        String netPremium = "0.00";
+        String payout = "0.00";
+        String gstRate = "0.00";
+        String lpgCngKitOD = "0.00";
+        String imt23Premium = "0.00";
+        String geoExtensionODPremium = "0.00";
+        String geoExtensionTPPremium = "0.00";
+        String additionalTowingPremium = "0.00";
+        String lpgCngKitTP = "0.00";
+
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+
+        if (policyType.equalsIgnoreCase(MOTOR_PACKAGE)) {
+
+            basicODRate = CommonFunctions.calculateBasicODRateForGCVNew(ageOfTheVehicle, gcvType, zone);
+            String extraPremium = "0.00";
+            if (Double.parseDouble(gvw) > 12000) {
+                extraPremium = Double.toString((Double.parseDouble(gvw) - 12000) / 100 * 27);
+            }
+            basicODPremium = Double.toString(((Double.parseDouble(basicODRate) / 100) * Double.parseDouble(idv) + Double.parseDouble(extraPremium)));
+
+            if (odDiscount.equalsIgnoreCase("")) {
+                basicODPremiumAfterDiscount = basicODPremium;
+            } else {
+                discountApplied = Double.toString((Double.parseDouble(odDiscount) / 100) * Double.parseDouble(basicODPremium));
+                basicODPremiumAfterDiscount = Double.toString(Double.parseDouble(basicODPremium) - Double.parseDouble(discountApplied));
+            }
+
+            if (lpgCng) {
+                lpgCngKitOD = Double.toString(5.00 / 100.00 * Double.parseDouble(basicODPremiumAfterDiscount));
+            }
+
+            if (ndCover) {
+                String tempBasicODPremium = "0.00";
+                if(transactionType.equalsIgnoreCase(RENEWAL)){
+                    tempBasicODPremium = Double.toString(Double.parseDouble(basicODPremium) - (5.00/100.00 * Double.parseDouble(basicODPremium)));
+                }else {
+                    tempBasicODPremium = basicODPremium;
+                }
+                String[] result = CommonFunctions.calculateNDCoverPremium(CommonFunctions.GCV, years, months, ndCoverRate, tempBasicODPremium);
+                ndCoverPremium = result[0];
+                ndCoverRate = result[1];
+            }
+
+            if (imt23) {
+                imt23Premium = Double.toString(15.00 / 100.00 * (Double.parseDouble(basicODPremiumAfterDiscount)));
+            }
+
+            if (consumables) {
+                consumablesPremium = CommonFunctions.calculateConsumablesPremiumNew(CommonFunctions.GCV, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+
+            if (rti) {
+                rtiPremium = CommonFunctions.calculateRTIPremiumNew(CommonFunctions.GCV, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+
+            if (rsa) {
+                rsaPremium = CommonFunctions.calculateRSAPremium(CommonFunctions.GCV);
+            }
+
+            if (geoExtension) {
+                geoExtensionODPremium = CommonFunctions.GEO_EXTENSION_OD_PREMIUM;
+                geoExtensionTPPremium = CommonFunctions.GEO_EXTENSION_TP_PREMIUM;
+            }
+
+            if (!additionalTowingSI.equalsIgnoreCase("")) {
+                additionalTowingPremium = Double.toString(5.00 / 100.00 * Double.parseDouble(additionalTowingSI));
+            }
+
+            totalODPremium = Double.toString(Double.parseDouble(basicODPremiumAfterDiscount) +
+                    Double.parseDouble(imt23Premium) +
+                    Double.parseDouble(ndCoverPremium) +
+                    Double.parseDouble(rtiPremium) +
+                    Double.parseDouble(geoExtensionODPremium));
+
+            ncbAmount = Double.toString(Double.parseDouble(ncb) / 100 * Double.parseDouble(totalODPremium));
+            totalODPremium = CommonFunctions.roundUp(Double.toString(Double.parseDouble(totalODPremium) -
+                    Double.parseDouble(ncbAmount) +
+                    Double.parseDouble(consumablesPremium) +
+                    Double.parseDouble(engineProtectionPremium) +
+                    Double.parseDouble(rsaPremium) +
+                    Double.parseDouble(additionalTowingPremium) +
+                    Double.parseDouble(lpgCngKitOD)));
+        }
+
+        if (policyType.equalsIgnoreCase(MOTOR_PACKAGE) || policyType.equalsIgnoreCase(MOTOR_LIABILITY_ONLY)) {
+            basicTPPremium = CommonFunctions.calculateBasicTPPremiumForGCVNew(gvw, gcvType, fuelType);
+
+            if (lpgCng) {
+                lpgCngKitTP = CommonFunctions.CNG_LPG_KIT_TP_PREMIUM;
+            }
+
+            cpaPremium = CommonFunctions.calculateCPAPremiumNew(cpaOption);
+
+            if (llToPaidDriver.equalsIgnoreCase("")) {
+                llToPaidDriverPremium = "0.00";
+            } else {
+                llToPaidDriverPremium = Double.toString(Double.parseDouble(llToPaidDriver) * 50);
+            }
+            if (!paToPaidDriver.equalsIgnoreCase("NA")) {
+                paToPaidDriverPremium = Double.toString((Double.parseDouble(paToPaidDriver) / 10000.00) * 7.00);
+            }
+            if (!noOfPassenger.equalsIgnoreCase("")) {
+                String[] paToPassengerArray = CommonFunctions.calculatePAToPassengerNew(CommonFunctions.GCV, paToPassengerSI, noOfPassenger);
+                paToPassengerPremium = paToPassengerArray[0];
+                paToPassengerTotalSI = paToPassengerArray[1];
+            }
+
+            totalTPPremium = Double.toString(Double.parseDouble(basicTPPremium) +
+                    Double.parseDouble(cpaPremium) +
+                    Double.parseDouble(llToPaidDriverPremium) +
+                    Double.parseDouble(paToPaidDriverPremium) +
+                    Double.parseDouble(paToPassengerPremium) +
+                    Double.parseDouble(geoExtensionTPPremium) +
+                    Double.parseDouble(lpgCngKitTP));
+
+            netPremium = Double.toString(Double.parseDouble(totalODPremium) + Double.parseDouble(totalTPPremium));
+            gstAmount = CommonFunctions.roundUp(Double.toString((CommonFunctions.GST_18 / 100.00 * (Double.parseDouble(netPremium) - Double.parseDouble(basicTPPremium))) +
+                    (CommonFunctions.GST_5 / 100.00 * Double.parseDouble(basicTPPremium))));
+            grossPremium = Double.toString(Double.parseDouble(netPremium) + Double.parseDouble(gstAmount));
+
+            payout = CommonFunctions.calculatePayoutForGVWNew(gvw, rtoState, netPremium, gcvType);
+        }
+
+        map.put(INTENT_BASIC_OD_PREMIUM, basicODPremium);
+        map.put(INTENT_BASIC_OD_RATE, basicODRate);
+        map.put(INTENT_OD_DISCOUNT_AMOUNT, discountApplied);
+        map.put(INTENT_BASIC_OD_DISCOUNT_RATE, odDiscount);
+        map.put(INTENT_BASIC_OD_ND_RATE, ndCoverRate);
+        map.put(INTENT_BASIC_OD_ND_AMOUNT, ndCoverPremium);
+        map.put(INTENT_BASIC_OD_CONSUMABLES, consumablesPremium);
+        map.put(INTENT_BASIC_OD_RTI, rtiPremium);
+        map.put(INTENT_BASIC_OD_IMT23, imt23Premium);
+        map.put(INTENT_BASIC_OD_LOSS_OF_KEY_PREMIUM, lossOfKeyPremium);
+        map.put(INTENT_BASIC_OD_LOSS_OF_KEY_SI, lossOfKeySI);
+        map.put(INTENT_BASIC_OD_RSA, rsaPremium);
+        map.put(INTENT_BASIC_OD_GEOGRAPHICAL_EXTENSION, geoExtensionODPremium);
+        map.put(INTENT_BASIC_OD_ADDITIONAL_TOWING, additionalTowingPremium);
+        map.put(INTENT_BASIC_OD_NCB_RATE, ncb);
+        map.put(INTENT_BASIC_OD_NCB_AMOUNT, ncbAmount);
+        map.put(INTENT_BASIC_OD_LPG_CNG_KIT, lpgCngKitOD);
+        map.put(INTENT_BASIC_OD_TOTAL_OD_PREMIUM, totalODPremium);
+        map.put(INTENT_TP_BASIC, basicTPPremium);
+        map.put(INTENT_TP_CPA, cpaPremium);
+        map.put(INTENT_TP_LL_TO_PAID_DRIVER, llToPaidDriverPremium);
+        map.put(INTENT_TP_PA_TO_PAID_DRIVER, paToPaidDriverPremium);
+        map.put(INTENT_TP_PA_TO_PASSENGER_PREMIUM, paToPassengerPremium);
+        map.put(INTENT_TP_PA_TO_PASSENGER_SI, paToPassengerTotalSI);
+        map.put(INTENT_BASIC_TP_GEOGRAPHICAL_EXTENSION, geoExtensionTPPremium);
+        map.put(INTENT_BASIC_TP_LPG_CNG_KIT, lpgCngKitTP);
+        map.put(INTENT_TP_TOTAL_TP_PREMIUM, totalTPPremium);
+        map.put(INTENT_TOTAL_GROSS_PREMIUM, grossPremium);
+        map.put(INTENT_TOTAL_GST, gstAmount);
+        map.put(INTENT_TOTAL_GST_RATE, gstRate);
+        map.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+        map.put(INTENT_PREMIUM_AND_COMMISSION, payout);
+
+        output.add(map);
+
+        return output;
+    }
+
+    private static String calculatePayoutForGVWNew(String gvw, String rtoState, String netPremium, String gcvType) {
+
+        commissionRate = "0.00";
+        commissionAmount = "0.00";
+        incentiveRate = "0.00";
+        incentiveAmount = "0.00";
+        portalChargesRate = "0.00";
+        portalChargesRateAmount = "0.00";
+        portalIncentiveRate = "0.00";
+        portalIncentiveAmount = "0.00";
+
+        if (Double.parseDouble(netPremium) <= 500.00) {
+            portalChargesRate = "20.00";
+        } else {
+            portalChargesRate = "50.00";
+        }
+        portalIncentiveRate = "0.75";
+        String[] payout = new String[8];
+
+        Double doubleGvw = 0.00;
+        if (!gvw.equalsIgnoreCase("")) {
+            doubleGvw = Double.parseDouble(gvw);
+        }
+        if(gcvType.equalsIgnoreCase(THREE_WHEELER)){
+            commissionRate = "50.00";
+        }else{
+            if (doubleGvw <= 2000) {
+                if (rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+                    commissionRate = "20.00";
+                } else {
+                    commissionRate = "57.50";
+                }
+            } else if (doubleGvw > 2000 && doubleGvw <= 3500) {
+                if (rtoState.equalsIgnoreCase(HARYANA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                        rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+                    commissionRate = "15.00";
+                } else {
+                    commissionRate = "45.00";
+                }
+            } else if (doubleGvw > 3500 && doubleGvw <= 7500) {
+                if (rtoState.equalsIgnoreCase(HARYANA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                        rtoState.equalsIgnoreCase(UTTAR_PRADESH)) {
+                    commissionRate = "10.00";
+                } else {
+                    commissionRate = "27.50";
+                }
+            } else if (doubleGvw > 7500 && doubleGvw <= 10000) {
+                if (rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU)) {
+                    commissionRate = "10.00";
+                } else {
+                    commissionRate = "17.50";
+                }
+            } else if (doubleGvw > 10000 && doubleGvw <= 12000) {
+                commissionRate = "2.50";
+            } else if (doubleGvw > 12000 && doubleGvw <= 20000) {
+                if (rtoState.equalsIgnoreCase(HARYANA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                        rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
+                        rtoState.equalsIgnoreCase(KARNATAKA) ||
+                        rtoState.equalsIgnoreCase(KERALA)) {
+                    commissionRate = "5.00";
+                } else {
+                    commissionRate = "15.00";
+                }
+            } else if (doubleGvw > 20000 && doubleGvw <= 25000) {
+                if (rtoState.equalsIgnoreCase(HARYANA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                        rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
+                        rtoState.equalsIgnoreCase(KARNATAKA) ||
+                        rtoState.equalsIgnoreCase(KERALA)) {
+                    commissionRate = "5.00";
+                } else {
+                    commissionRate = "15.00";
+                }
+            } else if (doubleGvw > 25000 && doubleGvw <= 32000) {
+                if (rtoState.equalsIgnoreCase(HARYANA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                        rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
+                        rtoState.equalsIgnoreCase(KARNATAKA) ||
+                        rtoState.equalsIgnoreCase(KERALA)) {
+                    commissionRate = "2.50";
+                } else {
+                    commissionRate = "12.50";
+                }
+            } else if (doubleGvw > 32000 && doubleGvw <= 40000) {
+                commissionRate = "5.00";
+            } else if (doubleGvw > 40000) {
+                if (rtoState.equalsIgnoreCase(HARYANA) ||
+                        rtoState.equalsIgnoreCase(MADHYA_PRADESH) ||
+                        rtoState.equalsIgnoreCase(RAJASTHAN) ||
+                        rtoState.equalsIgnoreCase(TAMIL_NADU) ||
+                        rtoState.equalsIgnoreCase(UTTAR_PRADESH) ||
+                        rtoState.equalsIgnoreCase(KARNATAKA) ||
+                        rtoState.equalsIgnoreCase(KERALA)) {
+
+                } else {
+                    incentiveRate = "5.00";
+                }
+            }
+        }
+
+
+        payout[0] = setCurrencyFormat(Double.toString((Double.parseDouble(commissionRate) / 100.00) * Double.parseDouble(netPremium)));
+        payout[1] = " ( ".concat(commissionRate).concat(" % of Net Premium )");
+        payout[2] = setCurrencyFormat(Double.toString((Double.parseDouble(incentiveRate) / 100.00) * Double.parseDouble(netPremium)));
+        payout[3] = " ( ".concat(incentiveRate).concat(" % of Net Premium )");
+        payout[4] = setCurrencyFormat(portalChargesRate);
+        payout[5] = " ( Fixed Charges )";
+        payout[6] = setCurrencyFormat(Double.toString((Double.parseDouble(portalIncentiveRate) / 100.00) * Double.parseDouble(netPremium)));
+        payout[7] = " ( ".concat(portalIncentiveRate).concat(" % of Net Premium )");
+
+        String output = "Approx Commission: ".
+                concat(payout[0]).
+                concat(payout[1]).concat("\n").
+                concat("Approx Incentive: ").
+                concat(payout[2]).
+                concat(payout[3]).concat("\n").
+                concat("Approx Portal Charges: ").
+                concat(payout[4]).
+                concat(payout[5]).concat("\n").
+                concat("Approx Portal Incentive: ").
+                concat(payout[6]).
+                concat(payout[7]);
+        return output;
+    }
+
+    private static String calculateBasicTPPremiumForGCVNew(String gvw, String type, String fuelType) {
+
+        String basicTPPremium = "0.00";
+
+        if (fuelType.equalsIgnoreCase(ELECTRIC)) {
+            if (type.equalsIgnoreCase(CommonFunctions.OTHER_THAN_THREE_WHEELER)) {
+                if (Double.parseDouble(gvw) <= 7500) {
+                    basicTPPremium = "13642";
+                } else if (Double.parseDouble(gvw) > 7500 && Double.parseDouble(gvw) <= 12000) {
+                    basicTPPremium = "23108";
+                } else if (Double.parseDouble(gvw) > 12000 && Double.parseDouble(gvw) <= 20000) {
+                    basicTPPremium = "30016";
+                } else if (Double.parseDouble(gvw) > 20000 && Double.parseDouble(gvw) <= 40000) {
+                    basicTPPremium = "37357";
+                } else if (Double.parseDouble(gvw) > 40000) {
+                    basicTPPremium = "37606";
+                }
+            } else {
+                basicTPPremium = "3139";
+            }
+        } else if (fuelType.equalsIgnoreCase(PETROL) || fuelType.equalsIgnoreCase(DIESEL) || fuelType.equalsIgnoreCase(HYBRID)) {
+            if (type.equalsIgnoreCase(CommonFunctions.OTHER_THAN_THREE_WHEELER)) {
+                if (Double.parseDouble(gvw) <= 7500) {
+                    basicTPPremium = "16049";
+                } else if (Double.parseDouble(gvw) > 7500 && Double.parseDouble(gvw) <= 12000) {
+                    basicTPPremium = "27186";
+                } else if (Double.parseDouble(gvw) > 12000 && Double.parseDouble(gvw) <= 20000) {
+                    basicTPPremium = "35313";
+                } else if (Double.parseDouble(gvw) > 20000 && Double.parseDouble(gvw) <= 40000) {
+                    basicTPPremium = "43950";
+                } else if (Double.parseDouble(gvw) > 40000) {
+                    basicTPPremium = "44242";
+                }
+            } else {
+                basicTPPremium = "4492";
+            }
+            if (fuelType.equalsIgnoreCase(HYBRID)) {
+                basicTPPremium = Double.toString(Double.parseDouble(basicTPPremium) - (Double.parseDouble(HYBRID_DISCOUNT) / 100.00) * Double.parseDouble(basicTPPremium));
+            }
+        }
+
+        return basicTPPremium;
+    }
+
+    private static String calculateBasicODRateForGCVNew(String ageOfTheVehicle, String type, String zone) {
+        {
+            String basicODRate = "0.00";
+            if (type.equalsIgnoreCase(CommonFunctions.OTHER_THAN_THREE_WHEELER)) {
+                if (zone.equalsIgnoreCase(CommonFunctions.ZONE_A)) {
+                    if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                        basicODRate = "1.751";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 5.00 && Double.parseDouble(ageOfTheVehicle) < 7.00) {
+                        basicODRate = "1.795";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 7.00) {
+                        basicODRate = "1.839";
+                    }
+                } else if (zone.equalsIgnoreCase(CommonFunctions.ZONE_B)) {
+                    if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                        basicODRate = "1.743";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 5.00 && Double.parseDouble(ageOfTheVehicle) < 7.00) {
+                        basicODRate = "1.787";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 7.00) {
+                        basicODRate = "1.830";
+                    }
+                } else if (zone.equalsIgnoreCase(CommonFunctions.ZONE_C)) {
+                    if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                        basicODRate = "1.726";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 5.00 && Double.parseDouble(ageOfTheVehicle) < 7.00) {
+                        basicODRate = "1.770";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 7.00) {
+                        basicODRate = "1.812";
+                    }
+                }
+            } else {
+                if (zone.equalsIgnoreCase(CommonFunctions.ZONE_A)) {
+                    if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                        basicODRate = "1.664";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 5.00 && Double.parseDouble(ageOfTheVehicle) < 7.00) {
+                        basicODRate = "1.706";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 7.00) {
+                        basicODRate = "1.747";
+                    }
+                } else if (zone.equalsIgnoreCase(CommonFunctions.ZONE_B)) {
+                    if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                        basicODRate = "1.656";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 5.00 && Double.parseDouble(ageOfTheVehicle) < 7.00) {
+                        basicODRate = "1.697";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 7.00) {
+                        basicODRate = "1.739";
+                    }
+                } else if (zone.equalsIgnoreCase(CommonFunctions.ZONE_C)) {
+                    if (Double.parseDouble(ageOfTheVehicle) < 5.00) {
+                        basicODRate = "1.640";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 5.00 && Double.parseDouble(ageOfTheVehicle) < 7.00) {
+                        basicODRate = "1.681";
+                    } else if (Double.parseDouble(ageOfTheVehicle) >= 7.00) {
+                        basicODRate = "1.722";
+                    }
+                }
+            }
+            return basicODRate;
+        }
+    }
+
+    public static ArrayList<HashMap<String, String>> calculatePremiumForPCV(
+            String pcvCategory,
+            String pcvType,
+            String transactionType,
+            String paToPassengerSI,
+            String noOfPassenger,
+            String paToPaidDriverSI,
+            String llToPaidDriver,
+            String cpaOption,
+            String vehicleType,
+            int years,
+            int months,
+            String ageOfTheVehicle,
+            String policyType,
+            String zone,
+            String rtoState,
+            String fuelType,
+            String cc,
+            String passengerCapacity,
+            String idv,
+            String ncb,
+            String odDiscount,
+            boolean lpgCng,
+            boolean imt23,
+            boolean ndCover,
+            boolean consumables,
+            boolean rti,
+            boolean rsa,
+            boolean geoExtension,
+            boolean additionalTowing,
+            String additionalTowingSI
+    ) {
+
+        String basicODRate = "0.00";
+        String basicODPremium = "0.00";
+        String basicODPremiumAfterDiscount;
+        String discountApplied = "0.00";
+        String ndCoverPremium = "0.00";
+        String ndCoverRate = "0.00";
+        String consumablesPremium = "0.00";
+        String engineProtectionPremium = "0.00";
+        String rtiPremium = "0.00";
+        String lossOfKeyPremium = "0.00";
+        String lossOfKeySI = "0.00";
+        String rsaPremium = "0.00";
+        String totalODPremium = "0.00";
+        String ncbAmount = "0.00";
+        String basicTPPremium = "0.00";
+        String llToPassengerPremium = "0.00";
+        String cpaPremium = "0.00";
+        String llToPaidDriverPremium = "0.00";
+        String paToPaidDriverPremium = "0.00";
+        String paToPassengerPremium = "0.00";
+        String paToPassengerTotalSI = "0.00";
+        String totalTPPremium = "0.00";
+        String grossPremium = "0.00";
+        String gstAmount = "0.00";
+        String netPremium = "0.00";
+        String payout = "0.00";
+        String gstRate = "0.00";
+        String lpgCngKitOD = "0.00";
+        String imt23Premium = "0.00";
+        String geoExtensionODPremium = "0.00";
+        String geoExtensionTPPremium = "0.00";
+        String additionalTowingPremium = "0.00";
+        String lpgCngKitTP = "0.00";
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+
+
+        if (policyType.equalsIgnoreCase(MOTOR_PACKAGE)) {
+            basicODRate = CommonFunctions.calculateBasicODRateForPCVNew(ageOfTheVehicle, pcvType, zone, cc, passengerCapacity);
+
+            String extraPremium = "0.00";
+
+            if (pcvType.equalsIgnoreCase(CommonFunctions.BUS_MAXI_LUXURY_PCV)) {
+                double passengers = Double.parseDouble(passengerCapacity);
+                if (passengers <= 18) {
+                    extraPremium = "350";
+                } else if (passengers > 18 && passengers <= 36) {
+                    extraPremium = "450";
+                } else if (passengers > 36 && passengers <= 60) {
+                    extraPremium = "550";
+                } else if (passengers > 60) {
+                    extraPremium = "680";
+                }
+            }
+            basicODPremium = Double.toString(((Double.parseDouble(basicODRate) / 100) * Double.parseDouble(idv) + Double.parseDouble(extraPremium)));
+
+            if (odDiscount.equalsIgnoreCase("")) {
+                basicODPremiumAfterDiscount = basicODPremium;
+            } else {
+                discountApplied = Double.toString((Double.parseDouble(odDiscount) / 100) * Double.parseDouble(basicODPremium));
+                basicODPremiumAfterDiscount = Double.toString(Double.parseDouble(basicODPremium) - Double.parseDouble(discountApplied));
+            }
+
+            if (lpgCng) {
+                lpgCngKitOD = Double.toString(5.00 / 100.00 * Double.parseDouble(basicODPremiumAfterDiscount));
+            }
+
+            if (ndCover) {
+                String tempBasicODPremium = "0.00";
+                if(transactionType.equalsIgnoreCase(RENEWAL)){
+                    tempBasicODPremium = Double.toString(Double.parseDouble(basicODPremium) - (5.00/100.00 * Double.parseDouble(basicODPremium)));
+                }else {
+                    tempBasicODPremium = basicODPremium;
+                }
+                String[] result = CommonFunctions.calculateNDCoverPremium(CommonFunctions.PCV, years, months, ndCoverRate, tempBasicODPremium);
+                ndCoverPremium = result[0];
+                ndCoverRate = result[1];
+
+            }
+
+            if (imt23) {
+                imt23Premium = Double.toString(15.00 / 100.00 * (Double.parseDouble(basicODPremiumAfterDiscount)));
+            }
+
+            if (consumables) {
+                consumablesPremium = CommonFunctions.calculateConsumablesPremiumNew(CommonFunctions.PCV, Double.parseDouble(ageOfTheVehicle), idv);
+            }
+
+            if (rti) {
+                rtiPremium = CommonFunctions.calculateRTIPremiumPCVNew(CommonFunctions.PCV, ageOfTheVehicle, idv, pcvType);
+            }
+
+            if (rsa) {
+                rsaPremium = calculateRSAPremiumPCV(CommonFunctions.PCV, pcvType);
+            }
+
+            if (geoExtension) {
+                geoExtensionODPremium = CommonFunctions.GEO_EXTENSION_OD_PREMIUM;
+                geoExtensionTPPremium = CommonFunctions.GEO_EXTENSION_TP_PREMIUM;
+            }
+
+            if (!additionalTowingSI.equalsIgnoreCase("")) {
+                additionalTowingPremium = Double.toString(5.00 / 100.00 * Double.parseDouble(additionalTowingSI));
+            }
+
+            totalODPremium = Double.toString(Double.parseDouble(basicODPremiumAfterDiscount) +
+                    Double.parseDouble(imt23Premium) +
+                    Double.parseDouble(ndCoverPremium) +
+                    Double.parseDouble(rtiPremium) +
+                    Double.parseDouble(geoExtensionODPremium));
+
+            ncbAmount = Double.toString(Double.parseDouble(ncb) / 100 * Double.parseDouble(totalODPremium));
+
+            totalODPremium = CommonFunctions.roundUp(Double.toString(Double.parseDouble(totalODPremium) -
+                    Double.parseDouble(ncbAmount) +
+                    Double.parseDouble(consumablesPremium) +
+                    Double.parseDouble(engineProtectionPremium) +
+                    Double.parseDouble(rsaPremium) +
+                    Double.parseDouble(additionalTowingPremium) +
+                    Double.parseDouble(lpgCngKitOD)));
+        }
+
+        if (policyType.equalsIgnoreCase(MOTOR_PACKAGE) || policyType.equalsIgnoreCase(MOTOR_LIABILITY_ONLY)) {
+            String[] tpPremiumArray = CommonFunctions.calculateBasicTPPremiumForPCV(pcvType, pcvCategory, passengerCapacity, cc, fuelType);
+            basicTPPremium = tpPremiumArray[0];
+            llToPassengerPremium = Double.toString(Double.parseDouble(tpPremiumArray[1]) * Double.parseDouble(passengerCapacity));
+
+            if (lpgCng) {
+                lpgCngKitTP = CommonFunctions.CNG_LPG_KIT_TP_PREMIUM;
+            }
+            cpaPremium = CommonFunctions.calculateCPAPremiumNew(cpaOption);
+
+            if (llToPaidDriver.equalsIgnoreCase("")) {
+                llToPaidDriverPremium = "0.00";
+            } else {
+                llToPaidDriverPremium = Double.toString(Double.parseDouble(llToPaidDriver) * 50);
+            }
+
+            if (!paToPaidDriverSI.equalsIgnoreCase("NA")) {
+                paToPaidDriverPremium = Double.toString((Double.parseDouble(paToPaidDriverSI) / 10000.00) * 7.00);
+            }
+
+            if (!noOfPassenger.equalsIgnoreCase("")) {
+                String[] paToPassengerArray = CommonFunctions.calculatePAToPassengerNew(CommonFunctions.GCV, paToPassengerSI, noOfPassenger);
+                paToPassengerPremium = paToPassengerArray[0];
+                paToPassengerTotalSI = paToPassengerArray[1];
+            }
+
+            totalTPPremium = Double.toString(Double.parseDouble(basicTPPremium) +
+                    Double.parseDouble(cpaPremium) +
+                    Double.parseDouble(llToPaidDriverPremium) +
+                    Double.parseDouble(paToPaidDriverPremium) +
+                    Double.parseDouble(paToPassengerPremium) +
+                    Double.parseDouble(geoExtensionTPPremium) +
+                    Double.parseDouble(lpgCngKitTP) +
+                    Double.parseDouble(llToPassengerPremium));
+
+
+            netPremium = Double.toString(Double.parseDouble(totalODPremium) + Double.parseDouble(totalTPPremium));
+            gstAmount = CommonFunctions.roundUp(Double.toString(CommonFunctions.GST_18 / 100.00 * (Double.parseDouble(netPremium))));
+            grossPremium = Double.toString(Double.parseDouble(netPremium) + Double.parseDouble(gstAmount));
+            payout = CommonFunctions.calculatePayoutForPCV(pcvType, rtoState, netPremium, fuelType, passengerCapacity, pcvCategory);
+        }
+
+        map.put(INTENT_BASIC_OD_PREMIUM, basicODPremium);
+        map.put(INTENT_BASIC_OD_RATE, basicODRate);
+        map.put(INTENT_OD_DISCOUNT_AMOUNT, discountApplied);
+        map.put(INTENT_BASIC_OD_DISCOUNT_RATE, odDiscount);
+        map.put(INTENT_BASIC_OD_ND_RATE, ndCoverRate);
+        map.put(INTENT_BASIC_OD_ND_AMOUNT, ndCoverPremium);
+        map.put(INTENT_BASIC_OD_CONSUMABLES, consumablesPremium);
+        map.put(INTENT_BASIC_OD_RTI, rtiPremium);
+        map.put(INTENT_BASIC_OD_IMT23, imt23Premium);
+        map.put(INTENT_BASIC_OD_LOSS_OF_KEY_PREMIUM, lossOfKeyPremium);
+        map.put(INTENT_BASIC_OD_LOSS_OF_KEY_SI, lossOfKeySI);
+        map.put(INTENT_BASIC_OD_RSA, rsaPremium);
+        map.put(INTENT_BASIC_OD_GEOGRAPHICAL_EXTENSION, geoExtensionODPremium);
+        map.put(INTENT_BASIC_OD_ADDITIONAL_TOWING, additionalTowingPremium);
+        map.put(INTENT_BASIC_OD_NCB_RATE, ncb);
+        map.put(INTENT_BASIC_OD_NCB_AMOUNT, ncbAmount);
+        map.put(INTENT_BASIC_OD_LPG_CNG_KIT, lpgCngKitOD);
+        map.put(INTENT_BASIC_OD_TOTAL_OD_PREMIUM, totalODPremium);
+        map.put(INTENT_TP_BASIC, basicTPPremium);
+        map.put(INTENT_TP_CPA, cpaPremium);
+        map.put(INTENT_TP_LL_TO_PAID_DRIVER, llToPaidDriverPremium);
+        map.put(INTENT_TP_PA_TO_PAID_DRIVER, paToPaidDriverPremium);
+        map.put(INTENT_TP_PASSENGER_LIABILITY_PREMIUM, llToPassengerPremium);
+        map.put(INTENT_TP_PA_TO_PASSENGER_PREMIUM, paToPassengerPremium);
+        map.put(INTENT_TP_PA_TO_PASSENGER_SI, paToPassengerTotalSI);
+        map.put(INTENT_BASIC_TP_GEOGRAPHICAL_EXTENSION, geoExtensionTPPremium);
+        map.put(INTENT_BASIC_TP_LPG_CNG_KIT, lpgCngKitTP);
+        map.put(INTENT_TP_TOTAL_TP_PREMIUM, totalTPPremium);
+        map.put(INTENT_TOTAL_GROSS_PREMIUM, grossPremium);
+        map.put(INTENT_TOTAL_GST, gstAmount);
+        map.put(INTENT_TOTAL_GST_RATE, gstRate);
+        map.put(INTENT_TOTAL_NET_PREMIUM, netPremium);
+        map.put(INTENT_PREMIUM_AND_COMMISSION, payout);
+        output.add(map);
+        return output;
+    }
+
+    private static String calculateRTIPremiumPCVNew(String pcv, String ageOfTheVehicle, String idv, String pcvType) {
+        double age = Double.parseDouble(ageOfTheVehicle);
+        String rtiPremium = "0.00";
+        if (pcvType.equalsIgnoreCase(FOUR_WHEELER_PCV) || pcvType.equalsIgnoreCase(THREE_WHEELER_PCV)) {
+            if (age <= 0.5) {
+                rtiPremium = Double.toString(0.15 / 100 * Double.parseDouble(idv));
+            } else if (age > 0.5 && age <= 1.5) {
+                rtiPremium = Double.toString(0.20 / 100 * Double.parseDouble(idv));
+            } else if (age > 1.5) {
+                rtiPremium = Double.toString(0.25 / 100 * Double.parseDouble(idv));
+            }
+        } else if (pcvType.equalsIgnoreCase(BUS_MAXI_LUXURY_PCV)) {
+            if (age <= 0.5) {
+                rtiPremium = Double.toString(0.20 / 100 * Double.parseDouble(idv));
+            } else if (age > 0.5 && age <= 1.5) {
+                rtiPremium = Double.toString(0.25 / 100 * Double.parseDouble(idv));
+            } else if (age > 1.5) {
+                rtiPremium = Double.toString(0.30 / 100 * Double.parseDouble(idv));
+            }
+        }
+        return rtiPremium;
+    }
+
+    private static String calculateBasicODRateForPCVNew(String ageOfTheVehicle, String pcvType, String zone, String cubicCapacity, String passengerCapacity) {
+        {
+
+            String basicODRate = "0.00";
+            Double age = Double.parseDouble(ageOfTheVehicle);
+            Double cc = 0.00;
+            if (!cubicCapacity.trim().equalsIgnoreCase("")) {
+                cc = Double.parseDouble(cubicCapacity);
+            }
+            Double passenger = Double.parseDouble(passengerCapacity);
+
+            if (pcvType.equalsIgnoreCase(THREE_WHEELER_PCV)) {
+                if (passenger <= 6) {
+                    if (age <= 5) {
+                        if (zone.equalsIgnoreCase(ZONE_A)) {
+                            basicODRate = "1.278";
+                        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                            basicODRate = "1.272";
+                        } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                            basicODRate = "1.260";
+                        }
+                    } else if (age > 5 && age <= 7) {
+                        if (zone.equalsIgnoreCase(ZONE_A)) {
+                            basicODRate = "1.310";
+                        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                            basicODRate = "1.304";
+                        } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                            basicODRate = "1.292";
+                        }
+                    } else if (age > 7) {
+                        if (zone.equalsIgnoreCase(ZONE_A)) {
+                            basicODRate = "1.342";
+                        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                            basicODRate = "1.336";
+                        } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                            basicODRate = "1.323";
+                        }
+                    }
+                } else {
+                    if (age <= 5) {
+                        if (zone.equalsIgnoreCase(ZONE_A)) {
+                            basicODRate = "1.785";
+                        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                            basicODRate = "1.777";
+                        } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                            basicODRate = "1.759";
+                        }
+                    } else if (age > 5 && age <= 7) {
+                        if (zone.equalsIgnoreCase(ZONE_A)) {
+                            basicODRate = "1.830";
+                        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                            basicODRate = "1.821";
+                        } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                            basicODRate = "1.803";
+                        }
+                    } else if (age > 7) {
+                        if (zone.equalsIgnoreCase(ZONE_A)) {
+                            basicODRate = "1.874";
+                        } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                            basicODRate = "1.866";
+                        } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                            basicODRate = "1.847";
+                        }
+                    }
+                }
+            } else if (pcvType.equalsIgnoreCase(FOUR_WHEELER_PCV)) {
+                if (age <= 5) {
+                    if (zone.equalsIgnoreCase(ZONE_A)) {
+                        if (cc <= 1000) {
+                            basicODRate = "3.284";
+                        } else if (cc > 1000 && cc <= 1500) {
+                            basicODRate = "3.448";
+                        } else if (cc > 1500) {
+                            basicODRate = "3.612";
+                        }
+                    } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                        if (cc <= 1000) {
+                            basicODRate = "3.191";
+                        } else if (cc > 1000 && cc <= 1500) {
+                            basicODRate = "3.351";
+                        } else if (cc > 1500) {
+                            basicODRate = "3.510";
+                        }
+                    }
+                } else if (age > 5 && age <= 7) {
+                    if (zone.equalsIgnoreCase(ZONE_A)) {
+                        if (cc <= 1000) {
+                            basicODRate = "3.366";
+                        } else if (cc > 1000 && cc <= 1500) {
+                            basicODRate = "3.534";
+                        } else if (cc > 1500) {
+                            basicODRate = "3.703";
+                        }
+                    } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                        if (cc <= 1000) {
+                            basicODRate = "3.271";
+                        } else if (cc > 1000 && cc <= 1500) {
+                            basicODRate = "3.435";
+                        } else if (cc > 1500) {
+                            basicODRate = "3.598";
+                        }
+                    }
+                } else if (age > 7) {
+                    if (zone.equalsIgnoreCase(ZONE_A)) {
+                        if (cc <= 1000) {
+                            basicODRate = "3.448";
+                        } else if (cc > 1000 && cc <= 1500) {
+                            basicODRate = "3.620";
+                        } else if (cc > 1500) {
+                            basicODRate = "3.793";
+                        }
+                    } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                        if (cc <= 1000) {
+                            basicODRate = "3.351";
+                        } else if (cc > 1000 && cc <= 1500) {
+                            basicODRate = "3.519";
+                        } else if (cc > 1500) {
+                            basicODRate = "3.686";
+                        }
+                    }
+                }
+            } else if (pcvType.equalsIgnoreCase(BUS_MAXI_LUXURY_PCV)) {
+                if (age <= 5) {
+                    if (zone.equalsIgnoreCase(ZONE_A)) {
+                        basicODRate = "1.680";
+                    } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                        basicODRate = "1.672";
+                    } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                        basicODRate = "1.656";
+                    }
+                } else if (age > 5 && age <= 7) {
+                    if (zone.equalsIgnoreCase(ZONE_A)) {
+                        basicODRate = "1.722";
+                    } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                        basicODRate = "1.714";
+                    } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                        basicODRate = "1.697";
+                    }
+                } else if (age > 7) {
+                    if (zone.equalsIgnoreCase(ZONE_A)) {
+                        basicODRate = "1.764";
+                    } else if (zone.equalsIgnoreCase(ZONE_B)) {
+                        basicODRate = "1.756";
+                    } else if (zone.equalsIgnoreCase(ZONE_C)) {
+                        basicODRate = "1.739";
+                    }
+                }
+            }
+            return basicODRate;
+        }
     }
 }

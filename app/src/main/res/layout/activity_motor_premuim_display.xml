@@ -23,8 +23,7 @@
             android:text="PREMIUM CALCULATION"
             android:textAlignment="center"
             android:textSize="30dp"
-            android:textStyle="bold">
-        </TextView>
+            android:textStyle="bold"></TextView>
 
         <View
             android:layout_width="match_parent"
@@ -46,15 +45,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -85,12 +75,76 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="Type"
+                        android:text="Policy Type"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/policyTypeDisplay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="390dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Vehicle Type"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/typeDisplay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="390dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Transaction Type"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/transactionTypeDisplay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -158,7 +212,40 @@
                         android:id="@+id/rtoStateDisplay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="390dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/black" />
+
+                <LinearLayout
+                    android:id="@+id/manufacturerDisplayLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:text="Manufacturer"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/manufacturerDisplay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text=""
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -372,831 +459,922 @@
                     android:layout_height="1dp"
                     android:background="@color/black" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_blue"
-                    android:text="Own Damage Premium"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-
                 <LinearLayout
-                    android:id="@+id/basicODPremiumLinearLayout"
+                    android:id="@+id/odPremiumLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Basic OD Premium"
+                        android:background="@color/light_blue"
+                        android:text="Own Damage Premium"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/basicODPremium"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/black" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/basicODPremiumLinearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Basic OD Premium"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/basicODPremium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/discountLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Discount"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/discountDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ncbLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="NCB"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/ncbDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/imt23LinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="IMT-23"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/imt23Display"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/nilDepLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Nil Dep."
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/ndDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/consumablesLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Consumables"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/consumablesDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/engineProtectionLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Engine Protection"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/engineProtectionDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/rtiLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="RTI"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/rtiDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/lossOfKeyLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Loss Of Key"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/lossOfKeyDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/rsaLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="RSA"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/rsaPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/rsaView"
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/evProtectLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="EV Protect"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/evProtectPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/tyreAndRimProtectorLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Tyre Protector"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tyreAndRimProtectorPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/personalEffectLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Personal Effect"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/personalEffectPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/pesonalEffectView"
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/geoExtensionODLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Geo Extn. OD"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/geoExtensionODPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/additionalTowingLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Additional Towing"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/additionalTowingPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/lpgCngKitODPremiumLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="LPG/CNG Kit OD"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/lpgCngKitODPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        android:id="@+id/totalODPremiumDisplayLinearLayout">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Total OD Premium"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/totalODPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </View>
 
                 <LinearLayout
-                    android:id="@+id/discountLinearLayout"
+                    android:id="@+id/tpPremiumLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black" />
+
+
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Discount"
+                        android:background="@color/light_blue"
+                        android:text="Third Party Premium"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/discountDisplay"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/black" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/black" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3"
+                        android:id="@+id/basicTPPremiumDisplayLinearLayout">
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Basic TP"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/basicTPPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/passengerLiabilityLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Passenger Liability"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/passengerLiabilityPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/cpaLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="CPA"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/cpaPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/llToPaidDriverLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="LL To Paid Driver"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/llToPaidDriverPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/paToPaidDriverLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="PA To Paid Driver"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/paToPaidDriverPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/paToPassengerLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="PA To Passenger"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/paToPassengerPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/geoExtensionTPLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Geo Extn. TP"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/geoExtensionTPPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:id="@+id/lpgCngKitTPPremiumLinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="LPG/CNG Kit TP"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/lpgCngKitTPPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Total TP Premium"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/totalTPPremiumDisplay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text=""
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
                 </LinearLayout>
 
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-
-                <LinearLayout
-                    android:id="@+id/ncbLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="NCB"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/ncbDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/imt23LinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="IMT-23"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/imt23Display"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/nilDepLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Nil Dep."
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/ndDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/consumablesLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Consumables"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/consumablesDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/engineProtectionLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Engine Protection"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/engineProtectionDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/rtiLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="RTI"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/rtiDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/lossOfKeyLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Loss Of Key"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/lossOfKeyDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/rsaLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="RSA"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/rsaPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/rsaView"
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/personalEffectLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Personal Effect"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/personalEffectPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/pesonalEffectView"
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/geoExtensionODLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Geo Extn. OD"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/geoExtensionODPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/additionalTowingLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Additional Towing"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/additionalTowingPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/lpgCngKitODPremiumLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="LPG/CNG Kit OD"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/lpgCngKitODPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Total OD Premium"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/totalODPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light_blue"
-                    android:text="Third Party Premium"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Basic TP"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/basicTPPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/passengerLiabilityLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Passenger Liability"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/passengerLiabilityPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/cpaLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="CPA"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/cpaPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/llToPaidDriverLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="LL To Paid Driver"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/llToPaidDriverPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/paToPaidDriverLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="PA To Paid Driver"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/paToPaidDriverPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/paToPassengerLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="PA To Passenger"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/paToPassengerPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/geoExtensionTPLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Geo Extn. TP"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/geoExtensionTPPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:id="@+id/lpgCngKitTPPremiumLinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="LPG/CNG Kit TP"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/lpgCngKitTPPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="390dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="Total TP Premium"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/totalTPPremiumDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text=""
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -1253,9 +1431,8 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="390dp"
+                    android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_gravity="center"
                     android:background="@color/black" />
 
                 <LinearLayout
@@ -1295,7 +1472,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="3"
+                    android:id="@+id/grossPremiumDisplayLinearLayout">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -1315,6 +1493,12 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="390dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:background="@color/black" />
 
                 <View
                     android:layout_width="match_parent"
@@ -1350,7 +1534,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical"
                     android:weightSum="1">
 
@@ -1403,13 +1587,13 @@
                     android:weightSum="1">
 
                     <TextView
+                        android:id="@+id/disclaimerTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="The premium calculation provided by this app is for informational purposes only and does not constitute a binding quote or offer of insurance. Insurance premiums are subject to approval by the insurer and may vary due to underwriting criteria, changes in policy terms, state regulations, and other factors beyond the app's control. We recommend consulting with an authorized insurance agent or company to obtain an official premium quote before making any decisions."
                         android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:id="@+id/disclaimerTextView"/>
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

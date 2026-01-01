@@ -61,7 +61,7 @@
                 android:layout_weight="1.5"
                 android:background="@drawable/cell_border"
                 android:gravity="center"
-                android:text="85" />
+                android:text="80" />
 
             <TextView
                 android:layout_width="0dp"
@@ -69,7 +69,7 @@
                 android:layout_weight="1.5"
                 android:background="@drawable/cell_border"
                 android:gravity="center"
-                android:text="90" />
+                android:text="85" />
 
         </TableRow>
 
@@ -85,7 +85,15 @@
                 android:layout_weight="2"
                 android:background="@drawable/cell_border"
                 android:gravity="center"
-                android:text="Our Renewals/Rollover \nGVW upto 34000 Kgs" />
+                android:text="Our Renewals With NCB\nUpto 8 Yrs Age \nGVW upto 34000 Kgs" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:background="@drawable/cell_border"
+                android:gravity="center"
+                android:text="With NCB - 80 \nWithout NCB - 70" />
 
             <TextView
                 android:layout_width="0dp"
@@ -95,13 +103,37 @@
                 android:gravity="center"
                 android:text="With NCB - 85 \nWithout NCB - 75" />
 
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@drawable/cell_border"
+                android:gravity="center"
+                android:text="Other Than Above\nGVW upto 34000 Kgs" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
                 android:background="@drawable/cell_border"
                 android:gravity="center"
-                android:text="With NCB - 90 \nWithout NCB - 85" />
+                android:text="With NCB - 75 \nWithout NCB - 65" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:background="@drawable/cell_border"
+                android:gravity="center"
+                android:text="With NCB - 80 \nWithout NCB - 70" />
 
         </TableRow>
 
@@ -125,7 +157,7 @@
                 android:layout_weight="1.5"
                 android:background="@drawable/cell_border"
                 android:gravity="center"
-                android:text="With NCB - 75 \nWithout NCB - 65" />
+                android:text="With NCB - 70 \nWithout NCB - 60" />
 
             <TextView
                 android:layout_width="0dp"
@@ -133,7 +165,7 @@
                 android:layout_weight="1.5"
                 android:background="@drawable/cell_border"
                 android:gravity="center"
-                android:text="With NCB - 85 \nWithout NCB - 75" />
+                android:text="With NCB - 75 \nWithout NCB - 65" />
 
         </TableRow>
 

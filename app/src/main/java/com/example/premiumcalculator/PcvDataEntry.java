@@ -1,13 +1,10 @@
 package com.example.premiumcalculator;
 
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class PcvDataEntry extends AppCompatActivity {
@@ -76,20 +71,40 @@ public class PcvDataEntry extends AppCompatActivity {
 
     EditText idv = null;
     EditText gvw = null;
-    EditText odDiscount = null;
+    EditText odDiscountEditText = null;
     CheckBox ncCover = null;
-    CheckBox consumables = null;
-    CheckBox rti = null;
+    CheckBox consumablesCheckBox = null;
+    CheckBox rtiCheckBox = null;
     CheckBox rsaCheckBox = null;
     CheckBox imt23CheckBox = null;
     CheckBox lpgCngCheckBox = null;
     CheckBox geoExtensionCheckBox = null;
     CheckBox additionalTowingCheckBox = null;
     EditText additionalTowingEditText = null;
-    EditText llToPaidDriver = null;
+    EditText llToPaidDriverEditText = null;
     EditText noOfPassenger = null;
     EditText ccEditText = null;
     EditText passengerCapacityEditText = null;
+
+    Spinner policyTypeSpinner,
+            vehicleTypeSpinner,
+            transactionTypeSpinner,
+            pcvTypeSpinner,
+            pcvCategorySpinner,
+            zoneSpinner,
+            fuelTypeSpinner,
+            rtoStateSpinner,
+            ncbSpinner,
+            twCPASpinner,
+            paToPaidDriverSISpinner,
+            paToPassengerSISpinner;
+    Button calculateTwPremium;
+    EditText regDate,
+            polStartDate,
+            idvEditText,
+            noOfPassengerEditText;
+    CheckBox ndCoverCheckBox;
+    ArrayList<HashMap<String, String>> premium;
 
 
     @Override
@@ -103,7 +118,404 @@ public class PcvDataEntry extends AppCompatActivity {
             return insets;
         });
 
+        //New Code
+
         ccEditText = findViewById(R.id.ccEditText);
+        passengerCapacityEditText = findViewById(R.id.passengerCapacityEditText);
+        idvEditText = findViewById(R.id.idvEditText);
+        noOfPassengerEditText = findViewById(R.id.noOfPassengerEditText);
+        llToPaidDriverEditText = findViewById(R.id.llToPaidDriverEditText);
+        odDiscountEditText = findViewById(R.id.oddiscountEditText);
+        lpgCngCheckBox = findViewById(R.id.lpgCngCheckBox);
+        imt23CheckBox = findViewById(R.id.imt23CheckBox);
+        ndCoverCheckBox = findViewById(R.id.ndCoverCheckBox);
+        consumablesCheckBox = findViewById(R.id.consumablesCheckBox);
+        rtiCheckBox = findViewById(R.id.rtiCheckBox);
+        rsaCheckBox = findViewById(R.id.rsaCheckBox);
+        geoExtensionCheckBox = findViewById(R.id.geoExtensionCheckBox);
+        additionalTowingCheckBox = findViewById(R.id.additionalTowingCheckBox);
+        additionalTowingEditText = findViewById(R.id.additionalTowingEditText);
+
+        ndCoverCheckBox = findViewById(R.id.ndCoverCheckBox);
+
+        fuelTypeSpinner = findViewById(R.id.fuelTypeSpinner);
+        ArrayAdapter<String> fuelTypeAdapterOthers = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_PCV_FUEL_TYPE_OTHERS);
+        ArrayAdapter<String> fuelTypeAdapterThreeWheeler = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_PCV_FUEL_TYPE_FOR_THREE_WHEELERS);
+        fuelTypeAdapterOthers.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fuelTypeAdapterThreeWheeler.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        transactionTypeSpinner = findViewById(R.id.transactionTypeSpinner);
+        ArrayAdapter<String> transactionTypeAdapterWithNA = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_TRANSACTION_TYPE_ARRAY_WITH_NA);
+        ArrayAdapter<String> transactionTypeAdapterWithoutNA = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_TRANSACTION_TYPE_ARRAY_WITHOUT_NA);
+        transactionTypeAdapterWithNA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        transactionTypeAdapterWithoutNA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        policyTypeSpinner = findViewById(R.id.policyTypeSpinner);
+        ArrayAdapter<String> policyTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_POLICY_TYPE_WITHOUT_SAOD_ARRAY);
+        policyTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        policyTypeSpinner.setAdapter(policyTypeAdapter);
+
+        policyTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    findViewById(R.id.ownDamageLinearLayout).setVisibility(View.VISIBLE);
+                    findViewById(R.id.liabilityOnlyLinearLayout).setVisibility(View.VISIBLE);
+                } else if (i == 1) {
+                    findViewById(R.id.ownDamageLinearLayout).setVisibility(View.GONE);
+                    findViewById(R.id.liabilityOnlyLinearLayout).setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        vehicleTypeSpinner = findViewById(R.id.typeSpinner);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.TYPE_ARRAY);
+        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vehicleTypeSpinner.setAdapter(typeAdapter);
+
+        pcvTypeSpinner = findViewById(R.id.pcvTypeSpinner);
+        ArrayAdapter<String> pcvTypeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_PCV_TYPE_ARRAY);
+        pcvTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pcvTypeSpinner.setAdapter(pcvTypeAdapter);
+
+        pcvCategorySpinner = findViewById(R.id.pcvCategorySpinner);
+        ArrayAdapter<String> pcvCategoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_PCV_BUS_CATEGORY);
+        pcvCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pcvCategorySpinner.setAdapter(pcvCategoryAdapter);
+
+        zoneSpinner = findViewById(R.id.zoneSpinner);
+        ArrayAdapter<String> zoneAdapterABC = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_PCV_ZONE_A_B_C);
+        ArrayAdapter<String> zoneAdapterAB = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.MOTOR_PCV_ZONE_A_B);
+        zoneAdapterABC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        zoneAdapterAB.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        pcvTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    pcvCategorySpinner.setSelection(0);
+                    pcvCategorySpinner.setEnabled(false);
+                    zoneSpinner.setAdapter(zoneAdapterABC);
+                    ccEditText.setText("");
+                    ccEditText.setEnabled(false);
+                    fuelTypeSpinner.setAdapter(fuelTypeAdapterThreeWheeler);
+                } else if (i == 1) {
+                    pcvCategorySpinner.setSelection(0);
+                    pcvCategorySpinner.setEnabled(false);
+                    zoneSpinner.setAdapter(zoneAdapterAB);
+                    ccEditText.setText("");
+                    ccEditText.setEnabled(true);
+                    fuelTypeSpinner.setAdapter(fuelTypeAdapterOthers);
+                } else if (i == 2) {
+                    pcvCategorySpinner.setSelection(0);
+                    pcvCategorySpinner.setEnabled(true);
+                    zoneSpinner.setAdapter(zoneAdapterABC);
+                    ccEditText.setText("");
+                    ccEditText.setEnabled(false);
+                    fuelTypeSpinner.setAdapter(fuelTypeAdapterOthers);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        rtoStateSpinner = findViewById(R.id.rtoStateSpinner);
+        ArrayAdapter<String> rtoStateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.ALL_STATES_ARRAY);
+        rtoStateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        rtoStateSpinner.setAdapter(rtoStateAdapter);
+
+        ncbSpinner = findViewById(R.id.ncbSpinner);
+        ArrayAdapter<String> ncbAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.NCB_ARRAY);
+        ncbAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ncbSpinner.setAdapter(ncbAdapter);
+
+        twCPASpinner = findViewById(R.id.twCPASpinner);
+        ArrayAdapter<String> twCPAAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.CPA_ARRAY_LONG_TERM);
+        twCPAAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        twCPASpinner.setAdapter(twCPAAdapter);
+
+        vehicleTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) {
+                    transactionTypeSpinner.setEnabled(true);
+                    transactionTypeSpinner.setAdapter(transactionTypeAdapterWithoutNA);
+                } else {
+                    transactionTypeSpinner.setEnabled(false);
+                    transactionTypeSpinner.setAdapter(transactionTypeAdapterWithNA);
+                    transactionTypeSpinner.setSelection(0);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        paToPaidDriverSISpinner = findViewById(R.id.paToPaidDriverSISpinner);
+        ArrayAdapter<String> paToPaidDriverSIAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY);
+        paToPaidDriverSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        paToPaidDriverSISpinner.setAdapter(paToPaidDriverSIAdapter);
+
+        paToPassengerSISpinner = findViewById(R.id.paToPassengerSISpinner);
+        ArrayAdapter<String> paToPassengerSIAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, CommonFunctions.PA_TP_PAID_DRIVE_PASSENGER_SI_ARRAY);
+        paToPassengerSIAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        paToPassengerSISpinner.setAdapter(paToPassengerSIAdapter);
+
+        additionalTowingCheckBox = findViewById(R.id.additionalTowingCheckBox);
+        additionalTowingEditText = findViewById(R.id.additionalTowingEditText);
+        additionalTowingEditText.setEnabled(false);
+        additionalTowingCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    additionalTowingEditText.setText("");
+                    additionalTowingEditText.setEnabled(true);
+                } else {
+                    additionalTowingEditText.setText("");
+                    additionalTowingEditText.setEnabled(false);
+                }
+            }
+        });
+
+        calculateTwPremium = findViewById(R.id.calculateTwPremium);
+
+        regDate = findViewById(R.id.regDateEditText);
+        polStartDate = findViewById(R.id.polStartDateEditText);
+
+        TextView discountLimitsTextView = findViewById(R.id.discountLimitsTextView);
+
+        discountLimitsTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.pcv_discount_limit_dialog_layout, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(PcvDataEntry.this);
+                builder.setView(dialogView);
+                builder.setTitle(CommonFunctions.DISCOUNT_LIMIT_DIALOG_BOX_TITLE);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        String currentDate = new SimpleDateFormat("dd/MM/yyyy", Locale.US).format(new Date());
+        regDate.setText(currentDate);
+
+        regDate.addTextChangedListener(new TextWatcher() {
+
+            private String current = "";
+            private String ddmmyyyy = "DDMMYYYY";
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d]", "");
+                    String cleanCurrent = current.replaceAll("[^\\d]", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    // Fix for deleting slash
+                    if (clean.equals(cleanCurrent)) sel--;
+
+                    if (clean.length() < 8) {
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    } else {
+                        // Validate day, month, year separately if needed
+                    }
+
+                    clean = clean.substring(0, 8);
+                    StringBuilder formatted = new StringBuilder();
+                    formatted.append(clean.substring(0, 2)).append("/");
+                    formatted.append(clean.substring(2, 4)).append("/");
+                    formatted.append(clean.substring(4, 8));
+
+                    current = formatted.toString();
+                    regDate.setText(current);
+                    regDate.setSelection(sel < current.length() ? sel : current.length());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        polStartDate.setText(currentDate);
+        polStartDate.addTextChangedListener(new TextWatcher() {
+
+            private String current = "";
+            private String ddmmyyyy = "DDMMYYYY";
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d]", "");
+                    String cleanCurrent = current.replaceAll("[^\\d]", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    // Fix for deleting slash
+                    if (clean.equals(cleanCurrent)) sel--;
+
+                    if (clean.length() < 8) {
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    } else {
+                        // Validate day, month, year separately if needed
+                    }
+
+                    clean = clean.substring(0, 8);
+                    StringBuilder formatted = new StringBuilder();
+                    formatted.append(clean.substring(0, 2)).append("/");
+                    formatted.append(clean.substring(2, 4)).append("/");
+                    formatted.append(clean.substring(4, 8));
+
+                    current = formatted.toString();
+                    polStartDate.setText(current);
+                    polStartDate.setSelection(sel < current.length() ? sel : current.length());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        calculateTwPremium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean flag = false;
+                if (pcvTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FOUR_WHEELER_PCV) && ccEditText.getText().toString().trim().equalsIgnoreCase("")) {
+                    CommonFunctions.createAlertBuilder(PcvDataEntry.this, "Alert", "Please enter CC", "Ok", "");
+                    flag = true;
+                } else if (passengerCapacityEditText.getText().toString().trim().equalsIgnoreCase("")) {
+                    CommonFunctions.createAlertBuilder(PcvDataEntry.this, "Alert", "Please enter Passenger Capacity", "Ok", "");
+                    flag = true;
+                } else if (idvEditText.getText().toString().trim().equalsIgnoreCase("") && !policyTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.MOTOR_LIABILITY_ONLY)) {
+                    CommonFunctions.createAlertBuilder(PcvDataEntry.this, "Alert", "Please enter IDV", "Ok", "");
+                    flag = true;
+                } else if (noOfPassengerEditText.getText().toString().trim().equalsIgnoreCase("") && !paToPassengerSISpinner.getSelectedItem().toString().equalsIgnoreCase("NA")) {
+                    CommonFunctions.createAlertBuilder(PcvDataEntry.this, "Alert", "Please select No. Of Passenger for PA To Unnamed Passenger", "Ok", "");
+                    flag = true;
+                } else if (!noOfPassengerEditText.getText().toString().trim().equalsIgnoreCase("") && paToPassengerSISpinner.getSelectedItem().toString().equalsIgnoreCase("NA")) {
+                    CommonFunctions.createAlertBuilder(PcvDataEntry.this, "Alert", "Please select Sum Insured for PA To Unnamed Passenger", "Ok", "");
+                    flag = true;
+                } else if (pcvTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.THREE_WHEELER_PCV) && Double.parseDouble(passengerCapacityEditText.getText().toString().trim()) > 6) {
+                    CommonFunctions.createAlertBuilder(PcvDataEntry.this, "Alert", "Passenger Capacity Should Be Less Than Or Equal To 6", "Ok", "");
+                    flag = true;
+                } else if (pcvTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.FOUR_WHEELER_PCV) && Double.parseDouble(passengerCapacityEditText.getText().toString().trim()) > 6) {
+                    CommonFunctions.createAlertBuilder(PcvDataEntry.this, "Alert", "Passenger Capacity Should Be Less Than Or Equal To 6", "Ok", "");
+                    flag = true;
+                } else if (pcvTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.BUS_MAXI_LUXURY_PCV) && Double.parseDouble(passengerCapacityEditText.getText().toString().trim()) <= 6) {
+                    CommonFunctions.createAlertBuilder(PcvDataEntry.this, "Alert", "Passenger Capacity Should Be Greater Than 6", "Ok", "");
+                    flag = true;
+
+                }
+
+                if (ndCoverCheckBox.isChecked() && pcvTypeSpinner.getSelectedItem().toString().equalsIgnoreCase(CommonFunctions.BUS_MAXI_LUXURY_PCV)) {
+                    if (!imt23CheckBox.isChecked()) {
+                        imt23CheckBox.setChecked(true);
+                    }
+                }
+
+                if (!flag) {
+
+                    long millisBetween = CommonFunctions.convertStringToCalenderObject(polStartDate.getText().toString().trim()) - CommonFunctions.convertStringToCalenderObject(regDate.getText().toString().trim());
+                    double ageOfTheVehicle = millisBetween / (1000.0 * 60 * 60 * 24 * 365.2425);
+
+                    int[] yearsAndMonthsFromAgeResult = CommonFunctions.getYearsAndMonthsFromAge(polStartDate.getText().toString().trim(), regDate.getText().toString().trim());
+                    int years = yearsAndMonthsFromAgeResult[0];
+                    int months = yearsAndMonthsFromAgeResult[1];
+
+                    premium = CommonFunctions.calculatePremiumForPCV(
+                            pcvCategorySpinner.getSelectedItem().toString(),
+                            pcvTypeSpinner.getSelectedItem().toString(),
+                            transactionTypeSpinner.getSelectedItem().toString(),
+                            paToPassengerSISpinner.getSelectedItem().toString(),
+                            noOfPassengerEditText.getText().toString().trim(),
+                            paToPaidDriverSISpinner.getSelectedItem().toString(),
+                            llToPaidDriverEditText.getText().toString().trim(),
+                            twCPASpinner.getSelectedItem().toString(),
+                            vehicleTypeSpinner.getSelectedItem().toString(),
+                            years,
+                            months,
+                            Double.toString(ageOfTheVehicle),
+                            policyTypeSpinner.getSelectedItem().toString(),
+                            zoneSpinner.getSelectedItem().toString(),
+                            rtoStateSpinner.getSelectedItem().toString(),
+                            fuelTypeSpinner.getSelectedItem().toString(),
+                            ccEditText.getText().toString().trim(),
+                            passengerCapacityEditText.getText().toString().trim(),
+                            idvEditText.getText().toString().trim(),
+                            ncbSpinner.getSelectedItem().toString(),
+                            odDiscountEditText.getText().toString().trim(),
+                            lpgCngCheckBox.isChecked(),
+                            imt23CheckBox.isChecked(),
+                            ndCoverCheckBox.isChecked(),
+                            consumablesCheckBox.isChecked(),
+                            rtiCheckBox.isChecked(),
+                            rsaCheckBox.isChecked(),
+                            geoExtensionCheckBox.isChecked(),
+                            additionalTowingCheckBox.isChecked(),
+                            additionalTowingEditText.getText().toString().trim()
+                    );
+
+                    Intent intent = new Intent(PcvDataEntry.this, MotorPremuimDisplay.class);
+                    intent.putExtra(CommonFunctions.INTENT_PRODUCT_NAME, CommonFunctions.PCV);
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_POLICY_TYPE, policyTypeSpinner.getSelectedItem().toString());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_VEHICLE_TYPE, vehicleTypeSpinner.getSelectedItem().toString());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_TRANSACTION_TYPE, transactionTypeSpinner.getSelectedItem().toString());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_PCV_TYPE, pcvTypeSpinner.getSelectedItem().toString());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_PCV_CATEGORY, pcvCategorySpinner.getSelectedItem().toString());
+                    intent.putExtra(CommonFunctions.INTENT_ZONE, zoneSpinner.getSelectedItem().toString());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_RTO_STATE, rtoStateSpinner.getSelectedItem().toString());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_VEHICLE_AGE, String.format("%.3f", ageOfTheVehicle));
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_FUEL_TYPE, fuelTypeSpinner.getSelectedItem().toString());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_CC, ccEditText.getText().toString().trim());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_PASSENGER_CAPACITY, passengerCapacityEditText.getText().toString().trim());
+                    intent.putExtra(CommonFunctions.INTENT_MOTOR_IDV, idvEditText.getText().toString().trim());
+                    intent.putExtra(CommonFunctions.INTENT_PREMIUM_AND_COMMISSION, premium);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
+
+        /*ccEditText = findViewById(R.id.ccEditText);
 
         passengerCapacityEditText = findViewById(R.id.passengerCapacityEditText);
 
@@ -181,7 +593,7 @@ public class PcvDataEntry extends AppCompatActivity {
         ncbSpinner.setAdapter(ncbAdapter);
 
         Spinner twCPASpinner = findViewById(R.id.twCPASpinner);
-        ArrayAdapter<String> twCPAAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.CPA_ARRAY);
+        ArrayAdapter<String> twCPAAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CommonFunctions.CPA_ARRAY_LONG_TERM);
         twCPAAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         twCPASpinner.setAdapter(twCPAAdapter);
 
@@ -387,7 +799,7 @@ public class PcvDataEntry extends AppCompatActivity {
                 noOfPassenger = findViewById(R.id.noOfPassengerEditText);
                 additionalTowingEditText = findViewById(R.id.additionalTowingEditText);
 
-                /*additionalTowingCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                *//*additionalTowingCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -399,7 +811,7 @@ public class PcvDataEntry extends AppCompatActivity {
                             additionalTowingEditText.setEnabled(false);
                         }
                     }
-                });*/
+                });*//*
 
                 long millisBetween = CommonFunctions.convertStringToCalenderObject(polStartDate.getText().toString().trim()) - CommonFunctions.convertStringToCalenderObject(regDate.getText().toString().trim());
 
@@ -619,7 +1031,7 @@ public class PcvDataEntry extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
 
     }
 }
