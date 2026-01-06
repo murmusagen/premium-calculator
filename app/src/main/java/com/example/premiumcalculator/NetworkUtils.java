@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class NetworkUtils {
 
-    public static String APP_VERSION_URL = "https://premiumcalculator6.wordpress.com/2025/12/14/version-1-3/";
+    public static String APP_VERSION_URL = "https://premiumcalculator6.wordpress.com/2026/01/06/version-1-4/";
     public static String URL_FOR_DOWNLOADING_NEW_APP = "https://premiumcalculator6.wordpress.com/2025/12/07/update-available/";
 
     public static int checkPostAvailability() {
