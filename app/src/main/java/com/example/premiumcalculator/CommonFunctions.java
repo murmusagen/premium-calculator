@@ -1381,7 +1381,7 @@ public class CommonFunctions {
         } else {
             portalChargesRate = "50.00";
         }
-        portalIncentiveRate = "0.75";
+        portalIncentiveRate = "0.25";
         String[] payout = new String[8];
 
         if (isSAOD.equalsIgnoreCase(CommonFunctions.YES)) {
@@ -1446,7 +1446,7 @@ public class CommonFunctions {
         } else {
             portalChargesRate = "50.00";
         }
-        portalIncentiveRate = "0.75";
+        portalIncentiveRate = "0.25";
         String[] payout = new String[8];
 
         if (isSAOD.equalsIgnoreCase(CommonFunctions.YES)) {
@@ -1541,7 +1541,7 @@ public class CommonFunctions {
         } else {
             portalChargesRate = "50.00";
         }
-        portalIncentiveRate = "0.75";
+        portalIncentiveRate = "0.25";
         ArrayList<String> payout = new ArrayList<String>();
 
         if (isSAOD.equalsIgnoreCase(YES)) {
@@ -1668,7 +1668,7 @@ public class CommonFunctions {
         } else {
             portalChargesRate = "50.00";
         }
-        portalIncentiveRate = "0.75";
+        portalIncentiveRate = "0.25";
         String[] payout = new String[8];
 
         Double doubleGvw = 0.00;
@@ -1973,7 +1973,7 @@ public class CommonFunctions {
         } else {
             portalChargesRate = "50.00";
         }
-        portalIncentiveRate = "0.75";
+        portalIncentiveRate = "0.25";
 
         Double passenger = 0.00;
         if (!passengerCapacity.equalsIgnoreCase("")) {
@@ -4995,7 +4995,7 @@ public class CommonFunctions {
         } else {
             portalChargesRate = "50.00";
         }
-        portalIncentiveRate = "0.75";
+        portalIncentiveRate = "0.25";
         ArrayList<String> payout = new ArrayList<String>();
 
         if (policyType.equalsIgnoreCase(MOTOR_STANDALONE_OD)) {
@@ -5489,7 +5489,7 @@ public class CommonFunctions {
         } else {
             portalChargesRate = "50.00";
         }
-        portalIncentiveRate = "0.75";
+        portalIncentiveRate = "0.25";
         String[] payout = new String[8];
 
         Double doubleGvw = 0.00;
